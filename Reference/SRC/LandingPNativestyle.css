@@ -1,0 +1,39 @@
+#box {
+  box-shadow: 4px 4px 12px 0 rgba(0, 0, 0, 0.568);
+}
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.scrolling-banner {
+  animation: scroll 20s linear infinite;
+}
+#white {
+  box-shadow: 2px 2px 20px 0 rgba(0, 0, 0, 0.568);
+}
+#navbot,
+#navbot2 {
+  box-shadow: 2px 2px 10px 0 rgba(0, 0, 0, 0.425);
+}
+@media (max-width: 1204px) {
+  #navbot {
+    height: 140px;
+  }
+}
+.buts {
+  margin: 10px;
+  padding: 10px;
+}
+.buts:hover {
+  border-bottom: 3px solid rgb(148, 148, 148);
+}
+.icons {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-self: center;
+}
