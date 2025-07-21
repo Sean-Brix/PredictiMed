@@ -1,2 +1,5 @@
+/node_modules
+/Reference
+*.env
 .env
-node_modules
+/prisma/generated/prisma
