@@ -1,0 +1,758 @@
+{
+    "dss_data_structure": {
+        "metadata": {
+            "created_date": "2025-07-31",
+            "version": "1.1",
+            "description": "Comprehensive data fields for PredictiMed Decision Support System - Trend Analysis Focus",
+            "categories": 10
+        },
+        "data_categories": {
+            "patient_demographics": {
+                "description": "Basic patient identification and demographic information",
+                "fields": {
+                    "personal_info": {
+                        "full_name": {
+                            "type": "string",
+                            "required": true,
+                            "description": "Complete name of the patient"
+                        },
+                        "date_of_birth": {
+                            "type": "date",
+                            "required": true,
+                            "description": "Patient's birth date"
+                        },
+                        "age": {
+                            "type": "number",
+                            "required": true,
+                            "description": "Current age (months for <5 years, years for others)"
+                        },
+                        "gender": {
+                            "type": "enum",
+                            "values": ["Male", "Female"],
+                            "required": true
+                        },
+                        "address": {
+                            "type": "string",
+                            "required": true,
+                            "description": "Complete residential address"
+                        },
+                        "contact_number": {
+                            "type": "string",
+                            "required": false,
+                            "description": "Primary contact number"
+                        },
+                        "religion": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "civil_status": {
+                            "type": "enum",
+                            "values": [
+                                "Single",
+                                "Married",
+                                "Widowed",
+                                "Separated",
+                                "Live-in"
+                            ],
+                            "required": false
+                        },
+                        "occupation": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "education_level": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "philhealth_number": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "nhts_status": {
+                            "type": "enum",
+                            "values": ["NHTS", "Non-NHTS"],
+                            "required": false,
+                            "description": "National Household Targeting System status"
+                        },
+                        "person_with_disability": {
+                            "type": "boolean",
+                            "required": false
+                        },
+                        "indigenous_people": {
+                            "type": "boolean",
+                            "required": false
+                        }
+                    }
+                }
+            },
+            "maternal_health": {
+                "description": "Maternal and prenatal health records",
+                "fields": {
+                    "mother_profile": {
+                        "mothers_name": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "mothers_age": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "mothers_birthday": {
+                            "type": "date",
+                            "required": true
+                        },
+                        "mothers_maiden_name": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "mothers_religion": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "mothers_education": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "mothers_occupation": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "number_of_children": {
+                            "type": "number",
+                            "required": false
+                        },
+                        "gravida_para": {
+                            "type": "string",
+                            "required": false,
+                            "description": "Number of pregnancies/births (G/P format)"
+                        },
+                        "menarche_age": {
+                            "type": "number",
+                            "required": false
+                        },
+                        "last_menstrual_period": {
+                            "type": "date",
+                            "required": false,
+                            "abbreviation": "LMP"
+                        },
+                        "expected_delivery_date": {
+                            "type": "date",
+                            "required": false,
+                            "abbreviation": "EDD/EDC"
+                        },
+                        "tetanus_toxoid_status": {
+                            "type": "enum",
+                            "values": ["TT1", "TT2", "TT3", "TT4", "TT5"],
+                            "required": false
+                        }
+                    },
+                    "prenatal_visits": {
+                        "visit_date": {
+                            "type": "date",
+                            "required": true
+                        },
+                        "gestational_age_weeks": {
+                            "type": "number",
+                            "required": true,
+                            "abbreviation": "AOG"
+                        },
+                        "weight_kg": {
+                            "type": "number",
+                            "required": true
+                        },
+                        "height_cm": {
+                            "type": "number",
+                            "required": false
+                        },
+                        "blood_pressure": {
+                            "type": "string",
+                            "required": true,
+                            "format": "systolic/diastolic"
+                        },
+                        "fundal_height_cm": {
+                            "type": "number",
+                            "required": true,
+                            "abbreviation": "FH"
+                        },
+                        "fetal_heart_tone": {
+                            "type": "string",
+                            "required": true,
+                            "abbreviation": "FHT"
+                        },
+                        "laboratory_tests": {
+                            "test_date": {
+                                "type": "date",
+                                "required": false
+                            },
+                            "test_type": {
+                                "type": "enum",
+                                "values": [
+                                    "CBC",
+                                    "Urinalysis",
+                                    "HBsAg",
+                                    "VDRL",
+                                    "Ultrasound"
+                                ],
+                                "required": false
+                            },
+                            "test_completed": {
+                                "type": "boolean",
+                                "required": false,
+                                "description": "Whether test was completed (not results)"
+                            }
+                        },
+                        "interventions": {
+                            "tetanus_toxoid_given": {
+                                "dose": "string",
+                                "location": "string",
+                                "date": "date"
+                            },
+                            "iron_supplementation": {
+                                "type": "boolean",
+                                "medication": "string"
+                            },
+                            "vitamin_supplementation": {
+                                "type": "boolean",
+                                "medication": "string"
+                            },
+                            "calcium_supplementation": {
+                                "type": "boolean",
+                                "medication": "string"
+                            },
+                            "health_education_topics": {
+                                "type": "array",
+                                "items": "string"
+                            }
+                        },
+                        "next_visit_date": {
+                            "type": "date",
+                            "required": false
+                        }
+                    }
+                }
+            },
+            "paternal_health": {
+                "description": "Father/partner health information",
+                "fields": {
+                    "fathers_name": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "fathers_age": {
+                        "type": "number",
+                        "required": false
+                    },
+                    "fathers_birthday": {
+                        "type": "date",
+                        "required": false
+                    },
+                    "fathers_religion": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "fathers_occupation": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "fathers_address": {
+                        "type": "string",
+                        "required": false,
+                        "description": "If different from mother's address"
+                    }
+                }
+            },
+            "birth_information": {
+                "description": "Birth and delivery details",
+                "fields": {
+                    "place_of_delivery": {
+                        "type": "string",
+                        "required": true,
+                        "description": "Healthcare facility name"
+                    },
+                    "time_of_delivery": {
+                        "type": "time",
+                        "required": false
+                    },
+                    "delivery_type": {
+                        "type": "enum",
+                        "values": [
+                            "NSD",
+                            "CS",
+                            "Normal Spontaneous Delivery",
+                            "Cesarean Section"
+                        ],
+                        "required": true
+                    },
+                    "birth_weight_kg": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "birth_height_cm": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "newborn_screening": {
+                        "date": {
+                            "type": "date",
+                            "required": false,
+                            "abbreviation": "NBS"
+                        },
+                        "completed": {
+                            "type": "boolean",
+                            "required": false,
+                            "description": "Whether screening was completed"
+                        }
+                    },
+                    "feeding_type": {
+                        "type": "enum",
+                        "values": ["Breastfeeding", "Mixed", "Bottle-fed"],
+                        "required": false
+                    }
+                }
+            },
+            "immunization_records": {
+                "description": "Vaccination tracking and immunization data",
+                "fields": {
+                    "immunization_events": {
+                        "visit_date": {
+                            "type": "date",
+                            "required": true
+                        },
+                        "vaccines_given": {
+                            "bcg": {
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "hepatitis_b": {
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "penta": {
+                                "dose_number": "enum[1st, 2nd, 3rd]",
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "opv": {
+                                "dose_number": "enum[1, 2, 3]",
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "ipv": {
+                                "dose_number": "enum[1st, 2nd]",
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "pcv10": {
+                                "dose_number": "enum[1st, 2nd, 3rd]",
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "mcv1_mmr": {
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "mcv2": {
+                                "date": "date",
+                                "lot_number": "string"
+                            },
+                            "vitamin_a": {
+                                "date": "date",
+                                "lot_number": "string"
+                            }
+                        },
+                        "vital_signs_at_vaccination": {
+                            "temperature_celsius": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "weight_kg": {
+                                "type": "number",
+                                "required": true
+                            },
+                            "height_cm": {
+                                "type": "number",
+                                "required": true
+                            }
+                        },
+                        "adverse_reactions": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "health_worker_name": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "health_worker_signature": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "next_followup_date": {
+                            "type": "date",
+                            "required": false
+                        }
+                    }
+                }
+            },
+            "health_monitoring": {
+                "description": "Ongoing health tracking and vital signs",
+                "fields": {
+                    "vital_signs": {
+                        "blood_pressure": {
+                            "type": "string",
+                            "format": "systolic/diastolic",
+                            "required": false
+                        },
+                        "heart_rate": {
+                            "type": "number",
+                            "abbreviation": "HR",
+                            "required": false
+                        },
+                        "respiratory_rate": {
+                            "type": "number",
+                            "abbreviation": "RR",
+                            "required": false
+                        },
+                        "temperature_celsius": {
+                            "type": "number",
+                            "required": false
+                        },
+                        "pulse_rate": {
+                            "type": "number",
+                            "required": false
+                        }
+                    },
+                    "anthropometric_measurements": {
+                        "weight_kg": {
+                            "type": "number",
+                            "required": false
+                        },
+                        "height_cm": {
+                            "type": "number",
+                            "required": false
+                        },
+                        "head_circumference_cm": {
+                            "type": "number",
+                            "required": false,
+                            "description": "For infants and children"
+                        },
+                        "waist_circumference_cm": {
+                            "type": "number",
+                            "required": false,
+                            "description": "For NCD risk assessment"
+                        },
+                        "bmi": {
+                            "type": "number",
+                            "required": false,
+                            "description": "Body Mass Index"
+                        }
+                    },
+                    "growth_tracking": {
+                        "weight_for_age": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "height_for_age": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "weight_for_height": {
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                }
+            },
+            "visit_records": {
+                "description": "Healthcare visit tracking for trend analysis",
+                "fields": {
+                    "healthcare_visits": {
+                        "visit_date": {
+                            "type": "date",
+                            "required": true
+                        },
+                        "visit_type": {
+                            "type": "enum",
+                            "values": [
+                                "Routine Check-up",
+                                "Follow-up",
+                                "Emergency",
+                                "Preventive Care"
+                            ],
+                            "required": true
+                        },
+                        "visit_frequency": {
+                            "type": "string",
+                            "required": false,
+                            "description": "Pattern of healthcare utilization"
+                        },
+                        "referral_info": {
+                            "referred": "boolean",
+                            "facility_name": "string",
+                            "reason": "string"
+                        }
+                    }
+                }
+            },
+            "ncd_risk_assessment": {
+                "description": "Non-Communicable Disease risk factors (adults ≥25 years)",
+                "fields": {
+                    "risk_factors": {
+                        "smoking_status": {
+                            "type": "enum",
+                            "values": ["Current", "Former", "Never"],
+                            "required": false
+                        },
+                        "alcohol_intake": {
+                            "type": "enum",
+                            "values": ["Regular", "Occasional", "Never"],
+                            "required": false
+                        },
+                        "physical_activity": {
+                            "type": "enum",
+                            "values": ["Active", "Inactive", "Moderate"],
+                            "required": false
+                        },
+                        "fruit_vegetable_intake": {
+                            "type": "enum",
+                            "values": ["Adequate", "Inadequate"],
+                            "required": false
+                        },
+                        "family_history": {
+                            "diabetes": "boolean",
+                            "hypertension": "boolean",
+                            "heart_disease": "boolean",
+                            "stroke": "boolean"
+                        }
+                    },
+                    "health_screening": {
+                        "screening_date": {
+                            "type": "date",
+                            "required": false
+                        },
+                        "screening_completed": {
+                            "type": "boolean",
+                            "required": false
+                        },
+                        "follow_up_needed": {
+                            "type": "boolean",
+                            "required": false
+                        }
+                    },
+                    "lifestyle_modifications": {
+                        "type": "array",
+                        "items": "string",
+                        "required": false
+                    },
+                    "health_education_received": {
+                        "type": "array",
+                        "items": "string",
+                        "required": false,
+                        "description": "Educational topics covered for trend analysis"
+                    }
+                }
+            },
+            "family_health_record": {
+                "description": "Family-based health information",
+                "fields": {
+                    "family_id": {
+                        "type": "string",
+                        "required": true,
+                        "unique": true
+                    },
+                    "family_members": {
+                        "type": "array",
+                        "items": {
+                            "member_name": "string",
+                            "relationship": {
+                                "type": "enum",
+                                "values": [
+                                    "Head",
+                                    "Spouse",
+                                    "Child",
+                                    "Parent",
+                                    "Sibling",
+                                    "Other"
+                                ]
+                            },
+                            "gender": "string",
+                            "age": "number",
+                            "occupation": "string",
+                            "civil_status": "string"
+                        }
+                    },
+                    "family_health_history": {
+                        "genetic_conditions": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "chronic_diseases": {
+                            "type": "array",
+                            "items": "string"
+                        }
+                    }
+                }
+            },
+            "healthcare_services": {
+                "description": "Healthcare provider and service information",
+                "fields": {
+                    "health_worker_info": {
+                        "name": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "role": {
+                            "type": "enum",
+                            "values": [
+                                "Doctor",
+                                "Nurse",
+                                "Midwife",
+                                "Health Worker",
+                                "Other"
+                            ],
+                            "required": true
+                        },
+                        "contact_number": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "signature": {
+                            "type": "string",
+                            "required": false
+                        }
+                    },
+                    "health_education": {
+                        "topics_covered": {
+                            "type": "array",
+                            "items": "string"
+                        },
+                        "date_provided": {
+                            "type": "date",
+                            "required": false
+                        }
+                    },
+                    "nutritional_counseling": {
+                        "recommendations": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "date_provided": {
+                            "type": "date",
+                            "required": false
+                        }
+                    },
+                    "referrals": {
+                        "facility_name": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "reason": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "date_referred": {
+                            "type": "date",
+                            "required": false
+                        }
+                    }
+                }
+            },
+            "followup_system": {
+                "description": "Appointment and reminder tracking",
+                "fields": {
+                    "appointments": {
+                        "next_visit_date": {
+                            "type": "date",
+                            "required": false
+                        },
+                        "visit_type": {
+                            "type": "enum",
+                            "values": [
+                                "Prenatal",
+                                "Immunization",
+                                "Growth Monitoring",
+                                "NCD Follow-up",
+                                "Sick Visit"
+                            ],
+                            "required": false
+                        },
+                        "appointment_status": {
+                            "type": "enum",
+                            "values": [
+                                "Scheduled",
+                                "Completed",
+                                "Missed",
+                                "Cancelled"
+                            ],
+                            "required": false
+                        }
+                    },
+                    "reminders": {
+                        "immunization_due_dates": {
+                            "type": "array",
+                            "items": {
+                                "vaccine_name": "string",
+                                "due_date": "date"
+                            }
+                        },
+                        "laboratory_test_reminders": {
+                            "type": "array",
+                            "items": {
+                                "test_name": "string",
+                                "due_date": "date"
+                            }
+                        },
+                        "sms_consent": {
+                            "type": "boolean",
+                            "required": false
+                        }
+                    }
+                }
+            }
+        },
+        "data_validation_rules": {
+            "age_dependent_fields": {
+                "description": "Fields that are required/optional based on patient age",
+                "rules": [
+                    "Immunization records required for children under 5 years",
+                    "NCD risk assessment applicable for adults ≥25 years",
+                    "Growth monitoring required for children under 5 years",
+                    "Prenatal records applicable for pregnant women"
+                ]
+            },
+            "conditional_requirements": {
+                "description": "Fields that become required based on other field values",
+                "rules": [
+                    "If pregnant, prenatal visit data required",
+                    "If referred, referral details required",
+                    "If adverse reactions noted, details required"
+                ]
+            }
+        },
+        "system_integration_points": {
+            "description": "Key integration points for DSS trend analysis functionality",
+            "trend_analysis_triggers": [
+                "Immunization schedule adherence patterns",
+                "Growth pattern trends over time",
+                "Healthcare utilization frequency",
+                "Prenatal visit attendance patterns",
+                "Risk factor accumulation trends",
+                "Healthcare service access patterns"
+            ],
+            "predictive_models": [
+                "Immunization compliance prediction",
+                "Growth trajectory forecasting",
+                "Healthcare utilization patterns",
+                "Risk factor progression",
+                "Service demand forecasting",
+                "Population health trends"
+            ],
+            "alert_systems": [
+                "Overdue immunizations",
+                "Missed appointments",
+                "Declining growth patterns",
+                "Irregular prenatal visit patterns",
+                "Risk factor increases"
+            ]
+        }
+    }
+}
