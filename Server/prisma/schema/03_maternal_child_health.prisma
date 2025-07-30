@@ -1,0 +1,107 @@
+// =========================================
+// PAGE 3: MATERNAL & CHILD HEALTH
+// =========================================
+
+model MaternalHealth {
+    id                   String   @id @default(cuid())
+    userProfileId        String
+    mothersName          String
+    mothersAge           Int
+    mothersBirthday      DateTime
+    mothersMaidenName    String
+    mothersReligion      String?
+    mothersEducation     String?
+    mothersOccupation    String?
+    numberOfChildren     Int
+    gravidaPara          String
+    menarcheAge          Int
+    lastMenstrualPeriod  DateTime
+    expectedDeliveryDate DateTime
+    tetanusToxoidStatus  String?
+    createdAt            DateTime @default(now())
+
+    // Relationships
+    userProfile      UserProfile        @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+    prenatalVisits   PrenatalVisit[]
+    birthInformation BirthInformation[]
+
+    @@map("maternal_health")
+}
+
+model PrenatalVisit {
+    id                  String    @id @default(cuid())
+    maternalHealthId    String
+    visitDate           DateTime
+    gestationalAgeWeeks Int
+    weightKg            Float
+    heightCm            Float
+    bloodPressure       String
+    fundalHeightCm      Float
+    fetalHeartTone      String
+    nextVisitDate       DateTime?
+    recordedBy          String
+
+    // Relationships
+    maternalHealth  MaternalHealth   @relation(fields: [maternalHealthId], references: [id], onDelete: Cascade)
+    laboratoryTests LaboratoryTest[]
+    interventions   Intervention[]
+
+    @@map("prenatal_visits")
+}
+
+model LaboratoryTest {
+    id              String   @id @default(cuid())
+    prenatalVisitId String
+    userProfileId   String
+    testDate        DateTime
+    testType        String
+    testCompleted   Boolean  @default(false)
+    recordedBy      String
+
+    // Relationships
+    prenatalVisit PrenatalVisit @relation(fields: [prenatalVisitId], references: [id], onDelete: Cascade)
+
+    @@map("laboratory_tests")
+}
+
+model Intervention {
+    id                     String    @id @default(cuid())
+    prenatalVisitId        String
+    tetanusToxoidDose      String?
+    tetanusToxoidLocation  String?
+    tetanusToxoidDate      DateTime?
+    ironSupplementation    Boolean   @default(false)
+    ironMedication         String?
+    vitaminSupplementation Boolean   @default(false)
+    vitaminMedication      String?
+    calciumSupplementation Boolean   @default(false)
+    calciumMedication      String?
+    healthEducationTopics  Json // MySQL JSON array: ["topic1", "topic2"]
+
+    // Relationships
+    prenatalVisit PrenatalVisit @relation(fields: [prenatalVisitId], references: [id], onDelete: Cascade)
+
+    @@map("interventions")
+}
+
+model BirthInformation {
+    id                        String    @id @default(cuid())
+    userProfileId             String
+    maternalHealthId          String
+    placeOfDelivery           String
+    timeOfDelivery            String
+    deliveryType              String
+    birthWeightKg             Float
+    birthHeightCm             Float
+    newbornScreeningDate      DateTime?
+    newbornScreeningCompleted Boolean   @default(false)
+    feedingType               String
+    createdAt                 DateTime  @default(now())
+    recordedBy                String
+
+    // Relationships
+    userProfile    UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+    maternalHealth MaternalHealth @relation(fields: [maternalHealthId], references: [id], onDelete: Cascade)
+
+    @@map("birth_information")
+}

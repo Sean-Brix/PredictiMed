@@ -1,0 +1,138 @@
+// =========================================
+// PAGE 5: HEALTHCARE SERVICES & APPOINTMENTS
+// =========================================
+
+model VisitRecord {
+    id             String   @id @default(cuid())
+    userProfileId  String
+    visitDate      DateTime
+    visitType      String
+    visitFrequency String?
+    referred       Boolean  @default(false)
+    facilityName   String?
+    referralReason String?
+    recordedBy     String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("visit_records")
+}
+
+model HealthEducation {
+    id            String   @id @default(cuid())
+    userProfileId String
+    topicsCovered Json // MySQL JSON array: ["topic1", "topic2"]
+    dateProvided  DateTime
+    providedBy    String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("health_education")
+}
+
+model NutritionalCounseling {
+    id              String   @id @default(cuid())
+    userProfileId   String
+    recommendations String
+    dateProvided    DateTime
+    providedBy      String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("nutritional_counseling")
+}
+
+model Referral {
+    id            String   @id @default(cuid())
+    userProfileId String
+    facilityName  String
+    reason        String
+    dateReferred  DateTime
+    status        String
+    referredBy    String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("referrals")
+}
+
+model Appointment {
+    id                String   @id @default(cuid())
+    userProfileId     String
+    nextVisitDate     DateTime
+    visitType         String
+    appointmentStatus String
+    scheduledBy       String
+    createdAt         DateTime @default(now())
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("appointments")
+}
+
+model ImmunizationReminder {
+    id            String    @id @default(cuid())
+    userProfileId String
+    vaccineName   String
+    dueDate       DateTime
+    reminderSent  Boolean   @default(false)
+    sentAt        DateTime?
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("immunization_reminders")
+}
+
+model TestReminder {
+    id            String    @id @default(cuid())
+    userProfileId String
+    testName      String
+    dueDate       DateTime
+    reminderSent  Boolean   @default(false)
+    sentAt        DateTime?
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("test_reminders")
+}
+
+model VirtualCheckup {
+    id               String   @id @default(cuid())
+    userProfileId    String
+    healthWorkerId   String
+    scheduledDate    DateTime
+    scheduledTime    String
+    meetingUrl       String?
+    status           String
+    consultationType String?
+    chiefComplaint   String?
+    notes            String?
+    durationMinutes  Int?
+    createdAt        DateTime @default(now())
+
+    // Relationships
+    userProfile         UserProfile          @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+    healthWorker        HealthWorker         @relation(fields: [healthWorkerId], references: [id])
+    virtualCheckupNotes VirtualCheckupNote[]
+
+    @@map("virtual_checkups")
+}
+
+model VirtualCheckupNote {
+    id               String @id @default(cuid())
+    virtualCheckupId String
+    note             String
+    createdBy        String
+
+    // Relationships
+    virtualCheckup VirtualCheckup @relation(fields: [virtualCheckupId], references: [id], onDelete: Cascade)
+
+    @@map("virtual_checkup_notes")
+}

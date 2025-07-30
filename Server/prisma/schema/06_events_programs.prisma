@@ -1,0 +1,80 @@
+// =========================================
+// PAGE 6: EVENTS, PROGRAMS & COMMUNITY ENGAGEMENT
+// =========================================
+
+model Event {
+    id              String   @id @default(cuid())
+    title           String
+    description     String
+    eventType       String
+    eventDate       DateTime
+    startTime       String
+    endTime         String
+    venue           String
+    targetAudience  String?
+    maxParticipants Int?
+    status          String
+    bannerImageUrl  String?
+    createdBy       String
+    createdAt       DateTime @default(now())
+
+    // Relationships
+    creator            Account             @relation(fields: [createdBy], references: [id])
+    eventRegistrations EventRegistration[]
+
+    @@map("events")
+}
+
+model EventRegistration {
+    id               String   @id @default(cuid())
+    eventId          String
+    userProfileId    String
+    registrationDate DateTime @default(now())
+    status           String
+    notes            String?
+
+    // Relationships
+    event       Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("event_registrations")
+}
+
+model MedicalProgram {
+    id                 String   @id @default(cuid())
+    programName        String
+    description        String
+    programType        String
+    startDate          DateTime
+    endDate            DateTime
+    venue              String
+    targetDemographic  String?
+    targetParticipants Int?
+    status             String
+    bannerImageUrl     String?
+    createdBy          String
+    createdAt          DateTime @default(now())
+
+    // Relationships
+    creator               Account                @relation(fields: [createdBy], references: [id])
+    programParticipations ProgramParticipation[]
+
+    @@map("medical_programs")
+}
+
+model ProgramParticipation {
+    id                String   @id @default(cuid())
+    medicalProgramId  String
+    userProfileId     String
+    participationDate DateTime
+    status            String
+    servicesReceived  String?
+    notes             String?
+    recordedBy        String
+
+    // Relationships
+    medicalProgram MedicalProgram @relation(fields: [medicalProgramId], references: [id], onDelete: Cascade)
+    userProfile    UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("program_participations")
+}

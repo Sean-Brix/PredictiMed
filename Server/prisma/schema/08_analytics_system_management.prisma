@@ -1,0 +1,54 @@
+// =========================================
+// PAGE 8: ANALYTICS & SYSTEM MANAGEMENT
+// =========================================
+
+model AnalyticsReport {
+    id                String   @id @default(cuid())
+    reportName        String
+    reportType        String
+    dataFilters       Json // MySQL JSON array: ["filter1", "filter2"]
+    reportData        Json
+    reportPeriodStart DateTime
+    reportPeriodEnd   DateTime
+    generatedBy       String
+
+    // Relationships
+    generator Account @relation(fields: [generatedBy], references: [id])
+
+    @@map("analytics_reports")
+}
+
+model PredictionModel {
+    id                String    @id @default(cuid())
+    modelName         String
+    modelType         String
+    modelParameters   Json
+    predictionResults Json?
+    accuracy          Float?
+    lastTrained       DateTime?
+    isActive          Boolean   @default(true)
+    createdBy         String
+    createdAt         DateTime  @default(now())
+
+    // Relationships
+    creator Account @relation(fields: [createdBy], references: [id])
+
+    @@map("prediction_models")
+}
+
+model SystemLog {
+    id         String  @id @default(cuid())
+    userId     String
+    action     String
+    entityType String
+    entityId   String
+    oldData    Json?
+    newData    Json?
+    ipAddress  String?
+    userAgent  String?
+
+    // Relationships
+    user Account @relation(fields: [userId], references: [id])
+
+    @@map("system_logs")
+}

@@ -1,0 +1,90 @@
+// =========================================
+// PAGE 1: CORE ACCOUNT & USER MANAGEMENT
+// =========================================
+
+model Account {
+    id                String   @id @default(cuid())
+    email             String   @unique
+    password          String
+    role              String
+    isActive          Boolean  @default(true)
+    createdAt         DateTime @default(now())
+    updatedAt         DateTime @updatedAt
+    profilePictureUrl String?
+    emailVerified     Boolean  @default(false)
+
+    // Relationships
+    userProfile      UserProfile?
+    healthWorkers    HealthWorker[]
+    events           Event[]
+    surveys          Survey[]
+    inquiryResponses InquiryResponse[]
+    analyticsReports AnalyticsReport[]
+    predictionModels PredictionModel[]
+    systemLogs       SystemLog[]
+    medicalPrograms  MedicalProgram[]
+
+    @@map("accounts")
+}
+
+model UserProfile {
+    id                   String   @id @default(cuid())
+    accountId            String   @unique
+    fullName             String
+    dateOfBirth          DateTime
+    age                  Int
+    gender               String
+    address              String
+    contactNumber        String
+    religion             String?
+    civilStatus          String
+    occupation           String?
+    educationLevel       String?
+    philhealthNumber     String?
+    nhtsStatus           String?
+    personWithDisability Boolean  @default(false)
+    indigenousPeople     Boolean  @default(false)
+    createdAt            DateTime @default(now())
+
+    // Relationships
+    account                    Account                     @relation(fields: [accountId], references: [id], onDelete: Cascade)
+    familyRecordsHeaded        FamilyRecord[]              @relation("FamilyHead")
+    familyMembers              FamilyMember[]
+    maternalHealthRecords      MaternalHealth[]
+    birthInformation           BirthInformation[]
+    immunizationEvents         ImmunizationEvent[]
+    vitalSigns                 VitalSigns[]
+    anthropometricMeasurements AnthropometricMeasurement[]
+    growthTracking             GrowthTracking[]
+    ncdRiskAssessments         NCDRiskAssessment[]
+    visitRecords               VisitRecord[]
+    healthEducation            HealthEducation[]
+    nutritionalCounseling      NutritionalCounseling[]
+    referrals                  Referral[]
+    appointments               Appointment[]
+    immunizationReminders      ImmunizationReminder[]
+    testReminders              TestReminder[]
+    virtualCheckups            VirtualCheckup[]
+    eventRegistrations         EventRegistration[]
+    programParticipations      ProgramParticipation[]
+    inquiries                  Inquiry[]
+    surveyResponses            SurveyResponse[]
+
+    @@map("user_profiles")
+}
+
+model HealthWorker {
+    id            String  @id @default(cuid())
+    accountId     String
+    name          String
+    role          String
+    contactNumber String
+    signature     String?
+    isActive      Boolean @default(true)
+
+    // Relationships
+    account         Account          @relation(fields: [accountId], references: [id], onDelete: Cascade)
+    virtualCheckups VirtualCheckup[]
+
+    @@map("health_workers")
+}

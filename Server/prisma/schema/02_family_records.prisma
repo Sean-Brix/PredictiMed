@@ -1,0 +1,53 @@
+// =========================================
+// PAGE 2: FAMILY & HOUSEHOLD MANAGEMENT
+// =========================================
+
+model FamilyRecord {
+    id             String   @id @default(cuid())
+    familyId       String   @unique
+    headOfFamilyId String
+    address        String
+    contactNumber  String
+    smsConsent     Boolean  @default(false)
+    createdAt      DateTime @default(now())
+    updatedAt      DateTime @updatedAt
+
+    // Relationships
+    headOfFamily        UserProfile          @relation("FamilyHead", fields: [headOfFamilyId], references: [id])
+    members             FamilyMember[]
+    familyHealthHistory FamilyHealthHistory?
+
+    @@map("family_records")
+}
+
+model FamilyMember {
+    id             String  @id @default(cuid())
+    familyRecordId String
+    userProfileId  String?
+    memberName     String
+    relationship   String
+    gender         String
+    age            Int
+    occupation     String?
+    civilStatus    String
+
+    // Relationships
+    familyRecord FamilyRecord @relation(fields: [familyRecordId], references: [id], onDelete: Cascade)
+    userProfile  UserProfile? @relation(fields: [userProfileId], references: [id])
+
+    @@map("family_members")
+}
+
+model FamilyHealthHistory {
+    id                String   @id @default(cuid())
+    familyRecordId    String   @unique
+    geneticConditions Json // MySQL JSON array: ["condition1", "condition2"]
+    chronicDiseases   Json // MySQL JSON array: ["disease1", "disease2"]
+    recordedDate      DateTime @default(now())
+    recordedBy        String
+
+    // Relationships
+    familyRecord FamilyRecord @relation(fields: [familyRecordId], references: [id], onDelete: Cascade)
+
+    @@map("family_health_histories")
+}

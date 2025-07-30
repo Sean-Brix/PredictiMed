@@ -1,0 +1,97 @@
+// =========================================
+// PAGE 7: COMMUNICATION & SURVEYS
+// =========================================
+
+model Inquiry {
+    id            String   @id @default(cuid())
+    userProfileId String
+    subject       String
+    message       String
+    priority      String
+    status        String
+    category      String?
+    createdAt     DateTime @default(now())
+
+    // Relationships
+    userProfile      UserProfile       @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+    inquiryResponses InquiryResponse[]
+
+    @@map("inquiries")
+}
+
+model InquiryResponse {
+    id          String @id @default(cuid())
+    inquiryId   String
+    message     String
+    respondedBy String
+
+    // Relationships
+    inquiry   Inquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+    responder Account @relation(fields: [respondedBy], references: [id])
+
+    @@map("inquiry_responses")
+}
+
+model Survey {
+    id          String   @id @default(cuid())
+    title       String
+    description String
+    surveyType  String
+    isActive    Boolean  @default(true)
+    startDate   DateTime
+    endDate     DateTime
+    qrCode      String?
+    createdBy   String
+    createdAt   DateTime @default(now())
+
+    // Relationships
+    creator         Account          @relation(fields: [createdBy], references: [id])
+    surveyQuestions SurveyQuestion[]
+    surveyResponses SurveyResponse[]
+
+    @@map("surveys")
+}
+
+model SurveyQuestion {
+    id           String  @id @default(cuid())
+    surveyId     String
+    questionText String
+    questionType String
+    options      Json // MySQL JSON array: ["option1", "option2"]
+    isRequired   Boolean @default(false)
+    orderIndex   Int
+
+    // Relationships
+    survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+    surveyAnswers SurveyAnswer[]
+
+    @@map("survey_questions")
+}
+
+model SurveyResponse {
+    id            String   @id @default(cuid())
+    surveyId      String
+    userProfileId String
+    ipAddress     String?
+    submittedAt   DateTime @default(now())
+
+    // Relationships
+    survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+    userProfile   UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+    surveyAnswers SurveyAnswer[]
+
+    @@map("survey_responses")
+}
+
+model SurveyAnswer {
+    id               String @id @default(cuid())
+    surveyResponseId String
+    surveyQuestionId String
+    answer           String
+
+    // Relationships
+    surveyResponse SurveyResponse @relation(fields: [surveyResponseId], references: [id], onDelete: Cascade)
+    surveyQuestion SurveyQuestion @relation(fields: [surveyQuestionId], references: [id], onDelete: Cascade)
+
+    @@map("survey_answers")
+}

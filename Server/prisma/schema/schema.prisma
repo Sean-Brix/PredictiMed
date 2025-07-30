@@ -1,3 +1,9 @@
+// =========================================
+// PREDICTIMED DECISION SUPPORT SYSTEM SCHEMA
+// =========================================
+// Based on 8-module ERD documentation
+// Designed for trend analysis and population health insights
+
 generator client {
   provider = "prisma-client-js"
   output   = "../generated"

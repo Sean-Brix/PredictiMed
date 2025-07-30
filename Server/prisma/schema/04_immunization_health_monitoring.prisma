@@ -1,0 +1,110 @@
+// =========================================
+// PAGE 4: IMMUNIZATION & HEALTH MONITORING
+// =========================================
+
+model ImmunizationEvent {
+    id                    String    @id @default(cuid())
+    userProfileId         String
+    visitDate             DateTime
+    temperatureCelsius    Float?
+    weightKg              Float?
+    heightCm              Float?
+    adverseReactions      String?
+    healthWorkerName      String
+    healthWorkerSignature String?
+    nextFollowupDate      DateTime?
+    recordedBy            String
+
+    // Relationships
+    userProfile   UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+    vaccinesGiven VaccineGiven[]
+
+    @@map("immunization_events")
+}
+
+model VaccineGiven {
+    id                  String   @id @default(cuid())
+    immunizationEventId String
+    vaccineName         String
+    doseNumber          String
+    dateGiven           DateTime
+    lotNumber           String?
+
+    // Relationships
+    immunizationEvent ImmunizationEvent @relation(fields: [immunizationEventId], references: [id], onDelete: Cascade)
+
+    @@map("vaccines_given")
+}
+
+model VitalSigns {
+    id                 String   @id @default(cuid())
+    userProfileId      String
+    recordDate         DateTime
+    bloodPressure      String?
+    heartRate          Int?
+    respiratoryRate    Int?
+    temperatureCelsius Float?
+    pulseRate          Int?
+    recordedBy         String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("vital_signs")
+}
+
+model AnthropometricMeasurement {
+    id                   String   @id @default(cuid())
+    userProfileId        String
+    measurementDate      DateTime
+    weightKg             Float?
+    heightCm             Float?
+    headCircumferenceCm  Float?
+    waistCircumferenceCm Float?
+    bmi                  Float?
+    recordedBy           String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("anthropometric_measurements")
+}
+
+model GrowthTracking {
+    id              String   @id @default(cuid())
+    userProfileId   String
+    trackingDate    DateTime
+    weightForAge    String?
+    heightForAge    String?
+    weightForHeight String?
+    recordedBy      String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("growth_tracking")
+}
+
+model NCDRiskAssessment {
+    id                        String   @id @default(cuid())
+    userProfileId             String
+    assessmentDate            DateTime
+    smokingStatus             String?
+    alcoholIntake             String?
+    physicalActivity          String?
+    fruitVegetableIntake      String?
+    familyHistoryDiabetes     Boolean  @default(false)
+    familyHistoryHypertension Boolean  @default(false)
+    familyHistoryHeartDisease Boolean  @default(false)
+    familyHistoryStroke       Boolean  @default(false)
+    screeningCompleted        Boolean  @default(false)
+    followUpNeeded            Boolean  @default(false)
+    lifestyleModifications    Json // MySQL JSON array: ["modification1", "modification2"]
+    healthEducationReceived   Json // MySQL JSON array: ["topic1", "topic2"]
+    recordedBy                String
+
+    // Relationships
+    userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+    @@map("ncd_risk_assessments")
+}
