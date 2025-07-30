@@ -1,271 +1,745 @@
-//? ===================================== ACCOUNTS SCHEMA ===================================== ?//
+// =========================================
+// PAGE 1: CORE ACCOUNT & USER MANAGEMENT
+// =========================================
 
 model Account {
-  id             String             @id @default(cuid())
-  access         access             @default(User)
-  username       String             @unique
-  email          String             @unique
-  firstName      String
-  lastName       String
-  middleName     String?
-  gender         gender
-  client_profile client_profile     @default(Other)
-  cellphone_no   String?
-  telephone_no   String?
-  occupation     String?
-  position       String?
-  institution    String?
-  address        String?
-  picture        Bytes?
-  mimeType       String?
-  commodity      AccountCommodity[]
-  password       String
-  createdAt      DateTime           @default(now())
-  updatedAt      DateTime           @updatedAt
+  id                String   @id @default(cuid())
+  email             String   @unique
+  password          String
+  role              String
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  profilePictureUrl String?
+  emailVerified     Boolean  @default(false)
 
-  // Relations
-  seminars          SeminarParticipant[]
-  itemTransactions  ItemTransaction[]
-  adminTransactions ItemTransaction[]    @relation("AdminTransactions")
-  seminarsCreated   Seminar[]            @relation("SeminarsCreated")
-  auditLogs         AuditLog[]           @relation("AdminAuditLogs")
+  // Relationships
+  userProfile      UserProfile?
+  healthWorkers    HealthWorker[]
+  events           Event[]
+  surveys          Survey[]
+  inquiryResponses InquiryResponse[]
+  analyticsReports AnalyticsReport[]
+  predictionModels PredictionModel[]
+  systemLogs       SystemLog[]
+  medicalPrograms  MedicalProgram[]
 
   @@map("accounts")
 }
 
-model Commodity {
-  id          String             @id @default(cuid())
-  name        String             @unique
-  icon        String?
-  description String?
-  accounts    AccountCommodity[]
+model UserProfile {
+  id                   String   @id @default(cuid())
+  accountId            String   @unique
+  fullName             String
+  dateOfBirth          DateTime
+  age                  Int
+  gender               String
+  address              String
+  contactNumber        String
+  religion             String?
+  civilStatus          String
+  occupation           String?
+  educationLevel       String?
+  philhealthNumber     String?
+  nhtsStatus           String?
+  personWithDisability Boolean  @default(false)
+  indigenousPeople     Boolean  @default(false)
+  createdAt            DateTime @default(now())
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  // Relationships
+  account                    Account                     @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  familyRecordsHeaded        FamilyRecord[]              @relation("FamilyHead")
+  familyMembers              FamilyMember[]
+  maternalHealthRecords      MaternalHealth[]
+  birthInformation           BirthInformation[]
+  immunizationEvents         ImmunizationEvent[]
+  vitalSigns                 VitalSigns[]
+  anthropometricMeasurements AnthropometricMeasurement[]
+  growthTracking             GrowthTracking[]
+  ncdRiskAssessments         NCDRiskAssessment[]
+  visitRecords               VisitRecord[]
+  healthEducation            HealthEducation[]
+  nutritionalCounseling      NutritionalCounseling[]
+  referrals                  Referral[]
+  appointments               Appointment[]
+  immunizationReminders      ImmunizationReminder[]
+  testReminders              TestReminder[]
+  virtualCheckups            VirtualCheckup[]
+  eventRegistrations         EventRegistration[]
+  programParticipations      ProgramParticipation[]
+  inquiries                  Inquiry[]
+  surveyResponses            SurveyResponse[]
 
-  @@map("commodities")
+  @@map("user_profiles")
 }
 
-//? ====================================== RELATIONSHIPS ====================================== ?//
+model HealthWorker {
+  id            String  @id @default(cuid())
+  accountId     String
+  name          String
+  role          String
+  contactNumber String
+  signature     String?
+  isActive      Boolean @default(true)
 
-model AccountCommodity {
-  id           String   @id @default(cuid())
-  account_id   String
-  commodity_id String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  // Relationships
+  account         Account          @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  virtualCheckups VirtualCheckup[]
 
-  // Relations
-  commodity Commodity @relation(fields: [commodity_id], references: [id])
-  account   Account   @relation(fields: [account_id], references: [id])
-
-  @@unique([account_id, commodity_id])
-  @@map("accounts_commodities")
+  @@map("health_workers")
 }
 
-//? ========================================== ENUMS ========================================== ?//
+// =========================================
+// PAGE 2: FAMILY & HOUSEHOLD MANAGEMENT
+// =========================================
 
-enum client_profile {
-  Fishfolk                          @map("Fishfolk")
-  Rural_Based_Org                   @map("Rural Based Org")
-  Student                           @map("Student")
-  Agricultural_Fisheries_Technician @map("Agricultural/Fisheries Technician")
-  Youth                             @map("Youth")
-  Women                             @map("Women")
-  Govt_Employee                     @map("Govt Employee")
-  PWD                               @map("PWD")
-  Indigenous_People                 @map("Indigenous People")
-  Other                             @map("Other")
+model FamilyRecord {
+  id             String   @id @default(cuid())
+  familyId       String   @unique
+  headOfFamilyId String
+  address        String
+  contactNumber  String
+  smsConsent     Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  // Relationships
+  headOfFamily        UserProfile          @relation("FamilyHead", fields: [headOfFamilyId], references: [id])
+  members             FamilyMember[]
+  familyHealthHistory FamilyHealthHistory?
+
+  @@map("family_records")
 }
 
-enum access {
-  Admin
-  User
-  Super_Admin @map("Super Admin")
+model FamilyMember {
+  id             String  @id @default(cuid())
+  familyRecordId String
+  userProfileId  String?
+  memberName     String
+  relationship   String
+  gender         String
+  age            Int
+  occupation     String?
+  civilStatus    String
+
+  // Relationships
+  familyRecord FamilyRecord @relation(fields: [familyRecordId], references: [id], onDelete: Cascade)
+  userProfile  UserProfile? @relation(fields: [userProfileId], references: [id])
+
+  @@map("family_members")
 }
 
-enum gender {
-  Male
-  Female
-  Other
+model FamilyHealthHistory {
+  id                String   @id @default(cuid())
+  familyRecordId    String   @unique
+  geneticConditions Json // MySQL JSON array: ["condition1", "condition2"]
+  chronicDiseases   Json // MySQL JSON array: ["disease1", "disease2"]
+  recordedDate      DateTime @default(now())
+  recordedBy        String
+
+  // Relationships
+  familyRecord FamilyRecord @relation(fields: [familyRecordId], references: [id], onDelete: Cascade)
+
+  @@map("family_health_histories")
 }
 
-//? ===================================== AUDIT LOGS SCHEMA ===================================== ?//
+// =========================================
+// PAGE 3: MATERNAL & CHILD HEALTH
+// =========================================
 
-model AuditLog {
-  id         String       @id @default(cuid())
-  adminId    String // Admin who performed the action
-  action     audit_action
-  targetType String? // What was affected (Account, Seminar, Inventory, etc.)
-  targetId   String? // ID of the affected entity
-  targetName String? // Name/title of the affected entity for display
-  details    String?      @db.Text // Additional details about the action
-  metadata   Json? // Structured data about the action (old/new values, etc.)
+model MaternalHealth {
+  id                   String   @id @default(cuid())
+  userProfileId        String
+  mothersName          String
+  mothersAge           Int
+  mothersBirthday      DateTime
+  mothersMaidenName    String
+  mothersReligion      String?
+  mothersEducation     String?
+  mothersOccupation    String?
+  numberOfChildren     Int
+  gravidaPara          String
+  menarcheAge          Int
+  lastMenstrualPeriod  DateTime
+  expectedDeliveryDate DateTime
+  tetanusToxoidStatus  String?
+  createdAt            DateTime @default(now())
+
+  // Relationships
+  userProfile      UserProfile        @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  prenatalVisits   PrenatalVisit[]
+  birthInformation BirthInformation[]
+
+  @@map("maternal_health")
+}
+
+model PrenatalVisit {
+  id                  String    @id @default(cuid())
+  maternalHealthId    String
+  visitDate           DateTime
+  gestationalAgeWeeks Int
+  weightKg            Float
+  heightCm            Float
+  bloodPressure       String
+  fundalHeightCm      Float
+  fetalHeartTone      String
+  nextVisitDate       DateTime?
+  recordedBy          String
+
+  // Relationships
+  maternalHealth  MaternalHealth   @relation(fields: [maternalHealthId], references: [id], onDelete: Cascade)
+  laboratoryTests LaboratoryTest[]
+  interventions   Intervention[]
+
+  @@map("prenatal_visits")
+}
+
+model LaboratoryTest {
+  id              String   @id @default(cuid())
+  prenatalVisitId String
+  userProfileId   String
+  testDate        DateTime
+  testType        String
+  testCompleted   Boolean  @default(false)
+  recordedBy      String
+
+  // Relationships
+  prenatalVisit PrenatalVisit @relation(fields: [prenatalVisitId], references: [id], onDelete: Cascade)
+
+  @@map("laboratory_tests")
+}
+
+model Intervention {
+  id                     String    @id @default(cuid())
+  prenatalVisitId        String
+  tetanusToxoidDose      String?
+  tetanusToxoidLocation  String?
+  tetanusToxoidDate      DateTime?
+  ironSupplementation    Boolean   @default(false)
+  ironMedication         String?
+  vitaminSupplementation Boolean   @default(false)
+  vitaminMedication      String?
+  calciumSupplementation Boolean   @default(false)
+  calciumMedication      String?
+  healthEducationTopics  Json // MySQL JSON array: ["topic1", "topic2"]
+
+  // Relationships
+  prenatalVisit PrenatalVisit @relation(fields: [prenatalVisitId], references: [id], onDelete: Cascade)
+
+  @@map("interventions")
+}
+
+model BirthInformation {
+  id                        String    @id @default(cuid())
+  userProfileId             String
+  maternalHealthId          String
+  placeOfDelivery           String
+  timeOfDelivery            String
+  deliveryType              String
+  birthWeightKg             Float
+  birthHeightCm             Float
+  newbornScreeningDate      DateTime?
+  newbornScreeningCompleted Boolean   @default(false)
+  feedingType               String
+  createdAt                 DateTime  @default(now())
+  recordedBy                String
+
+  // Relationships
+  userProfile    UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  maternalHealth MaternalHealth @relation(fields: [maternalHealthId], references: [id], onDelete: Cascade)
+
+  @@map("birth_information")
+}
+
+// =========================================
+// PAGE 4: IMMUNIZATION & HEALTH MONITORING
+// =========================================
+
+model ImmunizationEvent {
+  id                    String    @id @default(cuid())
+  userProfileId         String
+  visitDate             DateTime
+  temperatureCelsius    Float?
+  weightKg              Float?
+  heightCm              Float?
+  adverseReactions      String?
+  healthWorkerName      String
+  healthWorkerSignature String?
+  nextFollowupDate      DateTime?
+  recordedBy            String
+
+  // Relationships
+  userProfile   UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  vaccinesGiven VaccineGiven[]
+
+  @@map("immunization_events")
+}
+
+model VaccineGiven {
+  id                  String   @id @default(cuid())
+  immunizationEventId String
+  vaccineName         String
+  doseNumber          String
+  dateGiven           DateTime
+  lotNumber           String?
+
+  // Relationships
+  immunizationEvent ImmunizationEvent @relation(fields: [immunizationEventId], references: [id], onDelete: Cascade)
+
+  @@map("vaccines_given")
+}
+
+model VitalSigns {
+  id                 String   @id @default(cuid())
+  userProfileId      String
+  recordDate         DateTime
+  bloodPressure      String?
+  heartRate          Int?
+  respiratoryRate    Int?
+  temperatureCelsius Float?
+  pulseRate          Int?
+  recordedBy         String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("vital_signs")
+}
+
+model AnthropometricMeasurement {
+  id                   String   @id @default(cuid())
+  userProfileId        String
+  measurementDate      DateTime
+  weightKg             Float?
+  heightCm             Float?
+  headCircumferenceCm  Float?
+  waistCircumferenceCm Float?
+  bmi                  Float?
+  recordedBy           String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("anthropometric_measurements")
+}
+
+model GrowthTracking {
+  id              String   @id @default(cuid())
+  userProfileId   String
+  trackingDate    DateTime
+  weightForAge    String?
+  heightForAge    String?
+  weightForHeight String?
+  recordedBy      String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("growth_tracking")
+}
+
+model NCDRiskAssessment {
+  id                        String   @id @default(cuid())
+  userProfileId             String
+  assessmentDate            DateTime
+  smokingStatus             String?
+  alcoholIntake             String?
+  physicalActivity          String?
+  fruitVegetableIntake      String?
+  familyHistoryDiabetes     Boolean  @default(false)
+  familyHistoryHypertension Boolean  @default(false)
+  familyHistoryHeartDisease Boolean  @default(false)
+  familyHistoryStroke       Boolean  @default(false)
+  screeningCompleted        Boolean  @default(false)
+  followUpNeeded            Boolean  @default(false)
+  lifestyleModifications    Json // MySQL JSON array: ["modification1", "modification2"]
+  healthEducationReceived   Json // MySQL JSON array: ["topic1", "topic2"]
+  recordedBy                String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("ncd_risk_assessments")
+}
+
+// =========================================
+// PAGE 5: HEALTHCARE SERVICES & APPOINTMENTS
+// =========================================
+
+model VisitRecord {
+  id             String   @id @default(cuid())
+  userProfileId  String
+  visitDate      DateTime
+  visitType      String
+  visitFrequency String?
+  referred       Boolean  @default(false)
+  facilityName   String?
+  referralReason String?
+  recordedBy     String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("visit_records")
+}
+
+model HealthEducation {
+  id            String   @id @default(cuid())
+  userProfileId String
+  topicsCovered Json // MySQL JSON array: ["topic1", "topic2"]
+  dateProvided  DateTime
+  providedBy    String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("health_education")
+}
+
+model NutritionalCounseling {
+  id              String   @id @default(cuid())
+  userProfileId   String
+  recommendations String
+  dateProvided    DateTime
+  providedBy      String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("nutritional_counseling")
+}
+
+model Referral {
+  id            String   @id @default(cuid())
+  userProfileId String
+  facilityName  String
+  reason        String
+  dateReferred  DateTime
+  status        String
+  referredBy    String
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("referrals")
+}
+
+model Appointment {
+  id                String   @id @default(cuid())
+  userProfileId     String
+  nextVisitDate     DateTime
+  visitType         String
+  appointmentStatus String
+  scheduledBy       String
+  createdAt         DateTime @default(now())
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("appointments")
+}
+
+model ImmunizationReminder {
+  id            String    @id @default(cuid())
+  userProfileId String
+  vaccineName   String
+  dueDate       DateTime
+  reminderSent  Boolean   @default(false)
+  sentAt        DateTime?
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("immunization_reminders")
+}
+
+model TestReminder {
+  id            String    @id @default(cuid())
+  userProfileId String
+  testName      String
+  dueDate       DateTime
+  reminderSent  Boolean   @default(false)
+  sentAt        DateTime?
+
+  // Relationships
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("test_reminders")
+}
+
+model VirtualCheckup {
+  id               String   @id @default(cuid())
+  userProfileId    String
+  healthWorkerId   String
+  scheduledDate    DateTime
+  scheduledTime    String
+  meetingUrl       String?
+  status           String
+  consultationType String?
+  chiefComplaint   String?
+  notes            String?
+  durationMinutes  Int?
+  createdAt        DateTime @default(now())
+
+  // Relationships
+  userProfile         UserProfile          @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  healthWorker        HealthWorker         @relation(fields: [healthWorkerId], references: [id])
+  virtualCheckupNotes VirtualCheckupNote[]
+
+  @@map("virtual_checkups")
+}
+
+model VirtualCheckupNote {
+  id               String @id @default(cuid())
+  virtualCheckupId String
+  note             String
+  createdBy        String
+
+  // Relationships
+  virtualCheckup VirtualCheckup @relation(fields: [virtualCheckupId], references: [id], onDelete: Cascade)
+
+  @@map("virtual_checkup_notes")
+}
+
+// =========================================
+// PAGE 6: EVENTS, PROGRAMS & COMMUNITY ENGAGEMENT
+// =========================================
+
+model Event {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  eventType       String
+  eventDate       DateTime
+  startTime       String
+  endTime         String
+  venue           String
+  targetAudience  String?
+  maxParticipants Int?
+  status          String
+  bannerImageUrl  String?
+  createdBy       String
+  createdAt       DateTime @default(now())
+
+  // Relationships
+  creator            Account             @relation(fields: [createdBy], references: [id])
+  eventRegistrations EventRegistration[]
+
+  @@map("events")
+}
+
+model EventRegistration {
+  id               String   @id @default(cuid())
+  eventId          String
+  userProfileId    String
+  registrationDate DateTime @default(now())
+  status           String
+  notes            String?
+
+  // Relationships
+  event       Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("event_registrations")
+}
+
+model MedicalProgram {
+  id                 String   @id @default(cuid())
+  programName        String
+  description        String
+  programType        String
+  startDate          DateTime
+  endDate            DateTime
+  venue              String
+  targetDemographic  String?
+  targetParticipants Int?
+  status             String
+  bannerImageUrl     String?
+  createdBy          String
+  createdAt          DateTime @default(now())
+
+  // Relationships
+  creator               Account                @relation(fields: [createdBy], references: [id])
+  programParticipations ProgramParticipation[]
+
+  @@map("medical_programs")
+}
+
+model ProgramParticipation {
+  id                String   @id @default(cuid())
+  medicalProgramId  String
+  userProfileId     String
+  participationDate DateTime
+  status            String
+  servicesReceived  String?
+  notes             String?
+  recordedBy        String
+
+  // Relationships
+  medicalProgram MedicalProgram @relation(fields: [medicalProgramId], references: [id], onDelete: Cascade)
+  userProfile    UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+
+  @@map("program_participations")
+}
+
+// =========================================
+// PAGE 7: COMMUNICATION & SURVEYS
+// =========================================
+
+model Inquiry {
+  id            String   @id @default(cuid())
+  userProfileId String
+  subject       String
+  message       String
+  priority      String
+  status        String
+  category      String?
+  createdAt     DateTime @default(now())
+
+  // Relationships
+  userProfile      UserProfile       @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  inquiryResponses InquiryResponse[]
+
+  @@map("inquiries")
+}
+
+model InquiryResponse {
+  id          String @id @default(cuid())
+  inquiryId   String
+  message     String
+  respondedBy String
+
+  // Relationships
+  inquiry   Inquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  responder Account @relation(fields: [respondedBy], references: [id])
+
+  @@map("inquiry_responses")
+}
+
+model Survey {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  surveyType  String
+  isActive    Boolean  @default(true)
+  startDate   DateTime
+  endDate     DateTime
+  qrCode      String?
+  createdBy   String
+  createdAt   DateTime @default(now())
+
+  // Relationships
+  creator         Account          @relation(fields: [createdBy], references: [id])
+  surveyQuestions SurveyQuestion[]
+  surveyResponses SurveyResponse[]
+
+  @@map("surveys")
+}
+
+model SurveyQuestion {
+  id           String  @id @default(cuid())
+  surveyId     String
+  questionText String
+  questionType String
+  options      Json // MySQL JSON array: ["option1", "option2"]
+  isRequired   Boolean @default(false)
+  orderIndex   Int
+
+  // Relationships
+  survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  surveyAnswers SurveyAnswer[]
+
+  @@map("survey_questions")
+}
+
+model SurveyResponse {
+  id            String   @id @default(cuid())
+  surveyId      String
+  userProfileId String
+  ipAddress     String?
+  submittedAt   DateTime @default(now())
+
+  // Relationships
+  survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  userProfile   UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)
+  surveyAnswers SurveyAnswer[]
+
+  @@map("survey_responses")
+}
+
+model SurveyAnswer {
+  id               String @id @default(cuid())
+  surveyResponseId String
+  surveyQuestionId String
+  answer           String
+
+  // Relationships
+  surveyResponse SurveyResponse @relation(fields: [surveyResponseId], references: [id], onDelete: Cascade)
+  surveyQuestion SurveyQuestion @relation(fields: [surveyQuestionId], references: [id], onDelete: Cascade)
+
+  @@map("survey_answers")
+}
+
+// =========================================
+// PAGE 8: ANALYTICS & SYSTEM MANAGEMENT
+// =========================================
+
+model AnalyticsReport {
+  id                String   @id @default(cuid())
+  reportName        String
+  reportType        String
+  dataFilters       Json // MySQL JSON array: ["filter1", "filter2"]
+  reportData        Json
+  reportPeriodStart DateTime
+  reportPeriodEnd   DateTime
+  generatedBy       String
+
+  // Relationships
+  generator Account @relation(fields: [generatedBy], references: [id])
+
+  @@map("analytics_reports")
+}
+
+model PredictionModel {
+  id                String    @id @default(cuid())
+  modelName         String
+  modelType         String
+  modelParameters   Json
+  predictionResults Json?
+  accuracy          Float?
+  lastTrained       DateTime?
+  isActive          Boolean   @default(true)
+  createdBy         String
+  createdAt         DateTime  @default(now())
+
+  // Relationships
+  creator Account @relation(fields: [createdBy], references: [id])
+
+  @@map("prediction_models")
+}
+
+model SystemLog {
+  id         String  @id @default(cuid())
+  userId     String
+  action     String
+  entityType String
+  entityId   String
+  oldData    Json?
+  newData    Json?
   ipAddress  String?
   userAgent  String?
-  createdAt  DateTime     @default(now())
 
-  // Relations
-  admin Account @relation("AdminAuditLogs", fields: [adminId], references: [id])
+  // Relationships
+  user Account @relation(fields: [userId], references: [id])
 
-  @@map("audit_logs")
+  @@map("system_logs")
 }
 
-//? ======================================== AUDIT ENUMS ======================================== ?//
-
-enum audit_action {
-  // Account Management Actions
-  ACCOUNT_CREATE
-  ACCOUNT_UPDATE
-  ACCOUNT_DELETE
-  ACCOUNT_ROLE_CHANGE
-  ACCOUNT_STATUS_CHANGE
-
-  // Authentication Actions
-  LOGIN
-  LOGOUT
-  LOGIN_FAILED
-
-  // Inventory Management Actions
-  INVENTORY_CREATE
-  INVENTORY_UPDATE
-  INVENTORY_DELETE
-  INVENTORY_STATUS_CHANGE
-
-  // Distribution Management Actions
-  DISTRIBUTION_CREATE
-  DISTRIBUTION_UPDATE
-  DISTRIBUTION_DELETE
-  DISTRIBUTION_REQUEST_APPROVE
-  DISTRIBUTION_REQUEST_REJECT
-  DISTRIBUTION_REQUEST_NO_PICKUP
-
-  // EIC Management Actions
-  EIC_CREATE
-  EIC_UPDATE
-  EIC_DELETE
-  EIC_STATUS_CHANGE
-  EIC_REQUEST_APPROVE
-  EIC_REQUEST_REJECT
-  EIC_REQUEST_NO_PICKUP
-
-  // Seminar Management Actions
-  SEMINAR_CREATE
-  SEMINAR_UPDATE
-  SEMINAR_DELETE
-  SEMINAR_STATUS_CHANGE
-  SEMINAR_PARTICIPANT_UPDATE
-
-  // Content Management Actions
-  CONTENT_CREATE
-  CONTENT_UPDATE
-  CONTENT_DELETE
-
-  // System Actions
-  SYSTEM_BACKUP
-  SYSTEM_RESTORE
-  SYSTEM_MAINTENANCE
-
-  // Profile Actions
-  PROFILE_UPDATE
-  PROFILE_PICTURE_UPDATE
-
-  // Settings Actions
-  SETTINGS_UPDATE
-}
-
-//? ======================================= ITEM SCHEMA ======================================= ?//
-
-model InventoryItem {
-  id          String        @id @default(cuid())
-  name        String        @unique
-  description String?
-  picture     Bytes?
-  category    item_category @default(Other)
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-
-  // Relations
-  item_stacks ItemStack[]
-
-  @@map("inventory_items")
-}
-
-//? ====================================== STACKS SCHEMA ====================================== ?//
-model ItemStack {
-  id         String      @id @default(cuid())
-  itemId     String
-  quantity   Int         @default(1)
-  status     item_status @default(Available)
-  date_limit Int? // Number of days the item can be borrowed/distributed (hold by user)
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-
-  // Relations
-  item             InventoryItem     @relation(fields: [itemId], references: [id])
-  itemTransactions ItemTransaction[]
-
-  @@map("item_stacks")
-}
-
-//? ==================================== ITEM TRANSACTIONS ==================================== ?//
-
-model ItemTransaction {
-  id          String             @id @default(cuid())
-  itemStackId String
-  accountId   String
-  adminId     String? // Admin who approved/rejected/responded to the transaction
-  quantity    Int                @default(1)
-  status      transaction_status @default(Pending)
-  pickupDate  DateTime
-  returnDate  DateTime?
-  requestNote String?
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
-
-  // Relations
-  itemStack ItemStack @relation(fields: [itemStackId], references: [id])
-  account   Account   @relation(fields: [accountId], references: [id])
-  admin     Account?  @relation("AdminTransactions", fields: [adminId], references: [id])
-
-  @@map("item_transactions")
-}
-
-enum transaction_status {
-  Pending
-  Approved
-  Rejected
-  Returned
-  No_Return
-  late_return
-  No_Pickup
-  Cancelled
-}
-
-//? ========================================== ENUMS ========================================== ?//
-
-enum item_status {
-  Available
-  Unavailable
-  Damaged
-  EIC
-  Distributed
-}
-
-enum item_category {
-  Farming_Equipment
-  Harvesting_Tools
-  Irrigation_Systems
-  Storage_Equipment
-  Processing_Equipment
-  Safety_Gear
-  Pest_Control
-  Livestock_Equipment
-  Measuring_Tools
-  Fisheries
-  Machinery
-  Other
-}
+// =========================================
+// PREDICTIMED DECISION SUPPORT SYSTEM SCHEMA
+// =========================================
+// Based on 8-module ERD documentation
+// Designed for trend analysis and population health insights
 
 generator client {
   provider = "prisma-client-js"
@@ -275,64 +749,4 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-}
-
-//? ===================================== SEMINARS SCHEMA ===================================== ?//
-
-model Seminar {
-  id                    String         @id @default(cuid())
-  title                 String
-  description           String         @db.Text
-  location              String
-  speaker               String
-  start_date            DateTime       @db.Date
-  end_date              DateTime       @db.Date
-  start_time            String
-  end_time              String
-  capacity              Int
-  registration_deadline DateTime       @db.Date
-  status                seminar_status @default(Upcoming)
-  picture               Bytes?
-  mimeType              String?
-  createdById           String
-  createdAt             DateTime       @default(now())
-  updatedAt             DateTime       @updatedAt
-
-  // Relations
-  participants SeminarParticipant[]
-  creator      Account              @relation("SeminarsCreated", fields: [createdById], references: [id])
-
-  @@map("seminars")
-}
-
-model SeminarParticipant {
-  id         String             @id @default(cuid())
-  seminar_id String
-  account_id String
-  status     participant_status @default(Registered)
-  createdAt  DateTime           @default(now())
-  updatedAt  DateTime           @updatedAt
-
-  // Relations
-  seminar Seminar @relation(fields: [seminar_id], references: [id])
-  account Account @relation(fields: [account_id], references: [id])
-
-  @@unique([seminar_id, account_id])
-  @@map("seminar_participants")
-}
-
-//? ========================================== ENUMS ========================================== ?//
-
-enum seminar_status {
-  Upcoming
-  Ongoing
-  Completed
-  Cancelled
-}
-
-enum participant_status {
-  Attended
-  Not_Attended @map("Not Attended")
-  Registered
-  Cancelled
 }

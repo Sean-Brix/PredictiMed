@@ -122,124 +122,468 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
-  access: 'access',
-  username: 'username',
   email: 'email',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  middleName: 'middleName',
-  gender: 'gender',
-  client_profile: 'client_profile',
-  cellphone_no: 'cellphone_no',
-  telephone_no: 'telephone_no',
-  occupation: 'occupation',
-  position: 'position',
-  institution: 'institution',
-  address: 'address',
-  picture: 'picture',
-  mimeType: 'mimeType',
   password: 'password',
+  role: 'role',
+  isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  profilePictureUrl: 'profilePictureUrl',
+  emailVerified: 'emailVerified'
 };
 
-exports.Prisma.CommodityScalarFieldEnum = {
+exports.Prisma.UserProfileScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  icon: 'icon',
-  description: 'description',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.AccountCommodityScalarFieldEnum = {
-  id: 'id',
-  account_id: 'account_id',
-  commodity_id: 'commodity_id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.AuditLogScalarFieldEnum = {
-  id: 'id',
-  adminId: 'adminId',
-  action: 'action',
-  targetType: 'targetType',
-  targetId: 'targetId',
-  targetName: 'targetName',
-  details: 'details',
-  metadata: 'metadata',
-  ipAddress: 'ipAddress',
-  userAgent: 'userAgent',
+  accountId: 'accountId',
+  fullName: 'fullName',
+  dateOfBirth: 'dateOfBirth',
+  age: 'age',
+  gender: 'gender',
+  address: 'address',
+  contactNumber: 'contactNumber',
+  religion: 'religion',
+  civilStatus: 'civilStatus',
+  occupation: 'occupation',
+  educationLevel: 'educationLevel',
+  philhealthNumber: 'philhealthNumber',
+  nhtsStatus: 'nhtsStatus',
+  personWithDisability: 'personWithDisability',
+  indigenousPeople: 'indigenousPeople',
   createdAt: 'createdAt'
 };
 
-exports.Prisma.InventoryItemScalarFieldEnum = {
+exports.Prisma.HealthWorkerScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  description: 'description',
-  picture: 'picture',
-  category: 'category',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ItemStackScalarFieldEnum = {
-  id: 'id',
-  itemId: 'itemId',
-  quantity: 'quantity',
-  status: 'status',
-  date_limit: 'date_limit',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ItemTransactionScalarFieldEnum = {
-  id: 'id',
-  itemStackId: 'itemStackId',
   accountId: 'accountId',
-  adminId: 'adminId',
-  quantity: 'quantity',
-  status: 'status',
-  pickupDate: 'pickupDate',
-  returnDate: 'returnDate',
-  requestNote: 'requestNote',
+  name: 'name',
+  role: 'role',
+  contactNumber: 'contactNumber',
+  signature: 'signature',
+  isActive: 'isActive'
+};
+
+exports.Prisma.FamilyRecordScalarFieldEnum = {
+  id: 'id',
+  familyId: 'familyId',
+  headOfFamilyId: 'headOfFamilyId',
+  address: 'address',
+  contactNumber: 'contactNumber',
+  smsConsent: 'smsConsent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.SeminarScalarFieldEnum = {
+exports.Prisma.FamilyMemberScalarFieldEnum = {
+  id: 'id',
+  familyRecordId: 'familyRecordId',
+  userProfileId: 'userProfileId',
+  memberName: 'memberName',
+  relationship: 'relationship',
+  gender: 'gender',
+  age: 'age',
+  occupation: 'occupation',
+  civilStatus: 'civilStatus'
+};
+
+exports.Prisma.FamilyHealthHistoryScalarFieldEnum = {
+  id: 'id',
+  familyRecordId: 'familyRecordId',
+  geneticConditions: 'geneticConditions',
+  chronicDiseases: 'chronicDiseases',
+  recordedDate: 'recordedDate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.MaternalHealthScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  mothersName: 'mothersName',
+  mothersAge: 'mothersAge',
+  mothersBirthday: 'mothersBirthday',
+  mothersMaidenName: 'mothersMaidenName',
+  mothersReligion: 'mothersReligion',
+  mothersEducation: 'mothersEducation',
+  mothersOccupation: 'mothersOccupation',
+  numberOfChildren: 'numberOfChildren',
+  gravidaPara: 'gravidaPara',
+  menarcheAge: 'menarcheAge',
+  lastMenstrualPeriod: 'lastMenstrualPeriod',
+  expectedDeliveryDate: 'expectedDeliveryDate',
+  tetanusToxoidStatus: 'tetanusToxoidStatus',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PrenatalVisitScalarFieldEnum = {
+  id: 'id',
+  maternalHealthId: 'maternalHealthId',
+  visitDate: 'visitDate',
+  gestationalAgeWeeks: 'gestationalAgeWeeks',
+  weightKg: 'weightKg',
+  heightCm: 'heightCm',
+  bloodPressure: 'bloodPressure',
+  fundalHeightCm: 'fundalHeightCm',
+  fetalHeartTone: 'fetalHeartTone',
+  nextVisitDate: 'nextVisitDate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.LaboratoryTestScalarFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  userProfileId: 'userProfileId',
+  testDate: 'testDate',
+  testType: 'testType',
+  testCompleted: 'testCompleted',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InterventionScalarFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  tetanusToxoidDose: 'tetanusToxoidDose',
+  tetanusToxoidLocation: 'tetanusToxoidLocation',
+  tetanusToxoidDate: 'tetanusToxoidDate',
+  ironSupplementation: 'ironSupplementation',
+  ironMedication: 'ironMedication',
+  vitaminSupplementation: 'vitaminSupplementation',
+  vitaminMedication: 'vitaminMedication',
+  calciumSupplementation: 'calciumSupplementation',
+  calciumMedication: 'calciumMedication',
+  healthEducationTopics: 'healthEducationTopics'
+};
+
+exports.Prisma.BirthInformationScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  maternalHealthId: 'maternalHealthId',
+  placeOfDelivery: 'placeOfDelivery',
+  timeOfDelivery: 'timeOfDelivery',
+  deliveryType: 'deliveryType',
+  birthWeightKg: 'birthWeightKg',
+  birthHeightCm: 'birthHeightCm',
+  newbornScreeningDate: 'newbornScreeningDate',
+  newbornScreeningCompleted: 'newbornScreeningCompleted',
+  feedingType: 'feedingType',
+  createdAt: 'createdAt',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.ImmunizationEventScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitDate: 'visitDate',
+  temperatureCelsius: 'temperatureCelsius',
+  weightKg: 'weightKg',
+  heightCm: 'heightCm',
+  adverseReactions: 'adverseReactions',
+  healthWorkerName: 'healthWorkerName',
+  healthWorkerSignature: 'healthWorkerSignature',
+  nextFollowupDate: 'nextFollowupDate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VaccineGivenScalarFieldEnum = {
+  id: 'id',
+  immunizationEventId: 'immunizationEventId',
+  vaccineName: 'vaccineName',
+  doseNumber: 'doseNumber',
+  dateGiven: 'dateGiven',
+  lotNumber: 'lotNumber'
+};
+
+exports.Prisma.VitalSignsScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recordDate: 'recordDate',
+  bloodPressure: 'bloodPressure',
+  heartRate: 'heartRate',
+  respiratoryRate: 'respiratoryRate',
+  temperatureCelsius: 'temperatureCelsius',
+  pulseRate: 'pulseRate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.AnthropometricMeasurementScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  measurementDate: 'measurementDate',
+  weightKg: 'weightKg',
+  heightCm: 'heightCm',
+  headCircumferenceCm: 'headCircumferenceCm',
+  waistCircumferenceCm: 'waistCircumferenceCm',
+  bmi: 'bmi',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.GrowthTrackingScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  trackingDate: 'trackingDate',
+  weightForAge: 'weightForAge',
+  heightForAge: 'heightForAge',
+  weightForHeight: 'weightForHeight',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.NCDRiskAssessmentScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  assessmentDate: 'assessmentDate',
+  smokingStatus: 'smokingStatus',
+  alcoholIntake: 'alcoholIntake',
+  physicalActivity: 'physicalActivity',
+  fruitVegetableIntake: 'fruitVegetableIntake',
+  familyHistoryDiabetes: 'familyHistoryDiabetes',
+  familyHistoryHypertension: 'familyHistoryHypertension',
+  familyHistoryHeartDisease: 'familyHistoryHeartDisease',
+  familyHistoryStroke: 'familyHistoryStroke',
+  screeningCompleted: 'screeningCompleted',
+  followUpNeeded: 'followUpNeeded',
+  lifestyleModifications: 'lifestyleModifications',
+  healthEducationReceived: 'healthEducationReceived',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VisitRecordScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitDate: 'visitDate',
+  visitType: 'visitType',
+  visitFrequency: 'visitFrequency',
+  referred: 'referred',
+  facilityName: 'facilityName',
+  referralReason: 'referralReason',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.HealthEducationScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  topicsCovered: 'topicsCovered',
+  dateProvided: 'dateProvided',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.NutritionalCounselingScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recommendations: 'recommendations',
+  dateProvided: 'dateProvided',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.ReferralScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  facilityName: 'facilityName',
+  reason: 'reason',
+  dateReferred: 'dateReferred',
+  status: 'status',
+  referredBy: 'referredBy'
+};
+
+exports.Prisma.AppointmentScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  nextVisitDate: 'nextVisitDate',
+  visitType: 'visitType',
+  appointmentStatus: 'appointmentStatus',
+  scheduledBy: 'scheduledBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ImmunizationReminderScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  vaccineName: 'vaccineName',
+  dueDate: 'dueDate',
+  reminderSent: 'reminderSent',
+  sentAt: 'sentAt'
+};
+
+exports.Prisma.TestReminderScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  testName: 'testName',
+  dueDate: 'dueDate',
+  reminderSent: 'reminderSent',
+  sentAt: 'sentAt'
+};
+
+exports.Prisma.VirtualCheckupScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  healthWorkerId: 'healthWorkerId',
+  scheduledDate: 'scheduledDate',
+  scheduledTime: 'scheduledTime',
+  meetingUrl: 'meetingUrl',
+  status: 'status',
+  consultationType: 'consultationType',
+  chiefComplaint: 'chiefComplaint',
+  notes: 'notes',
+  durationMinutes: 'durationMinutes',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.VirtualCheckupNoteScalarFieldEnum = {
+  id: 'id',
+  virtualCheckupId: 'virtualCheckupId',
+  note: 'note',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  location: 'location',
-  speaker: 'speaker',
-  start_date: 'start_date',
-  end_date: 'end_date',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  capacity: 'capacity',
-  registration_deadline: 'registration_deadline',
+  eventType: 'eventType',
+  eventDate: 'eventDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  venue: 'venue',
+  targetAudience: 'targetAudience',
+  maxParticipants: 'maxParticipants',
   status: 'status',
-  picture: 'picture',
-  mimeType: 'mimeType',
-  createdById: 'createdById',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
 };
 
-exports.Prisma.SeminarParticipantScalarFieldEnum = {
+exports.Prisma.EventRegistrationScalarFieldEnum = {
   id: 'id',
-  seminar_id: 'seminar_id',
-  account_id: 'account_id',
+  eventId: 'eventId',
+  userProfileId: 'userProfileId',
+  registrationDate: 'registrationDate',
   status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  notes: 'notes'
+};
+
+exports.Prisma.MedicalProgramScalarFieldEnum = {
+  id: 'id',
+  programName: 'programName',
+  description: 'description',
+  programType: 'programType',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  venue: 'venue',
+  targetDemographic: 'targetDemographic',
+  targetParticipants: 'targetParticipants',
+  status: 'status',
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProgramParticipationScalarFieldEnum = {
+  id: 'id',
+  medicalProgramId: 'medicalProgramId',
+  userProfileId: 'userProfileId',
+  participationDate: 'participationDate',
+  status: 'status',
+  servicesReceived: 'servicesReceived',
+  notes: 'notes',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InquiryScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  subject: 'subject',
+  message: 'message',
+  priority: 'priority',
+  status: 'status',
+  category: 'category',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InquiryResponseScalarFieldEnum = {
+  id: 'id',
+  inquiryId: 'inquiryId',
+  message: 'message',
+  respondedBy: 'respondedBy'
+};
+
+exports.Prisma.SurveyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  surveyType: 'surveyType',
+  isActive: 'isActive',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  qrCode: 'qrCode',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SurveyQuestionScalarFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  questionText: 'questionText',
+  questionType: 'questionType',
+  options: 'options',
+  isRequired: 'isRequired',
+  orderIndex: 'orderIndex'
+};
+
+exports.Prisma.SurveyResponseScalarFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  userProfileId: 'userProfileId',
+  ipAddress: 'ipAddress',
+  submittedAt: 'submittedAt'
+};
+
+exports.Prisma.SurveyAnswerScalarFieldEnum = {
+  id: 'id',
+  surveyResponseId: 'surveyResponseId',
+  surveyQuestionId: 'surveyQuestionId',
+  answer: 'answer'
+};
+
+exports.Prisma.AnalyticsReportScalarFieldEnum = {
+  id: 'id',
+  reportName: 'reportName',
+  reportType: 'reportType',
+  dataFilters: 'dataFilters',
+  reportData: 'reportData',
+  reportPeriodStart: 'reportPeriodStart',
+  reportPeriodEnd: 'reportPeriodEnd',
+  generatedBy: 'generatedBy'
+};
+
+exports.Prisma.PredictionModelScalarFieldEnum = {
+  id: 'id',
+  modelName: 'modelName',
+  modelType: 'modelType',
+  modelParameters: 'modelParameters',
+  predictionResults: 'predictionResults',
+  accuracy: 'accuracy',
+  lastTrained: 'lastTrained',
+  isActive: 'isActive',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SystemLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  oldData: 'oldData',
+  newData: 'newData',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.NullableJsonNullValueInput = {
@@ -254,32 +598,53 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.AccountOrderByRelevanceFieldEnum = {
   id: 'id',
-  username: 'username',
   email: 'email',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  middleName: 'middleName',
-  cellphone_no: 'cellphone_no',
-  telephone_no: 'telephone_no',
-  occupation: 'occupation',
-  position: 'position',
-  institution: 'institution',
+  password: 'password',
+  role: 'role',
+  profilePictureUrl: 'profilePictureUrl'
+};
+
+exports.Prisma.UserProfileOrderByRelevanceFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  fullName: 'fullName',
+  gender: 'gender',
   address: 'address',
-  mimeType: 'mimeType',
-  password: 'password'
+  contactNumber: 'contactNumber',
+  religion: 'religion',
+  civilStatus: 'civilStatus',
+  occupation: 'occupation',
+  educationLevel: 'educationLevel',
+  philhealthNumber: 'philhealthNumber',
+  nhtsStatus: 'nhtsStatus'
 };
 
-exports.Prisma.CommodityOrderByRelevanceFieldEnum = {
+exports.Prisma.HealthWorkerOrderByRelevanceFieldEnum = {
   id: 'id',
+  accountId: 'accountId',
   name: 'name',
-  icon: 'icon',
-  description: 'description'
+  role: 'role',
+  contactNumber: 'contactNumber',
+  signature: 'signature'
 };
 
-exports.Prisma.AccountCommodityOrderByRelevanceFieldEnum = {
+exports.Prisma.FamilyRecordOrderByRelevanceFieldEnum = {
   id: 'id',
-  account_id: 'account_id',
-  commodity_id: 'commodity_id'
+  familyId: 'familyId',
+  headOfFamilyId: 'headOfFamilyId',
+  address: 'address',
+  contactNumber: 'contactNumber'
+};
+
+exports.Prisma.FamilyMemberOrderByRelevanceFieldEnum = {
+  id: 'id',
+  familyRecordId: 'familyRecordId',
+  userProfileId: 'userProfileId',
+  memberName: 'memberName',
+  relationship: 'relationship',
+  gender: 'gender',
+  occupation: 'occupation',
+  civilStatus: 'civilStatus'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -293,178 +658,337 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.AuditLogOrderByRelevanceFieldEnum = {
+exports.Prisma.FamilyHealthHistoryOrderByRelevanceFieldEnum = {
   id: 'id',
-  adminId: 'adminId',
-  targetType: 'targetType',
-  targetId: 'targetId',
-  targetName: 'targetName',
-  details: 'details',
+  familyRecordId: 'familyRecordId',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.MaternalHealthOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  mothersName: 'mothersName',
+  mothersMaidenName: 'mothersMaidenName',
+  mothersReligion: 'mothersReligion',
+  mothersEducation: 'mothersEducation',
+  mothersOccupation: 'mothersOccupation',
+  gravidaPara: 'gravidaPara',
+  tetanusToxoidStatus: 'tetanusToxoidStatus'
+};
+
+exports.Prisma.PrenatalVisitOrderByRelevanceFieldEnum = {
+  id: 'id',
+  maternalHealthId: 'maternalHealthId',
+  bloodPressure: 'bloodPressure',
+  fetalHeartTone: 'fetalHeartTone',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.LaboratoryTestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  userProfileId: 'userProfileId',
+  testType: 'testType',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InterventionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  tetanusToxoidDose: 'tetanusToxoidDose',
+  tetanusToxoidLocation: 'tetanusToxoidLocation',
+  ironMedication: 'ironMedication',
+  vitaminMedication: 'vitaminMedication',
+  calciumMedication: 'calciumMedication'
+};
+
+exports.Prisma.BirthInformationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  maternalHealthId: 'maternalHealthId',
+  placeOfDelivery: 'placeOfDelivery',
+  timeOfDelivery: 'timeOfDelivery',
+  deliveryType: 'deliveryType',
+  feedingType: 'feedingType',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.ImmunizationEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  adverseReactions: 'adverseReactions',
+  healthWorkerName: 'healthWorkerName',
+  healthWorkerSignature: 'healthWorkerSignature',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VaccineGivenOrderByRelevanceFieldEnum = {
+  id: 'id',
+  immunizationEventId: 'immunizationEventId',
+  vaccineName: 'vaccineName',
+  doseNumber: 'doseNumber',
+  lotNumber: 'lotNumber'
+};
+
+exports.Prisma.VitalSignsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  bloodPressure: 'bloodPressure',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.AnthropometricMeasurementOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.GrowthTrackingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  weightForAge: 'weightForAge',
+  heightForAge: 'heightForAge',
+  weightForHeight: 'weightForHeight',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.NCDRiskAssessmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  smokingStatus: 'smokingStatus',
+  alcoholIntake: 'alcoholIntake',
+  physicalActivity: 'physicalActivity',
+  fruitVegetableIntake: 'fruitVegetableIntake',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VisitRecordOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitType: 'visitType',
+  visitFrequency: 'visitFrequency',
+  facilityName: 'facilityName',
+  referralReason: 'referralReason',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.HealthEducationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.NutritionalCounselingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recommendations: 'recommendations',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.ReferralOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  facilityName: 'facilityName',
+  reason: 'reason',
+  status: 'status',
+  referredBy: 'referredBy'
+};
+
+exports.Prisma.AppointmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitType: 'visitType',
+  appointmentStatus: 'appointmentStatus',
+  scheduledBy: 'scheduledBy'
+};
+
+exports.Prisma.ImmunizationReminderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  vaccineName: 'vaccineName'
+};
+
+exports.Prisma.TestReminderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  testName: 'testName'
+};
+
+exports.Prisma.VirtualCheckupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  healthWorkerId: 'healthWorkerId',
+  scheduledTime: 'scheduledTime',
+  meetingUrl: 'meetingUrl',
+  status: 'status',
+  consultationType: 'consultationType',
+  chiefComplaint: 'chiefComplaint',
+  notes: 'notes'
+};
+
+exports.Prisma.VirtualCheckupNoteOrderByRelevanceFieldEnum = {
+  id: 'id',
+  virtualCheckupId: 'virtualCheckupId',
+  note: 'note',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.EventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  eventType: 'eventType',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  venue: 'venue',
+  targetAudience: 'targetAudience',
+  status: 'status',
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.EventRegistrationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  userProfileId: 'userProfileId',
+  status: 'status',
+  notes: 'notes'
+};
+
+exports.Prisma.MedicalProgramOrderByRelevanceFieldEnum = {
+  id: 'id',
+  programName: 'programName',
+  description: 'description',
+  programType: 'programType',
+  venue: 'venue',
+  targetDemographic: 'targetDemographic',
+  status: 'status',
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.ProgramParticipationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  medicalProgramId: 'medicalProgramId',
+  userProfileId: 'userProfileId',
+  status: 'status',
+  servicesReceived: 'servicesReceived',
+  notes: 'notes',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InquiryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  subject: 'subject',
+  message: 'message',
+  priority: 'priority',
+  status: 'status',
+  category: 'category'
+};
+
+exports.Prisma.InquiryResponseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  inquiryId: 'inquiryId',
+  message: 'message',
+  respondedBy: 'respondedBy'
+};
+
+exports.Prisma.SurveyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  surveyType: 'surveyType',
+  qrCode: 'qrCode',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.SurveyQuestionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  questionText: 'questionText',
+  questionType: 'questionType'
+};
+
+exports.Prisma.SurveyResponseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  userProfileId: 'userProfileId',
+  ipAddress: 'ipAddress'
+};
+
+exports.Prisma.SurveyAnswerOrderByRelevanceFieldEnum = {
+  id: 'id',
+  surveyResponseId: 'surveyResponseId',
+  surveyQuestionId: 'surveyQuestionId',
+  answer: 'answer'
+};
+
+exports.Prisma.AnalyticsReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportName: 'reportName',
+  reportType: 'reportType',
+  generatedBy: 'generatedBy'
+};
+
+exports.Prisma.PredictionModelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  modelName: 'modelName',
+  modelType: 'modelType',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.SystemLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent'
 };
 
-exports.Prisma.InventoryItemOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description'
-};
-
-exports.Prisma.ItemStackOrderByRelevanceFieldEnum = {
-  id: 'id',
-  itemId: 'itemId'
-};
-
-exports.Prisma.ItemTransactionOrderByRelevanceFieldEnum = {
-  id: 'id',
-  itemStackId: 'itemStackId',
-  accountId: 'accountId',
-  adminId: 'adminId',
-  requestNote: 'requestNote'
-};
-
-exports.Prisma.SeminarOrderByRelevanceFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  location: 'location',
-  speaker: 'speaker',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  mimeType: 'mimeType',
-  createdById: 'createdById'
-};
-
-exports.Prisma.SeminarParticipantOrderByRelevanceFieldEnum = {
-  id: 'id',
-  seminar_id: 'seminar_id',
-  account_id: 'account_id'
-};
-exports.access = exports.$Enums.access = {
-  Admin: 'Admin',
-  User: 'User',
-  Super_Admin: 'Super_Admin'
-};
-
-exports.gender = exports.$Enums.gender = {
-  Male: 'Male',
-  Female: 'Female',
-  Other: 'Other'
-};
-
-exports.client_profile = exports.$Enums.client_profile = {
-  Fishfolk: 'Fishfolk',
-  Rural_Based_Org: 'Rural_Based_Org',
-  Student: 'Student',
-  Agricultural_Fisheries_Technician: 'Agricultural_Fisheries_Technician',
-  Youth: 'Youth',
-  Women: 'Women',
-  Govt_Employee: 'Govt_Employee',
-  PWD: 'PWD',
-  Indigenous_People: 'Indigenous_People',
-  Other: 'Other'
-};
-
-exports.audit_action = exports.$Enums.audit_action = {
-  ACCOUNT_CREATE: 'ACCOUNT_CREATE',
-  ACCOUNT_UPDATE: 'ACCOUNT_UPDATE',
-  ACCOUNT_DELETE: 'ACCOUNT_DELETE',
-  ACCOUNT_ROLE_CHANGE: 'ACCOUNT_ROLE_CHANGE',
-  ACCOUNT_STATUS_CHANGE: 'ACCOUNT_STATUS_CHANGE',
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
-  LOGIN_FAILED: 'LOGIN_FAILED',
-  INVENTORY_CREATE: 'INVENTORY_CREATE',
-  INVENTORY_UPDATE: 'INVENTORY_UPDATE',
-  INVENTORY_DELETE: 'INVENTORY_DELETE',
-  INVENTORY_STATUS_CHANGE: 'INVENTORY_STATUS_CHANGE',
-  DISTRIBUTION_CREATE: 'DISTRIBUTION_CREATE',
-  DISTRIBUTION_UPDATE: 'DISTRIBUTION_UPDATE',
-  DISTRIBUTION_DELETE: 'DISTRIBUTION_DELETE',
-  DISTRIBUTION_REQUEST_APPROVE: 'DISTRIBUTION_REQUEST_APPROVE',
-  DISTRIBUTION_REQUEST_REJECT: 'DISTRIBUTION_REQUEST_REJECT',
-  DISTRIBUTION_REQUEST_NO_PICKUP: 'DISTRIBUTION_REQUEST_NO_PICKUP',
-  EIC_CREATE: 'EIC_CREATE',
-  EIC_UPDATE: 'EIC_UPDATE',
-  EIC_DELETE: 'EIC_DELETE',
-  EIC_STATUS_CHANGE: 'EIC_STATUS_CHANGE',
-  EIC_REQUEST_APPROVE: 'EIC_REQUEST_APPROVE',
-  EIC_REQUEST_REJECT: 'EIC_REQUEST_REJECT',
-  EIC_REQUEST_NO_PICKUP: 'EIC_REQUEST_NO_PICKUP',
-  SEMINAR_CREATE: 'SEMINAR_CREATE',
-  SEMINAR_UPDATE: 'SEMINAR_UPDATE',
-  SEMINAR_DELETE: 'SEMINAR_DELETE',
-  SEMINAR_STATUS_CHANGE: 'SEMINAR_STATUS_CHANGE',
-  SEMINAR_PARTICIPANT_UPDATE: 'SEMINAR_PARTICIPANT_UPDATE',
-  CONTENT_CREATE: 'CONTENT_CREATE',
-  CONTENT_UPDATE: 'CONTENT_UPDATE',
-  CONTENT_DELETE: 'CONTENT_DELETE',
-  SYSTEM_BACKUP: 'SYSTEM_BACKUP',
-  SYSTEM_RESTORE: 'SYSTEM_RESTORE',
-  SYSTEM_MAINTENANCE: 'SYSTEM_MAINTENANCE',
-  PROFILE_UPDATE: 'PROFILE_UPDATE',
-  PROFILE_PICTURE_UPDATE: 'PROFILE_PICTURE_UPDATE',
-  SETTINGS_UPDATE: 'SETTINGS_UPDATE'
-};
-
-exports.item_category = exports.$Enums.item_category = {
-  Farming_Equipment: 'Farming_Equipment',
-  Harvesting_Tools: 'Harvesting_Tools',
-  Irrigation_Systems: 'Irrigation_Systems',
-  Storage_Equipment: 'Storage_Equipment',
-  Processing_Equipment: 'Processing_Equipment',
-  Safety_Gear: 'Safety_Gear',
-  Pest_Control: 'Pest_Control',
-  Livestock_Equipment: 'Livestock_Equipment',
-  Measuring_Tools: 'Measuring_Tools',
-  Fisheries: 'Fisheries',
-  Machinery: 'Machinery',
-  Other: 'Other'
-};
-
-exports.item_status = exports.$Enums.item_status = {
-  Available: 'Available',
-  Unavailable: 'Unavailable',
-  Damaged: 'Damaged',
-  EIC: 'EIC',
-  Distributed: 'Distributed'
-};
-
-exports.transaction_status = exports.$Enums.transaction_status = {
-  Pending: 'Pending',
-  Approved: 'Approved',
-  Rejected: 'Rejected',
-  Returned: 'Returned',
-  No_Return: 'No_Return',
-  late_return: 'late_return',
-  No_Pickup: 'No_Pickup',
-  Cancelled: 'Cancelled'
-};
-
-exports.seminar_status = exports.$Enums.seminar_status = {
-  Upcoming: 'Upcoming',
-  Ongoing: 'Ongoing',
-  Completed: 'Completed',
-  Cancelled: 'Cancelled'
-};
-
-exports.participant_status = exports.$Enums.participant_status = {
-  Attended: 'Attended',
-  Not_Attended: 'Not_Attended',
-  Registered: 'Registered',
-  Cancelled: 'Cancelled'
-};
 
 exports.Prisma.ModelName = {
   Account: 'Account',
-  Commodity: 'Commodity',
-  AccountCommodity: 'AccountCommodity',
-  AuditLog: 'AuditLog',
-  InventoryItem: 'InventoryItem',
-  ItemStack: 'ItemStack',
-  ItemTransaction: 'ItemTransaction',
-  Seminar: 'Seminar',
-  SeminarParticipant: 'SeminarParticipant'
+  UserProfile: 'UserProfile',
+  HealthWorker: 'HealthWorker',
+  FamilyRecord: 'FamilyRecord',
+  FamilyMember: 'FamilyMember',
+  FamilyHealthHistory: 'FamilyHealthHistory',
+  MaternalHealth: 'MaternalHealth',
+  PrenatalVisit: 'PrenatalVisit',
+  LaboratoryTest: 'LaboratoryTest',
+  Intervention: 'Intervention',
+  BirthInformation: 'BirthInformation',
+  ImmunizationEvent: 'ImmunizationEvent',
+  VaccineGiven: 'VaccineGiven',
+  VitalSigns: 'VitalSigns',
+  AnthropometricMeasurement: 'AnthropometricMeasurement',
+  GrowthTracking: 'GrowthTracking',
+  NCDRiskAssessment: 'NCDRiskAssessment',
+  VisitRecord: 'VisitRecord',
+  HealthEducation: 'HealthEducation',
+  NutritionalCounseling: 'NutritionalCounseling',
+  Referral: 'Referral',
+  Appointment: 'Appointment',
+  ImmunizationReminder: 'ImmunizationReminder',
+  TestReminder: 'TestReminder',
+  VirtualCheckup: 'VirtualCheckup',
+  VirtualCheckupNote: 'VirtualCheckupNote',
+  Event: 'Event',
+  EventRegistration: 'EventRegistration',
+  MedicalProgram: 'MedicalProgram',
+  ProgramParticipation: 'ProgramParticipation',
+  Inquiry: 'Inquiry',
+  InquiryResponse: 'InquiryResponse',
+  Survey: 'Survey',
+  SurveyQuestion: 'SurveyQuestion',
+  SurveyResponse: 'SurveyResponse',
+  SurveyAnswer: 'SurveyAnswer',
+  AnalyticsReport: 'AnalyticsReport',
+  PredictionModel: 'PredictionModel',
+  SystemLog: 'SystemLog'
 };
 
 /**

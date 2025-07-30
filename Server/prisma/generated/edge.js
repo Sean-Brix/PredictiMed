@@ -94,124 +94,468 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
-  access: 'access',
-  username: 'username',
   email: 'email',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  middleName: 'middleName',
-  gender: 'gender',
-  client_profile: 'client_profile',
-  cellphone_no: 'cellphone_no',
-  telephone_no: 'telephone_no',
-  occupation: 'occupation',
-  position: 'position',
-  institution: 'institution',
-  address: 'address',
-  picture: 'picture',
-  mimeType: 'mimeType',
   password: 'password',
+  role: 'role',
+  isActive: 'isActive',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  profilePictureUrl: 'profilePictureUrl',
+  emailVerified: 'emailVerified'
 };
 
-exports.Prisma.CommodityScalarFieldEnum = {
+exports.Prisma.UserProfileScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  icon: 'icon',
-  description: 'description',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.AccountCommodityScalarFieldEnum = {
-  id: 'id',
-  account_id: 'account_id',
-  commodity_id: 'commodity_id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.AuditLogScalarFieldEnum = {
-  id: 'id',
-  adminId: 'adminId',
-  action: 'action',
-  targetType: 'targetType',
-  targetId: 'targetId',
-  targetName: 'targetName',
-  details: 'details',
-  metadata: 'metadata',
-  ipAddress: 'ipAddress',
-  userAgent: 'userAgent',
+  accountId: 'accountId',
+  fullName: 'fullName',
+  dateOfBirth: 'dateOfBirth',
+  age: 'age',
+  gender: 'gender',
+  address: 'address',
+  contactNumber: 'contactNumber',
+  religion: 'religion',
+  civilStatus: 'civilStatus',
+  occupation: 'occupation',
+  educationLevel: 'educationLevel',
+  philhealthNumber: 'philhealthNumber',
+  nhtsStatus: 'nhtsStatus',
+  personWithDisability: 'personWithDisability',
+  indigenousPeople: 'indigenousPeople',
   createdAt: 'createdAt'
 };
 
-exports.Prisma.InventoryItemScalarFieldEnum = {
+exports.Prisma.HealthWorkerScalarFieldEnum = {
   id: 'id',
-  name: 'name',
-  description: 'description',
-  picture: 'picture',
-  category: 'category',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ItemStackScalarFieldEnum = {
-  id: 'id',
-  itemId: 'itemId',
-  quantity: 'quantity',
-  status: 'status',
-  date_limit: 'date_limit',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.ItemTransactionScalarFieldEnum = {
-  id: 'id',
-  itemStackId: 'itemStackId',
   accountId: 'accountId',
-  adminId: 'adminId',
-  quantity: 'quantity',
-  status: 'status',
-  pickupDate: 'pickupDate',
-  returnDate: 'returnDate',
-  requestNote: 'requestNote',
+  name: 'name',
+  role: 'role',
+  contactNumber: 'contactNumber',
+  signature: 'signature',
+  isActive: 'isActive'
+};
+
+exports.Prisma.FamilyRecordScalarFieldEnum = {
+  id: 'id',
+  familyId: 'familyId',
+  headOfFamilyId: 'headOfFamilyId',
+  address: 'address',
+  contactNumber: 'contactNumber',
+  smsConsent: 'smsConsent',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.SeminarScalarFieldEnum = {
+exports.Prisma.FamilyMemberScalarFieldEnum = {
+  id: 'id',
+  familyRecordId: 'familyRecordId',
+  userProfileId: 'userProfileId',
+  memberName: 'memberName',
+  relationship: 'relationship',
+  gender: 'gender',
+  age: 'age',
+  occupation: 'occupation',
+  civilStatus: 'civilStatus'
+};
+
+exports.Prisma.FamilyHealthHistoryScalarFieldEnum = {
+  id: 'id',
+  familyRecordId: 'familyRecordId',
+  geneticConditions: 'geneticConditions',
+  chronicDiseases: 'chronicDiseases',
+  recordedDate: 'recordedDate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.MaternalHealthScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  mothersName: 'mothersName',
+  mothersAge: 'mothersAge',
+  mothersBirthday: 'mothersBirthday',
+  mothersMaidenName: 'mothersMaidenName',
+  mothersReligion: 'mothersReligion',
+  mothersEducation: 'mothersEducation',
+  mothersOccupation: 'mothersOccupation',
+  numberOfChildren: 'numberOfChildren',
+  gravidaPara: 'gravidaPara',
+  menarcheAge: 'menarcheAge',
+  lastMenstrualPeriod: 'lastMenstrualPeriod',
+  expectedDeliveryDate: 'expectedDeliveryDate',
+  tetanusToxoidStatus: 'tetanusToxoidStatus',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PrenatalVisitScalarFieldEnum = {
+  id: 'id',
+  maternalHealthId: 'maternalHealthId',
+  visitDate: 'visitDate',
+  gestationalAgeWeeks: 'gestationalAgeWeeks',
+  weightKg: 'weightKg',
+  heightCm: 'heightCm',
+  bloodPressure: 'bloodPressure',
+  fundalHeightCm: 'fundalHeightCm',
+  fetalHeartTone: 'fetalHeartTone',
+  nextVisitDate: 'nextVisitDate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.LaboratoryTestScalarFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  userProfileId: 'userProfileId',
+  testDate: 'testDate',
+  testType: 'testType',
+  testCompleted: 'testCompleted',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InterventionScalarFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  tetanusToxoidDose: 'tetanusToxoidDose',
+  tetanusToxoidLocation: 'tetanusToxoidLocation',
+  tetanusToxoidDate: 'tetanusToxoidDate',
+  ironSupplementation: 'ironSupplementation',
+  ironMedication: 'ironMedication',
+  vitaminSupplementation: 'vitaminSupplementation',
+  vitaminMedication: 'vitaminMedication',
+  calciumSupplementation: 'calciumSupplementation',
+  calciumMedication: 'calciumMedication',
+  healthEducationTopics: 'healthEducationTopics'
+};
+
+exports.Prisma.BirthInformationScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  maternalHealthId: 'maternalHealthId',
+  placeOfDelivery: 'placeOfDelivery',
+  timeOfDelivery: 'timeOfDelivery',
+  deliveryType: 'deliveryType',
+  birthWeightKg: 'birthWeightKg',
+  birthHeightCm: 'birthHeightCm',
+  newbornScreeningDate: 'newbornScreeningDate',
+  newbornScreeningCompleted: 'newbornScreeningCompleted',
+  feedingType: 'feedingType',
+  createdAt: 'createdAt',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.ImmunizationEventScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitDate: 'visitDate',
+  temperatureCelsius: 'temperatureCelsius',
+  weightKg: 'weightKg',
+  heightCm: 'heightCm',
+  adverseReactions: 'adverseReactions',
+  healthWorkerName: 'healthWorkerName',
+  healthWorkerSignature: 'healthWorkerSignature',
+  nextFollowupDate: 'nextFollowupDate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VaccineGivenScalarFieldEnum = {
+  id: 'id',
+  immunizationEventId: 'immunizationEventId',
+  vaccineName: 'vaccineName',
+  doseNumber: 'doseNumber',
+  dateGiven: 'dateGiven',
+  lotNumber: 'lotNumber'
+};
+
+exports.Prisma.VitalSignsScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recordDate: 'recordDate',
+  bloodPressure: 'bloodPressure',
+  heartRate: 'heartRate',
+  respiratoryRate: 'respiratoryRate',
+  temperatureCelsius: 'temperatureCelsius',
+  pulseRate: 'pulseRate',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.AnthropometricMeasurementScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  measurementDate: 'measurementDate',
+  weightKg: 'weightKg',
+  heightCm: 'heightCm',
+  headCircumferenceCm: 'headCircumferenceCm',
+  waistCircumferenceCm: 'waistCircumferenceCm',
+  bmi: 'bmi',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.GrowthTrackingScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  trackingDate: 'trackingDate',
+  weightForAge: 'weightForAge',
+  heightForAge: 'heightForAge',
+  weightForHeight: 'weightForHeight',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.NCDRiskAssessmentScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  assessmentDate: 'assessmentDate',
+  smokingStatus: 'smokingStatus',
+  alcoholIntake: 'alcoholIntake',
+  physicalActivity: 'physicalActivity',
+  fruitVegetableIntake: 'fruitVegetableIntake',
+  familyHistoryDiabetes: 'familyHistoryDiabetes',
+  familyHistoryHypertension: 'familyHistoryHypertension',
+  familyHistoryHeartDisease: 'familyHistoryHeartDisease',
+  familyHistoryStroke: 'familyHistoryStroke',
+  screeningCompleted: 'screeningCompleted',
+  followUpNeeded: 'followUpNeeded',
+  lifestyleModifications: 'lifestyleModifications',
+  healthEducationReceived: 'healthEducationReceived',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VisitRecordScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitDate: 'visitDate',
+  visitType: 'visitType',
+  visitFrequency: 'visitFrequency',
+  referred: 'referred',
+  facilityName: 'facilityName',
+  referralReason: 'referralReason',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.HealthEducationScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  topicsCovered: 'topicsCovered',
+  dateProvided: 'dateProvided',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.NutritionalCounselingScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recommendations: 'recommendations',
+  dateProvided: 'dateProvided',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.ReferralScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  facilityName: 'facilityName',
+  reason: 'reason',
+  dateReferred: 'dateReferred',
+  status: 'status',
+  referredBy: 'referredBy'
+};
+
+exports.Prisma.AppointmentScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  nextVisitDate: 'nextVisitDate',
+  visitType: 'visitType',
+  appointmentStatus: 'appointmentStatus',
+  scheduledBy: 'scheduledBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ImmunizationReminderScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  vaccineName: 'vaccineName',
+  dueDate: 'dueDate',
+  reminderSent: 'reminderSent',
+  sentAt: 'sentAt'
+};
+
+exports.Prisma.TestReminderScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  testName: 'testName',
+  dueDate: 'dueDate',
+  reminderSent: 'reminderSent',
+  sentAt: 'sentAt'
+};
+
+exports.Prisma.VirtualCheckupScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  healthWorkerId: 'healthWorkerId',
+  scheduledDate: 'scheduledDate',
+  scheduledTime: 'scheduledTime',
+  meetingUrl: 'meetingUrl',
+  status: 'status',
+  consultationType: 'consultationType',
+  chiefComplaint: 'chiefComplaint',
+  notes: 'notes',
+  durationMinutes: 'durationMinutes',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.VirtualCheckupNoteScalarFieldEnum = {
+  id: 'id',
+  virtualCheckupId: 'virtualCheckupId',
+  note: 'note',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.EventScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  location: 'location',
-  speaker: 'speaker',
-  start_date: 'start_date',
-  end_date: 'end_date',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  capacity: 'capacity',
-  registration_deadline: 'registration_deadline',
+  eventType: 'eventType',
+  eventDate: 'eventDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  venue: 'venue',
+  targetAudience: 'targetAudience',
+  maxParticipants: 'maxParticipants',
   status: 'status',
-  picture: 'picture',
-  mimeType: 'mimeType',
-  createdById: 'createdById',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
 };
 
-exports.Prisma.SeminarParticipantScalarFieldEnum = {
+exports.Prisma.EventRegistrationScalarFieldEnum = {
   id: 'id',
-  seminar_id: 'seminar_id',
-  account_id: 'account_id',
+  eventId: 'eventId',
+  userProfileId: 'userProfileId',
+  registrationDate: 'registrationDate',
   status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  notes: 'notes'
+};
+
+exports.Prisma.MedicalProgramScalarFieldEnum = {
+  id: 'id',
+  programName: 'programName',
+  description: 'description',
+  programType: 'programType',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  venue: 'venue',
+  targetDemographic: 'targetDemographic',
+  targetParticipants: 'targetParticipants',
+  status: 'status',
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProgramParticipationScalarFieldEnum = {
+  id: 'id',
+  medicalProgramId: 'medicalProgramId',
+  userProfileId: 'userProfileId',
+  participationDate: 'participationDate',
+  status: 'status',
+  servicesReceived: 'servicesReceived',
+  notes: 'notes',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InquiryScalarFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  subject: 'subject',
+  message: 'message',
+  priority: 'priority',
+  status: 'status',
+  category: 'category',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.InquiryResponseScalarFieldEnum = {
+  id: 'id',
+  inquiryId: 'inquiryId',
+  message: 'message',
+  respondedBy: 'respondedBy'
+};
+
+exports.Prisma.SurveyScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  surveyType: 'surveyType',
+  isActive: 'isActive',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  qrCode: 'qrCode',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SurveyQuestionScalarFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  questionText: 'questionText',
+  questionType: 'questionType',
+  options: 'options',
+  isRequired: 'isRequired',
+  orderIndex: 'orderIndex'
+};
+
+exports.Prisma.SurveyResponseScalarFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  userProfileId: 'userProfileId',
+  ipAddress: 'ipAddress',
+  submittedAt: 'submittedAt'
+};
+
+exports.Prisma.SurveyAnswerScalarFieldEnum = {
+  id: 'id',
+  surveyResponseId: 'surveyResponseId',
+  surveyQuestionId: 'surveyQuestionId',
+  answer: 'answer'
+};
+
+exports.Prisma.AnalyticsReportScalarFieldEnum = {
+  id: 'id',
+  reportName: 'reportName',
+  reportType: 'reportType',
+  dataFilters: 'dataFilters',
+  reportData: 'reportData',
+  reportPeriodStart: 'reportPeriodStart',
+  reportPeriodEnd: 'reportPeriodEnd',
+  generatedBy: 'generatedBy'
+};
+
+exports.Prisma.PredictionModelScalarFieldEnum = {
+  id: 'id',
+  modelName: 'modelName',
+  modelType: 'modelType',
+  modelParameters: 'modelParameters',
+  predictionResults: 'predictionResults',
+  accuracy: 'accuracy',
+  lastTrained: 'lastTrained',
+  isActive: 'isActive',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SystemLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
+  oldData: 'oldData',
+  newData: 'newData',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.NullableJsonNullValueInput = {
@@ -226,32 +570,53 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.AccountOrderByRelevanceFieldEnum = {
   id: 'id',
-  username: 'username',
   email: 'email',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  middleName: 'middleName',
-  cellphone_no: 'cellphone_no',
-  telephone_no: 'telephone_no',
-  occupation: 'occupation',
-  position: 'position',
-  institution: 'institution',
+  password: 'password',
+  role: 'role',
+  profilePictureUrl: 'profilePictureUrl'
+};
+
+exports.Prisma.UserProfileOrderByRelevanceFieldEnum = {
+  id: 'id',
+  accountId: 'accountId',
+  fullName: 'fullName',
+  gender: 'gender',
   address: 'address',
-  mimeType: 'mimeType',
-  password: 'password'
+  contactNumber: 'contactNumber',
+  religion: 'religion',
+  civilStatus: 'civilStatus',
+  occupation: 'occupation',
+  educationLevel: 'educationLevel',
+  philhealthNumber: 'philhealthNumber',
+  nhtsStatus: 'nhtsStatus'
 };
 
-exports.Prisma.CommodityOrderByRelevanceFieldEnum = {
+exports.Prisma.HealthWorkerOrderByRelevanceFieldEnum = {
   id: 'id',
+  accountId: 'accountId',
   name: 'name',
-  icon: 'icon',
-  description: 'description'
+  role: 'role',
+  contactNumber: 'contactNumber',
+  signature: 'signature'
 };
 
-exports.Prisma.AccountCommodityOrderByRelevanceFieldEnum = {
+exports.Prisma.FamilyRecordOrderByRelevanceFieldEnum = {
   id: 'id',
-  account_id: 'account_id',
-  commodity_id: 'commodity_id'
+  familyId: 'familyId',
+  headOfFamilyId: 'headOfFamilyId',
+  address: 'address',
+  contactNumber: 'contactNumber'
+};
+
+exports.Prisma.FamilyMemberOrderByRelevanceFieldEnum = {
+  id: 'id',
+  familyRecordId: 'familyRecordId',
+  userProfileId: 'userProfileId',
+  memberName: 'memberName',
+  relationship: 'relationship',
+  gender: 'gender',
+  occupation: 'occupation',
+  civilStatus: 'civilStatus'
 };
 
 exports.Prisma.JsonNullValueFilter = {
@@ -265,178 +630,337 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.AuditLogOrderByRelevanceFieldEnum = {
+exports.Prisma.FamilyHealthHistoryOrderByRelevanceFieldEnum = {
   id: 'id',
-  adminId: 'adminId',
-  targetType: 'targetType',
-  targetId: 'targetId',
-  targetName: 'targetName',
-  details: 'details',
+  familyRecordId: 'familyRecordId',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.MaternalHealthOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  mothersName: 'mothersName',
+  mothersMaidenName: 'mothersMaidenName',
+  mothersReligion: 'mothersReligion',
+  mothersEducation: 'mothersEducation',
+  mothersOccupation: 'mothersOccupation',
+  gravidaPara: 'gravidaPara',
+  tetanusToxoidStatus: 'tetanusToxoidStatus'
+};
+
+exports.Prisma.PrenatalVisitOrderByRelevanceFieldEnum = {
+  id: 'id',
+  maternalHealthId: 'maternalHealthId',
+  bloodPressure: 'bloodPressure',
+  fetalHeartTone: 'fetalHeartTone',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.LaboratoryTestOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  userProfileId: 'userProfileId',
+  testType: 'testType',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InterventionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  prenatalVisitId: 'prenatalVisitId',
+  tetanusToxoidDose: 'tetanusToxoidDose',
+  tetanusToxoidLocation: 'tetanusToxoidLocation',
+  ironMedication: 'ironMedication',
+  vitaminMedication: 'vitaminMedication',
+  calciumMedication: 'calciumMedication'
+};
+
+exports.Prisma.BirthInformationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  maternalHealthId: 'maternalHealthId',
+  placeOfDelivery: 'placeOfDelivery',
+  timeOfDelivery: 'timeOfDelivery',
+  deliveryType: 'deliveryType',
+  feedingType: 'feedingType',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.ImmunizationEventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  adverseReactions: 'adverseReactions',
+  healthWorkerName: 'healthWorkerName',
+  healthWorkerSignature: 'healthWorkerSignature',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VaccineGivenOrderByRelevanceFieldEnum = {
+  id: 'id',
+  immunizationEventId: 'immunizationEventId',
+  vaccineName: 'vaccineName',
+  doseNumber: 'doseNumber',
+  lotNumber: 'lotNumber'
+};
+
+exports.Prisma.VitalSignsOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  bloodPressure: 'bloodPressure',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.AnthropometricMeasurementOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.GrowthTrackingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  weightForAge: 'weightForAge',
+  heightForAge: 'heightForAge',
+  weightForHeight: 'weightForHeight',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.NCDRiskAssessmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  smokingStatus: 'smokingStatus',
+  alcoholIntake: 'alcoholIntake',
+  physicalActivity: 'physicalActivity',
+  fruitVegetableIntake: 'fruitVegetableIntake',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.VisitRecordOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitType: 'visitType',
+  visitFrequency: 'visitFrequency',
+  facilityName: 'facilityName',
+  referralReason: 'referralReason',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.HealthEducationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.NutritionalCounselingOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  recommendations: 'recommendations',
+  providedBy: 'providedBy'
+};
+
+exports.Prisma.ReferralOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  facilityName: 'facilityName',
+  reason: 'reason',
+  status: 'status',
+  referredBy: 'referredBy'
+};
+
+exports.Prisma.AppointmentOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  visitType: 'visitType',
+  appointmentStatus: 'appointmentStatus',
+  scheduledBy: 'scheduledBy'
+};
+
+exports.Prisma.ImmunizationReminderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  vaccineName: 'vaccineName'
+};
+
+exports.Prisma.TestReminderOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  testName: 'testName'
+};
+
+exports.Prisma.VirtualCheckupOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  healthWorkerId: 'healthWorkerId',
+  scheduledTime: 'scheduledTime',
+  meetingUrl: 'meetingUrl',
+  status: 'status',
+  consultationType: 'consultationType',
+  chiefComplaint: 'chiefComplaint',
+  notes: 'notes'
+};
+
+exports.Prisma.VirtualCheckupNoteOrderByRelevanceFieldEnum = {
+  id: 'id',
+  virtualCheckupId: 'virtualCheckupId',
+  note: 'note',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.EventOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  eventType: 'eventType',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  venue: 'venue',
+  targetAudience: 'targetAudience',
+  status: 'status',
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.EventRegistrationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  eventId: 'eventId',
+  userProfileId: 'userProfileId',
+  status: 'status',
+  notes: 'notes'
+};
+
+exports.Prisma.MedicalProgramOrderByRelevanceFieldEnum = {
+  id: 'id',
+  programName: 'programName',
+  description: 'description',
+  programType: 'programType',
+  venue: 'venue',
+  targetDemographic: 'targetDemographic',
+  status: 'status',
+  bannerImageUrl: 'bannerImageUrl',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.ProgramParticipationOrderByRelevanceFieldEnum = {
+  id: 'id',
+  medicalProgramId: 'medicalProgramId',
+  userProfileId: 'userProfileId',
+  status: 'status',
+  servicesReceived: 'servicesReceived',
+  notes: 'notes',
+  recordedBy: 'recordedBy'
+};
+
+exports.Prisma.InquiryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userProfileId: 'userProfileId',
+  subject: 'subject',
+  message: 'message',
+  priority: 'priority',
+  status: 'status',
+  category: 'category'
+};
+
+exports.Prisma.InquiryResponseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  inquiryId: 'inquiryId',
+  message: 'message',
+  respondedBy: 'respondedBy'
+};
+
+exports.Prisma.SurveyOrderByRelevanceFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  surveyType: 'surveyType',
+  qrCode: 'qrCode',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.SurveyQuestionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  questionText: 'questionText',
+  questionType: 'questionType'
+};
+
+exports.Prisma.SurveyResponseOrderByRelevanceFieldEnum = {
+  id: 'id',
+  surveyId: 'surveyId',
+  userProfileId: 'userProfileId',
+  ipAddress: 'ipAddress'
+};
+
+exports.Prisma.SurveyAnswerOrderByRelevanceFieldEnum = {
+  id: 'id',
+  surveyResponseId: 'surveyResponseId',
+  surveyQuestionId: 'surveyQuestionId',
+  answer: 'answer'
+};
+
+exports.Prisma.AnalyticsReportOrderByRelevanceFieldEnum = {
+  id: 'id',
+  reportName: 'reportName',
+  reportType: 'reportType',
+  generatedBy: 'generatedBy'
+};
+
+exports.Prisma.PredictionModelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  modelName: 'modelName',
+  modelType: 'modelType',
+  createdBy: 'createdBy'
+};
+
+exports.Prisma.SystemLogOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  entityType: 'entityType',
+  entityId: 'entityId',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent'
 };
 
-exports.Prisma.InventoryItemOrderByRelevanceFieldEnum = {
-  id: 'id',
-  name: 'name',
-  description: 'description'
-};
-
-exports.Prisma.ItemStackOrderByRelevanceFieldEnum = {
-  id: 'id',
-  itemId: 'itemId'
-};
-
-exports.Prisma.ItemTransactionOrderByRelevanceFieldEnum = {
-  id: 'id',
-  itemStackId: 'itemStackId',
-  accountId: 'accountId',
-  adminId: 'adminId',
-  requestNote: 'requestNote'
-};
-
-exports.Prisma.SeminarOrderByRelevanceFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  location: 'location',
-  speaker: 'speaker',
-  start_time: 'start_time',
-  end_time: 'end_time',
-  mimeType: 'mimeType',
-  createdById: 'createdById'
-};
-
-exports.Prisma.SeminarParticipantOrderByRelevanceFieldEnum = {
-  id: 'id',
-  seminar_id: 'seminar_id',
-  account_id: 'account_id'
-};
-exports.client_profile = exports.$Enums.client_profile = {
-  Fishfolk: 'Fishfolk',
-  Rural_Based_Org: 'Rural_Based_Org',
-  Student: 'Student',
-  Agricultural_Fisheries_Technician: 'Agricultural_Fisheries_Technician',
-  Youth: 'Youth',
-  Women: 'Women',
-  Govt_Employee: 'Govt_Employee',
-  PWD: 'PWD',
-  Indigenous_People: 'Indigenous_People',
-  Other: 'Other'
-};
-
-exports.access = exports.$Enums.access = {
-  Admin: 'Admin',
-  User: 'User',
-  Super_Admin: 'Super_Admin'
-};
-
-exports.gender = exports.$Enums.gender = {
-  Male: 'Male',
-  Female: 'Female',
-  Other: 'Other'
-};
-
-exports.audit_action = exports.$Enums.audit_action = {
-  ACCOUNT_CREATE: 'ACCOUNT_CREATE',
-  ACCOUNT_UPDATE: 'ACCOUNT_UPDATE',
-  ACCOUNT_DELETE: 'ACCOUNT_DELETE',
-  ACCOUNT_ROLE_CHANGE: 'ACCOUNT_ROLE_CHANGE',
-  ACCOUNT_STATUS_CHANGE: 'ACCOUNT_STATUS_CHANGE',
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
-  LOGIN_FAILED: 'LOGIN_FAILED',
-  INVENTORY_CREATE: 'INVENTORY_CREATE',
-  INVENTORY_UPDATE: 'INVENTORY_UPDATE',
-  INVENTORY_DELETE: 'INVENTORY_DELETE',
-  INVENTORY_STATUS_CHANGE: 'INVENTORY_STATUS_CHANGE',
-  DISTRIBUTION_CREATE: 'DISTRIBUTION_CREATE',
-  DISTRIBUTION_UPDATE: 'DISTRIBUTION_UPDATE',
-  DISTRIBUTION_DELETE: 'DISTRIBUTION_DELETE',
-  DISTRIBUTION_REQUEST_APPROVE: 'DISTRIBUTION_REQUEST_APPROVE',
-  DISTRIBUTION_REQUEST_REJECT: 'DISTRIBUTION_REQUEST_REJECT',
-  DISTRIBUTION_REQUEST_NO_PICKUP: 'DISTRIBUTION_REQUEST_NO_PICKUP',
-  EIC_CREATE: 'EIC_CREATE',
-  EIC_UPDATE: 'EIC_UPDATE',
-  EIC_DELETE: 'EIC_DELETE',
-  EIC_STATUS_CHANGE: 'EIC_STATUS_CHANGE',
-  EIC_REQUEST_APPROVE: 'EIC_REQUEST_APPROVE',
-  EIC_REQUEST_REJECT: 'EIC_REQUEST_REJECT',
-  EIC_REQUEST_NO_PICKUP: 'EIC_REQUEST_NO_PICKUP',
-  SEMINAR_CREATE: 'SEMINAR_CREATE',
-  SEMINAR_UPDATE: 'SEMINAR_UPDATE',
-  SEMINAR_DELETE: 'SEMINAR_DELETE',
-  SEMINAR_STATUS_CHANGE: 'SEMINAR_STATUS_CHANGE',
-  SEMINAR_PARTICIPANT_UPDATE: 'SEMINAR_PARTICIPANT_UPDATE',
-  CONTENT_CREATE: 'CONTENT_CREATE',
-  CONTENT_UPDATE: 'CONTENT_UPDATE',
-  CONTENT_DELETE: 'CONTENT_DELETE',
-  SYSTEM_BACKUP: 'SYSTEM_BACKUP',
-  SYSTEM_RESTORE: 'SYSTEM_RESTORE',
-  SYSTEM_MAINTENANCE: 'SYSTEM_MAINTENANCE',
-  PROFILE_UPDATE: 'PROFILE_UPDATE',
-  PROFILE_PICTURE_UPDATE: 'PROFILE_PICTURE_UPDATE',
-  SETTINGS_UPDATE: 'SETTINGS_UPDATE'
-};
-
-exports.transaction_status = exports.$Enums.transaction_status = {
-  Pending: 'Pending',
-  Approved: 'Approved',
-  Rejected: 'Rejected',
-  Returned: 'Returned',
-  No_Return: 'No_Return',
-  late_return: 'late_return',
-  No_Pickup: 'No_Pickup',
-  Cancelled: 'Cancelled'
-};
-
-exports.item_status = exports.$Enums.item_status = {
-  Available: 'Available',
-  Unavailable: 'Unavailable',
-  Damaged: 'Damaged',
-  EIC: 'EIC',
-  Distributed: 'Distributed'
-};
-
-exports.item_category = exports.$Enums.item_category = {
-  Farming_Equipment: 'Farming_Equipment',
-  Harvesting_Tools: 'Harvesting_Tools',
-  Irrigation_Systems: 'Irrigation_Systems',
-  Storage_Equipment: 'Storage_Equipment',
-  Processing_Equipment: 'Processing_Equipment',
-  Safety_Gear: 'Safety_Gear',
-  Pest_Control: 'Pest_Control',
-  Livestock_Equipment: 'Livestock_Equipment',
-  Measuring_Tools: 'Measuring_Tools',
-  Fisheries: 'Fisheries',
-  Machinery: 'Machinery',
-  Other: 'Other'
-};
-
-exports.seminar_status = exports.$Enums.seminar_status = {
-  Upcoming: 'Upcoming',
-  Ongoing: 'Ongoing',
-  Completed: 'Completed',
-  Cancelled: 'Cancelled'
-};
-
-exports.participant_status = exports.$Enums.participant_status = {
-  Attended: 'Attended',
-  Not_Attended: 'Not_Attended',
-  Registered: 'Registered',
-  Cancelled: 'Cancelled'
-};
 
 exports.Prisma.ModelName = {
   Account: 'Account',
-  Commodity: 'Commodity',
-  AccountCommodity: 'AccountCommodity',
-  AuditLog: 'AuditLog',
-  InventoryItem: 'InventoryItem',
-  ItemStack: 'ItemStack',
-  ItemTransaction: 'ItemTransaction',
-  Seminar: 'Seminar',
-  SeminarParticipant: 'SeminarParticipant'
+  UserProfile: 'UserProfile',
+  HealthWorker: 'HealthWorker',
+  FamilyRecord: 'FamilyRecord',
+  FamilyMember: 'FamilyMember',
+  FamilyHealthHistory: 'FamilyHealthHistory',
+  MaternalHealth: 'MaternalHealth',
+  PrenatalVisit: 'PrenatalVisit',
+  LaboratoryTest: 'LaboratoryTest',
+  Intervention: 'Intervention',
+  BirthInformation: 'BirthInformation',
+  ImmunizationEvent: 'ImmunizationEvent',
+  VaccineGiven: 'VaccineGiven',
+  VitalSigns: 'VitalSigns',
+  AnthropometricMeasurement: 'AnthropometricMeasurement',
+  GrowthTracking: 'GrowthTracking',
+  NCDRiskAssessment: 'NCDRiskAssessment',
+  VisitRecord: 'VisitRecord',
+  HealthEducation: 'HealthEducation',
+  NutritionalCounseling: 'NutritionalCounseling',
+  Referral: 'Referral',
+  Appointment: 'Appointment',
+  ImmunizationReminder: 'ImmunizationReminder',
+  TestReminder: 'TestReminder',
+  VirtualCheckup: 'VirtualCheckup',
+  VirtualCheckupNote: 'VirtualCheckupNote',
+  Event: 'Event',
+  EventRegistration: 'EventRegistration',
+  MedicalProgram: 'MedicalProgram',
+  ProgramParticipation: 'ProgramParticipation',
+  Inquiry: 'Inquiry',
+  InquiryResponse: 'InquiryResponse',
+  Survey: 'Survey',
+  SurveyQuestion: 'SurveyQuestion',
+  SurveyResponse: 'SurveyResponse',
+  SurveyAnswer: 'SurveyAnswer',
+  AnalyticsReport: 'AnalyticsReport',
+  PredictionModel: 'PredictionModel',
+  SystemLog: 'SystemLog'
 };
 /**
  * Create the Client
@@ -449,7 +973,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Sonny Galamay\\Desktop\\Farmer-Connect\\server\\prisma\\generated",
+      "value": "C:\\Users\\Sean Brix\\OneDrive\\Desktop\\Code\\Capstone\\PredictiMed\\server\\prisma\\generated",
       "fromEnvVar": null
     },
     "config": {
@@ -463,7 +987,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\Sonny Galamay\\Desktop\\Farmer-Connect\\server\\prisma\\schema\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\Sean Brix\\OneDrive\\Desktop\\Code\\Capstone\\PredictiMed\\server\\prisma\\schema\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -477,7 +1001,6 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -486,13 +1009,13 @@ const config = {
       }
     }
   },
-  "inlineSchema": "//? ===================================== ACCOUNTS SCHEMA ===================================== ?//\n\nmodel Account {\n  id             String             @id @default(cuid())\n  access         access             @default(User)\n  username       String             @unique\n  email          String             @unique\n  firstName      String\n  lastName       String\n  middleName     String?\n  gender         gender\n  client_profile client_profile     @default(Other)\n  cellphone_no   String?\n  telephone_no   String?\n  occupation     String?\n  position       String?\n  institution    String?\n  address        String?\n  picture        Bytes?\n  mimeType       String?\n  commodity      AccountCommodity[]\n  password       String\n  createdAt      DateTime           @default(now())\n  updatedAt      DateTime           @updatedAt\n\n  // Relations\n  seminars          SeminarParticipant[]\n  itemTransactions  ItemTransaction[]\n  adminTransactions ItemTransaction[]    @relation(\"AdminTransactions\")\n  seminarsCreated   Seminar[]            @relation(\"SeminarsCreated\")\n  auditLogs         AuditLog[]           @relation(\"AdminAuditLogs\")\n\n  @@map(\"accounts\")\n}\n\nmodel Commodity {\n  id          String             @id @default(cuid())\n  name        String             @unique\n  icon        String?\n  description String?\n  accounts    AccountCommodity[]\n\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@map(\"commodities\")\n}\n\n//? ====================================== RELATIONSHIPS ====================================== ?//\n\nmodel AccountCommodity {\n  id           String   @id @default(cuid())\n  account_id   String\n  commodity_id String\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n\n  // Relations\n  commodity Commodity @relation(fields: [commodity_id], references: [id])\n  account   Account   @relation(fields: [account_id], references: [id])\n\n  @@unique([account_id, commodity_id])\n  @@map(\"accounts_commodities\")\n}\n\n//? ========================================== ENUMS ========================================== ?//\n\nenum client_profile {\n  Fishfolk                          @map(\"Fishfolk\")\n  Rural_Based_Org                   @map(\"Rural Based Org\")\n  Student                           @map(\"Student\")\n  Agricultural_Fisheries_Technician @map(\"Agricultural/Fisheries Technician\")\n  Youth                             @map(\"Youth\")\n  Women                             @map(\"Women\")\n  Govt_Employee                     @map(\"Govt Employee\")\n  PWD                               @map(\"PWD\")\n  Indigenous_People                 @map(\"Indigenous People\")\n  Other                             @map(\"Other\")\n}\n\nenum access {\n  Admin\n  User\n  Super_Admin @map(\"Super Admin\")\n}\n\nenum gender {\n  Male\n  Female\n  Other\n}\n\n//? ===================================== AUDIT LOGS SCHEMA ===================================== ?//\n\nmodel AuditLog {\n  id         String       @id @default(cuid())\n  adminId    String // Admin who performed the action\n  action     audit_action\n  targetType String? // What was affected (Account, Seminar, Inventory, etc.)\n  targetId   String? // ID of the affected entity\n  targetName String? // Name/title of the affected entity for display\n  details    String?      @db.Text // Additional details about the action\n  metadata   Json? // Structured data about the action (old/new values, etc.)\n  ipAddress  String?\n  userAgent  String?\n  createdAt  DateTime     @default(now())\n\n  // Relations\n  admin Account @relation(\"AdminAuditLogs\", fields: [adminId], references: [id])\n\n  @@map(\"audit_logs\")\n}\n\n//? ======================================== AUDIT ENUMS ======================================== ?//\n\nenum audit_action {\n  // Account Management Actions\n  ACCOUNT_CREATE\n  ACCOUNT_UPDATE\n  ACCOUNT_DELETE\n  ACCOUNT_ROLE_CHANGE\n  ACCOUNT_STATUS_CHANGE\n\n  // Authentication Actions\n  LOGIN\n  LOGOUT\n  LOGIN_FAILED\n\n  // Inventory Management Actions\n  INVENTORY_CREATE\n  INVENTORY_UPDATE\n  INVENTORY_DELETE\n  INVENTORY_STATUS_CHANGE\n\n  // Distribution Management Actions\n  DISTRIBUTION_CREATE\n  DISTRIBUTION_UPDATE\n  DISTRIBUTION_DELETE\n  DISTRIBUTION_REQUEST_APPROVE\n  DISTRIBUTION_REQUEST_REJECT\n  DISTRIBUTION_REQUEST_NO_PICKUP\n\n  // EIC Management Actions\n  EIC_CREATE\n  EIC_UPDATE\n  EIC_DELETE\n  EIC_STATUS_CHANGE\n  EIC_REQUEST_APPROVE\n  EIC_REQUEST_REJECT\n  EIC_REQUEST_NO_PICKUP\n\n  // Seminar Management Actions\n  SEMINAR_CREATE\n  SEMINAR_UPDATE\n  SEMINAR_DELETE\n  SEMINAR_STATUS_CHANGE\n  SEMINAR_PARTICIPANT_UPDATE\n\n  // Content Management Actions\n  CONTENT_CREATE\n  CONTENT_UPDATE\n  CONTENT_DELETE\n\n  // System Actions\n  SYSTEM_BACKUP\n  SYSTEM_RESTORE\n  SYSTEM_MAINTENANCE\n\n  // Profile Actions\n  PROFILE_UPDATE\n  PROFILE_PICTURE_UPDATE\n\n  // Settings Actions\n  SETTINGS_UPDATE\n}\n\n//? ======================================= ITEM SCHEMA ======================================= ?//\n\nmodel InventoryItem {\n  id          String        @id @default(cuid())\n  name        String        @unique\n  description String?\n  picture     Bytes?\n  category    item_category @default(Other)\n  createdAt   DateTime      @default(now())\n  updatedAt   DateTime      @updatedAt\n\n  // Relations\n  item_stacks ItemStack[]\n\n  @@map(\"inventory_items\")\n}\n\n//? ====================================== STACKS SCHEMA ====================================== ?//\nmodel ItemStack {\n  id         String      @id @default(cuid())\n  itemId     String\n  quantity   Int         @default(1)\n  status     item_status @default(Available)\n  date_limit Int? // Number of days the item can be borrowed/distributed (hold by user)\n  createdAt  DateTime    @default(now())\n  updatedAt  DateTime    @updatedAt\n\n  // Relations\n  item             InventoryItem     @relation(fields: [itemId], references: [id])\n  itemTransactions ItemTransaction[]\n\n  @@map(\"item_stacks\")\n}\n\n//? ==================================== ITEM TRANSACTIONS ==================================== ?//\n\nmodel ItemTransaction {\n  id          String             @id @default(cuid())\n  itemStackId String\n  accountId   String\n  adminId     String? // Admin who approved/rejected/responded to the transaction\n  quantity    Int                @default(1)\n  status      transaction_status @default(Pending)\n  pickupDate  DateTime\n  returnDate  DateTime?\n  requestNote String?\n  createdAt   DateTime           @default(now())\n  updatedAt   DateTime           @updatedAt\n\n  // Relations\n  itemStack ItemStack @relation(fields: [itemStackId], references: [id])\n  account   Account   @relation(fields: [accountId], references: [id])\n  admin     Account?  @relation(\"AdminTransactions\", fields: [adminId], references: [id])\n\n  @@map(\"item_transactions\")\n}\n\nenum transaction_status {\n  Pending\n  Approved\n  Rejected\n  Returned\n  No_Return\n  late_return\n  No_Pickup\n  Cancelled\n}\n\n//? ========================================== ENUMS ========================================== ?//\n\nenum item_status {\n  Available\n  Unavailable\n  Damaged\n  EIC\n  Distributed\n}\n\nenum item_category {\n  Farming_Equipment\n  Harvesting_Tools\n  Irrigation_Systems\n  Storage_Equipment\n  Processing_Equipment\n  Safety_Gear\n  Pest_Control\n  Livestock_Equipment\n  Measuring_Tools\n  Fisheries\n  Machinery\n  Other\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\n//? ===================================== SEMINARS SCHEMA ===================================== ?//\n\nmodel Seminar {\n  id                    String         @id @default(cuid())\n  title                 String\n  description           String         @db.Text\n  location              String\n  speaker               String\n  start_date            DateTime       @db.Date\n  end_date              DateTime       @db.Date\n  start_time            String\n  end_time              String\n  capacity              Int\n  registration_deadline DateTime       @db.Date\n  status                seminar_status @default(Upcoming)\n  picture               Bytes?\n  mimeType              String?\n  createdById           String\n  createdAt             DateTime       @default(now())\n  updatedAt             DateTime       @updatedAt\n\n  // Relations\n  participants SeminarParticipant[]\n  creator      Account              @relation(\"SeminarsCreated\", fields: [createdById], references: [id])\n\n  @@map(\"seminars\")\n}\n\nmodel SeminarParticipant {\n  id         String             @id @default(cuid())\n  seminar_id String\n  account_id String\n  status     participant_status @default(Registered)\n  createdAt  DateTime           @default(now())\n  updatedAt  DateTime           @updatedAt\n\n  // Relations\n  seminar Seminar @relation(fields: [seminar_id], references: [id])\n  account Account @relation(fields: [account_id], references: [id])\n\n  @@unique([seminar_id, account_id])\n  @@map(\"seminar_participants\")\n}\n\n//? ========================================== ENUMS ========================================== ?//\n\nenum seminar_status {\n  Upcoming\n  Ongoing\n  Completed\n  Cancelled\n}\n\nenum participant_status {\n  Attended\n  Not_Attended @map(\"Not Attended\")\n  Registered\n  Cancelled\n}\n",
-  "inlineSchemaHash": "ccfda49cf14a241743931c1d03430bdca99cc970e9cb0e4c2d40d15c63ce3cb1",
+  "inlineSchema": "// =========================================\n// PAGE 1: CORE ACCOUNT & USER MANAGEMENT\n// =========================================\n\nmodel Account {\n  id                String   @id @default(cuid())\n  email             String   @unique\n  password          String\n  role              String\n  isActive          Boolean  @default(true)\n  createdAt         DateTime @default(now())\n  updatedAt         DateTime @updatedAt\n  profilePictureUrl String?\n  emailVerified     Boolean  @default(false)\n\n  // Relationships\n  userProfile      UserProfile?\n  healthWorkers    HealthWorker[]\n  events           Event[]\n  surveys          Survey[]\n  inquiryResponses InquiryResponse[]\n  analyticsReports AnalyticsReport[]\n  predictionModels PredictionModel[]\n  systemLogs       SystemLog[]\n  medicalPrograms  MedicalProgram[]\n\n  @@map(\"accounts\")\n}\n\nmodel UserProfile {\n  id                   String   @id @default(cuid())\n  accountId            String   @unique\n  fullName             String\n  dateOfBirth          DateTime\n  age                  Int\n  gender               String\n  address              String\n  contactNumber        String\n  religion             String?\n  civilStatus          String\n  occupation           String?\n  educationLevel       String?\n  philhealthNumber     String?\n  nhtsStatus           String?\n  personWithDisability Boolean  @default(false)\n  indigenousPeople     Boolean  @default(false)\n  createdAt            DateTime @default(now())\n\n  // Relationships\n  account                    Account                     @relation(fields: [accountId], references: [id], onDelete: Cascade)\n  familyRecordsHeaded        FamilyRecord[]              @relation(\"FamilyHead\")\n  familyMembers              FamilyMember[]\n  maternalHealthRecords      MaternalHealth[]\n  birthInformation           BirthInformation[]\n  immunizationEvents         ImmunizationEvent[]\n  vitalSigns                 VitalSigns[]\n  anthropometricMeasurements AnthropometricMeasurement[]\n  growthTracking             GrowthTracking[]\n  ncdRiskAssessments         NCDRiskAssessment[]\n  visitRecords               VisitRecord[]\n  healthEducation            HealthEducation[]\n  nutritionalCounseling      NutritionalCounseling[]\n  referrals                  Referral[]\n  appointments               Appointment[]\n  immunizationReminders      ImmunizationReminder[]\n  testReminders              TestReminder[]\n  virtualCheckups            VirtualCheckup[]\n  eventRegistrations         EventRegistration[]\n  programParticipations      ProgramParticipation[]\n  inquiries                  Inquiry[]\n  surveyResponses            SurveyResponse[]\n\n  @@map(\"user_profiles\")\n}\n\nmodel HealthWorker {\n  id            String  @id @default(cuid())\n  accountId     String\n  name          String\n  role          String\n  contactNumber String\n  signature     String?\n  isActive      Boolean @default(true)\n\n  // Relationships\n  account         Account          @relation(fields: [accountId], references: [id], onDelete: Cascade)\n  virtualCheckups VirtualCheckup[]\n\n  @@map(\"health_workers\")\n}\n\n// =========================================\n// PAGE 2: FAMILY & HOUSEHOLD MANAGEMENT\n// =========================================\n\nmodel FamilyRecord {\n  id             String   @id @default(cuid())\n  familyId       String   @unique\n  headOfFamilyId String\n  address        String\n  contactNumber  String\n  smsConsent     Boolean  @default(false)\n  createdAt      DateTime @default(now())\n  updatedAt      DateTime @updatedAt\n\n  // Relationships\n  headOfFamily        UserProfile          @relation(\"FamilyHead\", fields: [headOfFamilyId], references: [id])\n  members             FamilyMember[]\n  familyHealthHistory FamilyHealthHistory?\n\n  @@map(\"family_records\")\n}\n\nmodel FamilyMember {\n  id             String  @id @default(cuid())\n  familyRecordId String\n  userProfileId  String?\n  memberName     String\n  relationship   String\n  gender         String\n  age            Int\n  occupation     String?\n  civilStatus    String\n\n  // Relationships\n  familyRecord FamilyRecord @relation(fields: [familyRecordId], references: [id], onDelete: Cascade)\n  userProfile  UserProfile? @relation(fields: [userProfileId], references: [id])\n\n  @@map(\"family_members\")\n}\n\nmodel FamilyHealthHistory {\n  id                String   @id @default(cuid())\n  familyRecordId    String   @unique\n  geneticConditions Json // MySQL JSON array: [\"condition1\", \"condition2\"]\n  chronicDiseases   Json // MySQL JSON array: [\"disease1\", \"disease2\"]\n  recordedDate      DateTime @default(now())\n  recordedBy        String\n\n  // Relationships\n  familyRecord FamilyRecord @relation(fields: [familyRecordId], references: [id], onDelete: Cascade)\n\n  @@map(\"family_health_histories\")\n}\n\n// =========================================\n// PAGE 3: MATERNAL & CHILD HEALTH\n// =========================================\n\nmodel MaternalHealth {\n  id                   String   @id @default(cuid())\n  userProfileId        String\n  mothersName          String\n  mothersAge           Int\n  mothersBirthday      DateTime\n  mothersMaidenName    String\n  mothersReligion      String?\n  mothersEducation     String?\n  mothersOccupation    String?\n  numberOfChildren     Int\n  gravidaPara          String\n  menarcheAge          Int\n  lastMenstrualPeriod  DateTime\n  expectedDeliveryDate DateTime\n  tetanusToxoidStatus  String?\n  createdAt            DateTime @default(now())\n\n  // Relationships\n  userProfile      UserProfile        @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n  prenatalVisits   PrenatalVisit[]\n  birthInformation BirthInformation[]\n\n  @@map(\"maternal_health\")\n}\n\nmodel PrenatalVisit {\n  id                  String    @id @default(cuid())\n  maternalHealthId    String\n  visitDate           DateTime\n  gestationalAgeWeeks Int\n  weightKg            Float\n  heightCm            Float\n  bloodPressure       String\n  fundalHeightCm      Float\n  fetalHeartTone      String\n  nextVisitDate       DateTime?\n  recordedBy          String\n\n  // Relationships\n  maternalHealth  MaternalHealth   @relation(fields: [maternalHealthId], references: [id], onDelete: Cascade)\n  laboratoryTests LaboratoryTest[]\n  interventions   Intervention[]\n\n  @@map(\"prenatal_visits\")\n}\n\nmodel LaboratoryTest {\n  id              String   @id @default(cuid())\n  prenatalVisitId String\n  userProfileId   String\n  testDate        DateTime\n  testType        String\n  testCompleted   Boolean  @default(false)\n  recordedBy      String\n\n  // Relationships\n  prenatalVisit PrenatalVisit @relation(fields: [prenatalVisitId], references: [id], onDelete: Cascade)\n\n  @@map(\"laboratory_tests\")\n}\n\nmodel Intervention {\n  id                     String    @id @default(cuid())\n  prenatalVisitId        String\n  tetanusToxoidDose      String?\n  tetanusToxoidLocation  String?\n  tetanusToxoidDate      DateTime?\n  ironSupplementation    Boolean   @default(false)\n  ironMedication         String?\n  vitaminSupplementation Boolean   @default(false)\n  vitaminMedication      String?\n  calciumSupplementation Boolean   @default(false)\n  calciumMedication      String?\n  healthEducationTopics  Json // MySQL JSON array: [\"topic1\", \"topic2\"]\n\n  // Relationships\n  prenatalVisit PrenatalVisit @relation(fields: [prenatalVisitId], references: [id], onDelete: Cascade)\n\n  @@map(\"interventions\")\n}\n\nmodel BirthInformation {\n  id                        String    @id @default(cuid())\n  userProfileId             String\n  maternalHealthId          String\n  placeOfDelivery           String\n  timeOfDelivery            String\n  deliveryType              String\n  birthWeightKg             Float\n  birthHeightCm             Float\n  newbornScreeningDate      DateTime?\n  newbornScreeningCompleted Boolean   @default(false)\n  feedingType               String\n  createdAt                 DateTime  @default(now())\n  recordedBy                String\n\n  // Relationships\n  userProfile    UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n  maternalHealth MaternalHealth @relation(fields: [maternalHealthId], references: [id], onDelete: Cascade)\n\n  @@map(\"birth_information\")\n}\n\n// =========================================\n// PAGE 4: IMMUNIZATION & HEALTH MONITORING\n// =========================================\n\nmodel ImmunizationEvent {\n  id                    String    @id @default(cuid())\n  userProfileId         String\n  visitDate             DateTime\n  temperatureCelsius    Float?\n  weightKg              Float?\n  heightCm              Float?\n  adverseReactions      String?\n  healthWorkerName      String\n  healthWorkerSignature String?\n  nextFollowupDate      DateTime?\n  recordedBy            String\n\n  // Relationships\n  userProfile   UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n  vaccinesGiven VaccineGiven[]\n\n  @@map(\"immunization_events\")\n}\n\nmodel VaccineGiven {\n  id                  String   @id @default(cuid())\n  immunizationEventId String\n  vaccineName         String\n  doseNumber          String\n  dateGiven           DateTime\n  lotNumber           String?\n\n  // Relationships\n  immunizationEvent ImmunizationEvent @relation(fields: [immunizationEventId], references: [id], onDelete: Cascade)\n\n  @@map(\"vaccines_given\")\n}\n\nmodel VitalSigns {\n  id                 String   @id @default(cuid())\n  userProfileId      String\n  recordDate         DateTime\n  bloodPressure      String?\n  heartRate          Int?\n  respiratoryRate    Int?\n  temperatureCelsius Float?\n  pulseRate          Int?\n  recordedBy         String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"vital_signs\")\n}\n\nmodel AnthropometricMeasurement {\n  id                   String   @id @default(cuid())\n  userProfileId        String\n  measurementDate      DateTime\n  weightKg             Float?\n  heightCm             Float?\n  headCircumferenceCm  Float?\n  waistCircumferenceCm Float?\n  bmi                  Float?\n  recordedBy           String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"anthropometric_measurements\")\n}\n\nmodel GrowthTracking {\n  id              String   @id @default(cuid())\n  userProfileId   String\n  trackingDate    DateTime\n  weightForAge    String?\n  heightForAge    String?\n  weightForHeight String?\n  recordedBy      String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"growth_tracking\")\n}\n\nmodel NCDRiskAssessment {\n  id                        String   @id @default(cuid())\n  userProfileId             String\n  assessmentDate            DateTime\n  smokingStatus             String?\n  alcoholIntake             String?\n  physicalActivity          String?\n  fruitVegetableIntake      String?\n  familyHistoryDiabetes     Boolean  @default(false)\n  familyHistoryHypertension Boolean  @default(false)\n  familyHistoryHeartDisease Boolean  @default(false)\n  familyHistoryStroke       Boolean  @default(false)\n  screeningCompleted        Boolean  @default(false)\n  followUpNeeded            Boolean  @default(false)\n  lifestyleModifications    Json // MySQL JSON array: [\"modification1\", \"modification2\"]\n  healthEducationReceived   Json // MySQL JSON array: [\"topic1\", \"topic2\"]\n  recordedBy                String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"ncd_risk_assessments\")\n}\n\n// =========================================\n// PAGE 5: HEALTHCARE SERVICES & APPOINTMENTS\n// =========================================\n\nmodel VisitRecord {\n  id             String   @id @default(cuid())\n  userProfileId  String\n  visitDate      DateTime\n  visitType      String\n  visitFrequency String?\n  referred       Boolean  @default(false)\n  facilityName   String?\n  referralReason String?\n  recordedBy     String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"visit_records\")\n}\n\nmodel HealthEducation {\n  id            String   @id @default(cuid())\n  userProfileId String\n  topicsCovered Json // MySQL JSON array: [\"topic1\", \"topic2\"]\n  dateProvided  DateTime\n  providedBy    String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"health_education\")\n}\n\nmodel NutritionalCounseling {\n  id              String   @id @default(cuid())\n  userProfileId   String\n  recommendations String\n  dateProvided    DateTime\n  providedBy      String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"nutritional_counseling\")\n}\n\nmodel Referral {\n  id            String   @id @default(cuid())\n  userProfileId String\n  facilityName  String\n  reason        String\n  dateReferred  DateTime\n  status        String\n  referredBy    String\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"referrals\")\n}\n\nmodel Appointment {\n  id                String   @id @default(cuid())\n  userProfileId     String\n  nextVisitDate     DateTime\n  visitType         String\n  appointmentStatus String\n  scheduledBy       String\n  createdAt         DateTime @default(now())\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"appointments\")\n}\n\nmodel ImmunizationReminder {\n  id            String    @id @default(cuid())\n  userProfileId String\n  vaccineName   String\n  dueDate       DateTime\n  reminderSent  Boolean   @default(false)\n  sentAt        DateTime?\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"immunization_reminders\")\n}\n\nmodel TestReminder {\n  id            String    @id @default(cuid())\n  userProfileId String\n  testName      String\n  dueDate       DateTime\n  reminderSent  Boolean   @default(false)\n  sentAt        DateTime?\n\n  // Relationships\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"test_reminders\")\n}\n\nmodel VirtualCheckup {\n  id               String   @id @default(cuid())\n  userProfileId    String\n  healthWorkerId   String\n  scheduledDate    DateTime\n  scheduledTime    String\n  meetingUrl       String?\n  status           String\n  consultationType String?\n  chiefComplaint   String?\n  notes            String?\n  durationMinutes  Int?\n  createdAt        DateTime @default(now())\n\n  // Relationships\n  userProfile         UserProfile          @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n  healthWorker        HealthWorker         @relation(fields: [healthWorkerId], references: [id])\n  virtualCheckupNotes VirtualCheckupNote[]\n\n  @@map(\"virtual_checkups\")\n}\n\nmodel VirtualCheckupNote {\n  id               String @id @default(cuid())\n  virtualCheckupId String\n  note             String\n  createdBy        String\n\n  // Relationships\n  virtualCheckup VirtualCheckup @relation(fields: [virtualCheckupId], references: [id], onDelete: Cascade)\n\n  @@map(\"virtual_checkup_notes\")\n}\n\n// =========================================\n// PAGE 6: EVENTS, PROGRAMS & COMMUNITY ENGAGEMENT\n// =========================================\n\nmodel Event {\n  id              String   @id @default(cuid())\n  title           String\n  description     String\n  eventType       String\n  eventDate       DateTime\n  startTime       String\n  endTime         String\n  venue           String\n  targetAudience  String?\n  maxParticipants Int?\n  status          String\n  bannerImageUrl  String?\n  createdBy       String\n  createdAt       DateTime @default(now())\n\n  // Relationships\n  creator            Account             @relation(fields: [createdBy], references: [id])\n  eventRegistrations EventRegistration[]\n\n  @@map(\"events\")\n}\n\nmodel EventRegistration {\n  id               String   @id @default(cuid())\n  eventId          String\n  userProfileId    String\n  registrationDate DateTime @default(now())\n  status           String\n  notes            String?\n\n  // Relationships\n  event       Event       @relation(fields: [eventId], references: [id], onDelete: Cascade)\n  userProfile UserProfile @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"event_registrations\")\n}\n\nmodel MedicalProgram {\n  id                 String   @id @default(cuid())\n  programName        String\n  description        String\n  programType        String\n  startDate          DateTime\n  endDate            DateTime\n  venue              String\n  targetDemographic  String?\n  targetParticipants Int?\n  status             String\n  bannerImageUrl     String?\n  createdBy          String\n  createdAt          DateTime @default(now())\n\n  // Relationships\n  creator               Account                @relation(fields: [createdBy], references: [id])\n  programParticipations ProgramParticipation[]\n\n  @@map(\"medical_programs\")\n}\n\nmodel ProgramParticipation {\n  id                String   @id @default(cuid())\n  medicalProgramId  String\n  userProfileId     String\n  participationDate DateTime\n  status            String\n  servicesReceived  String?\n  notes             String?\n  recordedBy        String\n\n  // Relationships\n  medicalProgram MedicalProgram @relation(fields: [medicalProgramId], references: [id], onDelete: Cascade)\n  userProfile    UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n\n  @@map(\"program_participations\")\n}\n\n// =========================================\n// PAGE 7: COMMUNICATION & SURVEYS\n// =========================================\n\nmodel Inquiry {\n  id            String   @id @default(cuid())\n  userProfileId String\n  subject       String\n  message       String\n  priority      String\n  status        String\n  category      String?\n  createdAt     DateTime @default(now())\n\n  // Relationships\n  userProfile      UserProfile       @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n  inquiryResponses InquiryResponse[]\n\n  @@map(\"inquiries\")\n}\n\nmodel InquiryResponse {\n  id          String @id @default(cuid())\n  inquiryId   String\n  message     String\n  respondedBy String\n\n  // Relationships\n  inquiry   Inquiry @relation(fields: [inquiryId], references: [id], onDelete: Cascade)\n  responder Account @relation(fields: [respondedBy], references: [id])\n\n  @@map(\"inquiry_responses\")\n}\n\nmodel Survey {\n  id          String   @id @default(cuid())\n  title       String\n  description String\n  surveyType  String\n  isActive    Boolean  @default(true)\n  startDate   DateTime\n  endDate     DateTime\n  qrCode      String?\n  createdBy   String\n  createdAt   DateTime @default(now())\n\n  // Relationships\n  creator         Account          @relation(fields: [createdBy], references: [id])\n  surveyQuestions SurveyQuestion[]\n  surveyResponses SurveyResponse[]\n\n  @@map(\"surveys\")\n}\n\nmodel SurveyQuestion {\n  id           String  @id @default(cuid())\n  surveyId     String\n  questionText String\n  questionType String\n  options      Json // MySQL JSON array: [\"option1\", \"option2\"]\n  isRequired   Boolean @default(false)\n  orderIndex   Int\n\n  // Relationships\n  survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)\n  surveyAnswers SurveyAnswer[]\n\n  @@map(\"survey_questions\")\n}\n\nmodel SurveyResponse {\n  id            String   @id @default(cuid())\n  surveyId      String\n  userProfileId String\n  ipAddress     String?\n  submittedAt   DateTime @default(now())\n\n  // Relationships\n  survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)\n  userProfile   UserProfile    @relation(fields: [userProfileId], references: [id], onDelete: Cascade)\n  surveyAnswers SurveyAnswer[]\n\n  @@map(\"survey_responses\")\n}\n\nmodel SurveyAnswer {\n  id               String @id @default(cuid())\n  surveyResponseId String\n  surveyQuestionId String\n  answer           String\n\n  // Relationships\n  surveyResponse SurveyResponse @relation(fields: [surveyResponseId], references: [id], onDelete: Cascade)\n  surveyQuestion SurveyQuestion @relation(fields: [surveyQuestionId], references: [id], onDelete: Cascade)\n\n  @@map(\"survey_answers\")\n}\n\n// =========================================\n// PAGE 8: ANALYTICS & SYSTEM MANAGEMENT\n// =========================================\n\nmodel AnalyticsReport {\n  id                String   @id @default(cuid())\n  reportName        String\n  reportType        String\n  dataFilters       Json // MySQL JSON array: [\"filter1\", \"filter2\"]\n  reportData        Json\n  reportPeriodStart DateTime\n  reportPeriodEnd   DateTime\n  generatedBy       String\n\n  // Relationships\n  generator Account @relation(fields: [generatedBy], references: [id])\n\n  @@map(\"analytics_reports\")\n}\n\nmodel PredictionModel {\n  id                String    @id @default(cuid())\n  modelName         String\n  modelType         String\n  modelParameters   Json\n  predictionResults Json?\n  accuracy          Float?\n  lastTrained       DateTime?\n  isActive          Boolean   @default(true)\n  createdBy         String\n  createdAt         DateTime  @default(now())\n\n  // Relationships\n  creator Account @relation(fields: [createdBy], references: [id])\n\n  @@map(\"prediction_models\")\n}\n\nmodel SystemLog {\n  id         String  @id @default(cuid())\n  userId     String\n  action     String\n  entityType String\n  entityId   String\n  oldData    Json?\n  newData    Json?\n  ipAddress  String?\n  userAgent  String?\n\n  // Relationships\n  user Account @relation(fields: [userId], references: [id])\n\n  @@map(\"system_logs\")\n}\n\n// =========================================\n// PREDICTIMED DECISION SUPPORT SYSTEM SCHEMA\n// =========================================\n// Based on 8-module ERD documentation\n// Designed for trend analysis and population health insights\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated\"\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n",
+  "inlineSchemaHash": "209983854a9b465af915acf7ab7de3df09e853c42880681e9664d8edabc16371",
   "copyEngine": true
 }
 config.dirname = '/'
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"Account\":{\"dbName\":\"accounts\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"access\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"access\",\"nativeType\":null,\"default\":\"User\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"username\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"firstName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"lastName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"middleName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gender\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"gender\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"client_profile\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"client_profile\",\"nativeType\":null,\"default\":\"Other\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"cellphone_no\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"telephone_no\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"occupation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"position\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"institution\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"address\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"picture\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Bytes\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mimeType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"commodity\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"AccountCommodity\",\"nativeType\":null,\"relationName\":\"AccountToAccountCommodity\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"seminars\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SeminarParticipant\",\"nativeType\":null,\"relationName\":\"AccountToSeminarParticipant\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"itemTransactions\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ItemTransaction\",\"nativeType\":null,\"relationName\":\"AccountToItemTransaction\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"adminTransactions\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ItemTransaction\",\"nativeType\":null,\"relationName\":\"AdminTransactions\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"seminarsCreated\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Seminar\",\"nativeType\":null,\"relationName\":\"SeminarsCreated\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"auditLogs\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"AuditLog\",\"nativeType\":null,\"relationName\":\"AdminAuditLogs\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Commodity\":{\"dbName\":\"commodities\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"icon\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accounts\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"AccountCommodity\",\"nativeType\":null,\"relationName\":\"AccountCommodityToCommodity\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"AccountCommodity\":{\"dbName\":\"accounts_commodities\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"commodity_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"commodity\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Commodity\",\"nativeType\":null,\"relationName\":\"AccountCommodityToCommodity\",\"relationFromFields\":[\"commodity_id\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToAccountCommodity\",\"relationFromFields\":[\"account_id\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[[\"account_id\",\"commodity_id\"]],\"uniqueIndexes\":[{\"name\":null,\"fields\":[\"account_id\",\"commodity_id\"]}],\"isGenerated\":false},\"AuditLog\":{\"dbName\":\"audit_logs\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"adminId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"action\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"audit_action\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"targetType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"targetId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"targetName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"details\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"Text\",[]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"metadata\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"admin\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AdminAuditLogs\",\"relationFromFields\":[\"adminId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"InventoryItem\":{\"dbName\":\"inventory_items\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"picture\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Bytes\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"category\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"item_category\",\"nativeType\":null,\"default\":\"Other\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"item_stacks\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ItemStack\",\"nativeType\":null,\"relationName\":\"InventoryItemToItemStack\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ItemStack\":{\"dbName\":\"item_stacks\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"itemId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quantity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":1,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"item_status\",\"nativeType\":null,\"default\":\"Available\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"date_limit\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"item\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"InventoryItem\",\"nativeType\":null,\"relationName\":\"InventoryItemToItemStack\",\"relationFromFields\":[\"itemId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"itemTransactions\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ItemTransaction\",\"nativeType\":null,\"relationName\":\"ItemStackToItemTransaction\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ItemTransaction\":{\"dbName\":\"item_transactions\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"itemStackId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accountId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"adminId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"quantity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Int\",\"nativeType\":null,\"default\":1,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"transaction_status\",\"nativeType\":null,\"default\":\"Pending\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"pickupDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"returnDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"requestNote\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"itemStack\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ItemStack\",\"nativeType\":null,\"relationName\":\"ItemStackToItemTransaction\",\"relationFromFields\":[\"itemStackId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToItemTransaction\",\"relationFromFields\":[\"accountId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"admin\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AdminTransactions\",\"relationFromFields\":[\"adminId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Seminar\":{\"dbName\":\"seminars\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"title\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":[\"Text\",[]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"location\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"speaker\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"start_date\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":[\"Date\",[]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"end_date\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":[\"Date\",[]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"start_time\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"end_time\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"capacity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"registration_deadline\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":[\"Date\",[]],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"seminar_status\",\"nativeType\":null,\"default\":\"Upcoming\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"picture\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Bytes\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mimeType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdById\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"participants\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SeminarParticipant\",\"nativeType\":null,\"relationName\":\"SeminarToSeminarParticipant\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"creator\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"SeminarsCreated\",\"relationFromFields\":[\"createdById\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"SeminarParticipant\":{\"dbName\":\"seminar_participants\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"seminar_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account_id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"participant_status\",\"nativeType\":null,\"default\":\"Registered\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"seminar\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Seminar\",\"nativeType\":null,\"relationName\":\"SeminarToSeminarParticipant\",\"relationFromFields\":[\"seminar_id\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToSeminarParticipant\",\"relationFromFields\":[\"account_id\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[[\"seminar_id\",\"account_id\"]],\"uniqueIndexes\":[{\"name\":null,\"fields\":[\"seminar_id\",\"account_id\"]}],\"isGenerated\":false}},\"enums\":{\"client_profile\":{\"values\":[{\"name\":\"Fishfolk\",\"dbName\":\"Fishfolk\"},{\"name\":\"Rural_Based_Org\",\"dbName\":\"Rural Based Org\"},{\"name\":\"Student\",\"dbName\":\"Student\"},{\"name\":\"Agricultural_Fisheries_Technician\",\"dbName\":\"Agricultural/Fisheries Technician\"},{\"name\":\"Youth\",\"dbName\":\"Youth\"},{\"name\":\"Women\",\"dbName\":\"Women\"},{\"name\":\"Govt_Employee\",\"dbName\":\"Govt Employee\"},{\"name\":\"PWD\",\"dbName\":\"PWD\"},{\"name\":\"Indigenous_People\",\"dbName\":\"Indigenous People\"},{\"name\":\"Other\",\"dbName\":\"Other\"}],\"dbName\":null},\"access\":{\"values\":[{\"name\":\"Admin\",\"dbName\":null},{\"name\":\"User\",\"dbName\":null},{\"name\":\"Super_Admin\",\"dbName\":\"Super Admin\"}],\"dbName\":null},\"gender\":{\"values\":[{\"name\":\"Male\",\"dbName\":null},{\"name\":\"Female\",\"dbName\":null},{\"name\":\"Other\",\"dbName\":null}],\"dbName\":null},\"audit_action\":{\"values\":[{\"name\":\"ACCOUNT_CREATE\",\"dbName\":null},{\"name\":\"ACCOUNT_UPDATE\",\"dbName\":null},{\"name\":\"ACCOUNT_DELETE\",\"dbName\":null},{\"name\":\"ACCOUNT_ROLE_CHANGE\",\"dbName\":null},{\"name\":\"ACCOUNT_STATUS_CHANGE\",\"dbName\":null},{\"name\":\"LOGIN\",\"dbName\":null},{\"name\":\"LOGOUT\",\"dbName\":null},{\"name\":\"LOGIN_FAILED\",\"dbName\":null},{\"name\":\"INVENTORY_CREATE\",\"dbName\":null},{\"name\":\"INVENTORY_UPDATE\",\"dbName\":null},{\"name\":\"INVENTORY_DELETE\",\"dbName\":null},{\"name\":\"INVENTORY_STATUS_CHANGE\",\"dbName\":null},{\"name\":\"DISTRIBUTION_CREATE\",\"dbName\":null},{\"name\":\"DISTRIBUTION_UPDATE\",\"dbName\":null},{\"name\":\"DISTRIBUTION_DELETE\",\"dbName\":null},{\"name\":\"DISTRIBUTION_REQUEST_APPROVE\",\"dbName\":null},{\"name\":\"DISTRIBUTION_REQUEST_REJECT\",\"dbName\":null},{\"name\":\"DISTRIBUTION_REQUEST_NO_PICKUP\",\"dbName\":null},{\"name\":\"EIC_CREATE\",\"dbName\":null},{\"name\":\"EIC_UPDATE\",\"dbName\":null},{\"name\":\"EIC_DELETE\",\"dbName\":null},{\"name\":\"EIC_STATUS_CHANGE\",\"dbName\":null},{\"name\":\"EIC_REQUEST_APPROVE\",\"dbName\":null},{\"name\":\"EIC_REQUEST_REJECT\",\"dbName\":null},{\"name\":\"EIC_REQUEST_NO_PICKUP\",\"dbName\":null},{\"name\":\"SEMINAR_CREATE\",\"dbName\":null},{\"name\":\"SEMINAR_UPDATE\",\"dbName\":null},{\"name\":\"SEMINAR_DELETE\",\"dbName\":null},{\"name\":\"SEMINAR_STATUS_CHANGE\",\"dbName\":null},{\"name\":\"SEMINAR_PARTICIPANT_UPDATE\",\"dbName\":null},{\"name\":\"CONTENT_CREATE\",\"dbName\":null},{\"name\":\"CONTENT_UPDATE\",\"dbName\":null},{\"name\":\"CONTENT_DELETE\",\"dbName\":null},{\"name\":\"SYSTEM_BACKUP\",\"dbName\":null},{\"name\":\"SYSTEM_RESTORE\",\"dbName\":null},{\"name\":\"SYSTEM_MAINTENANCE\",\"dbName\":null},{\"name\":\"PROFILE_UPDATE\",\"dbName\":null},{\"name\":\"PROFILE_PICTURE_UPDATE\",\"dbName\":null},{\"name\":\"SETTINGS_UPDATE\",\"dbName\":null}],\"dbName\":null},\"transaction_status\":{\"values\":[{\"name\":\"Pending\",\"dbName\":null},{\"name\":\"Approved\",\"dbName\":null},{\"name\":\"Rejected\",\"dbName\":null},{\"name\":\"Returned\",\"dbName\":null},{\"name\":\"No_Return\",\"dbName\":null},{\"name\":\"late_return\",\"dbName\":null},{\"name\":\"No_Pickup\",\"dbName\":null},{\"name\":\"Cancelled\",\"dbName\":null}],\"dbName\":null},\"item_status\":{\"values\":[{\"name\":\"Available\",\"dbName\":null},{\"name\":\"Unavailable\",\"dbName\":null},{\"name\":\"Damaged\",\"dbName\":null},{\"name\":\"EIC\",\"dbName\":null},{\"name\":\"Distributed\",\"dbName\":null}],\"dbName\":null},\"item_category\":{\"values\":[{\"name\":\"Farming_Equipment\",\"dbName\":null},{\"name\":\"Harvesting_Tools\",\"dbName\":null},{\"name\":\"Irrigation_Systems\",\"dbName\":null},{\"name\":\"Storage_Equipment\",\"dbName\":null},{\"name\":\"Processing_Equipment\",\"dbName\":null},{\"name\":\"Safety_Gear\",\"dbName\":null},{\"name\":\"Pest_Control\",\"dbName\":null},{\"name\":\"Livestock_Equipment\",\"dbName\":null},{\"name\":\"Measuring_Tools\",\"dbName\":null},{\"name\":\"Fisheries\",\"dbName\":null},{\"name\":\"Machinery\",\"dbName\":null},{\"name\":\"Other\",\"dbName\":null}],\"dbName\":null},\"seminar_status\":{\"values\":[{\"name\":\"Upcoming\",\"dbName\":null},{\"name\":\"Ongoing\",\"dbName\":null},{\"name\":\"Completed\",\"dbName\":null},{\"name\":\"Cancelled\",\"dbName\":null}],\"dbName\":null},\"participant_status\":{\"values\":[{\"name\":\"Attended\",\"dbName\":null},{\"name\":\"Not_Attended\",\"dbName\":\"Not Attended\"},{\"name\":\"Registered\",\"dbName\":null},{\"name\":\"Cancelled\",\"dbName\":null}],\"dbName\":null}},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"Account\":{\"dbName\":\"accounts\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"role\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"isActive\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":true,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"profilePictureUrl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"emailVerified\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"AccountToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthWorkers\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"HealthWorker\",\"nativeType\":null,\"relationName\":\"AccountToHealthWorker\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"events\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Event\",\"nativeType\":null,\"relationName\":\"AccountToEvent\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveys\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Survey\",\"nativeType\":null,\"relationName\":\"AccountToSurvey\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"inquiryResponses\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"InquiryResponse\",\"nativeType\":null,\"relationName\":\"AccountToInquiryResponse\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"analyticsReports\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"AnalyticsReport\",\"nativeType\":null,\"relationName\":\"AccountToAnalyticsReport\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"predictionModels\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PredictionModel\",\"nativeType\":null,\"relationName\":\"AccountToPredictionModel\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"systemLogs\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SystemLog\",\"nativeType\":null,\"relationName\":\"AccountToSystemLog\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medicalPrograms\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"MedicalProgram\",\"nativeType\":null,\"relationName\":\"AccountToMedicalProgram\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"UserProfile\":{\"dbName\":\"user_profiles\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accountId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fullName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dateOfBirth\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"age\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gender\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"address\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"contactNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"religion\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"civilStatus\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"occupation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"educationLevel\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"philhealthNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"nhtsStatus\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"personWithDisability\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"indigenousPeople\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToUserProfile\",\"relationFromFields\":[\"accountId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyRecordsHeaded\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"FamilyRecord\",\"nativeType\":null,\"relationName\":\"FamilyHead\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyMembers\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"FamilyMember\",\"nativeType\":null,\"relationName\":\"FamilyMemberToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"maternalHealthRecords\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"MaternalHealth\",\"nativeType\":null,\"relationName\":\"MaternalHealthToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthInformation\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"BirthInformation\",\"nativeType\":null,\"relationName\":\"BirthInformationToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"immunizationEvents\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ImmunizationEvent\",\"nativeType\":null,\"relationName\":\"ImmunizationEventToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vitalSigns\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VitalSigns\",\"nativeType\":null,\"relationName\":\"UserProfileToVitalSigns\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"anthropometricMeasurements\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"AnthropometricMeasurement\",\"nativeType\":null,\"relationName\":\"AnthropometricMeasurementToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"growthTracking\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"GrowthTracking\",\"nativeType\":null,\"relationName\":\"GrowthTrackingToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ncdRiskAssessments\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"NCDRiskAssessment\",\"nativeType\":null,\"relationName\":\"NCDRiskAssessmentToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitRecords\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VisitRecord\",\"nativeType\":null,\"relationName\":\"UserProfileToVisitRecord\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthEducation\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"HealthEducation\",\"nativeType\":null,\"relationName\":\"HealthEducationToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"nutritionalCounseling\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"NutritionalCounseling\",\"nativeType\":null,\"relationName\":\"NutritionalCounselingToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"referrals\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Referral\",\"nativeType\":null,\"relationName\":\"ReferralToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"appointments\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Appointment\",\"nativeType\":null,\"relationName\":\"AppointmentToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"immunizationReminders\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ImmunizationReminder\",\"nativeType\":null,\"relationName\":\"ImmunizationReminderToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"testReminders\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"TestReminder\",\"nativeType\":null,\"relationName\":\"TestReminderToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virtualCheckups\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VirtualCheckup\",\"nativeType\":null,\"relationName\":\"UserProfileToVirtualCheckup\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"eventRegistrations\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"EventRegistration\",\"nativeType\":null,\"relationName\":\"EventRegistrationToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"programParticipations\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ProgramParticipation\",\"nativeType\":null,\"relationName\":\"ProgramParticipationToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"inquiries\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Inquiry\",\"nativeType\":null,\"relationName\":\"InquiryToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyResponses\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyResponse\",\"nativeType\":null,\"relationName\":\"SurveyResponseToUserProfile\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"HealthWorker\":{\"dbName\":\"health_workers\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accountId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"role\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"contactNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"signature\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"isActive\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":true,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"account\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToHealthWorker\",\"relationFromFields\":[\"accountId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virtualCheckups\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VirtualCheckup\",\"nativeType\":null,\"relationName\":\"HealthWorkerToVirtualCheckup\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"FamilyRecord\":{\"dbName\":\"family_records\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"headOfFamilyId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"address\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"contactNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smsConsent\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"headOfFamily\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"FamilyHead\",\"relationFromFields\":[\"headOfFamilyId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"members\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"FamilyMember\",\"nativeType\":null,\"relationName\":\"FamilyMemberToFamilyRecord\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyHealthHistory\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"FamilyHealthHistory\",\"nativeType\":null,\"relationName\":\"FamilyHealthHistoryToFamilyRecord\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"FamilyMember\":{\"dbName\":\"family_members\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyRecordId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"memberName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"relationship\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gender\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"age\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"occupation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"civilStatus\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyRecord\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"FamilyRecord\",\"nativeType\":null,\"relationName\":\"FamilyMemberToFamilyRecord\",\"relationFromFields\":[\"familyRecordId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"FamilyMemberToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"FamilyHealthHistory\":{\"dbName\":\"family_health_histories\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyRecordId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"geneticConditions\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"chronicDiseases\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyRecord\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"FamilyRecord\",\"nativeType\":null,\"relationName\":\"FamilyHealthHistoryToFamilyRecord\",\"relationFromFields\":[\"familyRecordId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"MaternalHealth\":{\"dbName\":\"maternal_health\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersAge\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersBirthday\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersMaidenName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersReligion\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersEducation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"mothersOccupation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"numberOfChildren\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gravidaPara\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"menarcheAge\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"lastMenstrualPeriod\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"expectedDeliveryDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"tetanusToxoidStatus\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"MaternalHealthToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"prenatalVisits\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PrenatalVisit\",\"nativeType\":null,\"relationName\":\"MaternalHealthToPrenatalVisit\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthInformation\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"BirthInformation\",\"nativeType\":null,\"relationName\":\"BirthInformationToMaternalHealth\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"PrenatalVisit\":{\"dbName\":\"prenatal_visits\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"maternalHealthId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"gestationalAgeWeeks\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"weightKg\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"heightCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bloodPressure\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fundalHeightCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fetalHeartTone\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"nextVisitDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"maternalHealth\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"MaternalHealth\",\"nativeType\":null,\"relationName\":\"MaternalHealthToPrenatalVisit\",\"relationFromFields\":[\"maternalHealthId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"laboratoryTests\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"LaboratoryTest\",\"nativeType\":null,\"relationName\":\"LaboratoryTestToPrenatalVisit\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"interventions\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Intervention\",\"nativeType\":null,\"relationName\":\"InterventionToPrenatalVisit\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"LaboratoryTest\":{\"dbName\":\"laboratory_tests\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"prenatalVisitId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"testDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"testType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"testCompleted\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"prenatalVisit\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PrenatalVisit\",\"nativeType\":null,\"relationName\":\"LaboratoryTestToPrenatalVisit\",\"relationFromFields\":[\"prenatalVisitId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Intervention\":{\"dbName\":\"interventions\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"prenatalVisitId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"tetanusToxoidDose\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"tetanusToxoidLocation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"tetanusToxoidDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ironSupplementation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ironMedication\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vitaminSupplementation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vitaminMedication\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"calciumSupplementation\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"calciumMedication\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthEducationTopics\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"prenatalVisit\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"PrenatalVisit\",\"nativeType\":null,\"relationName\":\"InterventionToPrenatalVisit\",\"relationFromFields\":[\"prenatalVisitId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"BirthInformation\":{\"dbName\":\"birth_information\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"maternalHealthId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"placeOfDelivery\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"timeOfDelivery\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"deliveryType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthWeightKg\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"birthHeightCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"newbornScreeningDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"newbornScreeningCompleted\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"feedingType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"BirthInformationToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"maternalHealth\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"MaternalHealth\",\"nativeType\":null,\"relationName\":\"BirthInformationToMaternalHealth\",\"relationFromFields\":[\"maternalHealthId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ImmunizationEvent\":{\"dbName\":\"immunization_events\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"temperatureCelsius\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"weightKg\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"heightCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"adverseReactions\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthWorkerName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthWorkerSignature\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"nextFollowupDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"ImmunizationEventToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vaccinesGiven\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VaccineGiven\",\"nativeType\":null,\"relationName\":\"ImmunizationEventToVaccineGiven\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"VaccineGiven\":{\"dbName\":\"vaccines_given\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"immunizationEventId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vaccineName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"doseNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dateGiven\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"lotNumber\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"immunizationEvent\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ImmunizationEvent\",\"nativeType\":null,\"relationName\":\"ImmunizationEventToVaccineGiven\",\"relationFromFields\":[\"immunizationEventId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"VitalSigns\":{\"dbName\":\"vital_signs\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bloodPressure\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"heartRate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"respiratoryRate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"temperatureCelsius\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"pulseRate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"UserProfileToVitalSigns\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"AnthropometricMeasurement\":{\"dbName\":\"anthropometric_measurements\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"measurementDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"weightKg\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"heightCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"headCircumferenceCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"waistCircumferenceCm\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bmi\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"AnthropometricMeasurementToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"GrowthTracking\":{\"dbName\":\"growth_tracking\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"trackingDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"weightForAge\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"heightForAge\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"weightForHeight\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"GrowthTrackingToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"NCDRiskAssessment\":{\"dbName\":\"ncd_risk_assessments\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"assessmentDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"smokingStatus\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"alcoholIntake\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"physicalActivity\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"fruitVegetableIntake\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyHistoryDiabetes\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyHistoryHypertension\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyHistoryHeartDisease\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"familyHistoryStroke\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"screeningCompleted\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"followUpNeeded\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"lifestyleModifications\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthEducationReceived\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"NCDRiskAssessmentToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"VisitRecord\":{\"dbName\":\"visit_records\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitFrequency\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"referred\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"facilityName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"referralReason\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"UserProfileToVisitRecord\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"HealthEducation\":{\"dbName\":\"health_education\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"topicsCovered\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dateProvided\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"providedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"HealthEducationToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"NutritionalCounseling\":{\"dbName\":\"nutritional_counseling\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recommendations\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dateProvided\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"providedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"NutritionalCounselingToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Referral\":{\"dbName\":\"referrals\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"facilityName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reason\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dateReferred\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"referredBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"ReferralToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Appointment\":{\"dbName\":\"appointments\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"nextVisitDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"visitType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"appointmentStatus\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"scheduledBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"AppointmentToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ImmunizationReminder\":{\"dbName\":\"immunization_reminders\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vaccineName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dueDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reminderSent\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sentAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"ImmunizationReminderToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"TestReminder\":{\"dbName\":\"test_reminders\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"testName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dueDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reminderSent\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"sentAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"TestReminderToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"VirtualCheckup\":{\"dbName\":\"virtual_checkups\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthWorkerId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"scheduledDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"scheduledTime\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"meetingUrl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"consultationType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"chiefComplaint\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"notes\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"durationMinutes\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"UserProfileToVirtualCheckup\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"healthWorker\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"HealthWorker\",\"nativeType\":null,\"relationName\":\"HealthWorkerToVirtualCheckup\",\"relationFromFields\":[\"healthWorkerId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virtualCheckupNotes\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VirtualCheckupNote\",\"nativeType\":null,\"relationName\":\"VirtualCheckupToVirtualCheckupNote\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"VirtualCheckupNote\":{\"dbName\":\"virtual_checkup_notes\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virtualCheckupId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"note\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"virtualCheckup\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"VirtualCheckup\",\"nativeType\":null,\"relationName\":\"VirtualCheckupToVirtualCheckupNote\",\"relationFromFields\":[\"virtualCheckupId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Event\":{\"dbName\":\"events\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"title\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"eventType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"eventDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"startTime\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"endTime\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"venue\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"targetAudience\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"maxParticipants\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bannerImageUrl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"creator\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToEvent\",\"relationFromFields\":[\"createdBy\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"eventRegistrations\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"EventRegistration\",\"nativeType\":null,\"relationName\":\"EventToEventRegistration\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"EventRegistration\":{\"dbName\":\"event_registrations\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"eventId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"registrationDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"notes\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"event\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Event\",\"nativeType\":null,\"relationName\":\"EventToEventRegistration\",\"relationFromFields\":[\"eventId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"EventRegistrationToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"MedicalProgram\":{\"dbName\":\"medical_programs\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"programName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"programType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"startDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"endDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"venue\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"targetDemographic\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"targetParticipants\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"bannerImageUrl\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"creator\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToMedicalProgram\",\"relationFromFields\":[\"createdBy\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"programParticipations\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"ProgramParticipation\",\"nativeType\":null,\"relationName\":\"MedicalProgramToProgramParticipation\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"ProgramParticipation\":{\"dbName\":\"program_participations\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medicalProgramId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"participationDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"servicesReceived\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"notes\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"recordedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"medicalProgram\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"MedicalProgram\",\"nativeType\":null,\"relationName\":\"MedicalProgramToProgramParticipation\",\"relationFromFields\":[\"medicalProgramId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"ProgramParticipationToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Inquiry\":{\"dbName\":\"inquiries\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"subject\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"message\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"priority\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"category\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"InquiryToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"inquiryResponses\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"InquiryResponse\",\"nativeType\":null,\"relationName\":\"InquiryToInquiryResponse\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"InquiryResponse\":{\"dbName\":\"inquiry_responses\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"inquiryId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"message\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"respondedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"inquiry\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Inquiry\",\"nativeType\":null,\"relationName\":\"InquiryToInquiryResponse\",\"relationFromFields\":[\"inquiryId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"responder\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToInquiryResponse\",\"relationFromFields\":[\"respondedBy\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Survey\":{\"dbName\":\"surveys\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"title\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"isActive\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":true,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"startDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"endDate\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"qrCode\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"creator\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToSurvey\",\"relationFromFields\":[\"createdBy\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyQuestions\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyQuestion\",\"nativeType\":null,\"relationName\":\"SurveyToSurveyQuestion\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyResponses\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyResponse\",\"nativeType\":null,\"relationName\":\"SurveyToSurveyResponse\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"SurveyQuestion\":{\"dbName\":\"survey_questions\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"questionText\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"questionType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"options\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"isRequired\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":false,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"orderIndex\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"survey\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Survey\",\"nativeType\":null,\"relationName\":\"SurveyToSurveyQuestion\",\"relationFromFields\":[\"surveyId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyAnswers\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyAnswer\",\"nativeType\":null,\"relationName\":\"SurveyAnswerToSurveyQuestion\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"SurveyResponse\":{\"dbName\":\"survey_responses\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfileId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"submittedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"survey\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Survey\",\"nativeType\":null,\"relationName\":\"SurveyToSurveyResponse\",\"relationFromFields\":[\"surveyId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userProfile\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"UserProfile\",\"nativeType\":null,\"relationName\":\"SurveyResponseToUserProfile\",\"relationFromFields\":[\"userProfileId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyAnswers\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyAnswer\",\"nativeType\":null,\"relationName\":\"SurveyAnswerToSurveyResponse\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"SurveyAnswer\":{\"dbName\":\"survey_answers\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyResponseId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyQuestionId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"answer\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyResponse\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyResponse\",\"nativeType\":null,\"relationName\":\"SurveyAnswerToSurveyResponse\",\"relationFromFields\":[\"surveyResponseId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"surveyQuestion\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"SurveyQuestion\",\"nativeType\":null,\"relationName\":\"SurveyAnswerToSurveyQuestion\",\"relationFromFields\":[\"surveyQuestionId\"],\"relationToFields\":[\"id\"],\"relationOnDelete\":\"Cascade\",\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"AnalyticsReport\":{\"dbName\":\"analytics_reports\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reportName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reportType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"dataFilters\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reportData\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reportPeriodStart\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"reportPeriodEnd\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"generatedBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"generator\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToAnalyticsReport\",\"relationFromFields\":[\"generatedBy\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"PredictionModel\":{\"dbName\":\"prediction_models\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"modelName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"modelType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"modelParameters\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"predictionResults\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"accuracy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"lastTrained\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"isActive\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"Boolean\",\"nativeType\":null,\"default\":true,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdBy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"creator\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToPredictionModel\",\"relationFromFields\":[\"createdBy\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"SystemLog\":{\"dbName\":\"system_logs\",\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"cuid\",\"args\":[1]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"action\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"entityType\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"entityId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"oldData\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"newData\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Json\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"ipAddress\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"userAgent\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"user\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Account\",\"nativeType\":null,\"relationName\":\"AccountToSystemLog\",\"relationFromFields\":[\"userId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{},\"types\":{}}")
 defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.engineWasm = undefined
 config.compilerWasm = undefined
