@@ -5,36 +5,34 @@ erDiagram
     %% Account Management
     Account {
         string id PK
-        string email UK "Unique Email"
-        string password "Hashed Password"
-        string role "Admin, User, Health_Worker"
+        string email UK
+        string password
+        string role
         boolean isActive
         datetime createdAt
         datetime updatedAt
         string profilePictureUrl
         boolean emailVerified
-        datetime lastLogin
     }
 
     UserProfile {
         string id PK
-        string accountId FK "References Account"
+        string accountId FK
         string fullName
         date dateOfBirth
         int age
-        string gender "Male, Female"
+        string gender
         string address
         string contactNumber
         string religion
-        string civilStatus "Single, Married, Widowed, Separated, Live-in"
+        string civilStatus
         string occupation
         string educationLevel
         string philhealthNumber
-        string nhtsStatus "NHTS, Non-NHTS"
+        string nhtsStatus
         boolean personWithDisability
         boolean indigenousPeople
         datetime createdAt
-        datetime updatedAt
     }
 
     %% Family Records
@@ -52,14 +50,13 @@ erDiagram
     FamilyMember {
         string id PK
         string familyRecordId FK
-        string userProfileId FK "References UserProfile (if has account)"
+        string userProfileId FK
         string memberName
-        string relationship "Head, Spouse, Child, Parent, Sibling, Other"
+        string relationship
         string gender
         int age
         string occupation
         string civilStatus
-        datetime createdAt
     }
 
     FamilyHealthHistory {
@@ -68,7 +65,7 @@ erDiagram
         string[] geneticConditions
         string[] chronicDiseases
         datetime recordedDate
-        string recordedBy FK "References Account"
+        string recordedBy FK
     }
 
     %% Medical Records Categories
@@ -83,13 +80,12 @@ erDiagram
         string mothersEducation
         string mothersOccupation
         int numberOfChildren
-        string gravidaPara "G/P format"
+        string gravidaPara
         int menarcheAge
         date lastMenstrualPeriod
         date expectedDeliveryDate
-        string tetanusToxoidStatus "TT1-TT5"
+        string tetanusToxoidStatus
         datetime createdAt
-        datetime updatedAt
     }
 
     PrenatalVisit {
@@ -99,23 +95,21 @@ erDiagram
         int gestationalAgeWeeks
         float weightKg
         float heightCm
-        string bloodPressure "systolic/diastolic"
+        string bloodPressure
         float fundalHeightCm
         string fetalHeartTone
         date nextVisitDate
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     LaboratoryTest {
         string id PK
-        string prenatalVisitId FK "References PrenatalVisit (nullable)"
-        string userProfileId FK "References UserProfile (nullable)"
+        string prenatalVisitId FK
+        string userProfileId FK
         date testDate
-        string testType "CBC, Urinalysis, HBsAg, VDRL, Ultrasound"
+        string testType
         boolean testCompleted
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     Intervention {
@@ -131,24 +125,23 @@ erDiagram
         boolean calciumSupplementation
         string calciumMedication
         string[] healthEducationTopics
-        datetime createdAt
     }
 
     %% Birth Information
     BirthInformation {
         string id PK
-        string userProfileId FK "Child's profile"
+        string userProfileId FK
         string maternalHealthId FK
         string placeOfDelivery
         time timeOfDelivery
-        string deliveryType "NSD, CS, Normal Spontaneous Delivery, Cesarean Section"
+        string deliveryType
         float birthWeightKg
         float birthHeightCm
         date newbornScreeningDate
         boolean newbornScreeningCompleted
-        string feedingType "Breastfeeding, Mixed, Bottle-fed"
+        string feedingType
         datetime createdAt
-        string recordedBy FK "References Account"
+        string recordedBy FK
     }
 
     %% Immunization Records
@@ -163,18 +156,16 @@ erDiagram
         string healthWorkerName
         string healthWorkerSignature
         date nextFollowupDate
-        datetime createdAt
-        string recordedBy FK "References Account"
+        string recordedBy FK
     }
 
     VaccineGiven {
         string id PK
         string immunizationEventId FK
-        string vaccineName "BCG, Hepatitis_B, Penta, OPV, IPV, PCV10, MCV1_MMR, MCV2, Vitamin_A"
-        string doseNumber "1st, 2nd, 3rd"
+        string vaccineName
+        string doseNumber
         date dateGiven
         string lotNumber
-        datetime createdAt
     }
 
     %% Health Monitoring
@@ -182,13 +173,12 @@ erDiagram
         string id PK
         string userProfileId FK
         date recordDate
-        string bloodPressure "systolic/diastolic"
+        string bloodPressure
         int heartRate
         int respiratoryRate
         float temperatureCelsius
         int pulseRate
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     AnthropometricMeasurement {
@@ -197,11 +187,10 @@ erDiagram
         date measurementDate
         float weightKg
         float heightCm
-        float headCircumferenceCm "For infants and children"
-        float waistCircumferenceCm "For NCD risk assessment"
+        float headCircumferenceCm
+        float waistCircumferenceCm
         float bmi
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     GrowthTracking {
@@ -211,8 +200,7 @@ erDiagram
         string weightForAge
         string heightForAge
         string weightForHeight
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     %% Visit Records
@@ -220,13 +208,12 @@ erDiagram
         string id PK
         string userProfileId FK
         date visitDate
-        string visitType "Routine Check-up, Follow-up, Emergency, Preventive Care"
+        string visitType
         string visitFrequency
         boolean referred
         string facilityName
         string referralReason
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     %% NCD Risk Assessment
@@ -234,10 +221,10 @@ erDiagram
         string id PK
         string userProfileId FK
         date assessmentDate
-        string smokingStatus "Current, Former, Never"
-        string alcoholIntake "Regular, Occasional, Never"
-        string physicalActivity "Active, Inactive, Moderate"
-        string fruitVegetableIntake "Adequate, Inadequate"
+        string smokingStatus
+        string alcoholIntake
+        string physicalActivity
+        string fruitVegetableIntake
         boolean familyHistoryDiabetes
         boolean familyHistoryHypertension
         boolean familyHistoryHeartDisease
@@ -246,20 +233,18 @@ erDiagram
         boolean followUpNeeded
         string[] lifestyleModifications
         string[] healthEducationReceived
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     %% Healthcare Services
     HealthWorker {
         string id PK
-        string accountId FK "References Account"
+        string accountId FK
         string name
-        string role "Doctor, Nurse, Midwife, Health Worker, Other"
+        string role
         string contactNumber
         string signature
         boolean isActive
-        datetime createdAt
     }
 
     HealthEducation {
@@ -267,8 +252,7 @@ erDiagram
         string userProfileId FK
         string[] topicsCovered
         date dateProvided
-        string providedBy FK "References HealthWorker"
-        datetime createdAt
+        string providedBy FK
     }
 
     NutritionalCounseling {
@@ -276,8 +260,7 @@ erDiagram
         string userProfileId FK
         string recommendations
         date dateProvided
-        string providedBy FK "References HealthWorker"
-        datetime createdAt
+        string providedBy FK
     }
 
     Referral {
@@ -286,9 +269,8 @@ erDiagram
         string facilityName
         string reason
         date dateReferred
-        string status "Pending, Completed, Cancelled"
-        string referredBy FK "References HealthWorker"
-        datetime createdAt
+        string status
+        string referredBy FK
     }
 
     %% Follow-up System
@@ -296,11 +278,10 @@ erDiagram
         string id PK
         string userProfileId FK
         date nextVisitDate
-        string visitType "Prenatal, Immunization, Growth Monitoring, NCD Follow-up, Sick Visit"
-        string appointmentStatus "Scheduled, Completed, Missed, Cancelled"
-        string scheduledBy FK "References Account"
+        string visitType
+        string appointmentStatus
+        string scheduledBy FK
         datetime createdAt
-        datetime updatedAt
     }
 
     ImmunizationReminder {
@@ -310,7 +291,6 @@ erDiagram
         date dueDate
         boolean reminderSent
         datetime sentAt
-        datetime createdAt
     }
 
     TestReminder {
@@ -328,18 +308,17 @@ erDiagram
         string id PK
         string title
         string description
-        string eventType "Event, Seminar, Workshop"
+        string eventType
         date eventDate
         time startTime
         time endTime
         string venue
         string targetAudience
         int maxParticipants
-        string status "Draft, Published, Cancelled, Completed"
+        string status
         string bannerImageUrl
-        string createdBy FK "References Account"
+        string createdBy FK
         datetime createdAt
-        datetime updatedAt
     }
 
     EventRegistration {
@@ -347,9 +326,8 @@ erDiagram
         string eventId FK
         string userProfileId FK
         date registrationDate
-        string status "Registered, Attended, No-Show, Cancelled"
+        string status
         string notes
-        datetime createdAt
     }
 
     %% Medical Programs
@@ -357,17 +335,16 @@ erDiagram
         string id PK
         string programName
         string description
-        string programType "Mass Vaccination, Mass Checkup, Mass Circumcision, Health Screening"
+        string programType
         date startDate
         date endDate
         string venue
-        string targetDemographic "Children, Adults, Pregnant Women, Senior Citizens, All"
+        string targetDemographic
         int targetParticipants
-        string status "Planning, Active, Completed, Cancelled"
+        string status
         string bannerImageUrl
-        string createdBy FK "References Account"
+        string createdBy FK
         datetime createdAt
-        datetime updatedAt
     }
 
     ProgramParticipation {
@@ -375,11 +352,10 @@ erDiagram
         string medicalProgramId FK
         string userProfileId FK
         date participationDate
-        string status "Registered, Participated, No-Show"
+        string status
         string servicesReceived
         string notes
-        string recordedBy FK "References Account"
-        datetime createdAt
+        string recordedBy FK
     }
 
     %% Virtual Checkup
@@ -390,21 +366,19 @@ erDiagram
         date scheduledDate
         time scheduledTime
         string meetingUrl
-        string status "Scheduled, In-Progress, Completed, Cancelled, No-Show"
-        string consultationType "General Consultation, Follow-up, Emergency"
+        string status
+        string consultationType
         string chiefComplaint
         string notes
         int durationMinutes
         datetime createdAt
-        datetime updatedAt
     }
 
     VirtualCheckupNote {
         string id PK
         string virtualCheckupId FK
         string note
-        string createdBy FK "References Account"
-        datetime createdAt
+        string createdBy FK
     }
 
     %% Inquiries
@@ -413,19 +387,17 @@ erDiagram
         string userProfileId FK
         string subject
         string message
-        string priority "Low, Normal, High, Urgent"
-        string status "Open, In-Progress, Resolved, Closed"
-        string category "General, Medical, Technical, Appointment"
+        string priority
+        string status
+        string category
         datetime createdAt
-        datetime updatedAt
     }
 
     InquiryResponse {
         string id PK
         string inquiryId FK
         string message
-        string respondedBy FK "References Account"
-        datetime createdAt
+        string respondedBy FK
     }
 
     %% Survey System
@@ -433,34 +405,31 @@ erDiagram
         string id PK
         string title
         string description
-        string surveyType "Household Data, Health Assessment, Feedback, Research"
+        string surveyType
         boolean isActive
         date startDate
         date endDate
         string qrCode
-        string createdBy FK "References Account"
+        string createdBy FK
         datetime createdAt
-        datetime updatedAt
     }
 
     SurveyQuestion {
         string id PK
         string surveyId FK
         string questionText
-        string questionType "Text, Number, Multiple Choice, Checkbox, Date, Boolean"
-        string[] options "For multiple choice and checkbox"
+        string questionType
+        string[] options
         boolean isRequired
         int orderIndex
-        datetime createdAt
     }
 
     SurveyResponse {
         string id PK
         string surveyId FK
-        string userProfileId FK "References UserProfile (nullable for anonymous)"
+        string userProfileId FK
         string ipAddress
         datetime submittedAt
-        datetime createdAt
     }
 
     SurveyAnswer {
@@ -468,40 +437,37 @@ erDiagram
         string surveyResponseId FK
         string surveyQuestionId FK
         string answer
-        datetime createdAt
     }
 
     %% Analytics & Reports
     AnalyticsReport {
         string id PK
         string reportName
-        string reportType "Population Health, Immunization Coverage, Growth Trends, Disease Surveillance"
+        string reportType
         string[] dataFilters
         json reportData
         date reportPeriodStart
         date reportPeriodEnd
-        string generatedBy FK "References Account"
-        datetime createdAt
+        string generatedBy FK
     }
 
     PredictionModel {
         string id PK
         string modelName
-        string modelType "Immunization Compliance, Growth Trajectory, Disease Outbreak, Resource Demand"
+        string modelType
         json modelParameters
         json predictionResults
         float accuracy
         date lastTrained
         boolean isActive
-        string createdBy FK "References Account"
+        string createdBy FK
         datetime createdAt
-        datetime updatedAt
     }
 
     %% System Logs
     SystemLog {
         string id PK
-        string userId FK "References Account"
+        string userId FK
         string action
         string entityType
         string entityId
@@ -509,7 +475,6 @@ erDiagram
         json newData
         string ipAddress
         string userAgent
-        datetime createdAt
     }
 
     %% Relationships

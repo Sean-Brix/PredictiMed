@@ -1,4 +1,5 @@
 import { PrismaClient } from '../../prisma/generated/client.js';
+import auditLogger from '../../Services/auditLogger.js';
 const prisma = new PrismaClient();
 
 async function addSeminar(req, res) {
@@ -64,6 +65,27 @@ async function addSeminar(req, res) {
                 picture: picture,
                 mimeType: mimeType,
             },
+        });
+
+        // Log the seminar creation action
+        await auditLogger.log({
+            adminId: adminId,
+            action: 'SEMINAR_CREATE',
+            targetType: 'Seminar',
+            targetId: seminar.id,
+            targetName: seminar.title,
+            details: `Created new seminar: ${seminar.title}`,
+            metadata: {
+                action: 'seminar_created',
+                title: seminar.title,
+                speaker: seminar.speaker,
+                location: seminar.location,
+                capacity: seminar.capacity,
+                startDate: seminar.start_date,
+                endDate: seminar.end_date,
+                hasImage: !!picture,
+            },
+            req: req,
         });
 
         return res.status(201).json({ payload: seminar });

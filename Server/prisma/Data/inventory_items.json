@@ -1,0 +1,67 @@
+[
+    {
+        "name": "Tractor",
+        "description": "Powerful machine used for plowing and tilling fields",
+        "category": "Machinery"
+    },
+    {
+        "name": "Hoe",
+        "description": "Hand tool for weeding and soil cultivation",
+        "category": "Farming_Equipment"
+    },
+    {
+        "name": "Irrigation Pump",
+        "description": "Pump used to supply water to crops",
+        "category": "Irrigation_Systems"
+    },
+    {
+        "name": "Grain Storage Bin",
+        "description": "Large container for storing harvested grains",
+        "category": "Storage_Equipment"
+    },
+    {
+        "name": "Combine Harvester",
+        "description": "Machine for harvesting and threshing crops",
+        "category": "Harvesting_Tools"
+    },
+    {
+        "name": "Protective Gloves",
+        "description": "Safety gloves for handling chemicals and equipment",
+        "category": "Safety_Gear"
+    },
+    {
+        "name": "Pesticide Sprayer",
+        "description": "Equipment for applying pesticides to crops",
+        "category": "Pest_Control"
+    },
+    {
+        "name": "Livestock Feeder",
+        "description": "Automatic feeder for farm animals",
+        "category": "Livestock_Equipment"
+    },
+    {
+        "name": "Soil pH Meter",
+        "description": "Tool for measuring soil acidity",
+        "category": "Measuring_Tools"
+    },
+    {
+        "name": "Fishing Net",
+        "description": "Net used for catching fish in ponds or rivers",
+        "category": "Fisheries"
+    },
+    {
+        "name": "Seed Drill",
+        "description": "Machine for planting seeds at uniform depth",
+        "category": "Machinery"
+    },
+    {
+        "name": "Multi-purpose Farm Tool Set",
+        "description": "Set of essential tools for various farm tasks",
+        "category": "Other"
+    },
+    {
+        "name": "The Lord of the Rings",
+        "description": "Classic fantasy novel",
+        "category": "Other"
+    }
+]
