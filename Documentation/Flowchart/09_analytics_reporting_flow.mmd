@@ -1,0 +1,349 @@
+﻿flowchart TD
+    %% ========================================
+    %% ANALYTICS & REPORTING FLOWCHART
+    %% ========================================
+    
+    Start([Access Analytics Dashboard]) --> AnalyticsAuth{User Authenticated?}
+    AnalyticsAuth -->|No| LoginRequired[Redirect to Login]
+    AnalyticsAuth -->|Yes| CheckAnalyticsPermissions{Analytics Access Permission?}
+    
+    CheckAnalyticsPermissions -->|No| AccessDenied[Access Denied]
+    CheckAnalyticsPermissions -->|Yes| AnalyticsDashboard[Analytics Dashboard]
+    
+    %% Analytics Dashboard Options
+    AnalyticsDashboard --> CategoryAnalytics[Analytics per Category]
+    AnalyticsDashboard --> TrendsAnalysis[Trends Analysis]
+    AnalyticsDashboard --> ReportGeneration[Report Generation]
+    AnalyticsDashboard --> RecordsAnalytics[Records Analytics]
+    AnalyticsDashboard --> RatesAnalysis[Average Rates Analysis]
+    AnalyticsDashboard --> RealTimeAnalytics[Real-time Analytics]
+    AnalyticsDashboard --> ComparativeAnalysis[Comparative Analysis]
+    
+    %% Analytics per Category
+    CategoryAnalytics --> SelectAnalyticsCategory{Select Analytics Category}
+    SelectAnalyticsCategory --> UserManagementAnalytics[User Management Analytics]
+    SelectAnalyticsCategory --> HealthProgramsAnalytics[Health Programs Analytics]
+    SelectAnalyticsCategory --> VirtualConsultationsAnalytics[Virtual Consultations Analytics]
+    SelectAnalyticsCategory --> EventsSeminarsAnalytics[Events & Seminars Analytics]
+    SelectAnalyticsCategory --> QRCodeAnalytics[QR Code Usage Analytics]
+    SelectAnalyticsCategory --> ChatModuleAnalytics[Chat Module Analytics]
+    SelectAnalyticsCategory --> LocationAnalytics[Location Services Analytics]
+    SelectAnalyticsCategory --> ContentAnalytics[Content Management Analytics]
+    
+    %% User Management Analytics
+    UserManagementAnalytics --> UserMetrics[User Metrics Analysis]
+    UserMetrics --> UserRegistrationTrends[User Registration Trends]
+    UserMetrics --> UserActivityLevels[User Activity Levels]
+    UserMetrics --> UserRoleDistribution[User Role Distribution]
+    UserMetrics --> UserEngagementMetrics[User Engagement Metrics]
+    UserMetrics --> UserRetentionRates[User Retention Rates]
+    
+    UserRegistrationTrends --> GenerateUserTrendsGraph[Generate User Trends Graph]
+    UserActivityLevels --> GenerateActivityGraph[Generate Activity Graph]
+    UserRoleDistribution --> GenerateRoleChart[Generate Role Distribution Chart]
+    UserEngagementMetrics --> GenerateEngagementChart[Generate Engagement Chart]
+    UserRetentionRates --> GenerateRetentionChart[Generate Retention Chart]
+    
+    %% Health Programs Analytics
+    HealthProgramsAnalytics --> ProgramMetrics[Program Performance Metrics]
+    ProgramMetrics --> ProgramRegistrationRates[Program Registration Rates]
+    ProgramMetrics --> ProgramAttendanceRates[Program Attendance Rates]
+    ProgramMetrics --> ProgramCompletionRates[Program Completion Rates]
+    ProgramMetrics --> ProgramSatisfactionScores[Program Satisfaction Scores]
+    ProgramMetrics --> ProgramOutcomeMetrics[Program Health Outcome Metrics]
+    
+    ProgramRegistrationRates --> GenerateProgramTrends[Generate Program Trends Graph]
+    ProgramAttendanceRates --> GenerateProgramTrends
+    ProgramCompletionRates --> GenerateProgramTrends
+    ProgramSatisfactionScores --> GenerateProgramTrends
+    ProgramOutcomeMetrics --> GenerateProgramTrends
+    
+    %% Virtual Consultations Analytics
+    VirtualConsultationsAnalytics --> ConsultationMetrics[Consultation Performance Metrics]
+    ConsultationMetrics --> BookingTrends[Appointment Booking Trends]
+    ConsultationMetrics --> ConsultationVolume[Consultation Volume Analysis]
+    ConsultationMetrics --> ProviderUtilization[Healthcare Provider Utilization]
+    ConsultationMetrics --> PatientSatisfactionRates[Patient Satisfaction Rates]
+    ConsultationMetrics --> TechnicalPerformance[Technical Performance Metrics]
+    
+    BookingTrends --> GenerateConsultationTrends[Generate Consultation Trends Graph]
+    ConsultationVolume --> GenerateConsultationTrends
+    ProviderUtilization --> GenerateConsultationTrends
+    PatientSatisfactionRates --> GenerateConsultationTrends
+    TechnicalPerformance --> GenerateConsultationTrends
+    
+    %% Events & Seminars Analytics
+    EventsSeminarsAnalytics --> EventMetrics[Event Performance Metrics]
+    EventMetrics --> EventRegistrationTrends[Event Registration Trends]
+    EventMetrics --> EventAttendanceRates[Event Attendance Rates]
+    EventMetrics --> EventPopularityMetrics[Event Popularity Metrics]
+    EventMetrics --> EventFeedbackScores[Event Feedback Scores]
+    EventMetrics --> EventROIAnalysis[Event ROI Analysis]
+    
+    EventRegistrationTrends --> GenerateEventTrends[Generate Event Trends Graph]
+    EventAttendanceRates --> GenerateEventTrends
+    EventPopularityMetrics --> GenerateEventTrends
+    EventFeedbackScores --> GenerateEventTrends
+    EventROIAnalysis --> GenerateEventTrends
+    
+    %% QR Code Analytics
+    QRCodeAnalytics --> QRMetrics[QR Code Usage Metrics]
+    QRMetrics --> QRGenerationTrends[QR Code Generation Trends]
+    QRMetrics --> QRScanningPatterns[QR Code Scanning Patterns]
+    QRMetrics --> QRTypePopularity[QR Code Type Popularity]
+    QRMetrics --> QRUsageByLocation[QR Usage by Location]
+    QRMetrics --> QRSecurityMetrics[QR Security Metrics]
+    
+    QRGenerationTrends --> GenerateQRTrends[Generate QR Trends Graph]
+    QRScanningPatterns --> GenerateQRTrends
+    QRTypePopularity --> GenerateQRTrends
+    QRUsageByLocation --> GenerateQRTrends
+    QRSecurityMetrics --> GenerateQRTrends
+    
+    %% Chat Module Analytics
+    ChatModuleAnalytics --> ChatMetrics[Chat Performance Metrics]
+    ChatMetrics --> InquiryVolumeTrends[Inquiry Volume Trends]
+    ChatMetrics --> ResponseTimesAnalysis[Response Times Analysis]
+    ChatMetrics --> FAQUsagePatterns[FAQ Usage Patterns]
+    ChatMetrics --> ResolutionRates[Issue Resolution Rates]
+    ChatMetrics --> CustomerSatisfactionScores[Customer Satisfaction Scores]
+    
+    InquiryVolumeTrends --> GenerateChatTrends[Generate Chat Trends Graph]
+    ResponseTimesAnalysis --> GenerateChatTrends
+    FAQUsagePatterns --> GenerateChatTrends
+    ResolutionRates --> GenerateChatTrends
+    CustomerSatisfactionScores --> GenerateChatTrends
+    
+    %% Location Analytics (Already covered in spot map flow, but summary here)
+    LocationAnalytics --> LocationMetrics[Location Usage Metrics]
+    LocationMetrics --> FacilityUtilization[Facility Utilization Rates]
+    LocationMetrics --> GeographicDistribution[Geographic Distribution Analysis]
+    LocationMetrics --> ServicePopularity[Service Popularity by Location]
+    LocationMetrics --> AccessibilityMetrics[Accessibility Metrics]
+    
+    FacilityUtilization --> GenerateLocationTrends[Generate Location Trends Graph]
+    GeographicDistribution --> GenerateLocationTrends
+    ServicePopularity --> GenerateLocationTrends
+    AccessibilityMetrics --> GenerateLocationTrends
+    
+    %% Content Analytics (Summary from CMS flow)
+    ContentAnalytics --> ContentMetrics[Content Performance Metrics]
+    ContentMetrics --> PageViewTrends[Page View Trends]
+    ContentMetrics --> UserEngagementRates[Content Engagement Rates]
+    ContentMetrics --> ContentPopularity[Content Popularity Analysis]
+    ContentMetrics --> SEOPerformanceMetrics[SEO Performance Metrics]
+    
+    PageViewTrends --> GenerateContentTrends[Generate Content Trends Graph]
+    UserEngagementRates --> GenerateContentTrends
+    ContentPopularity --> GenerateContentTrends
+    SEOPerformanceMetrics --> GenerateContentTrends
+    
+    %% Trends Analysis (Cross-Category)
+    TrendsAnalysis --> TrendAnalysisOptions{Trend Analysis Options}
+    TrendAnalysisOptions --> DailyTrends[Daily Trends Analysis]
+    TrendAnalysisOptions --> WeeklyTrends[Weekly Trends Analysis]
+    TrendAnalysisOptions --> MonthlyTrends[Monthly Trends Analysis]
+    TrendAnalysisOptions --> YearlyTrends[Yearly Trends Analysis]
+    TrendAnalysisOptions --> CustomPeriodTrends[Custom Period Trends]
+    TrendAnalysisOptions --> SeasonalTrends[Seasonal Trends Analysis]
+    TrendAnalysisOptions --> PredictiveTrends[Predictive Trends Analysis]
+    
+    DailyTrends --> TrendDataProcessing[Process Trend Data]
+    WeeklyTrends --> TrendDataProcessing
+    MonthlyTrends --> TrendDataProcessing
+    YearlyTrends --> TrendDataProcessing
+    CustomPeriodTrends --> SetCustomPeriod[Set Custom Date Range]
+    SeasonalTrends --> TrendDataProcessing
+    PredictiveTrends --> PredictiveModelProcessing[Apply Predictive Models]
+    
+    SetCustomPeriod --> TrendDataProcessing
+    PredictiveModelProcessing --> TrendDataProcessing
+    
+    TrendDataProcessing --> TrendVisualization[Generate Trend Visualizations]
+    TrendVisualization --> LineCharts[Line Charts for Time Series]
+    TrendVisualization --> BarCharts[Bar Charts for Comparisons]
+    TrendVisualization --> PieCharts[Pie Charts for Distributions]
+    TrendVisualization --> HeatMaps[Heat Maps for Patterns]
+    TrendVisualization --> ScatterPlots[Scatter Plots for Correlations]
+    
+    LineCharts --> TrendsGraphGenerated[Trends Graph Generated]
+    BarCharts --> TrendsGraphGenerated
+    PieCharts --> TrendsGraphGenerated
+    HeatMaps --> TrendsGraphGenerated
+    ScatterPlots --> TrendsGraphGenerated
+    
+    %% Report Generation
+    ReportGeneration --> ReportOptions{Report Generation Options}
+    ReportOptions --> StandardReports[Standard Reports]
+    ReportOptions --> CustomReports[Custom Reports]
+    ReportOptions --> ScheduledReports[Scheduled Reports]
+    ReportOptions --> AutomatedReports[Automated Reports]
+    
+    StandardReports --> SelectStandardReport{Select Standard Report Type}
+    SelectStandardReport --> DailyReport[Daily Activity Report]
+    SelectStandardReport --> WeeklyReport[Weekly Summary Report]
+    SelectStandardReport --> MonthlyReport[Monthly Performance Report]
+    SelectStandardReport --> QuarterlyReport[Quarterly Analysis Report]
+    SelectStandardReport --> AnnualReport[Annual Overview Report]
+    
+    DailyReport --> GenerateStandardReport[Generate Standard Report]
+    WeeklyReport --> GenerateStandardReport
+    MonthlyReport --> GenerateStandardReport
+    QuarterlyReport --> GenerateStandardReport
+    AnnualReport --> GenerateStandardReport
+    
+    CustomReports --> CustomReportBuilder[Custom Report Builder]
+    CustomReportBuilder --> SelectDataSources[Select Data Sources]
+    SelectDataSources --> ChooseMetrics[Choose Metrics to Include]
+    ChooseMetrics --> SetFilters[Set Report Filters]
+    SetFilters --> ChooseVisualization[Choose Visualization Types]
+    ChooseVisualization --> ReportLayout[Design Report Layout]
+    ReportLayout --> PreviewCustomReport[Preview Custom Report]
+    PreviewCustomReport --> GenerateCustomReport[Generate Custom Report]
+    
+    ScheduledReports --> ScheduleSettings[Report Schedule Settings]
+    ScheduleSettings --> SetReportFrequency[Set Report Frequency]
+    SetReportFrequency --> SetRecipients[Set Report Recipients]
+    SetRecipients --> SetDeliveryMethod[Set Delivery Method]
+    SetDeliveryMethod --> ScheduleReport[Schedule Report Generation]
+    
+    AutomatedReports --> AutomationRules[Set Automation Rules]
+    AutomationRules --> TriggerConditions[Define Trigger Conditions]
+    TriggerConditions --> AutoReportActions[Define Automated Actions]
+    AutoReportActions --> SetupAutomation[Setup Report Automation]
+    
+    %% Records Analytics
+    RecordsAnalytics --> RecordsMetrics[Records Analysis Metrics]
+    RecordsMetrics --> TotalRecordsCount[Total Records Count]
+    RecordsMetrics --> RecordsGrowthRate[Records Growth Rate]
+    RecordsMetrics --> RecordsByCategory[Records by Category]
+    RecordsMetrics --> RecordsQuality[Data Quality Metrics]
+    RecordsMetrics --> RecordsAccessPatterns[Records Access Patterns]
+    
+    TotalRecordsCount --> GenerateRecordsReport[Generate Records Analytics Report]
+    RecordsGrowthRate --> GenerateRecordsReport
+    RecordsByCategory --> GenerateRecordsReport
+    RecordsQuality --> GenerateRecordsReport
+    RecordsAccessPatterns --> GenerateRecordsReport
+    
+    %% Average Rates Analysis
+    RatesAnalysis --> RatesCalculation[Calculate Average Rates]
+    RatesCalculation --> EngagementRates[User Engagement Rates]
+    RatesCalculation --> CompletionRates[Task Completion Rates]
+    RatesCalculation --> SatisfactionRates[Customer Satisfaction Rates]
+    RatesCalculation --> UtilizationRates[System Utilization Rates]
+    RatesCalculation --> ConversionRates[Conversion Rates]
+    
+    EngagementRates --> GenerateRatesReport[Generate Average Rates Report]
+    CompletionRates --> GenerateRatesReport
+    SatisfactionRates --> GenerateRatesReport
+    UtilizationRates --> GenerateRatesReport
+    ConversionRates --> GenerateRatesReport
+    
+    %% Real-time Analytics
+    RealTimeAnalytics --> RealTimeMetrics[Real-time Metrics Dashboard]
+    RealTimeMetrics --> ActiveUsers[Currently Active Users]
+    RealTimeMetrics --> OngoingSessions[Ongoing Sessions]
+    RealTimeMetrics --> LiveEvents[Live Events & Activities]
+    RealTimeMetrics --> SystemPerformance[Real-time System Performance]
+    RealTimeMetrics --> AlertsNotifications[Real-time Alerts & Notifications]
+    
+    ActiveUsers --> RealTimeDashboard[Real-time Analytics Dashboard]
+    OngoingSessions --> RealTimeDashboard
+    LiveEvents --> RealTimeDashboard
+    SystemPerformance --> RealTimeDashboard
+    AlertsNotifications --> RealTimeDashboard
+    
+    %% Comparative Analysis
+    ComparativeAnalysis --> ComparisonOptions{Comparison Options}
+    ComparisonOptions --> PeriodComparison[Period-to-Period Comparison]
+    ComparisonOptions --> CategoryComparison[Category Comparison]
+    ComparisonOptions --> PerformanceComparison[Performance Benchmarking]
+    ComparisonOptions --> TrendComparison[Trend Comparison Analysis]
+    
+    PeriodComparison --> SelectComparisonPeriods[Select Comparison Periods]
+    CategoryComparison --> SelectComparisonCategories[Select Categories to Compare]
+    PerformanceComparison --> SetBenchmarks[Set Performance Benchmarks]
+    TrendComparison --> SelectTrendPeriods[Select Trend Periods]
+    
+    SelectComparisonPeriods --> GenerateComparison[Generate Comparative Analysis]
+    SelectComparisonCategories --> GenerateComparison
+    SetBenchmarks --> GenerateComparison
+    SelectTrendPeriods --> GenerateComparison
+    
+    %% Report Export & Sharing
+    GenerateStandardReport --> ReportReady[Report Generated Successfully]
+    GenerateCustomReport --> ReportReady
+    GenerateRecordsReport --> ReportReady
+    GenerateRatesReport --> ReportReady
+    TrendsGraphGenerated --> ReportReady
+    GenerateComparison --> ReportReady
+    
+    ReportReady --> ExportOptions{Export & Sharing Options}
+    ExportOptions --> ExportPDF[Export as PDF]
+    ExportOptions --> ExportExcel[Export as Excel]
+    ExportOptions --> ExportCSV[Export as CSV]
+    ExportOptions --> EmailReport[Email Report]
+    ExportOptions --> ShareDashboard[Share Dashboard Link]
+    ExportOptions --> PrintReport[Print Report]
+    
+    ExportPDF --> ReportExported[Report Exported Successfully]
+    ExportExcel --> ReportExported
+    ExportCSV --> ReportExported
+    EmailReport --> ReportEmailed[Report Emailed Successfully]
+    ShareDashboard --> DashboardShared[Dashboard Link Shared]
+    PrintReport --> ReportPrinted[Report Printed Successfully]
+    
+    %% Data Processing & Performance
+    TrendDataProcessing --> DataOptimization[Optimize Data Processing]
+    DataOptimization --> CacheResults[Cache Analytics Results]
+    CacheResults --> UpdateCache[Update Cache as Needed]
+    UpdateCache --> PerformanceOptimized[Analytics Performance Optimized]
+    
+    %% Return Paths
+    ReportExported --> AnalyticsDashboard
+    ReportEmailed --> AnalyticsDashboard
+    DashboardShared --> AnalyticsDashboard
+    ReportPrinted --> AnalyticsDashboard
+    RealTimeDashboard --> AnalyticsDashboard
+    AccessDenied --> Start
+    PerformanceOptimized --> AnalyticsDashboard
+    
+    %% Consolidate all trend generations to single path
+    GenerateUserTrendsGraph --> TrendsGraphGenerated
+    GenerateActivityGraph --> TrendsGraphGenerated
+    GenerateRoleChart --> TrendsGraphGenerated
+    GenerateEngagementChart --> TrendsGraphGenerated
+    GenerateRetentionChart --> TrendsGraphGenerated
+    GenerateProgramTrends --> TrendsGraphGenerated
+    GenerateConsultationTrends --> TrendsGraphGenerated
+    GenerateEventTrends --> TrendsGraphGenerated
+    GenerateQRTrends --> TrendsGraphGenerated
+    GenerateChatTrends --> TrendsGraphGenerated
+    GenerateLocationTrends --> TrendsGraphGenerated
+    GenerateContentTrends --> TrendsGraphGenerated
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef analytics fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef trends fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef reports fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef realtime fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    
+    class Start,ReportExported,ReportEmailed,DashboardShared,TrendsGraphGenerated startEnd
+    class CategoryAnalytics,TrendsAnalysis,ReportGeneration,RecordsAnalytics,RatesAnalysis process
+    class AnalyticsAuth,CheckAnalyticsPermissions,SelectAnalyticsCategory,TrendAnalysisOptions,ReportOptions,ExportOptions decision
+    class ReportExported,ReportEmailed,DashboardShared,ReportPrinted,TrendsGraphGenerated success
+    class AccessDenied error
+    class UserMetrics,ProgramMetrics,ConsultationMetrics,EventMetrics,QRMetrics,ChatMetrics,LocationMetrics,ContentMetrics analytics
+    class TrendsAnalysis,TrendDataProcessing,TrendVisualization,LineCharts,BarCharts,PieCharts trends
+    class ReportGeneration,GenerateStandardReport,GenerateCustomReport,CustomReportBuilder reports
+    class RealTimeAnalytics,RealTimeMetrics,RealTimeDashboard,ActiveUsers realtime
+```
+
+
+

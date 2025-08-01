@@ -1,0 +1,106 @@
+﻿flowchart TD
+    %% ========================================
+    %% USER MANAGEMENT & ROLES FLOWCHART
+    %% ========================================
+    
+    Start([System Access]) --> Auth{User Authenticated?}
+    Auth -->|No| Login[Login Process]
+    Auth -->|Yes| RoleCheck{Check User Role}
+    
+    Login --> LoginForm[Enter Credentials]
+    LoginForm --> ValidCreds{Valid Credentials?}
+    ValidCreds -->|No| LoginError[Show Error Message]
+    ValidCreds -->|Yes| RoleCheck
+    LoginError --> LoginForm
+    
+    %% Role-based Access
+    RoleCheck --> AdminRole{Admin Role?}
+    RoleCheck --> HealthWorkerRole{Health Worker Role?}
+    RoleCheck --> ClientRole{Client Role?}
+    
+    %% Admin Functions
+    AdminRole -->|Yes| AdminDashboard[Admin Dashboard]
+    AdminDashboard --> UserMgmt[User Management]
+    AdminDashboard --> RoleMgmt[Roles Management]
+    AdminDashboard --> SystemSettings[System Settings]
+    
+    %% User Management Operations
+    UserMgmt --> CreateAccount[Create New Account]
+    UserMgmt --> ViewAccounts[View All Accounts]
+    UserMgmt --> EditAccount[Edit Account Details]
+    UserMgmt --> DeleteAccount[Delete Account]
+    
+    %% Create Account Process
+    CreateAccount --> AccountForm[Fill Account Form]
+    AccountForm --> ValidateForm{Validate Form Data?}
+    ValidateForm -->|No| FormError[Show Validation Errors]
+    ValidateForm -->|Yes| AssignRole[Assign User Role]
+    FormError --> AccountForm
+    AssignRole --> SaveAccount[Save to Database]
+    SaveAccount --> AccountSuccess[Account Created Successfully]
+    
+    %% Edit Account Process
+    EditAccount --> SelectUser[Select User to Edit]
+    SelectUser --> LoadUserData[Load Current User Data]
+    LoadUserData --> EditForm[Edit Account Form]
+    EditForm --> ValidateEdit{Validate Changes?}
+    ValidateEdit -->|No| EditError[Show Validation Errors]
+    ValidateEdit -->|Yes| UpdateAccount[Update Database]
+    EditError --> EditForm
+    UpdateAccount --> EditSuccess[Account Updated Successfully]
+    
+    %% Delete Account Process
+    DeleteAccount --> SelectDelete[Select User to Delete]
+    SelectDelete --> ConfirmDelete{Confirm Deletion?}
+    ConfirmDelete -->|No| UserMgmt
+    ConfirmDelete -->|Yes| CheckDependencies{Has Dependencies?}
+    CheckDependencies -->|Yes| DepError[Cannot Delete - Has Records]
+    CheckDependencies -->|No| SoftDelete[Soft Delete Account]
+    DepError --> UserMgmt
+    SoftDelete --> DeleteSuccess[Account Deleted Successfully]
+    
+    %% Role Management
+    RoleMgmt --> CreateRole[Create New Role]
+    RoleMgmt --> EditRole[Edit Existing Role]
+    RoleMgmt --> DeleteRole[Delete Role]
+    RoleMgmt --> AssignPermissions[Assign Permissions]
+    
+    CreateRole --> RoleForm[Define Role Details]
+    RoleForm --> SetPermissions[Set Role Permissions]
+    SetPermissions --> SaveRole[Save Role to Database]
+    SaveRole --> RoleSuccess[Role Created Successfully]
+    
+    %% Health Worker Functions
+    HealthWorkerRole -->|Yes| HealthWorkerDashboard[Health Worker Dashboard]
+    HealthWorkerDashboard --> PatientMgmt[Patient Management]
+    HealthWorkerDashboard --> ScheduleMgmt[Schedule Management]
+    HealthWorkerDashboard --> ReportView[View Reports]
+    
+    %% Client Functions
+    ClientRole -->|Yes| ClientDashboard[Client Dashboard]
+    ClientDashboard --> ViewProfile[View My Profile]
+    ClientDashboard --> UpdateProfile[Update My Information]
+    ClientDashboard --> ViewRecords[View My Medical Records]
+    
+    %% Success/Error Handling
+    AccountSuccess --> UserMgmt
+    EditSuccess --> UserMgmt
+    DeleteSuccess --> UserMgmt
+    RoleSuccess --> RoleMgmt
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    
+    class Start,AccountSuccess,EditSuccess,DeleteSuccess,RoleSuccess startEnd
+    class CreateAccount,EditAccount,DeleteAccount,AccountForm,EditForm process
+    class Auth,ValidCreds,AdminRole,HealthWorkerRole,ClientRole,ValidateForm,ValidateEdit,ConfirmDelete,CheckDependencies decision
+    class AccountSuccess,EditSuccess,DeleteSuccess,RoleSuccess success
+    class LoginError,FormError,EditError,DepError error
+```
+
+
+

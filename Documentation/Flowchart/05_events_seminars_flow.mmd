@@ -1,0 +1,267 @@
+﻿flowchart TD
+    %% ========================================
+    %% EVENTS & SEMINARS FLOWCHART
+    %% ========================================
+    
+    Start([Access Events & Seminars]) --> EventAuth{User Authenticated?}
+    EventAuth -->|No| LoginRequired[Redirect to Login]
+    EventAuth -->|Yes| EventDashboard[Events & Seminars Dashboard]
+    
+    %% Dashboard Options
+    EventDashboard --> CreateEvent[Create New Event]
+    EventDashboard --> ViewEvents[View All Events]
+    EventDashboard --> ManageEvents[Manage My Events]
+    EventDashboard --> EventRegistration[Event Registration]
+    EventDashboard --> EventAnnouncements[View Announcements]
+    
+    %% Create Event Process (Admin/Health Worker)
+    CreateEvent --> CheckPermissions{Create Permission?}
+    CheckPermissions -->|No| AccessDenied[Access Denied]
+    CheckPermissions -->|Yes| EventForm[Fill Event Details Form]
+    
+    EventForm --> EventBasicInfo[Enter Basic Information]
+    EventBasicInfo --> EventTitle[Event Title]
+    EventBasicInfo --> EventDescription[Event Description]
+    EventBasicInfo --> EventCategory[Event Category]
+    EventBasicInfo --> EventLocation[Event Location]
+    
+    EventTitle --> EventScheduling[Event Scheduling Details]
+    EventDescription --> EventScheduling
+    EventCategory --> EventScheduling
+    EventLocation --> EventScheduling
+    
+    EventScheduling --> EventDate[Select Event Date]
+    EventDate --> EventTime[Select Event Time]
+    EventTime --> EventDuration[Set Event Duration]
+    EventDuration --> EventCapacity[Set Participant Capacity]
+    
+    EventCapacity --> EventResources[Event Resources & Requirements]
+    EventResources --> SpeakerDetails[Speaker/Presenter Details]
+    SpeakerDetails --> EventMaterials[Event Materials & Resources]
+    EventMaterials --> RegistrationSettings[Registration Settings]
+    
+    RegistrationSettings --> RequireRegistration{Require Registration?}
+    RequireRegistration -->|Yes| RegistrationForm[Setup Registration Form]
+    RequireRegistration -->|No| PublicEvent[Mark as Public Event]
+    
+    RegistrationForm --> CustomFields[Add Custom Registration Fields]
+    CustomFields --> RegistrationDeadline[Set Registration Deadline]
+    RegistrationDeadline --> PublicEvent
+    
+    PublicEvent --> EventImage[Upload Event Image]
+    EventImage --> ValidateImage{Valid Image Format?}
+    ValidateImage -->|No| ImageError[Invalid Image Format]
+    ValidateImage -->|Yes| PreviewEvent[Preview Event Details]
+    ImageError --> EventImage
+    
+    PreviewEvent --> ConfirmEvent{Confirm Event Creation?}
+    ConfirmEvent -->|No| EventForm
+    ConfirmEvent -->|Yes| SaveEvent[Save Event to Database]
+    
+    SaveEvent --> GenerateEventQR[Generate Event QR Code]
+    GenerateEventQR --> PublishEvent[Publish Event]
+    PublishEvent --> UpdateLandingPage[Update Landing Page]
+    UpdateLandingPage --> NotifyUsers[Notify Relevant Users]
+    NotifyUsers --> EventCreated[Event Created Successfully]
+    
+    %% View Events Process
+    ViewEvents --> LoadEvents[Load All Events]
+    LoadEvents --> EventFilters{Apply Filters}
+    EventFilters --> UpcomingEvents[Upcoming Events]
+    EventFilters --> PastEvents[Past Events]
+    EventFilters --> TodayEvents[Today's Events]
+    EventFilters --> CategoryFilter[Filter by Category]
+    EventFilters --> AllEvents[All Events]
+    
+    UpcomingEvents --> DisplayEventList[Display Event List]
+    PastEvents --> DisplayEventList
+    TodayEvents --> DisplayEventList
+    CategoryFilter --> SelectCategory[Select Event Category]
+    AllEvents --> DisplayEventList
+    
+    SelectCategory --> HealthSeminars[Health Seminars]
+    SelectCategory --> Immunization[Immunization Drives]
+    SelectCategory --> Screening[Health Screening]
+    SelectCategory --> Workshops[Educational Workshops]
+    SelectCategory --> Community[Community Programs]
+    
+    HealthSeminars --> DisplayEventList
+    Immunization --> DisplayEventList
+    Screening --> DisplayEventList
+    Workshops --> DisplayEventList
+    Community --> DisplayEventList
+    
+    DisplayEventList --> SelectEvent[Select Event to View]
+    SelectEvent --> EventDetails[View Event Details]
+    EventDetails --> EventActions{Available Actions}
+    
+    EventActions --> RegisterForEvent[Register for Event]
+    EventActions --> ShareEvent[Share Event]
+    EventActions --> AddToCalendar[Add to Calendar]
+    EventActions --> ViewEventMaterials[View Event Materials]
+    EventActions --> ContactOrganizer[Contact Organizer]
+    
+    %% Event Registration Process
+    RegisterForEvent --> CheckRegistrationOpen{Registration Open?}
+    CheckRegistrationOpen -->|No| RegistrationClosed[Registration Closed]
+    CheckRegistrationOpen -->|Yes| CheckCapacity{Capacity Available?}
+    
+    CheckCapacity -->|No| EventFull[Event is Full]
+    CheckCapacity -->|Yes| RegistrationForm2[Fill Registration Form]
+    
+    RegistrationForm2 --> PersonalInfo[Enter Personal Information]
+    PersonalInfo --> MedicalInfo[Medical Information]
+    MedicalInfo --> SpecialRequirements[Special Requirements/Dietary]
+    SpecialRequirements --> EmergencyContact[Emergency Contact Details]
+    
+    EmergencyContact --> ValidateRegistration{Validate Registration Data?}
+    ValidateRegistration -->|No| RegistrationError[Registration Validation Error]
+    ValidateRegistration -->|Yes| ConfirmRegistration[Confirm Registration]
+    RegistrationError --> RegistrationForm2
+    
+    ConfirmRegistration --> SaveRegistration[Save Registration to Database]
+    SaveRegistration --> SendConfirmation[Send Registration Confirmation]
+    SendConfirmation --> GenerateRegQR[Generate Registration QR Code]
+    GenerateRegQR --> UpdateEventCapacity[Update Event Capacity]
+    UpdateEventCapacity --> RegistrationSuccess[Registration Successful]
+    
+    %% Event Management Process
+    ManageEvents --> LoadUserEvents[Load User's Events]
+    LoadUserEvents --> EventManagementList[Display Event Management List]
+    EventManagementList --> SelectManageEvent[Select Event to Manage]
+    SelectManageEvent --> ManagementOptions{Management Options}
+    
+    ManagementOptions --> EditEvent[Edit Event Details]
+    ManagementOptions --> ViewRegistrations[View Registrations]
+    ManagementOptions --> SendReminders[Send Event Reminders]
+    ManagementOptions --> EventCheckin[Event Check-in System]
+    ManagementOptions --> EventReports[Event Reports]
+    ManagementOptions --> CancelEvent[Cancel Event]
+    
+    %% Edit Event Process
+    EditEvent --> LoadEventData[Load Current Event Data]
+    LoadEventData --> EditEventForm[Edit Event Form]
+    EditEventForm --> UpdateEventDetails[Update Event Details]
+    UpdateEventDetails --> ValidateUpdates{Validate Updates?}
+    ValidateUpdates -->|No| UpdateError[Update Validation Error]
+    ValidateUpdates -->|Yes| SaveUpdates[Save Updates]
+    UpdateError --> EditEventForm
+    SaveUpdates --> NotifyChanges[Notify Registered Participants]
+    NotifyChanges --> UpdateSuccess[Event Updated Successfully]
+    
+    %% View Registrations Process
+    ViewRegistrations --> LoadRegistrations[Load Event Registrations]
+    LoadRegistrations --> RegistrationsList[Display Registrations List]
+    RegistrationsList --> RegistrationActions{Registration Actions}
+    RegistrationActions --> ExportRegistrations[Export Registration Data]
+    RegistrationActions --> ContactParticipants[Contact Participants]
+    RegistrationActions --> CheckInParticipants[Manual Check-in]
+    
+    %% Send Reminders Process
+    SendReminders --> ReminderType{Select Reminder Type}
+    ReminderType --> EmailReminder[Email Reminder]
+    ReminderType --> SMSReminder[SMS Reminder]
+    ReminderType --> BothReminders[Both Email & SMS]
+    
+    EmailReminder --> ComposeReminder[Compose Reminder Message]
+    SMSReminder --> ComposeReminder
+    BothReminders --> ComposeReminder
+    
+    ComposeReminder --> ReminderSchedule[Schedule Reminder]
+    ReminderSchedule --> SendNow[Send Now]
+    ReminderSchedule --> ScheduleLater[Schedule for Later]
+    
+    SendNow --> DispatchReminders[Dispatch Reminders]
+    ScheduleLater --> SetReminderTime[Set Reminder Time]
+    SetReminderTime --> ScheduleReminder[Schedule Reminder Job]
+    ScheduleReminder --> ReminderScheduled[Reminder Scheduled]
+    
+    DispatchReminders --> UpdateReminderLog[Update Reminder Log]
+    UpdateReminderLog --> RemindersSent[Reminders Sent Successfully]
+    
+    %% Event Check-in System
+    EventCheckin --> CheckinMethod{Check-in Method}
+    CheckinMethod --> QRCodeCheckin[QR Code Check-in]
+    CheckinMethod --> ManualCheckin[Manual Check-in]
+    CheckinMethod --> DigitalCheckin[Digital Check-in]
+    
+    QRCodeCheckin --> ScanParticipantQR[Scan Participant QR Code]
+    ScanParticipantQR --> ValidateParticipant{Valid Participant?}
+    ValidateParticipant -->|No| InvalidParticipant[Invalid Participant]
+    ValidateParticipant -->|Yes| MarkAttendance[Mark Attendance]
+    
+    ManualCheckin --> SearchParticipant[Search Participant]
+    SearchParticipant --> SelectParticipant[Select Participant]
+    SelectParticipant --> MarkAttendance
+    
+    DigitalCheckin --> ParticipantLogin[Participant Self Check-in]
+    ParticipantLogin --> VerifyIdentity[Verify Identity]
+    VerifyIdentity --> MarkAttendance
+    
+    MarkAttendance --> UpdateAttendanceRecord[Update Attendance Record]
+    UpdateAttendanceRecord --> CheckinComplete[Check-in Complete]
+    
+    %% Announcements & Landing Page
+    EventAnnouncements --> LoadAnnouncements[Load Event Announcements]
+    LoadAnnouncements --> AnnouncementsList[Display Announcements]
+    AnnouncementsList --> CreateAnnouncement[Create New Announcement]
+    AnnouncementsList --> ViewAnnouncement[View Announcement Details]
+    
+    CreateAnnouncement --> AnnouncementForm[Fill Announcement Details]
+    AnnouncementForm --> AnnouncementTitle[Announcement Title]
+    AnnouncementTitle --> AnnouncementContent[Announcement Content]
+    AnnouncementContent --> AnnouncementPriority[Set Priority Level]
+    AnnouncementPriority --> TargetAudience[Select Target Audience]
+    TargetAudience --> PublishAnnouncement[Publish Announcement]
+    PublishAnnouncement --> UpdateLandingPage2[Update Landing Page]
+    UpdateLandingPage2 --> NotifySubscribers[Notify Subscribers]
+    NotifySubscribers --> AnnouncementPublished[Announcement Published]
+    
+    %% Date Tracking & Analytics
+    EventCreated --> EventAnalytics[Update Event Analytics]
+    RegistrationSuccess --> RegistrationAnalytics[Update Registration Analytics]
+    CheckinComplete --> AttendanceAnalytics[Update Attendance Analytics]
+    
+    EventAnalytics --> TrackEventCreation[Track Event Creation Trends]
+    RegistrationAnalytics --> TrackRegistrationRates[Track Registration Rates]
+    AttendanceAnalytics --> TrackAttendanceRates[Track Attendance Rates]
+    
+    TrackEventCreation --> EventInsights[Generate Event Insights]
+    TrackRegistrationRates --> EventInsights
+    TrackAttendanceRates --> EventInsights
+    
+    EventInsights --> PopularEventTypes[Identify Popular Event Types]
+    PopularEventTypes --> OptimalScheduling[Optimal Scheduling Insights]
+    OptimalScheduling --> CapacityPlanning[Capacity Planning Recommendations]
+    
+    %% Return Paths
+    EventCreated --> EventDashboard
+    RegistrationSuccess --> EventDashboard
+    UpdateSuccess --> ManageEvents
+    RemindersSent --> ManageEvents
+    CheckinComplete --> EventCheckin
+    AnnouncementPublished --> EventAnnouncements
+    AccessDenied --> EventDashboard
+    RegistrationClosed --> EventDetails
+    EventFull --> EventDetails
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef analytics fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef management fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    
+    class Start,EventCreated,RegistrationSuccess,AnnouncementPublished startEnd
+    class CreateEvent,EventForm,RegistrationForm2,SendReminders,EventCheckin process
+    class EventAuth,CheckPermissions,RequireRegistration,CheckRegistrationOpen,CheckCapacity,ValidateRegistration decision
+    class EventCreated,RegistrationSuccess,UpdateSuccess,RemindersSent,AnnouncementPublished success
+    class AccessDenied,RegistrationClosed,EventFull,RegistrationError,InvalidParticipant error
+    class EventAnalytics,RegistrationAnalytics,AttendanceAnalytics,EventInsights analytics
+    class ManageEvents,EditEvent,ViewRegistrations,EventManagementList management
+```
+
+
+

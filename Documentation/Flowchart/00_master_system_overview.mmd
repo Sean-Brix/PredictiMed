@@ -1,0 +1,317 @@
+﻿flowchart TD
+    %% ========================================
+    %% MASTER SYSTEM FLOWCHART OVERVIEW
+    %% ========================================
+    
+    Start([PredictiMed System Access]) --> SystemAuth{System Authentication}
+    SystemAuth -->|No| LoginProcess[User Login Process]
+    SystemAuth -->|Yes| RoleBasedAccess{Role-based Access Control}
+    
+    LoginProcess --> AuthValidation[Validate Credentials]
+    AuthValidation --> AuthSuccess{Authentication Successful?}
+    AuthSuccess -->|No| AuthError[Authentication Error]
+    AuthSuccess -->|Yes| RoleBasedAccess
+    AuthError --> LoginProcess
+    
+    %% Role-based System Access
+    RoleBasedAccess --> AdminAccess{Admin Role?}
+    RoleBasedAccess --> HealthWorkerAccess{Health Worker Role?}
+    RoleBasedAccess --> ClientAccess{Client Role?}
+    
+    %% Admin Dashboard Access
+    AdminAccess -->|Yes| AdminDashboard[Admin Dashboard]
+    AdminDashboard --> AdminModules{Admin Module Access}
+    
+    AdminModules --> UserManagementModule[ðŸ‘¥ User Management Module]
+    AdminModules --> ContentManagementModule[ðŸ“ Content Management Module]
+    AdminModules --> SystemAnalyticsModule[ðŸ“Š System Analytics Module]
+    AdminModules --> LocationManagementModule[ðŸ“ Location Management Module]
+    AdminModules --> EventManagementModule[ðŸ“… Event Management Module]
+    AdminModules --> ProgramManagementModule[ðŸ¥ Health Program Management Module]
+    
+    %% Health Worker Dashboard Access
+    HealthWorkerAccess -->|Yes| HealthWorkerDashboard[Health Worker Dashboard]
+    HealthWorkerDashboard --> HealthWorkerModules{Health Worker Module Access}
+    
+    HealthWorkerModules --> PatientManagementModule[ðŸ‘¨â€âš•ï¸ Patient Management Module]
+    HealthWorkerModules --> VirtualConsultationModule[ðŸ’» Virtual Consultation Module]
+    HealthWorkerModules --> HealthProgramsModule[ðŸ¥ Health Programs Module]
+    HealthWorkerModules --> QRCodeManagementModule[ðŸ“± QR Code Management Module]
+    HealthWorkerModules --> ChatSupportModule[ðŸ’¬ Chat Support Module]
+    HealthWorkerModules --> EventCoordinationModule[ðŸ“… Event Coordination Module]
+    HealthWorkerModules --> SpotMapModule[ðŸ—ºï¸ Spot Map Module]
+    
+    %% Client Dashboard Access
+    ClientAccess -->|Yes| ClientDashboard[Client Dashboard]
+    ClientDashboard --> ClientModules{Client Module Access}
+    
+    ClientModules --> ProfileManagementModule[ðŸ‘¤ Profile Management Module]
+    ClientModules --> ConsultationBookingModule[ðŸ“… Consultation Booking Module]
+    ClientModules --> HealthRecordsModule[ðŸ“‹ Health Records Module]
+    ClientModules --> EventRegistrationModule[ðŸŽ¯ Event Registration Module]
+    ClientModules --> ProgramEnrollmentModule[ðŸ“š Program Enrollment Module]
+    ClientModules --> ChatInquiryModule[ðŸ’¬ Chat Inquiry Module]
+    ClientModules --> LocationServicesModule[ðŸ“ Location Services Module]
+    ClientModules --> QRCodeAccessModule[ðŸ“± QR Code Access Module]
+    
+    %% User Management Module Flow
+    UserManagementModule --> UserMgmtOperations{User Management Operations}
+    UserMgmtOperations --> CreateAccount[Create New Account]
+    UserMgmtOperations --> EditAccount[Edit Account Details]
+    UserMgmtOperations --> DeleteAccount[Delete Account]
+    UserMgmtOperations --> ManageRoles[Manage User Roles]
+    UserMgmtOperations --> ViewAllUsers[View All Users]
+    
+    CreateAccount --> AccountCreationFlow[ðŸ“‹ Account Creation Flow]
+    EditAccount --> AccountEditingFlow[âœï¸ Account Editing Flow]
+    DeleteAccount --> AccountDeletionFlow[ðŸ—‘ï¸ Account Deletion Flow]
+    ManageRoles --> RoleManagementFlow[ðŸ” Role Management Flow]
+    
+    %% Chat Module Flow
+    ChatInquiryModule --> ChatOperations{Chat Operations}
+    ChatSupportModule --> ChatOperations
+    
+    ChatOperations --> NewInquiry[Create New Inquiry]
+    ChatOperations --> ViewInquiries[View Inquiries]
+    ChatOperations --> FAQAccess[Access FAQ]
+    ChatOperations --> MedicalFormsChat[Medical Forms via Chat]
+    
+    NewInquiry --> InquiryFlow[ðŸ’¬ Inquiry Creation Flow]
+    ViewInquiries --> InquiryManagementFlow[ðŸ‘€ Inquiry Management Flow]
+    FAQAccess --> FAQFlow[â“ FAQ Access Flow]
+    MedicalFormsChat --> MedicalFormsFlow[ðŸ“‹ Medical Forms Flow]
+    
+    %% Virtual Consultation Module Flow
+    VirtualConsultationModule --> ConsultationOperations{Consultation Operations}
+    ConsultationBookingModule --> ConsultationOperations
+    
+    ConsultationOperations --> BookAppointment[Book Appointment]
+    ConsultationOperations --> ViewAppointments[View Appointments]
+    ConsultationOperations --> JoinConsultation[Join Virtual Consultation]
+    ConsultationOperations --> CheckSchedules[Check Available Schedules]
+    
+    BookAppointment --> AppointmentBookingFlow[ðŸ“… Appointment Booking Flow]
+    ViewAppointments --> AppointmentManagementFlow[ðŸ“‹ Appointment Management Flow]
+    JoinConsultation --> VirtualConsultationFlow[ðŸ’» Virtual Consultation Flow]
+    CheckSchedules --> ScheduleCheckingFlow[ðŸ• Schedule Checking Flow]
+    
+    %% QR Code Module Flow
+    QRCodeManagementModule --> QROperations{QR Code Operations}
+    QRCodeAccessModule --> QROperations
+    
+    QROperations --> GenerateQR[Generate QR Code]
+    QROperations --> ScanQR[Scan QR Code]
+    QROperations --> ViewQRHistory[View QR History]
+    QROperations --> ManageQRCodes[Manage QR Codes]
+    
+    GenerateQR --> QRGenerationFlow[ðŸ“± QR Generation Flow]
+    ScanQR --> QRScanningFlow[ðŸ“· QR Scanning Flow]
+    ViewQRHistory --> QRHistoryFlow[ðŸ“Š QR History Flow]
+    ManageQRCodes --> QRManagementFlow[âš™ï¸ QR Management Flow]
+    
+    %% Events & Seminars Module Flow
+    EventManagementModule --> EventOperations{Event Operations}
+    EventCoordinationModule --> EventOperations
+    EventRegistrationModule --> EventOperations
+    
+    EventOperations --> CreateEvent[Create Event/Seminar]
+    EventOperations --> ManageEvent[Manage Events]
+    EventOperations --> RegisterForEvent[Register for Event]
+    EventOperations --> ViewEvents[View All Events]
+    EventOperations --> EventAnnouncements[Event Announcements]
+    
+    CreateEvent --> EventCreationFlow[ðŸ“… Event Creation Flow]
+    ManageEvent --> EventManagementFlow[âš™ï¸ Event Management Flow]
+    RegisterForEvent --> EventRegistrationFlow[ðŸŽ¯ Event Registration Flow]
+    ViewEvents --> EventBrowsingFlow[ðŸ‘€ Event Browsing Flow]
+    EventAnnouncements --> AnnouncementFlow[ðŸ“¢ Announcement Flow]
+    
+    %% Health Programs Module Flow
+    ProgramManagementModule --> ProgramOperations{Program Operations}
+    HealthProgramsModule --> ProgramOperations
+    ProgramEnrollmentModule --> ProgramOperations
+    
+    ProgramOperations --> CreateProgram[Create Health Program]
+    ProgramOperations --> ManageProgram[Manage Programs]
+    ProgramOperations --> EnrollInProgram[Enroll in Program]
+    ProgramOperations --> ViewPrograms[Browse Programs]
+    ProgramOperations --> ProgramReminders[Program Reminders]
+    
+    CreateProgram --> ProgramCreationFlow[ðŸ¥ Program Creation Flow]
+    ManageProgram --> ProgramManagementFlow[âš™ï¸ Program Management Flow]
+    EnrollInProgram --> ProgramEnrollmentFlow[ðŸ“š Program Enrollment Flow]
+    ViewPrograms --> ProgramBrowsingFlow[ðŸ‘€ Program Browsing Flow]
+    ProgramReminders --> ReminderSystemFlow[ðŸ“± Reminder System Flow]
+    
+    %% Spot Map Module Flow
+    SpotMapModule --> MapOperations{Map Operations}
+    LocationServicesModule --> MapOperations
+    LocationManagementModule --> MapOperations
+    
+    MapOperations --> ViewMap[View Interactive Map]
+    MapOperations --> SearchLocations[Search Health Facilities]
+    MapOperations --> ManageLocations[Manage Locations]
+    MapOperations --> LocationAnalytics[Location Analytics]
+    
+    ViewMap --> InteractiveMapFlow[ðŸ—ºï¸ Interactive Map Flow]
+    SearchLocations --> LocationSearchFlow[ðŸ” Location Search Flow]
+    ManageLocations --> LocationManagementFlow[âš™ï¸ Location Management Flow]
+    LocationAnalytics --> LocationAnalyticsFlow[ðŸ“Š Location Analytics Flow]
+    
+    %% Content Management Module Flow
+    ContentManagementModule --> ContentOperations{Content Operations}
+    
+    ContentOperations --> ManagePages[Manage Client Pages]
+    ContentOperations --> ManageContent[Manage Content]
+    ContentOperations --> MediaLibrary[Media Library]
+    ContentOperations --> SEOManagement[SEO Management]
+    
+    ManagePages --> PageManagementFlow[ðŸ“ Page Management Flow]
+    ManageContent --> ContentEditingFlow[âœï¸ Content Editing Flow]
+    MediaLibrary --> MediaManagementFlow[ðŸ–¼ï¸ Media Management Flow]
+    SEOManagement --> SEOOptimizationFlow[ðŸ” SEO Optimization Flow]
+    
+    %% Analytics Module Flow
+    SystemAnalyticsModule --> AnalyticsOperations{Analytics Operations}
+    
+    AnalyticsOperations --> ViewTrends[View Trends Graph]
+    AnalyticsOperations --> GenerateReports[Generate Reports]
+    AnalyticsOperations --> RecordsAnalysis[Number of Records Analysis]
+    AnalyticsOperations --> RatesAnalysis[Average Rates Analysis]
+    AnalyticsOperations --> CategoryAnalytics[Analytics per Category]
+    
+    ViewTrends --> TrendsAnalysisFlow[ðŸ“ˆ Trends Analysis Flow]
+    GenerateReports --> ReportGenerationFlow[ðŸ“Š Report Generation Flow]
+    RecordsAnalysis --> RecordsAnalyticsFlow[ðŸ”¢ Records Analytics Flow]
+    RatesAnalysis --> RatesAnalysisFlow[ðŸ“Š Rates Analysis Flow]
+    CategoryAnalytics --> CategoryAnalyticsFlow[ðŸ“‹ Category Analytics Flow]
+    
+    %% Profile Management Flow
+    ProfileManagementModule --> ProfileOperations{Profile Operations}
+    HealthRecordsModule --> ProfileOperations
+    
+    ProfileOperations --> ViewProfile[View My Profile]
+    ProfileOperations --> EditProfile[Edit Profile Details]
+    ProfileOperations --> HealthRecords[View Health Records]
+    ProfileOperations --> MedicalHistory[Medical History]
+    
+    ViewProfile --> ProfileViewFlow[ðŸ‘¤ Profile View Flow]
+    EditProfile --> ProfileEditFlow[âœï¸ Profile Edit Flow]
+    HealthRecords --> HealthRecordsFlow[ðŸ“‹ Health Records Flow]
+    MedicalHistory --> MedicalHistoryFlow[ðŸ¥ Medical History Flow]
+    
+    %% Cross-Module Integrations
+    %% QR Code Integration Points
+    QRGenerationFlow --> MedicalFormsIntegration[ðŸ”— Medical Forms Integration]
+    QRGenerationFlow --> AppointmentIntegration[ðŸ”— Appointment Integration]
+    QRGenerationFlow --> EventIntegration[ðŸ”— Event Integration]
+    QRGenerationFlow --> ProgramIntegration[ðŸ”— Program Integration]
+    
+    %% Reminder System Integration Points
+    ReminderSystemFlow --> SMSEmailIntegration[ðŸ“± SMS/Email Integration]
+    ReminderSystemFlow --> AppNotificationIntegration[ðŸ“² App Notification Integration]
+    
+    %% Analytics Integration Points
+    TrendsAnalysisFlow --> DataAggregationService[ðŸ”„ Data Aggregation Service]
+    ReportGenerationFlow --> DataAggregationService
+    RecordsAnalyticsFlow --> DataAggregationService
+    RatesAnalysisFlow --> DataAggregationService
+    CategoryAnalyticsFlow --> DataAggregationService
+    
+    DataAggregationService --> UserDataCollection[ðŸ‘¥ User Data Collection]
+    DataAggregationService --> ConsultationDataCollection[ðŸ’» Consultation Data Collection]
+    DataAggregationService --> EventDataCollection[ðŸ“… Event Data Collection]
+    DataAggregationService --> ProgramDataCollection[ðŸ¥ Program Data Collection]
+    DataAggregationService --> QRDataCollection[ðŸ“± QR Code Data Collection]
+    DataAggregationService --> ChatDataCollection[ðŸ’¬ Chat Data Collection]
+    DataAggregationService --> LocationDataCollection[ðŸ“ Location Data Collection]
+    DataAggregationService --> ContentDataCollection[ðŸ“ Content Data Collection]
+    
+    %% System-wide Features
+    %% Notification System
+    SMSEmailIntegration --> NotificationHub[ðŸ“¢ Central Notification Hub]
+    AppNotificationIntegration --> NotificationHub
+    
+    NotificationHub --> AppointmentNotifications[ðŸ“… Appointment Notifications]
+    NotificationHub --> EventNotifications[ðŸ“… Event Notifications]
+    NotificationHub --> ProgramNotifications[ðŸ¥ Program Notifications]
+    NotificationHub --> SystemNotifications[âš™ï¸ System Notifications]
+    NotificationHub --> EmergencyNotifications[ðŸš¨ Emergency Notifications]
+    
+    %% Security & Privacy Layer
+    AccountCreationFlow --> SecurityValidation[ðŸ”’ Security Validation]
+    AccountEditingFlow --> SecurityValidation
+    VirtualConsultationFlow --> SecurityValidation
+    QRGenerationFlow --> SecurityValidation
+    MedicalFormsFlow --> SecurityValidation
+    
+    SecurityValidation --> DataEncryption[ðŸ” Data Encryption]
+    SecurityValidation --> AccessControl[ðŸ”‘ Access Control]
+    SecurityValidation --> AuditLogging[ðŸ“‹ Audit Logging]
+    SecurityValidation --> PrivacyCompliance[ðŸ›¡ï¸ Privacy Compliance]
+    
+    %% Data Storage & Management
+    DataEncryption --> DatabaseOperations[ðŸ—„ï¸ Database Operations]
+    DatabaseOperations --> UserDataStorage[ðŸ‘¥ User Data Storage]
+    DatabaseOperations --> MedicalDataStorage[ðŸ¥ Medical Data Storage]
+    DatabaseOperations --> AnalyticsDataStorage[ðŸ“Š Analytics Data Storage]
+    DatabaseOperations --> MediaDataStorage[ðŸ–¼ï¸ Media Data Storage]
+    DatabaseOperations --> LogDataStorage[ðŸ“‹ Log Data Storage]
+    
+    %% System Performance & Monitoring
+    AuditLogging --> SystemMonitoring[ðŸ“Š System Monitoring]
+    SystemMonitoring --> PerformanceMetrics[âš¡ Performance Metrics]
+    SystemMonitoring --> HealthChecks[ðŸ©º System Health Checks]
+    SystemMonitoring --> ErrorTracking[ðŸ› Error Tracking]
+    SystemMonitoring --> ResourceMonitoring[ðŸ’¾ Resource Monitoring]
+    
+    %% Return Paths to Main Dashboard
+    AccountCreationFlow --> AdminDashboard
+    EventCreationFlow --> AdminDashboard
+    ProgramCreationFlow --> AdminDashboard
+    ContentEditingFlow --> AdminDashboard
+    
+    VirtualConsultationFlow --> HealthWorkerDashboard
+    ProgramManagementFlow --> HealthWorkerDashboard
+    EventManagementFlow --> HealthWorkerDashboard
+    QRManagementFlow --> HealthWorkerDashboard
+    
+    AppointmentBookingFlow --> ClientDashboard
+    EventRegistrationFlow --> ClientDashboard
+    ProgramEnrollmentFlow --> ClientDashboard
+    ProfileEditFlow --> ClientDashboard
+    InquiryFlow --> ClientDashboard
+    
+    %% System Exit Points
+    AdminDashboard --> SystemLogout[ðŸšª System Logout]
+    HealthWorkerDashboard --> SystemLogout
+    ClientDashboard --> SystemLogout
+    
+    SystemLogout --> SessionCleanup[ðŸ§¹ Session Cleanup]
+    SessionCleanup --> SecurityAudit[ðŸ”’ Security Audit]
+    SecurityAudit --> SystemExit[ðŸ‘‹ System Exit]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+    classDef dashboard fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef adminModule fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef healthWorkerModule fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef clientModule fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef security fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef integration fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef flow fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef system fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    
+    class Start,SystemExit startEnd
+    class AdminDashboard,HealthWorkerDashboard,ClientDashboard dashboard
+    class UserManagementModule,ContentManagementModule,SystemAnalyticsModule,LocationManagementModule,EventManagementModule,ProgramManagementModule adminModule
+    class PatientManagementModule,VirtualConsultationModule,HealthProgramsModule,QRCodeManagementModule,ChatSupportModule,EventCoordinationModule,SpotMapModule healthWorkerModule
+    class ProfileManagementModule,ConsultationBookingModule,HealthRecordsModule,EventRegistrationModule,ProgramEnrollmentModule,ChatInquiryModule,LocationServicesModule,QRCodeAccessModule clientModule
+    class SecurityValidation,DataEncryption,AccessControl,AuditLogging,PrivacyCompliance security
+    class MedicalFormsIntegration,AppointmentIntegration,EventIntegration,ProgramIntegration,SMSEmailIntegration,AppNotificationIntegration integration
+    class AccountCreationFlow,EventCreationFlow,ProgramCreationFlow,VirtualConsultationFlow,QRGenerationFlow,TrendsAnalysisFlow flow
+    ```
+```
+
+
+

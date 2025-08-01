@@ -1,0 +1,93 @@
+﻿flowchart TD
+    %% ========================================
+    %% USER AUTHENTICATION & ACCOUNT MANAGEMENT FLOW
+    %% ========================================
+    
+    A[ðŸ‘¤ User Access System] --> B{Account Exists?}
+    
+    %% Registration Flow
+    B -->|No| C[ðŸ“ Register New Account]
+    C --> C1[Enter Email & Password]
+    C1 --> C2[Choose Role: Patient/Health Worker]
+    C2 --> C3[ðŸ“§ Email Verification]
+    C3 --> C4{Email Verified?}
+    C4 -->|Yes| C5[âœ… Account Created]
+    C4 -->|No| C6[âŒ Registration Failed]
+    C6 --> C1
+    C5 --> D[ðŸ  Create User Profile]
+    
+    %% Login Flow
+    B -->|Yes| E[ðŸ” Login]
+    E --> E1[Enter Credentials]
+    E1 --> E2{Valid Credentials?}
+    E2 -->|No| E3[âŒ Login Failed]
+    E3 --> E1
+    E2 -->|Yes| E4[âœ… Login Successful]
+    E4 --> F{Profile Complete?}
+    
+    %% Profile Setup
+    D --> D1[ðŸ“‹ Basic Information]
+    D1 --> D2[ðŸ“ Address & Contact]
+    D2 --> D3[ðŸ¥ Health Details]
+    D3 --> D4[ðŸ’¾ Save Profile]
+    D4 --> G[Dashboard Access]
+    
+    F -->|No| D
+    F -->|Yes| G
+    
+    %% Role-Based Dashboard Access
+    G --> H{User Role?}
+    H -->|Admin| I[ðŸ‘¨â€âš•ï¸ Admin Dashboard]
+    H -->|Health Worker| J[ðŸ¥ Health Worker Dashboard]
+    H -->|Patient| K[ðŸ§‘â€ðŸ¤â€ðŸ§‘ Patient Dashboard]
+    
+    %% Admin Capabilities
+    I --> I1[ðŸ‘¥ Manage All Users]
+    I --> I2[ðŸ“Š System Analytics]
+    I --> I3[âš™ï¸ System Configuration]
+    I --> I4[ðŸ—ƒï¸ Data Management]
+    
+    %% Health Worker Capabilities
+    J --> J1[ðŸ‘¨â€ðŸ‘©â€ðŸ‘§â€ðŸ‘¦ Family Management]
+    J --> J2[ðŸ¤± Maternal Health]
+    J --> J3[ðŸ’‰ Immunizations]
+    J --> J4[ðŸ“ˆ Health Monitoring]
+    J --> J5[ðŸ¥ Healthcare Services]
+    J --> J6[ðŸ“… Events & Programs]
+    
+    %% Patient Capabilities
+    K --> K1[ðŸ‘€ View Health Records]
+    K --> K2[ðŸ“… Schedule Appointments]
+    K --> K3[ðŸŽ« Register for Events]
+    K --> K4[ðŸ“‹ Complete Surveys]
+    K --> K5[ðŸ’¬ Submit Inquiries]
+    
+    %% Account Management Features
+    I1 --> AM1[Create Health Worker Accounts]
+    I1 --> AM2[Activate/Deactivate Users]
+    I1 --> AM3[Reset Passwords]
+    I1 --> AM4[Manage Roles & Permissions]
+    
+    AM1 --> AM1A[Assign Health Worker Role]
+    AM1A --> AM1B[Set Contact Information]
+    AM1B --> AM1C[Upload Digital Signature]
+    AM1C --> AM1D[âœ… Health Worker Active]
+    
+    %% Profile Picture Management
+    D1 --> PP1[ðŸ“¸ Upload Profile Picture]
+    PP1 --> PP2{Valid Image?}
+    PP2 -->|Yes| PP3[ðŸ’¾ Save Picture URL]
+    PP2 -->|No| PP4[Use Default Picture]
+    PP3 --> D2
+    PP4 --> D2
+    
+    style A fill:#e1f5fe
+    style I fill:#f3e5f5
+    style J fill:#e8f5e8
+    style K fill:#fff3e0
+    style C5 fill:#e8f5e8
+    style E4 fill:#e8f5e8
+    style AM1D fill:#e8f5e8
+
+
+

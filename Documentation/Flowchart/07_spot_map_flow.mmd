@@ -1,0 +1,353 @@
+﻿flowchart TD
+    %% ========================================
+    %% SPOT MAP & LOCATION SERVICES FLOWCHART
+    %% ========================================
+    
+    Start([Access Spot Map]) --> MapAuth{User Authenticated?}
+    MapAuth -->|No| LoginRequired[Redirect to Login]
+    MapAuth -->|Yes| MapDashboard[Spot Map Dashboard]
+    
+    %% Dashboard Options
+    MapDashboard --> ViewMap[View Interactive Map]
+    MapDashboard --> ManageLocations[Manage Health Facility Locations]
+    MapDashboard --> SearchLocations[Search Health Facilities]
+    MapDashboard --> ScheduleSearch[Search Available Schedules]
+    MapDashboard --> LocationAnalytics[Location Analytics]
+    
+    %% View Interactive Map
+    ViewMap --> LoadMapInterface[Load Interactive Map Interface]
+    LoadMapInterface --> LoadHealthFacilities[Load Health Facilities Data]
+    LoadHealthFacilities --> DisplayMapMarkers[Display Facility Markers on Map]
+    
+    DisplayMapMarkers --> UserInteraction{User Map Interaction}
+    UserInteraction --> HoverMarker[Hover Over Marker]
+    UserInteraction --> ClickMarker[Click on Marker]
+    UserInteraction --> ZoomMap[Zoom Map Area]
+    UserInteraction --> PanMap[Pan Map View]
+    UserInteraction --> FilterMarkers[Filter Map Markers]
+    
+    %% Tooltip Display (Minor Details)
+    HoverMarker --> ShowTooltip[Show Facility Tooltip]
+    ShowTooltip --> TooltipContent[Display Minor Details]
+    TooltipContent --> FacilityName[Facility Name]
+    TooltipContent --> FacilityType[Facility Type]
+    TooltipContent --> OperatingHours[Operating Hours]
+    TooltipContent --> ContactInfo[Contact Information]
+    TooltipContent --> AvailabilityStatus[Current Availability Status]
+    
+    FacilityName --> TooltipVisible[Tooltip Visible]
+    FacilityType --> TooltipVisible
+    OperatingHours --> TooltipVisible
+    ContactInfo --> TooltipVisible
+    AvailabilityStatus --> TooltipVisible
+    
+    %% Expanded Details Selection
+    ClickMarker --> SelectForExpansion[Select for Expanded Details]
+    SelectForExpansion --> LoadFacilityDetails[Load Complete Facility Details]
+    LoadFacilityDetails --> ExpandedDetailsPanel[Expanded Details Panel]
+    
+    ExpandedDetailsPanel --> DetailedInformation[Detailed Information Display]
+    DetailedInformation --> FacilityOverview[Facility Overview]
+    DetailedInformation --> ServicesOffered[Services Offered]
+    DetailedInformation --> StaffInformation[Staff Information]
+    DetailedInformation --> EquipmentAvailable[Equipment Available]
+    DetailedInformation --> ScheduleInformation[Schedule Information]
+    DetailedInformation --> AnalyticsData[Analytics Data]
+    
+    %% Facility Overview Section
+    FacilityOverview --> FacilityAddress[Complete Address]
+    FacilityOverview --> FacilityDescription[Facility Description]
+    FacilityOverview --> FacilityCapacity[Facility Capacity]
+    FacilityOverview --> AccreditationInfo[Accreditation Information]
+    FacilityOverview --> InsuranceAccepted[Insurance Plans Accepted]
+    
+    %% Services Offered Section
+    ServicesOffered --> ServiceCategories[Service Categories]
+    ServiceCategories --> PrimaryHealthcare[Primary Healthcare Services]
+    ServiceCategories --> SpecialtyServices[Specialty Services]
+    ServiceCategories --> EmergencyServices[Emergency Services]
+    ServiceCategories --> PreventiveServices[Preventive Services]
+    ServiceCategories --> LaboratoryServices[Laboratory Services]
+    ServiceCategories --> ImagingServices[Imaging Services]
+    
+    PrimaryHealthcare --> ServiceDetails[Service Details & Availability]
+    SpecialtyServices --> ServiceDetails
+    EmergencyServices --> ServiceDetails
+    PreventiveServices --> ServiceDetails
+    LaboratoryServices --> ServiceDetails
+    ImagingServices --> ServiceDetails
+    
+    %% Staff Information Section
+    StaffInformation --> StaffList[Staff Members List]
+    StaffList --> DoctorProfiles[Doctor Profiles]
+    StaffList --> NurseProfiles[Nurse Profiles]
+    StaffList --> SpecialistProfiles[Specialist Profiles]
+    StaffList --> TechnicalStaff[Technical Staff]
+    
+    DoctorProfiles --> StaffDetails[Staff Details & Credentials]
+    NurseProfiles --> StaffDetails
+    SpecialistProfiles --> StaffDetails
+    TechnicalStaff --> StaffDetails
+    
+    StaffDetails --> Qualifications[Qualifications & Certifications]
+    StaffDetails --> Specializations[Areas of Specialization]
+    StaffDetails --> Languages[Languages Spoken]
+    StaffDetails --> AvailableHours[Available Hours]
+    
+    %% Availability Schedule Section
+    ScheduleInformation --> AvailabilityCalendar[Availability Calendar Display]
+    AvailabilityCalendar --> CurrentAvailability[Current Availability Status]
+    AvailabilityCalendar --> UpcomingSlots[Upcoming Available Slots]
+    AvailabilityCalendar --> BookedSlots[Booked/Unavailable Slots]
+    AvailabilityCalendar --> SpecialSchedules[Special Schedules/Holidays]
+    
+    CurrentAvailability --> RealTimeStatus[Real-time Status Updates]
+    RealTimeStatus --> OpenStatus[Currently Open]
+    RealTimeStatus --> ClosedStatus[Currently Closed]
+    RealTimeStatus --> BusyStatus[Currently Busy]
+    RealTimeStatus --> EmergencyOnlyStatus[Emergency Only]
+    
+    UpcomingSlots --> SlotDetails[Available Slot Details]
+    SlotDetails --> TimeSlots[Available Time Slots]
+    SlotDetails --> ServiceTypes[Available Service Types]
+    SlotDetails --> StaffAvailability[Staff Availability]
+    SlotDetails --> BookingOptions[Booking Options]
+    
+    %% Analytics Data Section
+    AnalyticsData --> FacilityMetrics[Facility Performance Metrics]
+    FacilityMetrics --> PatientVolume[Patient Volume Statistics]
+    FacilityMetrics --> ServiceUtilization[Service Utilization Rates]
+    FacilityMetrics --> WaitTimes[Average Wait Times]
+    FacilityMetrics --> PatientSatisfaction[Patient Satisfaction Scores]
+    FacilityMetrics --> CapacityUtilization[Capacity Utilization]
+    
+    PatientVolume --> VolumeCharts[Volume Trend Charts]
+    ServiceUtilization --> UtilizationGraphs[Utilization Graphs]
+    WaitTimes --> WaitTimeAnalytics[Wait Time Analytics]
+    PatientSatisfaction --> SatisfactionReports[Satisfaction Reports]
+    CapacityUtilization --> CapacityReports[Capacity Analysis Reports]
+    
+    %% Map Filtering Options
+    FilterMarkers --> FilterOptions{Filter Options}
+    FilterOptions --> FilterByType[Filter by Facility Type]
+    FilterOptions --> FilterByServices[Filter by Services]
+    FilterOptions --> FilterByAvailability[Filter by Availability]
+    FilterOptions --> FilterByDistance[Filter by Distance]
+    FilterOptions --> FilterByRating[Filter by Rating]
+    
+    FilterByType --> FacilityTypeFilter[Select Facility Types]
+    FacilityTypeFilter --> Hospital[Hospitals]
+    FacilityTypeFilter --> Clinic[Clinics]
+    FacilityTypeFilter --> HealthCenter[Health Centers]
+    FacilityTypeFilter --> Pharmacy[Pharmacies]
+    FacilityTypeFilter --> Laboratory[Laboratories]
+    FacilityTypeFilter --> SpecialtyClinics[Specialty Clinics]
+    
+    Hospital --> ApplyFilter[Apply Filter to Map]
+    Clinic --> ApplyFilter
+    HealthCenter --> ApplyFilter
+    Pharmacy --> ApplyFilter
+    Laboratory --> ApplyFilter
+    SpecialtyClinics --> ApplyFilter
+    
+    FilterByServices --> ServiceFilter[Select Services]
+    ServiceFilter --> PrimaryCare[Primary Care]
+    ServiceFilter --> EmergencyCare[Emergency Care]
+    ServiceFilter --> Immunization[Immunization Services]
+    ServiceFilter --> WomenHealth[Women's Health]
+    ServiceFilter --> ChildHealth[Child Health]
+    ServiceFilter --> MentalHealth[Mental Health]
+    ServiceFilter --> ChronicCare[Chronic Care Management]
+    
+    PrimaryCare --> ApplyFilter
+    EmergencyCare --> ApplyFilter
+    Immunization --> ApplyFilter
+    WomenHealth --> ApplyFilter
+    ChildHealth --> ApplyFilter
+    MentalHealth --> ApplyFilter
+    ChronicCare --> ApplyFilter
+    
+    FilterByAvailability --> AvailabilityFilter[Availability Status Filter]
+    AvailabilityFilter --> OpenNow[Open Now]
+    AvailabilityFilter --> AvailableToday[Available Today]
+    AvailabilityFilter --> AvailableThisWeek[Available This Week]
+    AvailabilityFilter --> AcceptingNewPatients[Accepting New Patients]
+    
+    OpenNow --> ApplyFilter
+    AvailableToday --> ApplyFilter
+    AvailableThisWeek --> ApplyFilter
+    AcceptingNewPatients --> ApplyFilter
+    
+    FilterByDistance --> DistanceFilter[Distance Range Filter]
+    DistanceFilter --> Within1KM[Within 1 KM]
+    DistanceFilter --> Within5KM[Within 5 KM]
+    DistanceFilter --> Within10KM[Within 10 KM]
+    DistanceFilter --> Within25KM[Within 25 KM]
+    DistanceFilter --> CustomDistance[Custom Distance]
+    
+    Within1KM --> ApplyFilter
+    Within5KM --> ApplyFilter
+    Within10KM --> ApplyFilter
+    Within25KM --> ApplyFilter
+    CustomDistance --> SetCustomDistance[Set Custom Distance Range]
+    SetCustomDistance --> ApplyFilter
+    
+    ApplyFilter --> UpdateMapDisplay[Update Map Display]
+    UpdateMapDisplay --> FilteredResults[Display Filtered Results]
+    FilteredResults --> ResultsCount[Show Results Count]
+    ResultsCount --> MapUpdated[Map Updated Successfully]
+    
+    %% Search Health Facilities
+    SearchLocations --> SearchInterface[Search Interface]
+    SearchInterface --> SearchCriteria{Search Criteria}
+    SearchCriteria --> SearchByName[Search by Facility Name]
+    SearchCriteria --> SearchByLocation[Search by Location/Address]
+    SearchCriteria --> SearchByService[Search by Service Type]
+    SearchCriteria --> AdvancedSearch[Advanced Search Options]
+    
+    SearchByName --> EnterFacilityName[Enter Facility Name]
+    SearchByLocation --> EnterLocation[Enter Location/Address]
+    SearchByService --> SelectService[Select Service Type]
+    AdvancedSearch --> AdvancedSearchForm[Advanced Search Form]
+    
+    EnterFacilityName --> ExecuteSearch[Execute Search]
+    EnterLocation --> ExecuteSearch
+    SelectService --> ExecuteSearch
+    AdvancedSearchForm --> ExecuteSearch
+    
+    ExecuteSearch --> SearchResults[Display Search Results]
+    SearchResults --> ResultsList[Search Results List]
+    ResultsList --> ResultItem[Select Result Item]
+    ResultItem --> ViewResultDetails[View Result Details]
+    ViewResultDetails --> ExpandedDetailsPanel
+    
+    %% Schedule Search Functionality
+    ScheduleSearch --> ScheduleSearchInterface[Schedule Search Interface]
+    ScheduleSearchInterface --> SearchScheduleCriteria{Schedule Search Criteria}
+    SearchScheduleCriteria --> SearchByDate[Search by Date]
+    SearchScheduleCriteria --> SearchByTimeRange[Search by Time Range]
+    SearchScheduleCriteria --> SearchByProvider[Search by Healthcare Provider]
+    SearchScheduleCriteria --> SearchByServiceType[Search by Service Type]
+    
+    SearchByDate --> SelectDate[Select Preferred Date]
+    SearchByTimeRange --> SelectTimeRange[Select Time Range]
+    SearchByProvider --> SelectProvider[Select Healthcare Provider]
+    SearchByServiceType --> SelectServiceType[Select Service Type]
+    
+    SelectDate --> ExecuteScheduleSearch[Execute Schedule Search]
+    SelectTimeRange --> ExecuteScheduleSearch
+    SelectProvider --> ExecuteScheduleSearch
+    SelectServiceType --> ExecuteScheduleSearch
+    
+    ExecuteScheduleSearch --> AvailableSchedules[Display Available Schedules]
+    AvailableSchedules --> ScheduleResults[Schedule Search Results]
+    ScheduleResults --> BookingOptions2[Available Booking Options]
+    BookingOptions2 --> DirectBooking[Direct Booking]
+    BookingOptions2 --> RequestAppointment[Request Appointment]
+    BookingOptions2 --> CallToSchedule[Call to Schedule]
+    
+    %% Manage Locations (Admin/Staff)
+    ManageLocations --> CheckManagePermissions{Manage Permission?}
+    CheckManagePermissions -->|No| AccessDenied[Access Denied]
+    CheckManagePermissions -->|Yes| LocationManagement[Location Management Panel]
+    
+    LocationManagement --> ManagementOptions{Management Options}
+    ManagementOptions --> AddNewLocation[Add New Health Facility]
+    ManagementOptions --> EditExistingLocation[Edit Existing Facility]
+    ManagementOptions --> UpdateSchedules[Update Facility Schedules]
+    ManagementOptions --> ManageServices[Manage Available Services]
+    ManagementOptions --> UpdateStaffInfo[Update Staff Information]
+    ManagementOptions --> LocationReports[Generate Location Reports]
+    
+    %% Add New Location
+    AddNewLocation --> NewLocationForm[New Facility Registration Form]
+    NewLocationForm --> BasicFacilityInfo[Basic Facility Information]
+    BasicFacilityInfo --> LocationDetails[Location & Contact Details]
+    LocationDetails --> ServicesConfiguration[Services Configuration]
+    ServicesConfiguration --> StaffConfiguration[Staff Configuration]
+    StaffConfiguration --> ScheduleConfiguration[Schedule Configuration]
+    ScheduleConfiguration --> ValidateLocationData[Validate Location Data]
+    ValidateLocationData --> SaveNewLocation[Save New Location]
+    SaveNewLocation --> LocationAdded[Location Added Successfully]
+    
+    %% Update Schedules
+    UpdateSchedules --> SelectLocationToUpdate[Select Location to Update]
+    SelectLocationToUpdate --> CurrentScheduleView[View Current Schedule]
+    CurrentScheduleView --> ScheduleModification[Schedule Modification Options]
+    ScheduleModification --> AddNewSchedule[Add New Schedule]
+    ScheduleModification --> ModifyExistingSchedule[Modify Existing Schedule]
+    ScheduleModification --> RemoveSchedule[Remove Schedule]
+    ScheduleModification --> SetHolidays[Set Holiday Schedules]
+    
+    AddNewSchedule --> ScheduleDetailsForm[Schedule Details Form]
+    ModifyExistingSchedule --> ScheduleDetailsForm
+    SetHolidays --> HolidayScheduleForm[Holiday Schedule Form]
+    
+    ScheduleDetailsForm --> SaveScheduleChanges[Save Schedule Changes]
+    HolidayScheduleForm --> SaveScheduleChanges
+    SaveScheduleChanges --> ScheduleUpdated[Schedule Updated Successfully]
+    
+    %% Location Analytics
+    LocationAnalytics --> AnalyticsOptions{Analytics Options}
+    AnalyticsOptions --> UsageAnalytics[Location Usage Analytics]
+    AnalyticsOptions --> PopularityAnalytics[Facility Popularity Analytics]
+    AnalyticsOptions --> ServiceDemand[Service Demand Analytics]
+    AnalyticsOptions --> GeographicAnalytics[Geographic Distribution Analytics]
+    AnalyticsOptions --> PerformanceMetrics[Performance Metrics]
+    
+    UsageAnalytics --> UsageReports[Generate Usage Reports]
+    PopularityAnalytics --> PopularityReports[Generate Popularity Reports]
+    ServiceDemand --> DemandReports[Generate Demand Reports]
+    GeographicAnalytics --> GeographicReports[Generate Geographic Reports]
+    PerformanceMetrics --> PerformanceReports[Generate Performance Reports]
+    
+    UsageReports --> ExportAnalytics[Export Analytics Data]
+    PopularityReports --> ExportAnalytics
+    DemandReports --> ExportAnalytics
+    GeographicReports --> ExportAnalytics
+    PerformanceReports --> ExportAnalytics
+    
+    ExportAnalytics --> AnalyticsExported[Analytics Data Exported]
+    
+    %% Real-time Updates
+    RealTimeStatus --> StatusUpdateSystem[Real-time Status Update System]
+    StatusUpdateSystem --> MonitorFacilityStatus[Monitor Facility Status]
+    MonitorFacilityStatus --> AutoStatusUpdates[Automatic Status Updates]
+    AutoStatusUpdates --> NotifyStatusChanges[Notify Status Changes]
+    NotifyStatusChanges --> UpdateMapMarkers[Update Map Markers]
+    UpdateMapMarkers --> BroadcastUpdates[Broadcast Updates to Users]
+    
+    %% Return Paths
+    TooltipVisible --> UserInteraction
+    MapUpdated --> ViewMap
+    DirectBooking --> ScheduleSearch
+    LocationAdded --> ManageLocations
+    ScheduleUpdated --> ManageLocations
+    AnalyticsExported --> LocationAnalytics
+    AccessDenied --> MapDashboard
+    MapUpdated --> MapDashboard
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef analytics fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef map fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef schedule fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef location fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+    
+    class Start,LocationAdded,ScheduleUpdated,AnalyticsExported startEnd
+    class ViewMap,LoadMapInterface,SearchLocations,ManageLocations,UpdateSchedules process
+    class MapAuth,UserInteraction,FilterOptions,SearchCriteria,CheckManagePermissions,AnalyticsOptions decision
+    class LocationAdded,ScheduleUpdated,MapUpdated,AnalyticsExported success
+    class AccessDenied,LoginRequired error
+    class AnalyticsData,LocationAnalytics,UsageAnalytics,PerformanceMetrics analytics
+    class DisplayMapMarkers,ShowTooltip,ExpandedDetailsPanel,UpdateMapDisplay map
+    class ScheduleInformation,AvailabilityCalendar,ScheduleSearch,AvailableSchedules schedule
+    class FacilityOverview,LocationDetails,ManageServices,NewLocationForm location
+```
+
+
+

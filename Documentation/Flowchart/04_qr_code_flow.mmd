@@ -1,0 +1,213 @@
+﻿flowchart TD
+    %% ========================================
+    %% QR CODE GENERATION FLOWCHART
+    %% ========================================
+    
+    Start([QR Code Request]) --> QRAuth{User Authenticated?}
+    QRAuth -->|No| LoginRequired[Redirect to Login]
+    QRAuth -->|Yes| QRDashboard[QR Code Management Dashboard]
+    
+    %% QR Dashboard Options
+    QRDashboard --> GenerateNew[Generate New QR Code]
+    QRDashboard --> ViewExisting[View Existing QR Codes]
+    QRDashboard --> ScanQR[Scan QR Code]
+    QRDashboard --> QRHistory[QR Code History]
+    
+    %% Generate New QR Code Process
+    GenerateNew --> SelectFormType{Select Medical Form Type}
+    SelectFormType --> HealthHistory[Health History Form]
+    SelectFormType --> ImmunizationRecord[Immunization Record]
+    SelectFormType --> ConsultationForm[Consultation Form]
+    SelectFormType --> ScreeningForm[Health Screening Form]
+    SelectFormType --> PrescriptionForm[Prescription Form]
+    SelectFormType --> AppointmentForm[Appointment Form]
+    SelectFormType --> LabResults[Laboratory Results]
+    
+    %% Health History QR Generation
+    HealthHistory --> HealthHistoryData[Retrieve Health History Data]
+    HealthHistoryData --> ValidateHealthData{Data Complete?}
+    ValidateHealthData -->|No| IncompleteData[Incomplete Health Data]
+    ValidateHealthData -->|Yes| GenerateHealthQR[Generate Health History QR]
+    IncompleteData --> UpdateHealthData[Update Health Data First]
+    UpdateHealthData --> HealthHistoryData
+    
+    %% Immunization QR Generation
+    ImmunizationRecord --> ImmunizationData[Retrieve Immunization Records]
+    ImmunizationData --> ValidateImmunData{Immunization Records Valid?}
+    ValidateImmunData -->|No| MissingImmunData[Missing Immunization Data]
+    ValidateImmunData -->|Yes| GenerateImmunQR[Generate Immunization QR]
+    MissingImmunData --> UpdateImmunData[Update Immunization Records]
+    UpdateImmunData --> ImmunizationData
+    
+    %% Consultation QR Generation
+    ConsultationForm --> ConsultationData[Retrieve Consultation Info]
+    ConsultationData --> ValidateConsultData{Consultation Data Valid?}
+    ValidateConsultData -->|No| IncompleteConsult[Incomplete Consultation Data]
+    ValidateConsultData -->|Yes| GenerateConsultQR[Generate Consultation QR]
+    IncompleteConsult --> UpdateConsultData[Update Consultation Info]
+    UpdateConsultData --> ConsultationData
+    
+    %% Screening QR Generation
+    ScreeningForm --> ScreeningData[Retrieve Screening Results]
+    ScreeningData --> ValidateScreeningData{Screening Data Complete?}
+    ValidateScreeningData -->|No| IncompleteScreening[Incomplete Screening Data]
+    ValidateScreeningData -->|Yes| GenerateScreeningQR[Generate Screening QR]
+    IncompleteScreening --> UpdateScreeningData[Update Screening Data]
+    UpdateScreeningData --> ScreeningData
+    
+    %% Prescription QR Generation
+    PrescriptionForm --> PrescriptionData[Retrieve Prescription Info]
+    PrescriptionData --> ValidatePrescription{Prescription Valid?}
+    ValidatePrescription -->|No| InvalidPrescription[Invalid/Expired Prescription]
+    ValidatePrescription -->|Yes| GeneratePrescriptionQR[Generate Prescription QR]
+    InvalidPrescription --> RequestNewPrescription[Request New Prescription]
+    RequestNewPrescription --> PrescriptionData
+    
+    %% Appointment QR Generation
+    AppointmentForm --> AppointmentData[Retrieve Appointment Details]
+    AppointmentData --> ValidateAppointment{Appointment Valid?}
+    ValidateAppointment -->|No| InvalidAppointment[Invalid/Past Appointment]
+    ValidateAppointment -->|Yes| GenerateAppointmentQR[Generate Appointment QR]
+    InvalidAppointment --> BookNewAppointment[Book New Appointment]
+    BookNewAppointment --> AppointmentData
+    
+    %% Lab Results QR Generation
+    LabResults --> LabData[Retrieve Laboratory Results]
+    LabData --> ValidateLabData{Lab Results Available?}
+    ValidateLabData -->|No| NoLabResults[No Lab Results Found]
+    ValidateLabData -->|Yes| GenerateLabQR[Generate Lab Results QR]
+    NoLabResults --> RequestLabResults[Request Lab Test]
+    RequestLabResults --> LabData
+    
+    %% QR Code Generation Process
+    GenerateHealthQR --> EncryptData[Encrypt Medical Data]
+    GenerateImmunQR --> EncryptData
+    GenerateConsultQR --> EncryptData
+    GenerateScreeningQR --> EncryptData
+    GeneratePrescriptionQR --> EncryptData
+    GenerateAppointmentQR --> EncryptData
+    GenerateLabQR --> EncryptData
+    
+    EncryptData --> GenerateQRImage[Generate QR Code Image]
+    GenerateQRImage --> SetExpiration[Set QR Code Expiration]
+    SetExpiration --> SaveQRDatabase[Save QR Code to Database]
+    SaveQRDatabase --> QRCodeReady[QR Code Generated Successfully]
+    
+    QRCodeReady --> DisplayQR[Display QR Code]
+    DisplayQR --> QROptions{QR Code Options}
+    QROptions --> DownloadQR[Download QR Code]
+    QROptions --> PrintQR[Print QR Code]
+    QROptions --> ShareQR[Share QR Code]
+    QROptions --> EmailQR[Email QR Code]
+    
+    %% View Existing QR Codes
+    ViewExisting --> LoadUserQRs[Load User's QR Codes]
+    LoadUserQRs --> QRList[Display QR Code List]
+    QRList --> FilterQRs{Filter QR Codes}
+    FilterQRs --> ActiveQRs[Active QR Codes]
+    FilterQRs --> ExpiredQRs[Expired QR Codes]
+    FilterQRs --> RecentQRs[Recent QR Codes]
+    FilterQRs --> AllQRs[All QR Codes]
+    
+    ActiveQRs --> DisplayQRList[Display Filtered QR List]
+    ExpiredQRs --> DisplayQRList
+    RecentQRs --> DisplayQRList
+    AllQRs --> DisplayQRList
+    
+    DisplayQRList --> SelectExistingQR[Select QR Code]
+    SelectExistingQR --> QRDetails[View QR Code Details]
+    QRDetails --> QRActions{Available Actions}
+    QRActions --> RegenerateQR[Regenerate QR Code]
+    QRActions --> DeleteQR[Delete QR Code]
+    QRActions --> ShareExistingQR[Share QR Code]
+    QRActions --> ViewQRData[View QR Data]
+    
+    %% Scan QR Code Process
+    ScanQR --> InitializeCamera[Initialize Camera]
+    InitializeCamera --> CameraReady{Camera Available?}
+    CameraReady -->|No| CameraError[Camera Not Available]
+    CameraReady -->|Yes| ScanInterface[QR Code Scan Interface]
+    
+    ScanInterface --> DetectQR{QR Code Detected?}
+    DetectQR -->|No| ContinueScanning[Continue Scanning]
+    DetectQR -->|Yes| ValidateQRCode[Validate QR Code]
+    ContinueScanning --> DetectQR
+    
+    ValidateQRCode --> QRValid{QR Code Valid?}
+    QRValid -->|No| InvalidQR[Invalid QR Code]
+    QRValid -->|Yes| DecryptQRData[Decrypt QR Data]
+    
+    DecryptQRData --> CheckExpiration{QR Code Expired?}
+    CheckExpiration -->|Yes| ExpiredQR[QR Code Expired]
+    CheckExpiration -->|No| DisplayQRInfo[Display QR Information]
+    
+    DisplayQRInfo --> QRDataType{Determine Data Type}
+    QRDataType --> ShowHealthHistory[Show Health History]
+    QRDataType --> ShowImmunization[Show Immunization Record]
+    QRDataType --> ShowConsultation[Show Consultation Info]
+    QRDataType --> ShowScreening[Show Screening Results]
+    QRDataType --> ShowPrescription[Show Prescription]
+    QRDataType --> ShowAppointment[Show Appointment Details]
+    QRDataType --> ShowLabResults[Show Lab Results]
+    
+    %% QR History Process
+    QRHistory --> LoadQRHistory[Load QR Code Usage History]
+    LoadQRHistory --> HistoryStats[Display Usage Statistics]
+    HistoryStats --> GenerationHistory[QR Generation History]
+    HistoryStats --> ScanHistory[QR Scan History]
+    HistoryStats --> ShareHistory[QR Share History]
+    
+    GenerationHistory --> HistoryDetails[View Detailed History]
+    ScanHistory --> HistoryDetails
+    ShareHistory --> HistoryDetails
+    
+    HistoryDetails --> ExportHistory{Export History?}
+    ExportHistory -->|Yes| ExportData[Export History Data]
+    ExportHistory -->|No| QRHistory
+    ExportData --> HistoryExported[History Exported Successfully]
+    
+    %% Security & Privacy Features
+    SaveQRDatabase --> LogQRActivity[Log QR Code Activity]
+    LogQRActivity --> UpdateAccessLog[Update Access Logs]
+    UpdateAccessLog --> SecurityCheck[Security Validation]
+    
+    SecurityCheck --> PrivacyCompliance{Privacy Compliance Check}
+    PrivacyCompliance -->|Pass| QRCodeReady
+    PrivacyCompliance -->|Fail| PrivacyError[Privacy Compliance Error]
+    PrivacyError --> ReviewPrivacy[Review Privacy Settings]
+    ReviewPrivacy --> EncryptData
+    
+    %% Return Paths
+    QRCodeReady --> QRDashboard
+    HistoryExported --> QRDashboard
+    ShowHealthHistory --> QRDashboard
+    ShowImmunization --> QRDashboard
+    ShowConsultation --> QRDashboard
+    ShowScreening --> QRDashboard
+    ShowPrescription --> QRDashboard
+    ShowAppointment --> QRDashboard
+    ShowLabResults --> QRDashboard
+    CameraError --> QRDashboard
+    InvalidQR --> ScanQR
+    ExpiredQR --> QRDashboard
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef security fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef qrcode fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    
+    class Start,QRCodeReady,HistoryExported startEnd
+    class GenerateNew,EncryptData,GenerateQRImage,ScanQR,InitializeCamera process
+    class QRAuth,SelectFormType,ValidateHealthData,QRValid,CheckExpiration,QRDataType decision
+    class QRCodeReady,HistoryExported success
+    class IncompleteData,InvalidQR,ExpiredQR,CameraError,PrivacyError error
+    class LogQRActivity,SecurityCheck,PrivacyCompliance security
+    class DisplayQR,QRDetails,DisplayQRInfo qrcode
+```
+
+
+

@@ -1,0 +1,344 @@
+﻿flowchart TD
+    %% ========================================
+    %% HEALTH PROGRAMS FLOWCHART
+    %% ========================================
+    
+    Start([Access Health Programs]) --> ProgramAuth{User Authenticated?}
+    ProgramAuth -->|No| LoginRequired[Redirect to Login]
+    ProgramAuth -->|Yes| ProgramDashboard[Health Programs Dashboard]
+    
+    %% Dashboard Options
+    ProgramDashboard --> CreateProgram[Create New Health Program]
+    ProgramDashboard --> BrowsePrograms[Browse Available Programs]
+    ProgramDashboard --> ManagePrograms[Manage My Programs]
+    ProgramDashboard --> RegisterForProgram[Register for Programs]
+    ProgramDashboard --> ProgramReports[Program Reports & Analytics]
+    
+    %% Create Health Program Process (Admin/Health Worker)
+    CreateProgram --> CheckCreatePermissions{Create Permission?}
+    CheckCreatePermissions -->|No| AccessDenied[Access Denied]
+    CheckCreatePermissions -->|Yes| ProgramForm[Health Program Creation Form]
+    
+    ProgramForm --> ProgramBasicInfo[Program Basic Information]
+    ProgramBasicInfo --> ProgramTitle[Program Title]
+    ProgramBasicInfo --> ProgramDescription[Program Description]
+    ProgramBasicInfo --> ProgramType[Program Type/Category]
+    ProgramBasicInfo --> ProgramObjectives[Program Objectives]
+    
+    ProgramType --> SelectProgramCategory{Select Program Category}
+    SelectProgramCategory --> ImmunizationProgram[Immunization Program]
+    SelectProgramCategory --> NutritionProgram[Nutrition Program]
+    SelectProgramCategory --> HealthScreening[Health Screening Program]
+    SelectProgramCategory --> HealthEducation[Health Education Program]
+    SelectProgramCategory --> MaternityProgram[Maternal Health Program]
+    SelectProgramCategory --> ChronicDiseaseProgram[Chronic Disease Management]
+    SelectProgramCategory --> CommunityHealth[Community Health Program]
+    
+    ImmunizationProgram --> ProgramDetails[Program Implementation Details]
+    NutritionProgram --> ProgramDetails
+    HealthScreening --> ProgramDetails
+    HealthEducation --> ProgramDetails
+    MaternityProgram --> ProgramDetails
+    ChronicDiseaseProgram --> ProgramDetails
+    CommunityHealth --> ProgramDetails
+    
+    ProgramDetails --> ProgramSchedule[Program Schedule & Duration]
+    ProgramSchedule --> StartDate[Program Start Date]
+    StartDate --> EndDate[Program End Date]
+    EndDate --> SessionSchedule[Session Schedule]
+    SessionSchedule --> ProgramLocation[Program Location/Venues]
+    
+    ProgramLocation --> TargetPopulation[Target Population]
+    TargetPopulation --> EligibilityCriteria[Eligibility Criteria]
+    EligibilityCriteria --> ParticipantCapacity[Participant Capacity]
+    ParticipantCapacity --> StaffRequirements[Staff Requirements]
+    
+    StaffRequirements --> ResourcesNeeded[Resources & Materials Needed]
+    ResourcesNeeded --> BudgetPlanning[Budget Planning]
+    BudgetPlanning --> MedicalForms[Associated Medical Forms]
+    
+    %% Medical Forms Configuration
+    MedicalForms --> ConfigureForms{Configure Required Forms}
+    ConfigureForms --> PreRegistrationForm[Pre-Registration Health Form]
+    ConfigureForms --> ScreeningForm[Health Screening Form]
+    ConfigureForms --> ConsentForm[Consent & Agreement Form]
+    ConfigureForms --> FollowUpForm[Follow-up Assessment Form]
+    ConfigureForms --> FeedbackForm[Program Feedback Form]
+    
+    PreRegistrationForm --> FormRequirements[Set Form Requirements]
+    ScreeningForm --> FormRequirements
+    ConsentForm --> FormRequirements
+    FollowUpForm --> FormRequirements
+    FeedbackForm --> FormRequirements
+    
+    FormRequirements --> MandatoryFields[Define Mandatory Fields]
+    MandatoryFields --> FormValidation[Set Form Validation Rules]
+    FormValidation --> RegistrationSystem[Registration System Setup]
+    
+    %% Registration System Configuration
+    RegistrationSystem --> RegistrationMethod{Registration Method}
+    RegistrationMethod --> OnlineRegistration[Online Registration]
+    RegistrationMethod --> WalkInRegistration[Walk-in Registration]
+    RegistrationMethod --> ReferralRegistration[Referral-based Registration]
+    RegistrationMethod --> MixedRegistration[Mixed Registration Methods]
+    
+    OnlineRegistration --> RegistrationSettings[Registration Settings]
+    WalkInRegistration --> RegistrationSettings
+    ReferralRegistration --> RegistrationSettings
+    MixedRegistration --> RegistrationSettings
+    
+    RegistrationSettings --> RegistrationPeriod[Set Registration Period]
+    RegistrationPeriod --> WaitlistOption[Enable Waitlist Option]
+    WaitlistOption --> ConfirmationSettings[Confirmation Settings]
+    ConfirmationSettings --> ReminderSettings[Reminder Settings Configuration]
+    
+    %% Reminder System Configuration
+    ReminderSettings --> ReminderTypes{Configure Reminder Types}
+    ReminderTypes --> SMSReminders[SMS Reminders]
+    ReminderTypes --> EmailReminders[Email Reminders]
+    ReminderTypes --> BothReminders[Both SMS & Email]
+    ReminderTypes --> AppNotifications[App Notifications]
+    
+    SMSReminders --> ReminderSchedule[Reminder Schedule Settings]
+    EmailReminders --> ReminderSchedule
+    BothReminders --> ReminderSchedule
+    AppNotifications --> ReminderSchedule
+    
+    ReminderSchedule --> PreProgramReminders[Pre-Program Reminders]
+    PreProgramReminders --> SessionReminders[Session Reminders]
+    SessionReminders --> FollowUpReminders[Follow-up Reminders]
+    FollowUpReminders --> MissedSessionReminders[Missed Session Reminders]
+    
+    MissedSessionReminders --> CustomizeMessages[Customize Reminder Messages]
+    CustomizeMessages --> ReminderFrequency[Set Reminder Frequency]
+    ReminderFrequency --> PreviewProgram[Preview Program Configuration]
+    
+    PreviewProgram --> ValidateProgram{Validate Program Setup?}
+    ValidateProgram -->|No| ProgramValidationError[Program Validation Error]
+    ValidateProgram -->|Yes| SaveProgram[Save Program to Database]
+    ProgramValidationError --> ProgramForm
+    
+    SaveProgram --> GenerateProgramQR[Generate Program QR Code]
+    GenerateProgramQR --> PublishProgram[Publish Health Program]
+    PublishProgram --> NotifyTargetPopulation[Notify Target Population]
+    NotifyTargetPopulation --> ProgramCreated[Health Program Created Successfully]
+    
+    %% Browse Available Programs
+    BrowsePrograms --> LoadAvailablePrograms[Load Available Programs]
+    LoadAvailablePrograms --> ProgramFilters{Apply Program Filters}
+    ProgramFilters --> ActivePrograms[Active Programs]
+    ProgramFilters --> UpcomingPrograms[Upcoming Programs]
+    ProgramFilters --> CategoryFilter[Filter by Category]
+    ProgramFilters --> LocationFilter[Filter by Location]
+    ProgramFilters --> EligibilityFilter[Filter by Eligibility]
+    
+    ActivePrograms --> DisplayProgramList[Display Program List]
+    UpcomingPrograms --> DisplayProgramList
+    CategoryFilter --> DisplayProgramList
+    LocationFilter --> DisplayProgramList
+    EligibilityFilter --> DisplayProgramList
+    
+    DisplayProgramList --> SelectProgram[Select Program to View]
+    SelectProgram --> ProgramDetailsView[View Program Details]
+    ProgramDetailsView --> CheckEligibility{Check Participant Eligibility}
+    
+    CheckEligibility -->|Not Eligible| EligibilityError[Not Eligible for Program]
+    CheckEligibility -->|Eligible| ProgramActions{Available Actions}
+    
+    ProgramActions --> RegisterForProgramAction[Register for Program]
+    ProgramActions --> ShareProgram[Share Program Information]
+    ProgramActions --> SaveProgram2[Save Program for Later]
+    ProgramActions --> ContactCoordinator[Contact Program Coordinator]
+    
+    %% Program Registration Process
+    RegisterForProgramAction --> CheckRegistrationOpen{Registration Open?}
+    CheckRegistrationOpen -->|No| RegistrationClosedError[Registration Period Closed]
+    CheckRegistrationOpen -->|Yes| CheckProgramCapacity{Program Capacity Available?}
+    
+    CheckProgramCapacity -->|No| ProgramFull[Program is Full]
+    CheckProgramCapacity -->|Yes| WaitlistAvailable{Waitlist Available?}
+    
+    ProgramFull --> WaitlistAvailable
+    WaitlistAvailable -->|Yes| JoinWaitlist[Join Program Waitlist]
+    WaitlistAvailable -->|No| ProgramDetailsView
+    
+    JoinWaitlist --> WaitlistForm[Fill Waitlist Information]
+    WaitlistForm --> WaitlistConfirmation[Waitlist Registration Confirmation]
+    
+    CheckProgramCapacity -->|Yes| ProgramRegistrationForm[Fill Program Registration Form]
+    ProgramRegistrationForm --> RequiredMedicalForms[Complete Required Medical Forms]
+    RequiredMedicalForms --> PersonalHealthInfo[Personal Health Information]
+    PersonalHealthInfo --> MedicalHistory[Medical History]
+    MedicalHistory --> CurrentMedications[Current Medications]
+    CurrentMedications --> Allergies[Allergies & Sensitivities]
+    Allergies --> EmergencyContactInfo[Emergency Contact Information]
+    
+    EmergencyContactInfo --> ConsentAgreement[Consent & Agreement]
+    ConsentAgreement --> ValidateRegistrationData{Validate Registration Data?}
+    ValidateRegistrationData -->|No| RegistrationDataError[Registration Data Error]
+    ValidateRegistrationData -->|Yes| SubmitRegistration[Submit Registration]
+    RegistrationDataError --> ProgramRegistrationForm
+    
+    SubmitRegistration --> ProcessRegistration[Process Registration]
+    ProcessRegistration --> SendRegistrationConfirmation[Send Registration Confirmation]
+    SendRegistrationConfirmation --> GenerateParticipantQR[Generate Participant QR Code]
+    GenerateParticipantQR --> ScheduleReminders[Schedule Program Reminders]
+    ScheduleReminders --> UpdateProgramCapacity[Update Program Capacity]
+    UpdateProgramCapacity --> ProgramRegistrationSuccess[Program Registration Successful]
+    
+    %% Manage Programs (For Program Coordinators)
+    ManagePrograms --> LoadManagedPrograms[Load Managed Programs]
+    LoadManagedPrograms --> ProgramManagementList[Display Program Management List]
+    ProgramManagementList --> SelectManagedProgram[Select Program to Manage]
+    SelectManagedProgram --> ManagementOptions{Management Options}
+    
+    ManagementOptions --> EditProgramDetails[Edit Program Details]
+    ManagementOptions --> ViewParticipants[View Participants]
+    ManagementOptions --> ParticipantCommunication[Participant Communication]
+    ManagementOptions --> AttendanceTracking[Attendance Tracking]
+    ManagementOptions --> ProgressMonitoring[Progress Monitoring]
+    ManagementOptions --> ProgramReporting[Program Reporting]
+    ManagementOptions --> SessionManagement[Session Management]
+    
+    %% View Participants
+    ViewParticipants --> LoadParticipants[Load Program Participants]
+    LoadParticipants --> ParticipantsList[Display Participants List]
+    ParticipantsList --> ParticipantActions{Participant Actions}
+    ParticipantActions --> ViewParticipantProfile[View Participant Profile]
+    ParticipantActions --> ContactParticipant[Contact Participant]
+    ParticipantActions --> UpdateParticipantStatus[Update Participant Status]
+    ParticipantActions --> ExportParticipantData[Export Participant Data]
+    
+    %% Participant Communication
+    ParticipantCommunication --> CommunicationType{Communication Type}
+    CommunicationType --> BroadcastMessage[Broadcast Message to All]
+    CommunicationType --> GroupMessage[Group Message]
+    CommunicationType --> IndividualMessage[Individual Message]
+    
+    BroadcastMessage --> ComposeBroadcast[Compose Broadcast Message]
+    GroupMessage --> SelectGroup[Select Participant Group]
+    IndividualMessage --> SelectIndividual[Select Individual Participant]
+    
+    ComposeBroadcast --> SelectCommunicationMethod[Select Communication Method]
+    SelectGroup --> ComposeGroupMessage[Compose Group Message]
+    SelectIndividual --> ComposeIndividualMessage[Compose Individual Message]
+    
+    ComposeGroupMessage --> SelectCommunicationMethod
+    ComposeIndividualMessage --> SelectCommunicationMethod
+    
+    SelectCommunicationMethod --> SendBySMS[Send by SMS]
+    SelectCommunicationMethod --> SendByEmail[Send by Email]
+    SelectCommunicationMethod --> SendByApp[Send by App Notification]
+    SelectCommunicationMethod --> SendByAll[Send by All Methods]
+    
+    SendBySMS --> DispatchCommunication[Dispatch Communication]
+    SendByEmail --> DispatchCommunication
+    SendByApp --> DispatchCommunication
+    SendByAll --> DispatchCommunication
+    
+    DispatchCommunication --> LogCommunication[Log Communication Activity]
+    LogCommunication --> CommunicationSent[Communication Sent Successfully]
+    
+    %% Attendance Tracking
+    AttendanceTracking --> AttendanceMethod{Attendance Method}
+    AttendanceMethod --> QRCodeAttendance[QR Code Attendance]
+    AttendanceMethod --> ManualAttendance[Manual Attendance]
+    AttendanceMethod --> DigitalSignIn[Digital Sign-in]
+    
+    QRCodeAttendance --> ScanParticipantQR[Scan Participant QR Code]
+    ScanParticipantQR --> ValidateParticipantQR{Valid Participant?}
+    ValidateParticipantQR -->|No| InvalidParticipantQR[Invalid Participant QR]
+    ValidateParticipantQR -->|Yes| RecordAttendance[Record Attendance]
+    
+    ManualAttendance --> AttendanceRoll[Manual Attendance Roll]
+    AttendanceRoll --> MarkParticipantAttendance[Mark Participant Attendance]
+    MarkParticipantAttendance --> RecordAttendance
+    
+    DigitalSignIn --> ParticipantSelfSignIn[Participant Self Sign-in]
+    ParticipantSelfSignIn --> VerifyParticipantIdentity[Verify Participant Identity]
+    VerifyParticipantIdentity --> RecordAttendance
+    
+    RecordAttendance --> UpdateAttendanceRecord[Update Attendance Database]
+    UpdateAttendanceRecord --> AttendanceRecorded[Attendance Recorded Successfully]
+    
+    %% Progress Monitoring
+    ProgressMonitoring --> ProgressMetrics[Define Progress Metrics]
+    ProgressMetrics --> ParticipantProgress[Track Participant Progress]
+    ParticipantProgress --> HealthOutcomes[Monitor Health Outcomes]
+    HealthOutcomes --> ComplianceTracking[Track Program Compliance]
+    ComplianceTracking --> ProgressAnalytics[Generate Progress Analytics]
+    ProgressAnalytics --> ProgressReports[Generate Progress Reports]
+    
+    %% Automated Reminder System
+    ScheduleReminders --> ReminderJobQueue[Add to Reminder Job Queue]
+    ReminderJobQueue --> ReminderProcessor[Reminder Processing System]
+    ReminderProcessor --> CheckReminderTime{Reminder Time Reached?}
+    CheckReminderTime -->|No| WaitForReminderTime[Wait for Reminder Time]
+    CheckReminderTime -->|Yes| ProcessReminder[Process Reminder]
+    
+    ProcessReminder --> LoadParticipantInfo[Load Participant Information]
+    LoadParticipantInfo --> CustomizeReminderMessage[Customize Reminder Message]
+    CustomizeReminderMessage --> SendReminder[Send Reminder]
+    SendReminder --> LogReminderActivity[Log Reminder Activity]
+    LogReminderActivity --> ReminderSent[Reminder Sent Successfully]
+    
+    ReminderSent --> UpdateReminderStatus[Update Reminder Status]
+    UpdateReminderStatus --> CheckNextReminder{More Reminders Scheduled?}
+    CheckNextReminder -->|Yes| ReminderProcessor
+    CheckNextReminder -->|No| RemindersCycleComplete[Reminders Cycle Complete]
+    
+    %% Analytics & Reporting
+    ProgramReports --> AnalyticsType{Select Analytics Type}
+    AnalyticsType --> RegistrationAnalytics[Registration Analytics]
+    AnalyticsType --> AttendanceAnalytics[Attendance Analytics]
+    AnalyticsType --> OutcomeAnalytics[Outcome Analytics]
+    AnalyticsType --> CommunicationAnalytics[Communication Analytics]
+    AnalyticsType --> ComprehensiveReport[Comprehensive Program Report]
+    
+    RegistrationAnalytics --> RegistrationTrends[Registration Trends]
+    AttendanceAnalytics --> AttendanceTrends[Attendance Trends]
+    OutcomeAnalytics --> HealthOutcomeTrends[Health Outcome Trends]
+    CommunicationAnalytics --> CommunicationEffectiveness[Communication Effectiveness]
+    ComprehensiveReport --> GenerateFullReport[Generate Full Program Report]
+    
+    RegistrationTrends --> ExportAnalytics[Export Analytics Data]
+    AttendanceTrends --> ExportAnalytics
+    HealthOutcomeTrends --> ExportAnalytics
+    CommunicationEffectiveness --> ExportAnalytics
+    GenerateFullReport --> ExportAnalytics
+    
+    ExportAnalytics --> ReportGenerated[Report Generated Successfully]
+    
+    %% Return Paths
+    ProgramCreated --> ProgramDashboard
+    ProgramRegistrationSuccess --> ProgramDashboard
+    WaitlistConfirmation --> ProgramDashboard
+    CommunicationSent --> ManagePrograms
+    AttendanceRecorded --> AttendanceTracking
+    ReportGenerated --> ProgramReports
+    AccessDenied --> ProgramDashboard
+    EligibilityError --> BrowsePrograms
+    RegistrationClosedError --> ProgramDetailsView
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef analytics fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef communication fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef medical fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    
+    class Start,ProgramCreated,ProgramRegistrationSuccess,ReportGenerated startEnd
+    class CreateProgram,ProgramForm,ProgramRegistrationForm,AttendanceTracking,ProgressMonitoring process
+    class ProgramAuth,CheckCreatePermissions,CheckEligibility,CheckRegistrationOpen,ValidateProgram,ValidateRegistrationData decision
+    class ProgramCreated,ProgramRegistrationSuccess,CommunicationSent,AttendanceRecorded,ReportGenerated success
+    class AccessDenied,EligibilityError,RegistrationClosedError,ProgramFull,RegistrationDataError error
+    class RegistrationAnalytics,AttendanceAnalytics,OutcomeAnalytics,ProgressAnalytics analytics
+    class ParticipantCommunication,SendReminder,CommunicationType communication
+    class MedicalForms,RequiredMedicalForms,HealthOutcomes medical
+```
+
+
+

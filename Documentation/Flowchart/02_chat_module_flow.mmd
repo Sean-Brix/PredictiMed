@@ -1,0 +1,139 @@
+﻿flowchart TD
+    %% ========================================
+    %% CHAT MODULE & FAQ FLOWCHART
+    %% ========================================
+    
+    Start([User Access Chat]) --> ChatAuth{User Authenticated?}
+    ChatAuth -->|No| LoginRequired[Redirect to Login]
+    ChatAuth -->|Yes| ChatDashboard[Chat Module Dashboard]
+    
+    %% Chat Dashboard Options
+    ChatDashboard --> NewInquiry[Create New Inquiry]
+    ChatDashboard --> ViewInquiries[View My Inquiries]
+    ChatDashboard --> FAQ[Browse FAQ Section]
+    ChatDashboard --> MedicalForms[Access Medical Record Forms]
+    
+    %% New Inquiry Process
+    NewInquiry --> InquiryForm[Fill Inquiry Form]
+    InquiryForm --> SelectCategory{Select Category}
+    SelectCategory --> GeneralHealth[General Health]
+    SelectCategory --> MedicalConsult[Medical Consultation]
+    SelectCategory --> AppointmentHelp[Appointment Help]
+    SelectCategory --> TechnicalSupport[Technical Support]
+    
+    GeneralHealth --> InquiryDetails[Enter Inquiry Details]
+    MedicalConsult --> InquiryDetails
+    AppointmentHelp --> InquiryDetails
+    TechnicalSupport --> InquiryDetails
+    
+    InquiryDetails --> AttachFiles{Attach Files?}
+    AttachFiles -->|Yes| FileUpload[Upload Supporting Documents]
+    AttachFiles -->|No| SubmitInquiry[Submit Inquiry]
+    FileUpload --> ValidateFiles{Valid File Types?}
+    ValidateFiles -->|No| FileError[Invalid File Type]
+    ValidateFiles -->|Yes| SubmitInquiry
+    FileError --> FileUpload
+    
+    SubmitInquiry --> SaveInquiry[Save to Database]
+    SaveInquiry --> NotifyStaff[Notify Health Workers]
+    NotifyStaff --> InquirySuccess[Inquiry Submitted Successfully]
+    InquirySuccess --> TrackInquiry[Generate Tracking Number]
+    
+    %% View Inquiries Process
+    ViewInquiries --> LoadInquiries[Load User's Inquiries]
+    LoadInquiries --> InquiryList[Display Inquiry List]
+    InquiryList --> SelectInquiry[Select Inquiry to View]
+    SelectInquiry --> InquiryDetails2[View Inquiry Details]
+    InquiryDetails2 --> CheckStatus{Check Response Status}
+    
+    CheckStatus --> Pending[Status: Pending]
+    CheckStatus --> InProgress[Status: In Progress]
+    CheckStatus --> Responded[Status: Responded]
+    CheckStatus --> Closed[Status: Closed]
+    
+    Responded --> ViewResponse[View Health Worker Response]
+    ViewResponse --> FollowUp{Need Follow-up?}
+    FollowUp -->|Yes| AddFollowUp[Add Follow-up Message]
+    FollowUp -->|No| CloseInquiry[Mark as Resolved]
+    AddFollowUp --> UpdateInquiry[Update Inquiry Status]
+    UpdateInquiry --> NotifyStaff
+    
+    %% FAQ Section
+    FAQ --> FAQCategories[Browse FAQ Categories]
+    FAQCategories --> SelectFAQCategory{Select Category}
+    SelectFAQCategory --> HealthTips[Health Tips & Advice]
+    SelectFAQCategory --> ServiceInfo[Service Information]
+    SelectFAQCategory --> AppointmentFAQ[Appointment FAQ]
+    SelectFAQCategory --> TechnicalFAQ[Technical FAQ]
+    
+    HealthTips --> ViewFAQ[View FAQ Content]
+    ServiceInfo --> ViewFAQ
+    AppointmentFAQ --> ViewFAQ
+    TechnicalFAQ --> ViewFAQ
+    
+    ViewFAQ --> FAQHelpful{Was This Helpful?}
+    FAQHelpful -->|Yes| ThumbsUp[Record Positive Feedback]
+    FAQHelpful -->|No| ThumbsDown[Record Negative Feedback]
+    FAQHelpful -->|Still Need Help| CreateInquiry[Create Related Inquiry]
+    
+    ThumbsUp --> UpdateFAQStats[Update FAQ Statistics]
+    ThumbsDown --> UpdateFAQStats
+    CreateInquiry --> InquiryForm
+    
+    %% Medical Record Forms Access
+    MedicalForms --> FormsAuth{Authorized Access?}
+    FormsAuth -->|No| AccessDenied[Access Denied]
+    FormsAuth -->|Yes| MedicalFormsList[Available Medical Forms]
+    
+    MedicalFormsList --> SelectForm{Select Form Type}
+    SelectForm --> HealthHistory[Health History Form]
+    SelectForm --> ImmunizationForm[Immunization Record Form]
+    SelectForm --> ConsultationForm[Consultation Request Form]
+    SelectForm --> ScreeningForm[Health Screening Form]
+    
+    HealthHistory --> FillForm[Fill Medical Form]
+    ImmunizationForm --> FillForm
+    ConsultationForm --> FillForm
+    ScreeningForm --> FillForm
+    
+    FillForm --> ValidateForm{Validate Form Data?}
+    ValidateForm -->|No| FormValidationError[Show Validation Errors]
+    ValidateForm -->|Yes| SaveForm[Save Form Data]
+    FormValidationError --> FillForm
+    SaveForm --> GenerateQR[Generate QR Code]
+    GenerateQR --> FormSuccess[Form Submitted Successfully]
+    
+    %% Analytics & Tracking
+    TrackInquiry --> InquiryAnalytics[Update Inquiry Statistics]
+    InquiryAnalytics --> CategoryStats[Update Category Statistics]
+    CategoryStats --> ResponseTime[Track Response Times]
+    
+    UpdateFAQStats --> FAQAnalytics[Update FAQ Analytics]
+    FAQAnalytics --> PopularTopics[Track Popular Topics]
+    PopularTopics --> ContentImprovement[Content Improvement Insights]
+    
+    %% Return Paths
+    InquirySuccess --> ChatDashboard
+    CloseInquiry --> ChatDashboard
+    FormSuccess --> ChatDashboard
+    AccessDenied --> ChatDashboard
+    UpdateFAQStats --> FAQ
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef analytics fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    
+    class Start,InquirySuccess,FormSuccess startEnd
+    class NewInquiry,InquiryForm,FillForm,FileUpload process
+    class ChatAuth,SelectCategory,AttachFiles,ValidateFiles,CheckStatus,FAQHelpful,FormsAuth,SelectForm,ValidateForm decision
+    class InquirySuccess,FormSuccess,ThumbsUp success
+    class FileError,FormValidationError,AccessDenied error
+    class InquiryAnalytics,CategoryStats,FAQAnalytics,PopularTopics analytics
+```
+
+
+

@@ -1,0 +1,363 @@
+﻿flowchart TD
+    %% ========================================
+    %% CONTENT MANAGEMENT FLOWCHART
+    %% ========================================
+    
+    Start([Access Content Management]) --> CMSAuth{User Authenticated?}
+    CMSAuth -->|No| LoginRequired[Redirect to Login]
+    CMSAuth -->|Yes| CheckCMSPermissions{CMS Access Permission?}
+    
+    CheckCMSPermissions -->|No| AccessDenied[Access Denied]
+    CheckCMSPermissions -->|Yes| CMSDashboard[Content Management Dashboard]
+    
+    %% CMS Dashboard Options
+    CMSDashboard --> ManagePages[Manage Client Pages]
+    CMSDashboard --> ManageContent[Manage Content]
+    CMSDashboard --> MediaLibrary[Media Library Management]
+    CMSDashboard --> NavigationManagement[Navigation Management]
+    CMSDashboard --> SEOManagement[SEO Management]
+    CMSDashboard --> ContentAnalytics[Content Analytics]
+    CMSDashboard --> ContentScheduling[Content Scheduling]
+    
+    %% Manage Client Pages
+    ManagePages --> PageManagementOptions{Page Management Options}
+    PageManagementOptions --> CreateNewPage[Create New Page]
+    PageManagementOptions --> EditExistingPage[Edit Existing Page]
+    PageManagementOptions --> DeletePage[Delete Page]
+    PageManagementOptions --> PageTemplates[Manage Page Templates]
+    PageManagementOptions --> PageSettings[Page Settings & Configuration]
+    
+    %% Create New Page Process
+    CreateNewPage --> SelectPageType{Select Page Type}
+    SelectPageType --> HomePage[Home Page]
+    SelectPageType --> AboutPage[About Us Page]
+    SelectPageType --> ServicesPage[Services Page]
+    SelectPageType --> NewsPage[News & Updates Page]
+    SelectPageType --> ContactPage[Contact Page]
+    SelectPageType --> ResourcesPage[Resources Page]
+    SelectPageType --> CustomPage[Custom Page]
+    
+    HomePage --> PageCreationForm[Page Creation Form]
+    AboutPage --> PageCreationForm
+    ServicesPage --> PageCreationForm
+    NewsPage --> PageCreationForm
+    ContactPage --> PageCreationForm
+    ResourcesPage --> PageCreationForm
+    CustomPage --> PageCreationForm
+    
+    PageCreationForm --> PageBasicInfo[Page Basic Information]
+    PageBasicInfo --> PageTitle[Page Title]
+    PageBasicInfo --> PageURL[Page URL/Slug]
+    PageBasicInfo --> PageDescription[Page Description]
+    PageBasicInfo --> PageKeywords[Page Keywords]
+    
+    PageTitle --> ContentEditor[Content Editor Interface]
+    PageURL --> ContentEditor
+    PageDescription --> ContentEditor
+    PageKeywords --> ContentEditor
+    
+    %% Content Editor Interface
+    ContentEditor --> EditorOptions{Content Editor Options}
+    EditorOptions --> VisualEditor[Visual/WYSIWYG Editor]
+    EditorOptions --> HTMLEditor[HTML Code Editor]
+    EditorOptions --> MarkdownEditor[Markdown Editor]
+    EditorOptions --> BlockEditor[Block-based Editor]
+    VisualEditor --> ContentCreation[Content Creation Process]
+    HTMLEditor --> ContentCreation
+    MarkdownEditor --> ContentCreation
+    BlockEditor --> ContentCreation
+    
+    ContentCreation --> AddTextContent[Add Text Content]
+    ContentCreation --> AddImages[Add Images & Media]
+    ContentCreation --> AddVideos[Add Videos]
+    ContentCreation --> AddDocuments[Add Documents/Downloads]
+    ContentCreation --> AddForms[Add Interactive Forms]
+    ContentCreation --> AddWidgets[Add Special Widgets]
+    
+    %% Text Content Management
+    AddTextContent --> TextFormatting[Text Formatting Options]
+    TextFormatting --> StyleText[Style Text Bold]
+    TextFormatting --> CreateLists[Create Lists & Tables]
+    TextFormatting --> AddHeadings[Add Headings & Sections]
+    TextFormatting --> InsertLinks[Insert Internal/External Links]
+    
+    StyleText --> ContentLayout[Content Layout & Structure]
+    CreateLists --> ContentLayout
+    AddHeadings --> ContentLayout
+    InsertLinks --> ContentLayout
+    
+    %% Media Management
+    AddImages --> MediaUpload[Media Upload Process]
+    AddVideos --> MediaUpload
+    AddDocuments --> MediaUpload
+    
+    MediaUpload --> SelectMediaSource{Select Media Source}
+    SelectMediaSource --> UploadNew[Upload New Media]
+    SelectMediaSource --> MediaLibrarySelect[Select from Media Library]
+    SelectMediaSource --> ExternalMedia[Link External Media]
+    
+    UploadNew --> FileUpload[File Upload Interface]
+    FileUpload --> ValidateFile{Validate File Type & Size?}
+    ValidateFile -->|No| FileValidationError[File Validation Error]
+    ValidateFile -->|Yes| ProcessUpload[Process File Upload]
+    FileValidationError --> FileUpload
+    
+    ProcessUpload --> OptimizeMedia[Optimize Media for Web]
+    OptimizeMedia --> GenerateThumbnails[Generate Thumbnails]
+    GenerateThumbnails --> SaveToLibrary[Save to Media Library]
+    SaveToLibrary --> MediaUploaded[Media Uploaded Successfully]
+    
+    MediaLibrarySelect --> BrowseLibrary[Browse Media Library]
+    BrowseLibrary --> SelectExistingMedia[Select Existing Media]
+    SelectExistingMedia --> InsertSelectedMedia[Insert Selected Media]
+    
+    ExternalMedia --> EnterMediaURL[Enter External Media URL]
+    EnterMediaURL --> ValidateExternalURL[Validate External URL]
+    ValidateExternalURL --> InsertExternalMedia[Insert External Media]
+    
+    %% Forms Integration
+    AddForms --> FormTypes{Select Form Type}
+    FormTypes --> ContactForm[Contact Form]
+    FormTypes --> FeedbackForm[Feedback Form]
+    FormTypes --> SurveyForm[Survey Form]
+    FormTypes --> RegistrationForm[Registration Form]
+    FormTypes --> AppointmentForm[Appointment Request Form]
+    FormTypes --> CustomForm[Custom Form Builder]
+    
+    ContactForm --> FormConfiguration[Form Configuration]
+    FeedbackForm --> FormConfiguration
+    SurveyForm --> FormConfiguration
+    RegistrationForm --> FormConfiguration
+    AppointmentForm --> FormConfiguration
+    CustomForm --> FormBuilder[Custom Form Builder Interface]
+    
+    FormBuilder --> AddFormFields[Add Form Fields]
+    AddFormFields --> FieldTypes[Select Field Types]
+    FieldTypes --> TextFields[Text Input Fields]
+    FieldTypes --> SelectFields[Dropdown/Select Fields]
+    FieldTypes --> CheckboxFields[Checkbox Fields]
+    FieldTypes --> RadioFields[Radio Button Fields]
+    FieldTypes --> FileUploadFields[File Upload Fields]
+    FieldTypes --> DateFields[Date/Time Fields]
+    
+    TextFields --> FormConfiguration
+    SelectFields --> FormConfiguration
+    CheckboxFields --> FormConfiguration
+    RadioFields --> FormConfiguration
+    FileUploadFields --> FormConfiguration
+    DateFields --> FormConfiguration
+    
+    FormConfiguration --> FormValidation[Set Form Validation Rules]
+    FormValidation --> FormSubmissionSettings[Form Submission Settings]
+    FormSubmissionSettings --> NotificationSettings[Notification Settings]
+    NotificationSettings --> FormIntegration[Form Integration Complete]
+    
+    %% Special Widgets
+    AddWidgets --> WidgetTypes{Select Widget Type}
+    WidgetTypes --> HealthTipsWidget[Health Tips Widget]
+    WidgetTypes --> EventsWidget[Upcoming Events Widget]
+    WidgetTypes --> NewsWidget[Latest News Widget]
+    WidgetTypes --> ServicesWidget[Services Showcase Widget]
+    WidgetTypes --> TestimonialsWidget[Testimonials Widget]
+    WidgetTypes --> SocialMediaWidget[Social Media Widget]
+    WidgetTypes --> CustomWidget[Custom HTML/JS Widget]
+    
+    HealthTipsWidget --> WidgetConfiguration[Widget Configuration]
+    EventsWidget --> WidgetConfiguration
+    NewsWidget --> WidgetConfiguration
+    ServicesWidget --> WidgetConfiguration
+    TestimonialsWidget --> WidgetConfiguration
+    SocialMediaWidget --> WidgetConfiguration
+    CustomWidget --> CustomWidgetEditor[Custom Widget Editor]
+    
+    CustomWidgetEditor --> WidgetConfiguration
+    WidgetConfiguration --> WidgetPlacement[Widget Placement Settings]
+    WidgetPlacement --> WidgetStyling[Widget Styling Options]
+    WidgetStyling --> WidgetIntegration[Widget Integration Complete]
+    
+    %% Content Layout & Finalization
+    ContentLayout --> LayoutOptions[Layout Options]
+    LayoutOptions --> SingleColumn[Single Column Layout]
+    LayoutOptions --> TwoColumn[Two Column Layout]
+    LayoutOptions --> ThreeColumn[Three Column Layout]
+    LayoutOptions --> CustomLayout[Custom Grid Layout]
+    
+    SingleColumn --> ResponsiveSettings[Responsive Design Settings]
+    TwoColumn --> ResponsiveSettings
+    ThreeColumn --> ResponsiveSettings
+    CustomLayout --> ResponsiveSettings
+    
+    ResponsiveSettings --> MobileLayout[Mobile Layout Configuration]
+    MobileLayout --> TabletLayout[Tablet Layout Configuration]
+    TabletLayout --> DesktopLayout[Desktop Layout Configuration]
+    DesktopLayout --> PreviewPage[Preview Page]
+    
+    PreviewPage --> PagePreview{Page Preview Satisfaction?}
+    PagePreview -->|No| ContentEditor
+    PagePreview -->|Yes| PageMetadata[Configure Page Metadata]
+    
+    %% Page Metadata & SEO
+    PageMetadata --> SEOSettings[SEO Settings]
+    SEOSettings --> MetaTitle[Meta Title]
+    SEOSettings --> MetaDescription[Meta Description]
+    SEOSettings --> MetaKeywords[Meta Keywords]
+    SEOSettings --> SocialMediaMeta[Social Media Meta Tags]
+    
+    MetaTitle --> PublishSettings[Publish Settings]
+    MetaDescription --> PublishSettings
+    MetaKeywords --> PublishSettings
+    SocialMediaMeta --> PublishSettings
+    
+    PublishSettings --> PublishingOptions{Publishing Options}
+    PublishingOptions --> PublishNow[Publish Immediately]
+    PublishingOptions --> SaveDraft[Save as Draft]
+    PublishingOptions --> SchedulePublish[Schedule for Later]
+    
+    PublishNow --> PublishPage[Publish Page to Live Site]
+    SaveDraft --> SavePageDraft[Save Page as Draft]
+    SchedulePublish --> SetPublishDate[Set Publish Date & Time]
+    SetPublishDate --> SchedulePagePublish[Schedule Page Publication]
+    
+    PublishPage --> ClearCache[Clear Website Cache]
+    SavePageDraft --> DraftSaved[Draft Saved Successfully]
+    SchedulePagePublish --> PublishScheduled[Publication Scheduled]
+    
+    ClearCache --> UpdateSitemap[Update XML Sitemap]
+    UpdateSitemap --> NotifySearchEngines[Notify Search Engines]
+    NotifySearchEngines --> PagePublished[Page Published Successfully]
+    
+    %% Edit Existing Page
+    EditExistingPage --> SelectPageToEdit[Select Page to Edit]
+    SelectPageToEdit --> LoadPageContent[Load Current Page Content]
+    LoadPageContent --> EditModeOptions{Edit Mode Options}
+    EditModeOptions --> QuickEdit[Quick Edit Mode]
+    EditModeOptions --> FullEdit[Full Edit Mode]
+    EditModeOptions --> ContentOnly[Content Only Edit]
+    
+    QuickEdit --> QuickEditInterface[Quick Edit Interface]
+    FullEdit --> ContentEditor
+    ContentOnly --> ContentEditor
+    
+    QuickEditInterface --> QuickChanges[Make Quick Changes]
+    QuickChanges --> SaveQuickEdit[Save Quick Edits]
+    SaveQuickEdit --> QuickEditComplete[Quick Edit Complete]
+    
+    %% Navigation Management
+    NavigationManagement --> NavigationOptions{Navigation Options}
+    NavigationOptions --> MainMenu[Main Menu Management]
+    NavigationOptions --> FooterMenu[Footer Menu Management]
+    NavigationOptions --> Breadcrumbs[Breadcrumbs Configuration]
+    NavigationOptions --> MobileMenu[Mobile Menu Configuration]
+    
+    MainMenu --> MenuEditor[Menu Editor Interface]
+    FooterMenu --> MenuEditor
+    
+    MenuEditor --> MenuStructure[Define Menu Structure]
+    MenuStructure --> AddMenuItem[Add Menu Item]
+    MenuStructure --> EditMenuItem[Edit Menu Item]
+    MenuStructure --> RemoveMenuItem[Remove Menu Item]
+    MenuStructure --> ReorderMenu[Reorder Menu Items]
+    
+    AddMenuItem --> MenuItemDetails[Menu Item Details]
+    MenuItemDetails --> ItemLabel[Item Label]
+    MenuItemDetails --> ItemURL[Item URL/Link]
+    MenuItemDetails --> ItemTarget[Link Target]
+    MenuItemDetails --> ItemPermissions[Item Visibility Permissions]
+    
+    ItemLabel --> SaveMenuItem[Save Menu Item]
+    ItemURL --> SaveMenuItem
+    ItemTarget --> SaveMenuItem
+    ItemPermissions --> SaveMenuItem
+    SaveMenuItem --> MenuUpdated[Menu Updated Successfully]
+    
+    %% Media Library Management
+    MediaLibrary --> MediaLibraryOptions{Media Library Options}
+    MediaLibraryOptions --> ViewMedia[View All Media]
+    MediaLibraryOptions --> UploadMedia[Upload New Media]
+    MediaLibraryOptions --> OrganizeMedia[Organize Media]
+    MediaLibraryOptions --> MediaSettings[Media Settings]
+    
+    ViewMedia --> MediaGrid[Media Grid Display]
+    MediaGrid --> MediaActions{Media Actions}
+    MediaActions --> EditMedia[Edit Media Details]
+    MediaActions --> DeleteMedia[Delete Media]
+    MediaActions --> DownloadMedia[Download Media]
+    MediaActions --> ShareMedia[Get Shareable Link]
+    
+    OrganizeMedia --> CreateFolders[Create Media Folders]
+    CreateFolders --> MoveMedia[Move Media to Folders]
+    MoveMedia --> TagMedia[Tag Media Items]
+    TagMedia --> MediaOrganized[Media Organized Successfully]
+    
+    %% Content Analytics
+    ContentAnalytics --> AnalyticsOptions{Analytics Options}
+    AnalyticsOptions --> PageViews[Page View Analytics]
+    AnalyticsOptions --> UserEngagement[User Engagement Metrics]
+    AnalyticsOptions --> ContentPerformance[Content Performance Analysis]
+    AnalyticsOptions --> SEOAnalytics[SEO Performance Analytics]
+    
+    PageViews --> ViewsReport[Generate Views Report]
+    UserEngagement --> EngagementReport[Generate Engagement Report]
+    ContentPerformance --> PerformanceReport[Generate Performance Report]
+    SEOAnalytics --> SEOReport[Generate SEO Report]
+    
+    ViewsReport --> ExportAnalytics[Export Analytics Data]
+    EngagementReport --> ExportAnalytics
+    PerformanceReport --> ExportAnalytics
+    SEOReport --> ExportAnalytics
+    
+    ExportAnalytics --> AnalyticsExported[Analytics Data Exported]
+    
+    %% Content Scheduling
+    ContentScheduling --> SchedulingOptions{Scheduling Options}
+    SchedulingOptions --> ScheduleNewContent[Schedule New Content]
+    SchedulingOptions --> ViewScheduledContent[View Scheduled Content]
+    SchedulingOptions --> EditScheduledContent[Edit Scheduled Content]
+    
+    ScheduleNewContent --> ContentScheduleForm[Content Schedule Form]
+    ContentScheduleForm --> SelectContentType[Select Content Type]
+    SelectContentType --> ContentCreation
+    
+    ViewScheduledContent --> ScheduledContentList[Scheduled Content List]
+    ScheduledContentList --> ScheduledContentActions{Scheduled Content Actions}
+    ScheduledContentActions --> EditSchedule[Edit Schedule]
+    ScheduledContentActions --> CancelSchedule[Cancel Schedule]
+    ScheduledContentActions --> PublishEarly[Publish Early]
+    
+    %% Return Paths
+    PagePublished --> ManagePages
+    DraftSaved --> ManagePages
+    PublishScheduled --> ContentScheduling
+    QuickEditComplete --> ManagePages
+    MenuUpdated --> NavigationManagement
+    MediaOrganized --> MediaLibrary
+    AnalyticsExported --> ContentAnalytics
+    AccessDenied --> Start
+    FormIntegration --> ContentCreation
+    WidgetIntegration --> ContentCreation
+    MediaUploaded --> ContentCreation
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef analytics fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef content fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef media fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef seo fill:#fff8e1,stroke:#f57f17,stroke-width:2px
+    
+    class Start,PagePublished,DraftSaved,AnalyticsExported startEnd
+    class ManagePages,ContentEditor,MediaUpload,NavigationManagement,ContentScheduling process
+    class CMSAuth,CheckCMSPermissions,PageManagementOptions,SelectPageType,EditorOptions,PublishingOptions decision
+    class PagePublished,DraftSaved,MenuUpdated,MediaOrganized,AnalyticsExported success
+    class AccessDenied,FileValidationError error
+    class ContentAnalytics,PageViews,UserEngagement,ContentPerformance analytics
+    class ContentCreation,AddTextContent,ContentLayout,PreviewPage content
+    class MediaLibrary,AddImages,MediaUpload,OrganizeMedia media
+    class SEOSettings,MetaTitle,SEOAnalytics,NotifySearchEngines seo
+```
+
+
+

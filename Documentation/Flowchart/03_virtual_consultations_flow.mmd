@@ -1,0 +1,193 @@
+﻿flowchart TD
+    %% ========================================
+    %% VIRTUAL CONSULTATIONS & APPOINTMENTS FLOWCHART
+    %% ========================================
+    
+    Start([Access Virtual Consultations]) --> ConsultAuth{User Authenticated?}
+    ConsultAuth -->|No| LoginRequired[Redirect to Login]
+    ConsultAuth -->|Yes| ConsultDashboard[Virtual Consultation Dashboard]
+    
+    %% Dashboard Options
+    ConsultDashboard --> BookAppointment[Book New Appointment]
+    ConsultDashboard --> ViewAppointments[View My Appointments]
+    ConsultDashboard --> CheckSchedules[Check Available Schedules]
+    ConsultDashboard --> MedicalFormsAccess[Access Medical Forms]
+    
+    %% Book Appointment Process
+    BookAppointment --> SelectDoctor[Select Healthcare Provider]
+    SelectDoctor --> LoadDoctorSchedule[Load Doctor's Available Schedule]
+    LoadDoctorSchedule --> DisplaySlots[Display Available Time Slots]
+    
+    DisplaySlots --> SelectDateTime{Select Date & Time}
+    SelectDateTime --> ValidateSlot{Slot Still Available?}
+    ValidateSlot -->|No| SlotTaken[Time Slot No Longer Available]
+    ValidateSlot -->|Yes| AppointmentForm[Fill Appointment Details]
+    SlotTaken --> DisplaySlots
+    
+    AppointmentForm --> ConsultationType{Select Consultation Type}
+    ConsultationType --> GeneralConsult[General Consultation]
+    ConsultationType --> FollowUp[Follow-up Consultation]
+    ConsultationType --> SpecialistConsult[Specialist Consultation]
+    ConsultationType --> EmergencyConsult[Emergency Consultation]
+    
+    GeneralConsult --> AppointmentDetails[Enter Consultation Details]
+    FollowUp --> AppointmentDetails
+    SpecialistConsult --> AppointmentDetails
+    EmergencyConsult --> PriorityBooking[Priority Booking Process]
+    
+    PriorityBooking --> EmergencyValidation{Validate Emergency?}
+    EmergencyValidation -->|No| RegularBooking[Convert to Regular Booking]
+    EmergencyValidation -->|Yes| ImmediateSlot[Find Immediate Available Slot]
+    RegularBooking --> AppointmentDetails
+    
+    AppointmentDetails --> SymptomDescription[Describe Symptoms/Concerns]
+    SymptomDescription --> AttachDocuments{Attach Medical Documents?}
+    AttachDocuments -->|Yes| DocumentUpload[Upload Medical Records]
+    AttachDocuments -->|No| ReviewBooking[Review Appointment Details]
+    
+    DocumentUpload --> ValidateDocuments{Valid Document Format?}
+    ValidateDocuments -->|No| DocumentError[Invalid Document Format]
+    ValidateDocuments -->|Yes| ReviewBooking
+    DocumentError --> DocumentUpload
+    
+    ReviewBooking --> ConfirmBooking{Confirm Appointment?}
+    ConfirmBooking -->|No| AppointmentForm
+    ConfirmBooking -->|Yes| SaveAppointment[Save Appointment to Database]
+    
+    SaveAppointment --> NotifyDoctor[Notify Healthcare Provider]
+    NotifyDoctor --> SendConfirmation[Send Confirmation to Patient]
+    SendConfirmation --> GenerateQRCode[Generate QR Code for Appointment]
+    GenerateQRCode --> BookingSuccess[Appointment Booked Successfully]
+    
+    %% View Appointments Process
+    ViewAppointments --> LoadUserAppointments[Load User's Appointments]
+    LoadUserAppointments --> AppointmentsList[Display Appointments List]
+    AppointmentsList --> FilterAppointments{Filter Options}
+    
+    FilterAppointments --> UpcomingOnly[Upcoming Appointments]
+    FilterAppointments --> PastOnly[Past Appointments]
+    FilterAppointments --> TodayOnly[Today's Appointments]
+    FilterAppointments --> AllAppointments[All Appointments]
+    
+    UpcomingOnly --> DisplayFiltered[Display Filtered Results]
+    PastOnly --> DisplayFiltered
+    TodayOnly --> DisplayFiltered
+    AllAppointments --> DisplayFiltered
+    
+    DisplayFiltered --> SelectAppointment[Select Appointment to View]
+    SelectAppointment --> AppointmentDetails2[View Appointment Details]
+    AppointmentDetails2 --> AppointmentActions{Available Actions}
+    
+    AppointmentActions --> JoinConsultation[Join Virtual Consultation]
+    AppointmentActions --> RescheduleAppt[Reschedule Appointment]
+    AppointmentActions --> CancelAppt[Cancel Appointment]
+    AppointmentActions --> ViewPrescription[View Prescription]
+    
+    %% Join Consultation Process
+    JoinConsultation --> CheckTime{Within Consultation Time?}
+    CheckTime -->|No| NotYetTime[Consultation Not Yet Started]
+    CheckTime -->|Yes| TechCheck[Technical Requirements Check]
+    
+    TechCheck --> CameraTest[Test Camera & Microphone]
+    CameraTest --> TechReady{Technology Ready?}
+    TechReady -->|No| TechSupport[Technical Support]
+    TechReady -->|Yes| JoinRoom[Join Virtual Consultation Room]
+    
+    JoinRoom --> WaitingRoom[Enter Waiting Room]
+    WaitingRoom --> DoctorJoins{Doctor Available?}
+    DoctorJoins -->|No| WaitInQueue[Wait in Queue]
+    DoctorJoins -->|Yes| StartConsultation[Begin Consultation]
+    
+    StartConsultation --> ConsultationSession[Active Consultation Session]
+    ConsultationSession --> ShareScreen{Share Documents/Screen?}
+    ShareScreen -->|Yes| DocumentSharing[Share Medical Documents]
+    ShareScreen -->|No| ContinueConsult[Continue Consultation]
+    
+    DocumentSharing --> ContinueConsult
+    ContinueConsult --> ConsultationEnd{Consultation Complete?}
+    ConsultationEnd -->|No| ConsultationSession
+    ConsultationEnd -->|Yes| EndSession[End Consultation Session]
+    
+    EndSession --> Prescription{Prescription Needed?}
+    Prescription -->|Yes| CreatePrescription[Doctor Creates Prescription]
+    Prescription -->|No| ConsultationSummary[Generate Consultation Summary]
+    
+    CreatePrescription --> ConsultationSummary
+    ConsultationSummary --> PatientFeedback[Request Patient Feedback]
+    PatientFeedback --> UpdateRecords[Update Medical Records]
+    UpdateRecords --> ConsultationComplete[Consultation Complete]
+    
+    %% Reschedule Process
+    RescheduleAppt --> NewTimeSelection[Select New Date & Time]
+    NewTimeSelection --> ValidateNewSlot{New Slot Available?}
+    ValidateNewSlot -->|No| SlotUnavailable[Selected Time Unavailable]
+    ValidateNewSlot -->|Yes| ConfirmReschedule[Confirm Reschedule]
+    SlotUnavailable --> NewTimeSelection
+    
+    ConfirmReschedule --> UpdateAppointment[Update Appointment Database]
+    UpdateAppointment --> NotifyReschedule[Notify All Parties]
+    NotifyReschedule --> RescheduleSuccess[Appointment Rescheduled]
+    
+    %% Cancel Process
+    CancelAppt --> CancelReason[Provide Cancellation Reason]
+    CancelReason --> ConfirmCancel{Confirm Cancellation?}
+    ConfirmCancel -->|No| AppointmentDetails2
+    ConfirmCancel -->|Yes| ProcessCancellation[Process Cancellation]
+    
+    ProcessCancellation --> NotifyCancel[Notify Healthcare Provider]
+    NotifyCancel --> UpdateSlot[Make Time Slot Available]
+    UpdateSlot --> CancellationComplete[Appointment Cancelled]
+    
+    %% Available Schedules Check
+    CheckSchedules --> SelectProvider[Select Healthcare Provider]
+    SelectProvider --> DateRange[Select Date Range]
+    DateRange --> LoadProviderSchedule[Load Provider's Schedule]
+    LoadProviderSchedule --> DisplayAvailability[Display Available Slots]
+    DisplayAvailability --> BookFromSchedule{Book from Schedule?}
+    BookFromSchedule -->|Yes| SelectDateTime
+    BookFromSchedule -->|No| ConsultDashboard
+    
+    %% Medical Forms in Consultation Context
+    MedicalFormsAccess --> ConsultForms[Consultation-Related Forms]
+    ConsultForms --> PreConsultForm[Pre-Consultation Form]
+    ConsultForms --> SymptomChecker[Symptom Checker Form]
+    ConsultForms --> MedicalHistory[Medical History Update]
+    
+    PreConsultForm --> FillConsultForm[Fill Form Details]
+    SymptomChecker --> FillConsultForm
+    MedicalHistory --> FillConsultForm
+    
+    FillConsultForm --> ValidateConsultForm{Validate Form?}
+    ValidateConsultForm -->|No| FormError[Show Form Errors]
+    ValidateConsultForm -->|Yes| SaveConsultForm[Save Form Data]
+    FormError --> FillConsultForm
+    SaveConsultForm --> LinkToConsultation[Link to Upcoming Consultation]
+    LinkToConsultation --> FormComplete[Form Saved Successfully]
+    
+    %% Return Paths
+    BookingSuccess --> ConsultDashboard
+    ConsultationComplete --> ConsultDashboard
+    RescheduleSuccess --> ConsultDashboard
+    CancellationComplete --> ConsultDashboard
+    FormComplete --> ConsultDashboard
+    NotYetTime --> ConsultDashboard
+    TechSupport --> ConsultDashboard
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef consultation fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    
+    class Start,BookingSuccess,ConsultationComplete,RescheduleSuccess,CancellationComplete,FormComplete startEnd
+    class BookAppointment,AppointmentForm,DocumentUpload,JoinConsultation,StartConsultation process
+    class ConsultAuth,ValidateSlot,ConsultationType,ConfirmBooking,CheckTime,TechReady,DoctorJoins,ShareScreen,ConsultationEnd decision
+    class BookingSuccess,ConsultationComplete,RescheduleSuccess,FormComplete success
+    class SlotTaken,DocumentError,SlotUnavailable,NotYetTime,TechSupport error
+    class ConsultationSession,WaitingRoom,DocumentSharing consultation
+```
+
+
+
