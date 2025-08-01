@@ -1,0 +1,550 @@
+{
+    "immunization_coverage": [
+        {
+            "month": "2024-01",
+            "coverage_percentage": 82.5,
+            "population": 1250,
+            "immunized": 1031,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-02",
+            "coverage_percentage": 84.8,
+            "population": 1280,
+            "immunized": 1085,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-03",
+            "coverage_percentage": 83.2,
+            "population": 1310,
+            "immunized": 1090,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-04",
+            "coverage_percentage": 87.1,
+            "population": 1340,
+            "immunized": 1167,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-05",
+            "coverage_percentage": 89.3,
+            "population": 1370,
+            "immunized": 1223,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-06",
+            "coverage_percentage": 88.7,
+            "population": 1400,
+            "immunized": 1242,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-07",
+            "coverage_percentage": 91.2,
+            "population": 1430,
+            "immunized": 1304,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-08",
+            "coverage_percentage": 93.8,
+            "population": 1460,
+            "immunized": 1369,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-09",
+            "coverage_percentage": 92.4,
+            "population": 1490,
+            "immunized": 1377,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-10",
+            "coverage_percentage": 94.6,
+            "population": 1520,
+            "immunized": 1438,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-11",
+            "coverage_percentage": 96.1,
+            "population": 1550,
+            "immunized": 1490,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2024-12",
+            "coverage_percentage": 95.3,
+            "population": 1580,
+            "immunized": 1506,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2025-01",
+            "coverage_percentage": 97.2,
+            "population": 1610,
+            "immunized": 1565,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2025-02",
+            "coverage_percentage": 96.8,
+            "population": 1640,
+            "immunized": 1587,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2025-03",
+            "coverage_percentage": 98.1,
+            "population": 1670,
+            "immunized": 1638,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2025-04",
+            "coverage_percentage": 97.5,
+            "population": 1700,
+            "immunized": 1658,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2025-05",
+            "coverage_percentage": 98.7,
+            "population": 1730,
+            "immunized": 1707,
+            "vaccine_type": "BCG"
+        },
+        {
+            "month": "2025-06",
+            "coverage_percentage": 99.2,
+            "population": 1760,
+            "immunized": 1746,
+            "vaccine_type": "BCG"
+        }
+    ],
+    "child_growth_trends": [
+        {
+            "age_months": 6,
+            "average_weight": 7.2,
+            "average_height": 67.5,
+            "population": 145,
+            "underweight": 18,
+            "normal": 112,
+            "overweight": 15
+        },
+        {
+            "age_months": 7,
+            "average_weight": 7.4,
+            "average_height": 68.8,
+            "population": 148,
+            "underweight": 16,
+            "normal": 118,
+            "overweight": 14
+        },
+        {
+            "age_months": 8,
+            "average_weight": 7.9,
+            "average_height": 70.2,
+            "population": 152,
+            "underweight": 19,
+            "normal": 117,
+            "overweight": 16
+        },
+        {
+            "age_months": 9,
+            "average_weight": 8.3,
+            "average_height": 71.5,
+            "population": 155,
+            "underweight": 15,
+            "normal": 123,
+            "overweight": 17
+        },
+        {
+            "age_months": 10,
+            "average_weight": 8.6,
+            "average_height": 72.8,
+            "population": 158,
+            "underweight": 14,
+            "normal": 127,
+            "overweight": 17
+        },
+        {
+            "age_months": 11,
+            "average_weight": 8.8,
+            "average_height": 74.1,
+            "population": 162,
+            "underweight": 16,
+            "normal": 129,
+            "overweight": 17
+        },
+        {
+            "age_months": 12,
+            "average_weight": 9.1,
+            "average_height": 75.4,
+            "population": 165,
+            "underweight": 12,
+            "normal": 135,
+            "overweight": 18
+        },
+        {
+            "age_months": 13,
+            "average_weight": 9.4,
+            "average_height": 76.7,
+            "population": 168,
+            "underweight": 13,
+            "normal": 137,
+            "overweight": 18
+        },
+        {
+            "age_months": 14,
+            "average_weight": 9.8,
+            "average_height": 78.0,
+            "population": 172,
+            "underweight": 11,
+            "normal": 143,
+            "overweight": 18
+        },
+        {
+            "age_months": 15,
+            "average_weight": 10.1,
+            "average_height": 79.3,
+            "population": 175,
+            "underweight": 10,
+            "normal": 147,
+            "overweight": 18
+        },
+        {
+            "age_months": 16,
+            "average_weight": 10.3,
+            "average_height": 80.6,
+            "population": 178,
+            "underweight": 12,
+            "normal": 148,
+            "overweight": 18
+        },
+        {
+            "age_months": 17,
+            "average_weight": 10.6,
+            "average_height": 81.9,
+            "population": 182,
+            "underweight": 9,
+            "normal": 154,
+            "overweight": 19
+        },
+        {
+            "age_months": 18,
+            "average_weight": 10.9,
+            "average_height": 83.2,
+            "population": 185,
+            "underweight": 8,
+            "normal": 158,
+            "overweight": 19
+        },
+        {
+            "age_months": 19,
+            "average_weight": 11.1,
+            "average_height": 84.5,
+            "population": 188,
+            "underweight": 7,
+            "normal": 163,
+            "overweight": 18
+        },
+        {
+            "age_months": 20,
+            "average_weight": 11.4,
+            "average_height": 85.8,
+            "population": 192,
+            "underweight": 6,
+            "normal": 167,
+            "overweight": 19
+        },
+        {
+            "age_months": 21,
+            "average_weight": 11.6,
+            "average_height": 87.1,
+            "population": 195,
+            "underweight": 5,
+            "normal": 172,
+            "overweight": 18
+        },
+        {
+            "age_months": 22,
+            "average_weight": 11.8,
+            "average_height": 88.4,
+            "population": 198,
+            "underweight": 4,
+            "normal": 176,
+            "overweight": 18
+        },
+        {
+            "age_months": 23,
+            "average_weight": 12.1,
+            "average_height": 89.7,
+            "population": 202,
+            "underweight": 3,
+            "normal": 181,
+            "overweight": 18
+        }
+    ],
+    "ncd_risk_trends": [
+        {
+            "month": "2024-01",
+            "high_risk_percentage": 12.8,
+            "moderate_risk_percentage": 38.2,
+            "low_risk_percentage": 49.0,
+            "total_assessed": 1200
+        },
+        {
+            "month": "2024-02",
+            "high_risk_percentage": 13.5,
+            "moderate_risk_percentage": 39.1,
+            "low_risk_percentage": 47.4,
+            "total_assessed": 1230
+        },
+        {
+            "month": "2024-03",
+            "high_risk_percentage": 12.9,
+            "moderate_risk_percentage": 38.8,
+            "low_risk_percentage": 48.3,
+            "total_assessed": 1260
+        },
+        {
+            "month": "2024-04",
+            "high_risk_percentage": 11.7,
+            "moderate_risk_percentage": 37.5,
+            "low_risk_percentage": 50.8,
+            "total_assessed": 1290
+        },
+        {
+            "month": "2024-05",
+            "high_risk_percentage": 11.2,
+            "moderate_risk_percentage": 36.9,
+            "low_risk_percentage": 51.9,
+            "total_assessed": 1320
+        },
+        {
+            "month": "2024-06",
+            "high_risk_percentage": 11.8,
+            "moderate_risk_percentage": 37.3,
+            "low_risk_percentage": 50.9,
+            "total_assessed": 1350
+        },
+        {
+            "month": "2024-07",
+            "high_risk_percentage": 10.5,
+            "moderate_risk_percentage": 35.8,
+            "low_risk_percentage": 53.7,
+            "total_assessed": 1380
+        },
+        {
+            "month": "2024-08",
+            "high_risk_percentage": 9.8,
+            "moderate_risk_percentage": 34.2,
+            "low_risk_percentage": 56.0,
+            "total_assessed": 1410
+        },
+        {
+            "month": "2024-09",
+            "high_risk_percentage": 10.1,
+            "moderate_risk_percentage": 34.8,
+            "low_risk_percentage": 55.1,
+            "total_assessed": 1440
+        },
+        {
+            "month": "2024-10",
+            "high_risk_percentage": 9.3,
+            "moderate_risk_percentage": 33.5,
+            "low_risk_percentage": 57.2,
+            "total_assessed": 1470
+        },
+        {
+            "month": "2024-11",
+            "high_risk_percentage": 8.7,
+            "moderate_risk_percentage": 32.1,
+            "low_risk_percentage": 59.2,
+            "total_assessed": 1500
+        },
+        {
+            "month": "2024-12",
+            "high_risk_percentage": 8.9,
+            "moderate_risk_percentage": 32.7,
+            "low_risk_percentage": 58.4,
+            "total_assessed": 1530
+        },
+        {
+            "month": "2025-01",
+            "high_risk_percentage": 8.1,
+            "moderate_risk_percentage": 31.4,
+            "low_risk_percentage": 60.5,
+            "total_assessed": 1560
+        },
+        {
+            "month": "2025-02",
+            "high_risk_percentage": 8.4,
+            "moderate_risk_percentage": 31.8,
+            "low_risk_percentage": 59.8,
+            "total_assessed": 1590
+        },
+        {
+            "month": "2025-03",
+            "high_risk_percentage": 7.8,
+            "moderate_risk_percentage": 30.9,
+            "low_risk_percentage": 61.3,
+            "total_assessed": 1620
+        },
+        {
+            "month": "2025-04",
+            "high_risk_percentage": 8.2,
+            "moderate_risk_percentage": 31.5,
+            "low_risk_percentage": 60.3,
+            "total_assessed": 1650
+        },
+        {
+            "month": "2025-05",
+            "high_risk_percentage": 7.6,
+            "moderate_risk_percentage": 30.2,
+            "low_risk_percentage": 62.2,
+            "total_assessed": 1680
+        },
+        {
+            "month": "2025-06",
+            "high_risk_percentage": 7.3,
+            "moderate_risk_percentage": 29.8,
+            "low_risk_percentage": 62.9,
+            "total_assessed": 1710
+        }
+    ],
+    "vital_signs_trends": [
+        {
+            "month": "2024-01",
+            "avg_systolic_bp": 118.5,
+            "avg_diastolic_bp": 78.2,
+            "avg_heart_rate": 72.8,
+            "readings_count": 890
+        },
+        {
+            "month": "2024-02",
+            "avg_systolic_bp": 119.8,
+            "avg_diastolic_bp": 79.1,
+            "avg_heart_rate": 73.5,
+            "readings_count": 920
+        },
+        {
+            "month": "2024-03",
+            "avg_systolic_bp": 117.9,
+            "avg_diastolic_bp": 77.8,
+            "avg_heart_rate": 72.1,
+            "readings_count": 950
+        },
+        {
+            "month": "2024-04",
+            "avg_systolic_bp": 116.2,
+            "avg_diastolic_bp": 76.9,
+            "avg_heart_rate": 71.4,
+            "readings_count": 980
+        },
+        {
+            "month": "2024-05",
+            "avg_systolic_bp": 117.1,
+            "avg_diastolic_bp": 77.3,
+            "avg_heart_rate": 71.8,
+            "readings_count": 1010
+        },
+        {
+            "month": "2024-06",
+            "avg_systolic_bp": 118.3,
+            "avg_diastolic_bp": 78.1,
+            "avg_heart_rate": 72.4,
+            "readings_count": 1040
+        },
+        {
+            "month": "2024-07",
+            "avg_systolic_bp": 116.8,
+            "avg_diastolic_bp": 77.2,
+            "avg_heart_rate": 71.9,
+            "readings_count": 1070
+        },
+        {
+            "month": "2024-08",
+            "avg_systolic_bp": 115.4,
+            "avg_diastolic_bp": 76.1,
+            "avg_heart_rate": 70.8,
+            "readings_count": 1100
+        },
+        {
+            "month": "2024-09",
+            "avg_systolic_bp": 116.7,
+            "avg_diastolic_bp": 76.8,
+            "avg_heart_rate": 71.3,
+            "readings_count": 1130
+        },
+        {
+            "month": "2024-10",
+            "avg_systolic_bp": 117.5,
+            "avg_diastolic_bp": 77.4,
+            "avg_heart_rate": 71.7,
+            "readings_count": 1160
+        },
+        {
+            "month": "2024-11",
+            "avg_systolic_bp": 115.9,
+            "avg_diastolic_bp": 76.3,
+            "avg_heart_rate": 71.1,
+            "readings_count": 1190
+        },
+        {
+            "month": "2024-12",
+            "avg_systolic_bp": 114.8,
+            "avg_diastolic_bp": 75.6,
+            "avg_heart_rate": 70.5,
+            "readings_count": 1220
+        },
+        {
+            "month": "2025-01",
+            "avg_systolic_bp": 115.2,
+            "avg_diastolic_bp": 75.9,
+            "avg_heart_rate": 70.8,
+            "readings_count": 1250
+        },
+        {
+            "month": "2025-02",
+            "avg_systolic_bp": 116.1,
+            "avg_diastolic_bp": 76.4,
+            "avg_heart_rate": 71.2,
+            "readings_count": 1280
+        },
+        {
+            "month": "2025-03",
+            "avg_systolic_bp": 114.6,
+            "avg_diastolic_bp": 75.4,
+            "avg_heart_rate": 70.3,
+            "readings_count": 1310
+        },
+        {
+            "month": "2025-04",
+            "avg_systolic_bp": 115.8,
+            "avg_diastolic_bp": 76.1,
+            "avg_heart_rate": 70.9,
+            "readings_count": 1340
+        },
+        {
+            "month": "2025-05",
+            "avg_systolic_bp": 113.9,
+            "avg_diastolic_bp": 74.8,
+            "avg_heart_rate": 69.8,
+            "readings_count": 1370
+        },
+        {
+            "month": "2025-06",
+            "avg_systolic_bp": 114.3,
+            "avg_diastolic_bp": 75.1,
+            "avg_heart_rate": 70.1,
+            "readings_count": 1400
+        }
+    ]
+}

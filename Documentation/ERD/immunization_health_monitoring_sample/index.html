@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>PredictiMed - Immunization & Health Monitoring Trends</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/ml-regression@6.0.0/lib/ml-regression.min.js"></script>
+        <style>
+            /* Custom scrollbar */
+            .custom-scrollbar::-webkit-scrollbar {
+                width: 6px;
+                height: 6px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-track {
+                background: #f1f5f9;
+                border-radius: 10px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb {
+                background: #cbd5e1;
+                border-radius: 10px;
+            }
+            .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                background: #94a3b8;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-50 min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center py-4">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-5 h-5 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-semibold text-gray-900">
+                                PredictiMed
+                            </h1>
+                            <p class="text-sm text-gray-600">
+                                Immunization & Health Monitoring Analytics
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="flex items-center space-x-2 text-sm text-gray-600"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            ></path>
+                        </svg>
+                        <span>2024 Health Trends</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Dashboard Cards -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+            >
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">
+                                Immunization Coverage
+                            </p>
+                            <p
+                                class="text-2xl font-bold text-green-600"
+                                id="coverage-stat"
+                            >
+                                98.7%
+                            </p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-6 h-6 text-green-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                        +13.5% from Jan 2024
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">
+                                Children Monitored
+                            </p>
+                            <p
+                                class="text-2xl font-bold text-blue-600"
+                                id="children-stat"
+                            >
+                                175
+                            </p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-6 h-6 text-blue-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                        +45.8% growth tracking
+                    </p>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">
+                                Low NCD Risk
+                            </p>
+                            <p
+                                class="text-2xl font-bold text-emerald-600"
+                                id="ncd-stat"
+                            >
+                                60.2%
+                            </p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-6 h-6 text-emerald-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">+7.9% improvement</p>
+                </div>
+
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm font-medium text-gray-600">
+                                Vital Signs Recorded
+                            </p>
+                            <p
+                                class="text-2xl font-bold text-purple-600"
+                                id="vitals-stat"
+                            >
+                                800
+                            </p>
+                        </div>
+                        <div
+                            class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-6 h-6 text-purple-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-2">
+                        +77.8% data collection
+                    </p>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Immunization Coverage Trend -->
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Immunization Coverage Trend
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                BCG vaccination coverage with linear regression
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center space-x-2 text-sm text-green-600 bg-green-50 px-3 py-1 rounded-full"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                                ></path>
+                            </svg>
+                            <span id="coverage-trend">+1.2% monthly</span>
+                        </div>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="immunizationChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Child Growth Monitoring -->
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Child Growth Monitoring
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                Average weight trends with predictive analysis
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center space-x-2 text-sm text-blue-600 bg-blue-50 px-3 py-1 rounded-full"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                                ></path>
+                            </svg>
+                            <span id="growth-trend">+0.37kg monthly</span>
+                        </div>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="growthChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- NCD Risk Assessment -->
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                NCD Risk Distribution
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                Non-communicable disease risk trends
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center space-x-2 text-sm text-red-600 bg-red-50 px-3 py-1 rounded-full"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                                ></path>
+                            </svg>
+                            <span id="ncd-trend">-4.4% high risk</span>
+                        </div>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="ncdChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Vital Signs Monitoring -->
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">
+                                Vital Signs Trends
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                Blood pressure and heart rate monitoring
+                            </p>
+                        </div>
+                        <div
+                            class="flex items-center space-x-2 text-sm text-purple-600 bg-purple-50 px-3 py-1 rounded-full"
+                        >
+                            <svg
+                                class="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                                ></path>
+                            </svg>
+                            <span id="vitals-trend">-0.28 mmHg monthly</span>
+                        </div>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="vitalsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Analytics Section -->
+            <div class="mt-8 space-y-8">
+                <!-- Statistical Analysis Overview -->
+                <div
+                    class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200"
+                >
+                    <div class="flex items-start space-x-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0"
+                        >
+                            <svg
+                                class="w-6 h-6 text-blue-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3
+                                class="text-lg font-semibold text-gray-900 mb-2"
+                            >
+                                📊 How Reliable Are Our Predictions?
+                            </h3>
+                            <p class="text-sm text-gray-600">
+                                Understanding how accurate our health trend
+                                predictions are helps you make better decisions.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Regression Statistics -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div
+                            class="bg-white rounded-lg p-4 border border-gray-200"
+                        >
+                            <h4
+                                class="text-md font-semibold text-gray-800 mb-3"
+                            >
+                                🎯 Prediction Accuracy Scores
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-3">
+                                Higher scores (closer to 1.0) mean more reliable
+                                predictions
+                            </p>
+                            <div class="space-y-3 text-sm">
+                                <div
+                                    class="flex justify-between items-center p-2 bg-green-50 rounded"
+                                >
+                                    <div>
+                                        <span class="text-gray-700 font-medium"
+                                            >Immunization Coverage</span
+                                        >
+                                        <div class="flex items-center mt-1">
+                                            <span
+                                                class="font-bold text-green-600"
+                                                id="immunization-r2"
+                                                >0.9847</span
+                                            >
+                                            <span
+                                                class="ml-2 text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full"
+                                                >Excellent</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        Very reliable trends
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-2 bg-blue-50 rounded"
+                                >
+                                    <div>
+                                        <span class="text-gray-700 font-medium"
+                                            >Child Growth</span
+                                        >
+                                        <div class="flex items-center mt-1">
+                                            <span
+                                                class="font-bold text-blue-600"
+                                                id="growth-r2"
+                                                >0.9952</span
+                                            >
+                                            <span
+                                                class="ml-2 text-xs px-2 py-1 bg-blue-100 text-blue-700 rounded-full"
+                                                >Excellent</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        Very reliable trends
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-2 bg-red-50 rounded"
+                                >
+                                    <div>
+                                        <span class="text-gray-700 font-medium"
+                                            >NCD Risk Reduction</span
+                                        >
+                                        <div class="flex items-center mt-1">
+                                            <span
+                                                class="font-bold text-red-600"
+                                                id="ncd-r2"
+                                                >0.9678</span
+                                            >
+                                            <span
+                                                class="ml-2 text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full"
+                                                >Excellent</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        Very reliable trends
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-2 bg-purple-50 rounded"
+                                >
+                                    <div>
+                                        <span class="text-gray-700 font-medium"
+                                            >Vital Signs</span
+                                        >
+                                        <div class="flex items-center mt-1">
+                                            <span
+                                                class="font-bold text-purple-600"
+                                                id="vitals-r2"
+                                                >0.7234</span
+                                            >
+                                            <span
+                                                class="ml-2 text-xs px-2 py-1 bg-yellow-100 text-yellow-700 rounded-full"
+                                                >Good</span
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="text-xs text-gray-500">
+                                        Some variation expected
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-white rounded-lg p-4 border border-gray-200"
+                        >
+                            <h4
+                                class="text-md font-semibold text-gray-800 mb-3"
+                            >
+                                ⚡ Prediction Error Rates
+                            </h4>
+                            <p class="text-xs text-gray-500 mb-3">
+                                Lower numbers mean our predictions are closer to
+                                actual results
+                            </p>
+                            <div class="space-y-3 text-sm">
+                                <div
+                                    class="flex justify-between items-center p-2 bg-gray-50 rounded"
+                                >
+                                    <span class="text-gray-600"
+                                        >Average Error Rate:</span
+                                    >
+                                    <div class="flex items-center">
+                                        <span
+                                            class="font-semibold text-gray-800"
+                                            id="overall-mae"
+                                            >2.34%</span
+                                        >
+                                        <span
+                                            class="ml-2 text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full"
+                                            >Low</span
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-2 bg-gray-50 rounded"
+                                >
+                                    <span class="text-gray-600"
+                                        >Maximum Expected Error:</span
+                                    >
+                                    <div class="flex items-center">
+                                        <span
+                                            class="font-semibold text-gray-800"
+                                            id="overall-rmse"
+                                            >3.17%</span
+                                        >
+                                        <span
+                                            class="ml-2 text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full"
+                                            >Low</span
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between items-center p-2 bg-gray-50 rounded"
+                                >
+                                    <span class="text-gray-600"
+                                        >Confidence Level:</span
+                                    >
+                                    <div class="flex items-center">
+                                        <span
+                                            class="font-semibold text-gray-800"
+                                            >95%</span
+                                        >
+                                        <span
+                                            class="ml-2 text-xs px-2 py-1 bg-green-100 text-green-700 rounded-full"
+                                            >High</span
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class="p-2 bg-blue-50 rounded text-xs text-blue-700"
+                                >
+                                    <strong>What this means:</strong> Our
+                                    predictions are typically within 2-3% of
+                                    actual results, which is very good for
+                                    healthcare planning.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Future Projections -->
+                    <div
+                        class="mt-6 bg-white rounded-lg p-4 border border-gray-200"
+                    >
+                        <h4 class="text-md font-semibold text-gray-800 mb-4">
+                            🔮 What to Expect in 6 Months
+                        </h4>
+                        <p class="text-xs text-gray-500 mb-4">
+                            Based on current trends, here's where we'll likely
+                            be:
+                        </p>
+                        <div
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm"
+                        >
+                            <div
+                                class="text-center p-3 bg-green-50 rounded-lg border border-green-200"
+                            >
+                                <div
+                                    class="text-2xl font-bold text-green-600"
+                                    id="immunization-projection"
+                                >
+                                    99.4%
+                                </div>
+                                <div class="text-xs text-gray-600 mt-1">
+                                    Immunization Coverage
+                                </div>
+                                <div
+                                    class="text-xs text-green-600 mt-1 font-medium"
+                                >
+                                    📈 +0.7% improvement
+                                </div>
+                                <div class="text-xs text-gray-500 mt-2">
+                                    Nearly universal coverage!
+                                </div>
+                            </div>
+                            <div
+                                class="text-center p-3 bg-blue-50 rounded-lg border border-blue-200"
+                            >
+                                <div
+                                    class="text-2xl font-bold text-blue-600"
+                                    id="growth-projection"
+                                >
+                                    13.5kg
+                                </div>
+                                <div class="text-xs text-gray-600 mt-1">
+                                    Average Child Weight
+                                </div>
+                                <div
+                                    class="text-xs text-blue-600 mt-1 font-medium"
+                                >
+                                    📈 +2.2kg healthy growth
+                                </div>
+                                <div class="text-xs text-gray-500 mt-2">
+                                    Good nutrition progress
+                                </div>
+                            </div>
+                            <div
+                                class="text-center p-3 bg-red-50 rounded-lg border border-red-200"
+                            >
+                                <div
+                                    class="text-2xl font-bold text-red-600"
+                                    id="ncd-projection"
+                                >
+                                    5.9%
+                                </div>
+                                <div class="text-xs text-gray-600 mt-1">
+                                    High NCD Risk
+                                </div>
+                                <div
+                                    class="text-xs text-green-600 mt-1 font-medium"
+                                >
+                                    📉 -2.2% reduction
+                                </div>
+                                <div class="text-xs text-gray-500 mt-2">
+                                    Risk decreasing well
+                                </div>
+                            </div>
+                            <div
+                                class="text-center p-3 bg-purple-50 rounded-lg border border-purple-200"
+                            >
+                                <div
+                                    class="text-2xl font-bold text-purple-600"
+                                    id="bp-projection"
+                                >
+                                    113.5
+                                </div>
+                                <div class="text-xs text-gray-600 mt-1">
+                                    Average Blood Pressure
+                                </div>
+                                <div
+                                    class="text-xs text-green-600 mt-1 font-medium"
+                                >
+                                    📉 -1.7 mmHg better
+                                </div>
+                                <div class="text-xs text-gray-500 mt-2">
+                                    Heart health improving
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200"
+                        >
+                            <div class="flex items-start space-x-2">
+                                <svg
+                                    class="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    ></path>
+                                </svg>
+                                <p class="text-xs text-yellow-800">
+                                    <strong>Remember:</strong> These are
+                                    predictions based on current trends. Actual
+                                    results may vary depending on interventions,
+                                    seasonal changes, and community factors.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Trend Analysis -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Seasonal Patterns -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                    >
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            📅 When Things Happen Best
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Understanding seasonal patterns helps plan better
+                            health programs
+                        </p>
+                        <div class="space-y-4">
+                            <div
+                                class="p-4 bg-yellow-50 rounded-lg border border-yellow-200"
+                            >
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <svg
+                                        class="w-5 h-5 text-yellow-600"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"
+                                        ></path>
+                                    </svg>
+                                    <span class="font-medium text-yellow-800"
+                                        >🌟 Best Time for Immunizations</span
+                                    >
+                                </div>
+                                <p class="text-sm text-yellow-700 mb-2">
+                                    August to October shows highest success
+                                    rates
+                                </p>
+                                <div
+                                    class="bg-yellow-100 rounded p-2 text-xs text-yellow-800"
+                                >
+                                    <strong>Action:</strong> Schedule major
+                                    vaccination campaigns during these months
+                                    for 12% better results
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-4 bg-blue-50 rounded-lg border border-blue-200"
+                            >
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <svg
+                                        class="w-5 h-5 text-blue-600"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                                        ></path>
+                                    </svg>
+                                    <span class="font-medium text-blue-800"
+                                        >🚀 Fastest Child Growth Period</span
+                                    >
+                                </div>
+                                <p class="text-sm text-blue-700 mb-2">
+                                    Children grow 15% faster during later months
+                                </p>
+                                <div
+                                    class="bg-blue-100 rounded p-2 text-xs text-blue-800"
+                                >
+                                    <strong>Action:</strong> Focus nutrition
+                                    programs during months 8-12 for maximum
+                                    impact
+                                </div>
+                            </div>
+
+                            <div
+                                class="p-4 bg-green-50 rounded-lg border border-green-200"
+                            >
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <svg
+                                        class="w-5 h-5 text-green-600"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path>
+                                    </svg>
+                                    <span class="font-medium text-green-800"
+                                        >📉 Disease Risk is Dropping</span
+                                    >
+                                </div>
+                                <p class="text-sm text-green-700 mb-2">
+                                    Steady 4.4% monthly reduction in high-risk
+                                    cases
+                                </p>
+                                <div
+                                    class="bg-green-100 rounded p-2 text-xs text-green-800"
+                                >
+                                    <strong>Good News:</strong> Current programs
+                                    are working well - keep them going!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Risk Assessment Matrix -->
+                    <div
+                        class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                    >
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                            ⚠️ What to Watch Out For
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            Early warning signs that need your attention
+                        </p>
+
+                        <div class="space-y-4">
+                            <!-- Critical Alerts -->
+                            <div
+                                class="p-4 bg-red-50 rounded-lg border border-red-200"
+                            >
+                                <div class="flex items-center space-x-2 mb-3">
+                                    <svg
+                                        class="w-5 h-5 text-red-600"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"
+                                        ></path>
+                                    </svg>
+                                    <span class="font-semibold text-red-800"
+                                        >🚨 Need Immediate Attention</span
+                                    >
+                                </div>
+                                <div
+                                    class="grid grid-cols-3 gap-3 text-center text-sm mb-4"
+                                >
+                                    <div class="p-3 bg-red-100 rounded-lg">
+                                        <div class="text-red-600 font-semibold">
+                                            High Priority
+                                        </div>
+                                        <div
+                                            class="text-2xl font-bold text-red-700 mt-1"
+                                        >
+                                            97
+                                        </div>
+                                        <div class="text-xs text-red-600 mt-1">
+                                            people need help now
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-yellow-100 rounded-lg">
+                                        <div
+                                            class="text-yellow-600 font-semibold"
+                                        >
+                                            Keep Watching
+                                        </div>
+                                        <div
+                                            class="text-2xl font-bold text-yellow-700 mt-1"
+                                        >
+                                            380
+                                        </div>
+                                        <div
+                                            class="text-xs text-yellow-600 mt-1"
+                                        >
+                                            people to monitor
+                                        </div>
+                                    </div>
+                                    <div class="p-3 bg-green-100 rounded-lg">
+                                        <div
+                                            class="text-green-600 font-semibold"
+                                        >
+                                            Doing Well
+                                        </div>
+                                        <div
+                                            class="text-2xl font-bold text-green-700 mt-1"
+                                        >
+                                            723
+                                        </div>
+                                        <div
+                                            class="text-xs text-green-600 mt-1"
+                                        >
+                                            people are healthy
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- What's Working Well -->
+                            <div
+                                class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200"
+                            >
+                                <h4 class="font-medium text-green-800 mb-3">
+                                    ✅ Programs That Are Working Great
+                                </h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600"
+                                            >Health Education:</span
+                                        >
+                                        <span
+                                            class="text-green-600 font-semibold"
+                                            >🎯 23% fewer health problems</span
+                                        >
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600"
+                                            >Lifestyle Support:</span
+                                        >
+                                        <span
+                                            class="text-blue-600 font-semibold"
+                                            >📈 18% more people following
+                                            advice</span
+                                        >
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600"
+                                            >Follow-up Care:</span
+                                        >
+                                        <span
+                                            class="text-purple-600 font-semibold"
+                                            >⬆️ 31% better attendance</span
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class="mt-3 p-3 bg-green-100 rounded text-xs text-green-800"
+                                >
+                                    <strong>Great news:</strong> Your health
+                                    programs are making a real difference!
+                                    People are healthier and more engaged than
+                                    before.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Indicators -->
+                <div
+                    class="bg-white rounded-lg shadow-sm p-6 border border-gray-200"
+                >
+                    <h3 class="text-lg font-semibold text-gray-900 mb-6">
+                        Key Performance Indicators & Targets
+                    </h3>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                    >
+                        <!-- Coverage Rate KPI -->
+                        <div class="text-center">
+                            <div class="relative w-24 h-24 mx-auto mb-3">
+                                <svg
+                                    class="w-24 h-24 transform -rotate-90"
+                                    viewBox="0 0 36 36"
+                                >
+                                    <path
+                                        class="text-gray-300"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path
+                                        class="text-green-600"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        stroke-dasharray="98.7, 100"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                </svg>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <span
+                                        class="text-lg font-bold text-green-600"
+                                        >98.7%</span
+                                    >
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-gray-800">
+                                Coverage Target
+                            </h4>
+                            <p class="text-sm text-gray-600">Goal: 95%</p>
+                            <p class="text-xs text-green-600 mt-1">
+                                ✓ Target Exceeded
+                            </p>
+                        </div>
+
+                        <!-- Growth Monitoring KPI -->
+                        <div class="text-center">
+                            <div class="relative w-24 h-24 mx-auto mb-3">
+                                <svg
+                                    class="w-24 h-24 transform -rotate-90"
+                                    viewBox="0 0 36 36"
+                                >
+                                    <path
+                                        class="text-gray-300"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path
+                                        class="text-blue-600"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        stroke-dasharray="87, 100"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                </svg>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <span
+                                        class="text-lg font-bold text-blue-600"
+                                        >87%</span
+                                    >
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-gray-800">
+                                Growth Tracking
+                            </h4>
+                            <p class="text-sm text-gray-600">Goal: 90%</p>
+                            <p class="text-xs text-yellow-600 mt-1">
+                                ◐ Near Target
+                            </p>
+                        </div>
+
+                        <!-- NCD Screening KPI -->
+                        <div class="text-center">
+                            <div class="relative w-24 h-24 mx-auto mb-3">
+                                <svg
+                                    class="w-24 h-24 transform -rotate-90"
+                                    viewBox="0 0 36 36"
+                                >
+                                    <path
+                                        class="text-gray-300"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path
+                                        class="text-emerald-600"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        stroke-dasharray="92, 100"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                </svg>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <span
+                                        class="text-lg font-bold text-emerald-600"
+                                        >92%</span
+                                    >
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-gray-800">
+                                NCD Screening
+                            </h4>
+                            <p class="text-sm text-gray-600">Goal: 85%</p>
+                            <p class="text-xs text-green-600 mt-1">
+                                ✓ Target Exceeded
+                            </p>
+                        </div>
+
+                        <!-- Data Quality KPI -->
+                        <div class="text-center">
+                            <div class="relative w-24 h-24 mx-auto mb-3">
+                                <svg
+                                    class="w-24 h-24 transform -rotate-90"
+                                    viewBox="0 0 36 36"
+                                >
+                                    <path
+                                        class="text-gray-300"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                    <path
+                                        class="text-purple-600"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        fill="none"
+                                        stroke-dasharray="96, 100"
+                                        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                    />
+                                </svg>
+                                <div
+                                    class="absolute inset-0 flex items-center justify-center"
+                                >
+                                    <span
+                                        class="text-lg font-bold text-purple-600"
+                                        >96%</span
+                                    >
+                                </div>
+                            </div>
+                            <h4 class="font-medium text-gray-800">
+                                Data Quality
+                            </h4>
+                            <p class="text-sm text-gray-600">Goal: 95%</p>
+                            <p class="text-xs text-green-600 mt-1">
+                                ✓ Target Exceeded
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actionable Insights -->
+                <div
+                    class="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-200"
+                >
+                    <div class="flex items-start space-x-4">
+                        <div
+                            class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center flex-shrink-0"
+                        >
+                            <svg
+                                class="w-6 h-6 text-indigo-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3
+                                class="text-lg font-semibold text-gray-900 mb-4"
+                            >
+                                Actionable Insights & Recommendations
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-3">
+                                    <div
+                                        class="p-4 bg-white rounded-lg border border-gray-200"
+                                    >
+                                        <h4
+                                            class="font-medium text-gray-800 mb-2"
+                                        >
+                                            🎯 Priority Actions
+                                        </h4>
+                                        <ul
+                                            class="text-sm text-gray-600 space-y-1"
+                                        >
+                                            <li>
+                                                • Increase growth monitoring
+                                                coverage to reach 90% target
+                                            </li>
+                                            <li>
+                                                • Focus NCD interventions on 380
+                                                moderate-risk individuals
+                                            </li>
+                                            <li>
+                                                • Maintain current immunization
+                                                program momentum
+                                            </li>
+                                            <li>
+                                                • Implement blood pressure
+                                                monitoring improvements
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div
+                                        class="p-4 bg-white rounded-lg border border-gray-200"
+                                    >
+                                        <h4
+                                            class="font-medium text-gray-800 mb-2"
+                                        >
+                                            📊 Resource Allocation
+                                        </h4>
+                                        <ul
+                                            class="text-sm text-gray-600 space-y-1"
+                                        >
+                                            <li>
+                                                • Allocate 35% resources to
+                                                growth monitoring
+                                            </li>
+                                            <li>
+                                                • Assign 25% for NCD risk
+                                                management
+                                            </li>
+                                            <li>
+                                                • Maintain 30% for immunization
+                                                programs
+                                            </li>
+                                            <li>
+                                                • Reserve 10% for data quality
+                                                improvements
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div
+                                        class="p-4 bg-white rounded-lg border border-gray-200"
+                                    >
+                                        <h4
+                                            class="font-medium text-gray-800 mb-2"
+                                        >
+                                            ⚠️ Risk Mitigation
+                                        </h4>
+                                        <ul
+                                            class="text-sm text-gray-600 space-y-1"
+                                        >
+                                            <li>
+                                                • Monitor 97 high-risk NCD
+                                                individuals weekly
+                                            </li>
+                                            <li>
+                                                • Implement early intervention
+                                                for underweight children
+                                            </li>
+                                            <li>
+                                                • Strengthen follow-up systems
+                                                for missed appointments
+                                            </li>
+                                            <li>
+                                                • Enhance data validation
+                                                processes
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div
+                                        class="p-4 bg-white rounded-lg border border-gray-200"
+                                    >
+                                        <h4
+                                            class="font-medium text-gray-800 mb-2"
+                                        >
+                                            🔮 Future Planning
+                                        </h4>
+                                        <ul
+                                            class="text-sm text-gray-600 space-y-1"
+                                        >
+                                            <li>
+                                                • Prepare for seasonal
+                                                vaccination campaigns
+                                            </li>
+                                            <li>
+                                                • Scale successful intervention
+                                                programs
+                                            </li>
+                                            <li>
+                                                • Invest in predictive analytics
+                                                capabilities
+                                            </li>
+                                            <li>
+                                                • Develop community engagement
+                                                strategies
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Analytics Summary -->
+                <div
+                    class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg p-6 border border-emerald-200"
+                >
+                    <div class="flex items-start space-x-4">
+                        <div
+                            class="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0"
+                        >
+                            <svg
+                                class="w-6 h-6 text-emerald-600"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div class="flex-1">
+                            <h3
+                                class="text-lg font-semibold text-gray-900 mb-4"
+                            >
+                                🤖 How We Make Smart Predictions
+                            </h3>
+                            <p class="text-sm text-gray-600 mb-6">
+                                We use different smart methods to understand
+                                your health data and predict what might happen
+                                next
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <!-- Moving Averages -->
+                                <div
+                                    class="p-4 bg-white rounded-lg border border-gray-200"
+                                >
+                                    <h4
+                                        class="font-medium text-emerald-800 mb-3"
+                                    >
+                                        📈 Smoothing Out the Bumps
+                                    </h4>
+                                    <div
+                                        class="space-y-3 text-sm text-gray-600"
+                                    >
+                                        <p>
+                                            <strong>What it does:</strong> Takes
+                                            the average of the last 3 months to
+                                            see the real trend
+                                        </p>
+                                        <p>
+                                            <strong>Why it helps:</strong>
+                                            Ignores temporary ups and downs
+                                        </p>
+                                        <p>
+                                            <strong>Best for:</strong> Steady
+                                            growth like child development
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="mt-3 p-2 bg-emerald-50 rounded text-xs text-emerald-700"
+                                    >
+                                        <strong>Think of it like:</strong>
+                                        Looking at your child's growth over 3
+                                        months instead of day-to-day to see if
+                                        they're really growing well
+                                    </div>
+                                </div>
+
+                                <!-- Exponential Smoothing -->
+                                <div
+                                    class="p-4 bg-white rounded-lg border border-gray-200"
+                                >
+                                    <h4 class="font-medium text-blue-800 mb-3">
+                                        🔄 Paying Attention to Recent Changes
+                                    </h4>
+                                    <div
+                                        class="space-y-3 text-sm text-gray-600"
+                                    >
+                                        <p>
+                                            <strong>What it does:</strong> Gives
+                                            more importance to what happened
+                                            recently
+                                        </p>
+                                        <p>
+                                            <strong>Why it helps:</strong>
+                                            Quickly spots new patterns
+                                        </p>
+                                        <p>
+                                            <strong>Best for:</strong> Things
+                                            that change unpredictably
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="mt-3 p-2 bg-blue-50 rounded text-xs text-blue-700"
+                                    >
+                                        <strong>Think of it like:</strong>
+                                        Paying more attention to this month's
+                                        vaccination rates than last year's when
+                                        planning next month
+                                    </div>
+                                </div>
+
+                                <!-- Logistic Regression -->
+                                <div
+                                    class="p-4 bg-white rounded-lg border border-gray-200"
+                                >
+                                    <h4
+                                        class="font-medium text-purple-800 mb-3"
+                                    >
+                                        🎯 Warning System
+                                    </h4>
+                                    <div
+                                        class="space-y-3 text-sm text-gray-600"
+                                    >
+                                        <p>
+                                            <strong>What it does:</strong>
+                                            Calculates the chance of problems
+                                        </p>
+                                        <p>
+                                            <strong>Why it helps:</strong> Warns
+                                            you before things get bad
+                                        </p>
+                                        <p>
+                                            <strong>Best for:</strong> Spotting
+                                            when targets might be missed
+                                        </p>
+                                    </div>
+                                    <div
+                                        class="mt-3 p-2 bg-purple-50 rounded text-xs text-purple-700"
+                                    >
+                                        <strong>Think of it like:</strong> A
+                                        weather forecast that tells you "70%
+                                        chance of rain" so you can bring an
+                                        umbrella
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Method Selection Logic -->
+                            <div
+                                class="mt-6 p-4 bg-white rounded-lg border border-gray-200"
+                            >
+                                <h4 class="font-medium text-gray-800 mb-3">
+                                    🧠 Which Method Do We Use When?
+                                </h4>
+                                <div
+                                    class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm"
+                                >
+                                    <div class="p-3 bg-blue-50 rounded-lg">
+                                        <h5
+                                            class="font-medium text-blue-700 mb-2"
+                                        >
+                                            📊 For Steady, Predictable Things:
+                                        </h5>
+                                        <ul class="space-y-1 text-gray-600">
+                                            <li>
+                                                •
+                                                <strong>Smoothing:</strong> When
+                                                trends are steady
+                                            </li>
+                                            <li>
+                                                •
+                                                <strong
+                                                    >Line predictions:</strong
+                                                >
+                                                For regular patterns
+                                            </li>
+                                            <li>
+                                                •
+                                                <strong>Used for:</strong>
+                                                Immunization rates, child growth
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="p-3 bg-orange-50 rounded-lg">
+                                        <h5
+                                            class="font-medium text-orange-700 mb-2"
+                                        >
+                                            🌊 For Things That Change Quickly:
+                                        </h5>
+                                        <ul class="space-y-1 text-gray-600">
+                                            <li>
+                                                •
+                                                <strong
+                                                    >Smart smoothing:</strong
+                                                >
+                                                Adapts to changes
+                                            </li>
+                                            <li>
+                                                •
+                                                <strong>Warning system:</strong>
+                                                Predicts problems
+                                            </li>
+                                            <li>
+                                                •
+                                                <strong>Used for:</strong>
+                                                Disease risk, blood pressure
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div
+                                    class="mt-4 p-3 bg-gray-50 rounded text-xs text-gray-700"
+                                >
+                                    <strong>Bottom line:</strong> We
+                                    automatically choose the best method for
+                                    each type of health data, so you get the
+                                    most accurate predictions possible.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            // Load sample data
+            let healthData = {};
+
+            // Fetch sample data (in real implementation, this would be from your API)
+            fetch('./sample_data_enhanced.json')
+                .then((response) => response.json())
+                .then((data) => {
+                    healthData = data;
+                    initializeCharts();
+                })
+                .catch((error) => {
+                    console.error('Error loading sample data:', error);
+                    // Fallback to inline data if file loading fails
+                    loadFallbackData();
+                    initializeCharts();
+                });
+
+            function loadFallbackData() {
+                // Enhanced fallback sample data with realistic up-and-down trends
+                healthData = {
+                    immunization_coverage: [
+                        { month: '2024-01', coverage_percentage: 82.5 },
+                        { month: '2024-02', coverage_percentage: 84.8 },
+                        { month: '2024-03', coverage_percentage: 83.2 },
+                        { month: '2024-04', coverage_percentage: 87.1 },
+                        { month: '2024-05', coverage_percentage: 89.3 },
+                        { month: '2024-06', coverage_percentage: 88.7 },
+                        { month: '2024-07', coverage_percentage: 91.2 },
+                        { month: '2024-08', coverage_percentage: 93.8 },
+                        { month: '2024-09', coverage_percentage: 92.4 },
+                        { month: '2024-10', coverage_percentage: 94.6 },
+                        { month: '2024-11', coverage_percentage: 96.1 },
+                        { month: '2024-12', coverage_percentage: 95.3 },
+                        { month: '2025-01', coverage_percentage: 97.2 },
+                        { month: '2025-02', coverage_percentage: 96.8 },
+                        { month: '2025-03', coverage_percentage: 98.1 },
+                        { month: '2025-04', coverage_percentage: 97.5 },
+                        { month: '2025-05', coverage_percentage: 98.7 },
+                        { month: '2025-06', coverage_percentage: 99.2 },
+                    ],
+                    child_growth_trends: [
+                        { age_months: 6, average_weight: 7.2 },
+                        { age_months: 7, average_weight: 7.4 },
+                        { age_months: 8, average_weight: 7.9 },
+                        { age_months: 9, average_weight: 8.3 },
+                        { age_months: 10, average_weight: 8.6 },
+                        { age_months: 11, average_weight: 8.8 },
+                        { age_months: 12, average_weight: 9.1 },
+                        { age_months: 13, average_weight: 9.4 },
+                        { age_months: 14, average_weight: 9.8 },
+                        { age_months: 15, average_weight: 10.1 },
+                        { age_months: 16, average_weight: 10.3 },
+                        { age_months: 17, average_weight: 10.6 },
+                        { age_months: 18, average_weight: 10.9 },
+                        { age_months: 19, average_weight: 11.1 },
+                        { age_months: 20, average_weight: 11.4 },
+                        { age_months: 21, average_weight: 11.6 },
+                        { age_months: 22, average_weight: 11.8 },
+                        { age_months: 23, average_weight: 12.1 },
+                    ],
+                    ncd_risk_trends: [
+                        {
+                            month: '2024-01',
+                            high_risk_percentage: 12.8,
+                            moderate_risk_percentage: 38.2,
+                            low_risk_percentage: 49.0,
+                        },
+                        {
+                            month: '2024-02',
+                            high_risk_percentage: 13.5,
+                            moderate_risk_percentage: 39.1,
+                            low_risk_percentage: 47.4,
+                        },
+                        {
+                            month: '2024-03',
+                            high_risk_percentage: 12.9,
+                            moderate_risk_percentage: 38.8,
+                            low_risk_percentage: 48.3,
+                        },
+                        {
+                            month: '2024-04',
+                            high_risk_percentage: 11.7,
+                            moderate_risk_percentage: 37.5,
+                            low_risk_percentage: 50.8,
+                        },
+                        {
+                            month: '2024-05',
+                            high_risk_percentage: 11.2,
+                            moderate_risk_percentage: 36.9,
+                            low_risk_percentage: 51.9,
+                        },
+                        {
+                            month: '2024-06',
+                            high_risk_percentage: 11.8,
+                            moderate_risk_percentage: 37.3,
+                            low_risk_percentage: 50.9,
+                        },
+                        {
+                            month: '2024-07',
+                            high_risk_percentage: 10.5,
+                            moderate_risk_percentage: 35.8,
+                            low_risk_percentage: 53.7,
+                        },
+                        {
+                            month: '2024-08',
+                            high_risk_percentage: 9.8,
+                            moderate_risk_percentage: 34.2,
+                            low_risk_percentage: 56.0,
+                        },
+                        {
+                            month: '2024-09',
+                            high_risk_percentage: 10.1,
+                            moderate_risk_percentage: 34.8,
+                            low_risk_percentage: 55.1,
+                        },
+                        {
+                            month: '2024-10',
+                            high_risk_percentage: 9.3,
+                            moderate_risk_percentage: 33.5,
+                            low_risk_percentage: 57.2,
+                        },
+                        {
+                            month: '2024-11',
+                            high_risk_percentage: 8.7,
+                            moderate_risk_percentage: 32.1,
+                            low_risk_percentage: 59.2,
+                        },
+                        {
+                            month: '2024-12',
+                            high_risk_percentage: 8.9,
+                            moderate_risk_percentage: 32.7,
+                            low_risk_percentage: 58.4,
+                        },
+                        {
+                            month: '2025-01',
+                            high_risk_percentage: 8.1,
+                            moderate_risk_percentage: 31.4,
+                            low_risk_percentage: 60.5,
+                        },
+                        {
+                            month: '2025-02',
+                            high_risk_percentage: 8.4,
+                            moderate_risk_percentage: 31.8,
+                            low_risk_percentage: 59.8,
+                        },
+                        {
+                            month: '2025-03',
+                            high_risk_percentage: 7.8,
+                            moderate_risk_percentage: 30.9,
+                            low_risk_percentage: 61.3,
+                        },
+                        {
+                            month: '2025-04',
+                            high_risk_percentage: 8.2,
+                            moderate_risk_percentage: 31.5,
+                            low_risk_percentage: 60.3,
+                        },
+                        {
+                            month: '2025-05',
+                            high_risk_percentage: 7.6,
+                            moderate_risk_percentage: 30.2,
+                            low_risk_percentage: 62.2,
+                        },
+                        {
+                            month: '2025-06',
+                            high_risk_percentage: 7.3,
+                            moderate_risk_percentage: 29.8,
+                            low_risk_percentage: 62.9,
+                        },
+                    ],
+                    vital_signs_trends: [
+                        {
+                            month: '2024-01',
+                            avg_systolic_bp: 118.5,
+                            avg_heart_rate: 72.8,
+                        },
+                        {
+                            month: '2024-02',
+                            avg_systolic_bp: 119.8,
+                            avg_heart_rate: 73.5,
+                        },
+                        {
+                            month: '2024-03',
+                            avg_systolic_bp: 117.9,
+                            avg_heart_rate: 72.1,
+                        },
+                        {
+                            month: '2024-04',
+                            avg_systolic_bp: 116.2,
+                            avg_heart_rate: 71.4,
+                        },
+                        {
+                            month: '2024-05',
+                            avg_systolic_bp: 117.1,
+                            avg_heart_rate: 71.8,
+                        },
+                        {
+                            month: '2024-06',
+                            avg_systolic_bp: 118.3,
+                            avg_heart_rate: 72.4,
+                        },
+                        {
+                            month: '2024-07',
+                            avg_systolic_bp: 116.8,
+                            avg_heart_rate: 71.9,
+                        },
+                        {
+                            month: '2024-08',
+                            avg_systolic_bp: 115.4,
+                            avg_heart_rate: 70.8,
+                        },
+                        {
+                            month: '2024-09',
+                            avg_systolic_bp: 116.7,
+                            avg_heart_rate: 71.3,
+                        },
+                        {
+                            month: '2024-10',
+                            avg_systolic_bp: 117.5,
+                            avg_heart_rate: 71.7,
+                        },
+                        {
+                            month: '2024-11',
+                            avg_systolic_bp: 115.9,
+                            avg_heart_rate: 71.1,
+                        },
+                        {
+                            month: '2024-12',
+                            avg_systolic_bp: 114.8,
+                            avg_heart_rate: 70.5,
+                        },
+                        {
+                            month: '2025-01',
+                            avg_systolic_bp: 115.2,
+                            avg_heart_rate: 70.8,
+                        },
+                        {
+                            month: '2025-02',
+                            avg_systolic_bp: 116.1,
+                            avg_heart_rate: 71.2,
+                        },
+                        {
+                            month: '2025-03',
+                            avg_systolic_bp: 114.6,
+                            avg_heart_rate: 70.3,
+                        },
+                        {
+                            month: '2025-04',
+                            avg_systolic_bp: 115.8,
+                            avg_heart_rate: 70.9,
+                        },
+                        {
+                            month: '2025-05',
+                            avg_systolic_bp: 113.9,
+                            avg_heart_rate: 69.8,
+                        },
+                        {
+                            month: '2025-06',
+                            avg_systolic_bp: 114.3,
+                            avg_heart_rate: 70.1,
+                        },
+                    ],
+                };
+            }
+
+            // Enhanced linear regression calculation with detailed statistics
+            function calculateAdvancedRegression(data, xKey, yKey) {
+                const n = data.length;
+                let sumX = 0,
+                    sumY = 0,
+                    sumXY = 0,
+                    sumXX = 0,
+                    sumYY = 0;
+
+                data.forEach((point, index) => {
+                    const x = index + 1; // Use index as x-value
+                    const y = xKey ? point[xKey] : point[yKey];
+                    sumX += x;
+                    sumY += y;
+                    sumXY += x * y;
+                    sumXX += x * x;
+                    sumYY += y * y;
+                });
+
+                const slope =
+                    (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+                const intercept = (sumY - slope * sumX) / n;
+
+                // Calculate R-squared
+                const meanY = sumY / n;
+                let ssRes = 0,
+                    ssTot = 0;
+
+                data.forEach((point, index) => {
+                    const x = index + 1;
+                    const y = xKey ? point[xKey] : point[yKey];
+                    const predicted = slope * x + intercept;
+                    ssRes += Math.pow(y - predicted, 2);
+                    ssTot += Math.pow(y - meanY, 2);
+                });
+
+                const rSquared = 1 - ssRes / ssTot;
+
+                // Calculate standard error
+                const standardError = Math.sqrt(ssRes / (n - 2));
+
+                // Calculate Mean Absolute Error
+                let mae = 0;
+                data.forEach((point, index) => {
+                    const x = index + 1;
+                    const y = xKey ? point[xKey] : point[yKey];
+                    const predicted = slope * x + intercept;
+                    mae += Math.abs(y - predicted);
+                });
+                mae = mae / n;
+
+                return {
+                    slope,
+                    intercept,
+                    rSquared: Math.max(0, Math.min(1, rSquared)),
+                    standardError,
+                    mae,
+                    correlation: Math.sqrt(rSquared),
+                };
+            }
+
+            // Generate confidence intervals for regression
+            function generateConfidenceInterval(
+                data,
+                regression,
+                confidence = 0.95
+            ) {
+                const n = data.length;
+                const tValue = 2.201; // t-value for 95% confidence with 10 df (approximate)
+                const margin = tValue * regression.standardError;
+
+                return data.map((_, index) => {
+                    const x = index + 1;
+                    const predicted =
+                        regression.slope * x + regression.intercept;
+                    return {
+                        upper: predicted + margin,
+                        lower: predicted - margin,
+                        predicted: predicted,
+                    };
+                });
+            }
+
+            // Moving Average calculation
+            function calculateMovingAverage(data, field, windowSize = 3) {
+                const values = data.map((d) => d[field]);
+                const movingAverages = [];
+
+                for (let i = 0; i < values.length; i++) {
+                    if (i < windowSize - 1) {
+                        movingAverages.push(values[i]); // Not enough data points, use original value
+                    } else {
+                        const window = values.slice(i - windowSize + 1, i + 1);
+                        const average =
+                            window.reduce((sum, val) => sum + val, 0) /
+                            windowSize;
+                        movingAverages.push(average);
+                    }
+                }
+
+                return movingAverages;
+            }
+
+            // Exponential Smoothing calculation
+            function calculateExponentialSmoothing(data, field, alpha = 0.3) {
+                const values = data.map((d) => d[field]);
+                const smoothed = [values[0]]; // First value remains the same
+
+                for (let i = 1; i < values.length; i++) {
+                    const smoothedValue =
+                        alpha * values[i] + (1 - alpha) * smoothed[i - 1];
+                    smoothed.push(smoothedValue);
+                }
+
+                return smoothed;
+            }
+
+            // Logistic Regression for threshold prediction
+            function calculateLogisticRegression(data, field, threshold) {
+                const n = data.length;
+                const values = data.map((d) => d[field]);
+
+                // Transform data to binary (0 if below threshold, 1 if above)
+                const binaryY = values.map((val) => (val >= threshold ? 1 : 0));
+
+                // Simple logistic regression using maximum likelihood estimation
+                let beta0 = 0; // intercept
+                let beta1 = 0; // slope
+                const learningRate = 0.01;
+                const iterations = 1000;
+
+                // Gradient descent for logistic regression
+                for (let iter = 0; iter < iterations; iter++) {
+                    let gradientBeta0 = 0;
+                    let gradientBeta1 = 0;
+
+                    for (let i = 0; i < n; i++) {
+                        const x = i + 1; // Use index as x-value
+                        const y = binaryY[i];
+                        const z = beta0 + beta1 * x;
+                        const prediction = 1 / (1 + Math.exp(-z)); // Sigmoid function
+
+                        gradientBeta0 += prediction - y;
+                        gradientBeta1 += (prediction - y) * x;
+                    }
+
+                    beta0 -= (learningRate * gradientBeta0) / n;
+                    beta1 -= (learningRate * gradientBeta1) / n;
+                }
+
+                // Calculate probability predictions
+                const probabilities = [];
+                for (let i = 0; i < n; i++) {
+                    const x = i + 1;
+                    const z = beta0 + beta1 * x;
+                    const probability = 1 / (1 + Math.exp(-z));
+                    probabilities.push(probability);
+                }
+
+                // Calculate accuracy
+                let correct = 0;
+                for (let i = 0; i < n; i++) {
+                    const predicted = probabilities[i] >= 0.5 ? 1 : 0;
+                    if (predicted === binaryY[i]) correct++;
+                }
+                const accuracy = correct / n;
+
+                return {
+                    beta0,
+                    beta1,
+                    probabilities,
+                    accuracy,
+                    threshold,
+                    predictions: probabilities.map((p) => p >= 0.5),
+                };
+            }
+
+            // Advanced trend detection with seasonality
+            function detectAdvancedTrends(data, field) {
+                const values = data.map((d) => d[field]);
+                const n = values.length;
+
+                // Calculate various trend indicators
+                const movingAvg3 = calculateMovingAverage(data, field, 3);
+                const movingAvg6 = calculateMovingAverage(data, field, 6);
+                const exponentialSmooth = calculateExponentialSmoothing(
+                    data,
+                    field,
+                    0.3
+                );
+
+                // Trend direction analysis
+                const recentTrend = values.slice(-6); // Last 6 months
+                const trendSlope =
+                    (recentTrend[recentTrend.length - 1] - recentTrend[0]) /
+                    recentTrend.length;
+
+                // Volatility calculation
+                const mean = values.reduce((a, b) => a + b, 0) / n;
+                const variance =
+                    values.reduce(
+                        (sum, value) => sum + Math.pow(value - mean, 2),
+                        0
+                    ) / n;
+                const volatility = Math.sqrt(variance);
+                const coefficientOfVariation = volatility / mean;
+
+                // Seasonal decomposition (simplified)
+                const seasonalFactors = [];
+                const quarterlyAverages = [0, 0, 0, 0];
+                const quarterlyCounts = [0, 0, 0, 0];
+
+                values.forEach((value, index) => {
+                    const quarter = index % 4;
+                    quarterlyAverages[quarter] += value;
+                    quarterlyCounts[quarter]++;
+                });
+
+                for (let i = 0; i < 4; i++) {
+                    if (quarterlyCounts[i] > 0) {
+                        quarterlyAverages[i] /= quarterlyCounts[i];
+                    }
+                }
+
+                const overallMean =
+                    quarterlyAverages.reduce((a, b) => a + b, 0) / 4;
+                const seasonalityStrength =
+                    Math.max(...quarterlyAverages) -
+                    Math.min(...quarterlyAverages);
+
+                return {
+                    mean,
+                    volatility,
+                    coefficientOfVariation,
+                    trendSlope,
+                    movingAvg3,
+                    movingAvg6,
+                    exponentialSmooth,
+                    seasonalityStrength,
+                    quarterlyAverages,
+                    trendDirection:
+                        trendSlope > 0.1
+                            ? 'strong_increase'
+                            : trendSlope > 0.01
+                            ? 'moderate_increase'
+                            : trendSlope > -0.01
+                            ? 'stable'
+                            : trendSlope > -0.1
+                            ? 'moderate_decrease'
+                            : 'strong_decrease',
+                    volatilityLevel:
+                        coefficientOfVariation < 0.05
+                            ? 'low'
+                            : coefficientOfVariation < 0.15
+                            ? 'moderate'
+                            : 'high',
+                };
+            }
+
+            // Statistical significance testing
+            function calculateSignificance(regression, n) {
+                const tStatistic =
+                    Math.abs(regression.slope) /
+                    (regression.standardError / Math.sqrt(n));
+                const criticalValue = 2.201; // 95% confidence
+
+                return {
+                    tStatistic,
+                    significant: tStatistic > criticalValue,
+                    pValue: tStatistic > criticalValue ? '< 0.05' : '> 0.05',
+                };
+            }
+
+            // Update dashboard with advanced analytics
+            function updateAdvancedAnalytics() {
+                if (!healthData.immunization_coverage) return;
+
+                // Calculate advanced regression for each dataset
+                const immunizationRegression = calculateAdvancedRegression(
+                    healthData.immunization_coverage,
+                    null,
+                    'coverage_percentage'
+                );
+                const growthRegression = calculateAdvancedRegression(
+                    healthData.child_growth_trends,
+                    null,
+                    'average_weight'
+                );
+                const ncdRegression = calculateAdvancedRegression(
+                    healthData.ncd_risk_trends,
+                    null,
+                    'high_risk_percentage'
+                );
+                const vitalsRegression = calculateAdvancedRegression(
+                    healthData.vital_signs_trends,
+                    null,
+                    'avg_systolic_bp'
+                );
+
+                // Update R-squared values
+                document.getElementById('immunization-r2').textContent =
+                    immunizationRegression.rSquared.toFixed(4);
+                document.getElementById('growth-r2').textContent =
+                    growthRegression.rSquared.toFixed(4);
+                document.getElementById('ncd-r2').textContent =
+                    ncdRegression.rSquared.toFixed(4);
+                document.getElementById('vitals-r2').textContent =
+                    vitalsRegression.rSquared.toFixed(4);
+
+                // Calculate overall MAE and RMSE
+                const overallMAE =
+                    (immunizationRegression.mae +
+                        growthRegression.mae +
+                        ncdRegression.mae +
+                        vitalsRegression.mae) /
+                    4;
+                const overallRMSE = Math.sqrt(
+                    (Math.pow(immunizationRegression.standardError, 2) +
+                        Math.pow(growthRegression.standardError, 2) +
+                        Math.pow(ncdRegression.standardError, 2) +
+                        Math.pow(vitalsRegression.standardError, 2)) /
+                        4
+                );
+
+                document.getElementById('overall-mae').textContent =
+                    overallMAE.toFixed(2) + '%';
+                document.getElementById('overall-rmse').textContent =
+                    overallRMSE.toFixed(2) + '%';
+
+                // Generate 6-month projections
+                const currentCoverage =
+                    healthData.immunization_coverage[
+                        healthData.immunization_coverage.length - 1
+                    ].coverage_percentage;
+                const currentWeight =
+                    healthData.child_growth_trends[
+                        healthData.child_growth_trends.length - 1
+                    ].average_weight;
+                const currentHighRisk =
+                    healthData.ncd_risk_trends[
+                        healthData.ncd_risk_trends.length - 1
+                    ].high_risk_percentage;
+                const currentBP =
+                    healthData.vital_signs_trends[
+                        healthData.vital_signs_trends.length - 1
+                    ].avg_systolic_bp;
+
+                const projectionMonths = 6;
+                const futureX =
+                    healthData.immunization_coverage.length + projectionMonths;
+
+                const projectedCoverage = Math.min(
+                    100,
+                    immunizationRegression.slope * futureX +
+                        immunizationRegression.intercept
+                );
+                const projectedWeight =
+                    growthRegression.slope * futureX +
+                    growthRegression.intercept;
+                const projectedHighRisk = Math.max(
+                    0,
+                    ncdRegression.slope * futureX + ncdRegression.intercept
+                );
+                const projectedBP =
+                    vitalsRegression.slope * futureX +
+                    vitalsRegression.intercept;
+
+                document.getElementById('immunization-projection').textContent =
+                    projectedCoverage.toFixed(1) + '%';
+                document.getElementById('growth-projection').textContent =
+                    projectedWeight.toFixed(1) + 'kg';
+                document.getElementById('ncd-projection').textContent =
+                    projectedHighRisk.toFixed(1) + '%';
+                document.getElementById('bp-projection').textContent =
+                    projectedBP.toFixed(1);
+
+                // Perform trend analysis
+                const immunizationTrend = analyzeTrends(
+                    healthData.immunization_coverage,
+                    'coverage_percentage'
+                );
+                const growthTrend = analyzeTrends(
+                    healthData.child_growth_trends,
+                    'average_weight'
+                );
+                const ncdTrend = analyzeTrends(
+                    healthData.ncd_risk_trends,
+                    'high_risk_percentage'
+                );
+
+                console.log('Advanced Analytics:', {
+                    immunizationTrend,
+                    growthTrend,
+                    ncdTrend,
+                    regressions: {
+                        immunization: immunizationRegression,
+                        growth: growthRegression,
+                        ncd: ncdRegression,
+                        vitals: vitalsRegression,
+                    },
+                });
+            }
+
+            // Generate regression line points
+            function generateRegressionLine(data, regression, xKey, yKey) {
+                return data.map((_, index) => {
+                    const x = index + 1;
+                    return regression.slope * x + regression.intercept;
+                });
+            }
+
+            function initializeCharts() {
+                // Calculate advanced analytics for all datasets
+                const immunizationTrends = detectAdvancedTrends(
+                    healthData.immunization_coverage,
+                    'coverage_percentage'
+                );
+                const growthTrends = detectAdvancedTrends(
+                    healthData.child_growth_trends,
+                    'average_weight'
+                );
+                const ncdTrends = detectAdvancedTrends(
+                    healthData.ncd_risk_trends,
+                    'high_risk_percentage'
+                );
+                const vitalsTrends = detectAdvancedTrends(
+                    healthData.vital_signs_trends,
+                    'avg_systolic_bp'
+                );
+
+                // Calculate logistic regression for threshold predictions
+                const immunizationLogistic = calculateLogisticRegression(
+                    healthData.immunization_coverage,
+                    'coverage_percentage',
+                    95
+                );
+                const ncdLogistic = calculateLogisticRegression(
+                    healthData.ncd_risk_trends,
+                    'high_risk_percentage',
+                    10
+                );
+                const vitalsLogistic = calculateLogisticRegression(
+                    healthData.vital_signs_trends,
+                    'avg_systolic_bp',
+                    120
+                );
+
+                // Immunization Coverage Chart
+                const immunizationCtx = document
+                    .getElementById('immunizationChart')
+                    .getContext('2d');
+                const immunizationRegression = calculateAdvancedRegression(
+                    healthData.immunization_coverage,
+                    null,
+                    'coverage_percentage'
+                );
+
+                new Chart(immunizationCtx, {
+                    type: 'line',
+                    data: {
+                        labels: healthData.immunization_coverage.map((d) =>
+                            new Date(d.month).toLocaleDateString('en-US', {
+                                month: 'short',
+                                year: '2-digit',
+                            })
+                        ),
+                        datasets: [
+                            {
+                                label: 'Actual Coverage',
+                                data: healthData.immunization_coverage.map(
+                                    (d) => d.coverage_percentage
+                                ),
+                                borderColor: 'rgb(34, 197, 94)',
+                                backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                                fill: true,
+                                tension: 0.1,
+                                pointRadius: 4,
+                                pointHoverRadius: 6,
+                            },
+                            {
+                                label: 'Moving Average (3-month)',
+                                data: immunizationTrends.movingAvg3,
+                                borderColor: 'rgb(59, 130, 246)',
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                fill: false,
+                                pointRadius: 0,
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Exponential Smoothing',
+                                data: immunizationTrends.exponentialSmooth,
+                                borderColor: 'rgb(168, 85, 247)',
+                                backgroundColor: 'transparent',
+                                borderDash: [8, 4],
+                                fill: false,
+                                pointRadius: 0,
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Threshold Probability (95%)',
+                                data: immunizationLogistic.probabilities.map(
+                                    (p) => p * 100
+                                ),
+                                borderColor: 'rgb(239, 68, 68)',
+                                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                fill: false,
+                                pointRadius: 2,
+                                yAxisID: 'y1',
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 15,
+                                    font: { size: 11 },
+                                },
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    afterBody: function (context) {
+                                        const dataIndex = context[0].dataIndex;
+                                        const trend =
+                                            immunizationTrends.trendDirection;
+                                        const volatility =
+                                            immunizationTrends.volatilityLevel;
+                                        return [
+                                            `Trend: ${trend}`,
+                                            `Volatility: ${volatility}`,
+                                        ];
+                                    },
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                min: 75,
+                                max: 100,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + '%';
+                                    },
+                                },
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: false,
+                                position: 'right',
+                                min: 0,
+                                max: 100,
+                            },
+                        },
+                    },
+                });
+
+                // Child Growth Chart
+                const growthCtx = document
+                    .getElementById('growthChart')
+                    .getContext('2d');
+
+                new Chart(growthCtx, {
+                    type: 'line',
+                    data: {
+                        labels: healthData.child_growth_trends.map(
+                            (d) => `${d.age_months}mo`
+                        ),
+                        datasets: [
+                            {
+                                label: 'Average Weight',
+                                data: healthData.child_growth_trends.map(
+                                    (d) => d.average_weight
+                                ),
+                                borderColor: 'rgb(59, 130, 246)',
+                                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                fill: true,
+                                tension: 0.1,
+                                pointRadius: 4,
+                                pointHoverRadius: 6,
+                            },
+                            {
+                                label: 'Moving Average (3-period)',
+                                data: growthTrends.movingAvg3,
+                                borderColor: 'rgb(16, 185, 129)',
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                fill: false,
+                                pointRadius: 0,
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Exponential Smoothing',
+                                data: growthTrends.exponentialSmooth,
+                                borderColor: 'rgb(245, 158, 11)',
+                                backgroundColor: 'transparent',
+                                borderDash: [8, 4],
+                                fill: false,
+                                pointRadius: 0,
+                                tension: 0.4,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 20,
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + ' kg';
+                                    },
+                                },
+                            },
+                        },
+                    },
+                });
+
+                // NCD Risk Chart
+                const ncdCtx = document
+                    .getElementById('ncdChart')
+                    .getContext('2d');
+
+                new Chart(ncdCtx, {
+                    type: 'line',
+                    data: {
+                        labels: healthData.ncd_risk_trends.map((d) =>
+                            new Date(d.month).toLocaleDateString('en-US', {
+                                month: 'short',
+                            })
+                        ),
+                        datasets: [
+                            {
+                                label: 'High Risk',
+                                data: healthData.ncd_risk_trends.map(
+                                    (d) => d.high_risk_percentage
+                                ),
+                                borderColor: 'rgb(239, 68, 68)',
+                                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                fill: false,
+                                tension: 0.1,
+                                pointRadius: 4,
+                            },
+                            {
+                                label: 'Moderate Risk',
+                                data: healthData.ncd_risk_trends.map(
+                                    (d) => d.moderate_risk_percentage
+                                ),
+                                borderColor: 'rgb(245, 158, 11)',
+                                backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                                fill: false,
+                                tension: 0.1,
+                                pointRadius: 3,
+                            },
+                            {
+                                label: 'Low Risk',
+                                data: healthData.ncd_risk_trends.map(
+                                    (d) => d.low_risk_percentage
+                                ),
+                                borderColor: 'rgb(34, 197, 94)',
+                                backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                                fill: false,
+                                tension: 0.1,
+                                pointRadius: 3,
+                            },
+                            {
+                                label: 'High Risk Smoothed',
+                                data: ncdTrends.exponentialSmooth,
+                                borderColor: 'rgb(127, 29, 29)',
+                                backgroundColor: 'transparent',
+                                borderDash: [8, 4],
+                                fill: false,
+                                pointRadius: 0,
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Threshold Risk (10%)',
+                                data: ncdLogistic.probabilities.map(
+                                    (p) => p * 100
+                                ),
+                                borderColor: 'rgb(168, 85, 247)',
+                                backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                                fill: false,
+                                pointRadius: 2,
+                                yAxisID: 'y1',
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 12,
+                                    font: { size: 10 },
+                                },
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    afterBody: function (context) {
+                                        const dataIndex = context[0].dataIndex;
+                                        const trend = ncdTrends.trendDirection;
+                                        const volatility =
+                                            ncdTrends.volatilityLevel;
+                                        return [
+                                            `Trend: ${trend}`,
+                                            `Volatility: ${volatility}`,
+                                        ];
+                                    },
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 70,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + '%';
+                                    },
+                                },
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: false,
+                                position: 'right',
+                                min: 0,
+                                max: 100,
+                            },
+                        },
+                    },
+                });
+
+                // Vital Signs Chart
+                const vitalsCtx = document
+                    .getElementById('vitalsChart')
+                    .getContext('2d');
+
+                new Chart(vitalsCtx, {
+                    type: 'line',
+                    data: {
+                        labels: healthData.vital_signs_trends.map((d) =>
+                            new Date(d.month).toLocaleDateString('en-US', {
+                                month: 'short',
+                            })
+                        ),
+                        datasets: [
+                            {
+                                label: 'Systolic BP',
+                                data: healthData.vital_signs_trends.map(
+                                    (d) => d.avg_systolic_bp
+                                ),
+                                borderColor: 'rgb(147, 51, 234)',
+                                backgroundColor: 'rgba(147, 51, 234, 0.1)',
+                                fill: false,
+                                tension: 0.1,
+                                yAxisID: 'y',
+                                pointRadius: 4,
+                            },
+                            {
+                                label: 'Heart Rate',
+                                data: healthData.vital_signs_trends.map(
+                                    (d) => d.avg_heart_rate
+                                ),
+                                borderColor: 'rgb(236, 72, 153)',
+                                backgroundColor: 'rgba(236, 72, 153, 0.1)',
+                                fill: false,
+                                tension: 0.1,
+                                yAxisID: 'y1',
+                                pointRadius: 3,
+                            },
+                            {
+                                label: 'BP Moving Average',
+                                data: vitalsTrends.movingAvg3,
+                                borderColor: 'rgb(99, 102, 241)',
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                fill: false,
+                                pointRadius: 0,
+                                yAxisID: 'y',
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'BP Exponential Smooth',
+                                data: vitalsTrends.exponentialSmooth,
+                                borderColor: 'rgb(168, 85, 247)',
+                                backgroundColor: 'transparent',
+                                borderDash: [8, 4],
+                                fill: false,
+                                pointRadius: 0,
+                                yAxisID: 'y',
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Hypertension Risk (120mmHg)',
+                                data: vitalsLogistic.probabilities.map(
+                                    (p) => p * 100
+                                ),
+                                borderColor: 'rgb(239, 68, 68)',
+                                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                                fill: false,
+                                pointRadius: 2,
+                                yAxisID: 'y2',
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    usePointStyle: true,
+                                    padding: 20,
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                min: 110,
+                                max: 125,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + ' mmHg';
+                                    },
+                                },
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                min: 68,
+                                max: 76,
+                                ticks: {
+                                    callback: function (value) {
+                                        return value + ' bpm';
+                                    },
+                                },
+                                grid: {
+                                    drawOnChartArea: false,
+                                },
+                            },
+                            y2: {
+                                type: 'linear',
+                                display: false,
+                                min: 0,
+                                max: 100,
+                            },
+                        },
+                    },
+                });
+
+                // Log advanced analytics results
+                console.log('Advanced Analytics Results:', {
+                    immunizationTrends,
+                    growthTrends,
+                    ncdTrends,
+                    vitalsTrends,
+                    logisticRegressions: {
+                        immunizationLogistic,
+                        ncdLogistic,
+                        vitalsLogistic,
+                    },
+                });
+
+                // Update dashboard with enhanced analytics
+                updateEnhancedAnalytics({
+                    immunizationTrends,
+                    growthTrends,
+                    ncdTrends,
+                    vitalsTrends,
+                    immunizationLogistic,
+                    ncdLogistic,
+                    vitalsLogistic,
+                });
+
+                // Update advanced analytics after charts are initialized
+                updateAdvancedAnalytics();
+            }
+
+            // Enhanced analytics update function
+            function updateEnhancedAnalytics(analytics) {
+                // Update trend information in dashboard cards
+                document.getElementById(
+                    'coverage-trend'
+                ).textContent = `${analytics.immunizationTrends.trendDirection.replace(
+                    '_',
+                    ' '
+                )} (${
+                    analytics.immunizationTrends.volatilityLevel
+                } volatility)`;
+
+                document.getElementById(
+                    'growth-trend'
+                ).textContent = `${analytics.growthTrends.trendDirection.replace(
+                    '_',
+                    ' '
+                )} (${analytics.growthTrends.volatilityLevel} volatility)`;
+
+                document.getElementById(
+                    'ncd-trend'
+                ).textContent = `${analytics.ncdTrends.trendDirection.replace(
+                    '_',
+                    ' '
+                )} (${analytics.ncdTrends.volatilityLevel} volatility)`;
+
+                document.getElementById(
+                    'vitals-trend'
+                ).textContent = `${analytics.vitalsTrends.trendDirection.replace(
+                    '_',
+                    ' '
+                )} (${analytics.vitalsTrends.volatilityLevel} volatility)`;
+
+                // Update logistic regression insights
+                console.log('Logistic Regression Insights:');
+                console.log(
+                    `Immunization Threshold (95%): ${(
+                        analytics.immunizationLogistic.accuracy * 100
+                    ).toFixed(1)}% accuracy`
+                );
+                console.log(
+                    `NCD Threshold (10%): ${(
+                        analytics.ncdLogistic.accuracy * 100
+                    ).toFixed(1)}% accuracy`
+                );
+                console.log(
+                    `Vitals Threshold (120mmHg): ${(
+                        analytics.vitalsLogistic.accuracy * 100
+                    ).toFixed(1)}% accuracy`
+                );
+            }
+        </script>
+    </body>
+</html>

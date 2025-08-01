@@ -11,7 +11,6 @@ model Account {
     createdAt         DateTime @default(now())
     updatedAt         DateTime @updatedAt
     profilePictureUrl String?
-    emailVerified     Boolean  @default(false)
 
     // Relationships
     userProfile      UserProfile?
