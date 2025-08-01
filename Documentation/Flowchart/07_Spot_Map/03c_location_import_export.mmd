@@ -1,0 +1,189 @@
+flowchart TD
+    %% Location Import/Export Operations
+    
+    Start([📥📤 Import/Export Operations]) --> ImportExportOptions{Import/Export Options}
+    
+    %% Main import/export options
+    ImportExportOptions --> ImportLocations[📥 Import Locations]
+    ImportExportOptions --> ExportLocations[📤 Export Locations]
+    ImportExportOptions --> DataMapping[🔗 Data Mapping]
+    ImportExportOptions --> BatchProcessing[📦 Batch Processing]
+    
+    %% Import Locations Flow
+    ImportLocations --> ImportOptions{Import Options}
+    ImportOptions --> ImportCSV[📋 Import from CSV]
+    ImportOptions --> ImportExcel[📊 Import from Excel]
+    ImportOptions --> ImportGPX[🗺️ Import from GPX]
+    ImportOptions --> ImportKML[🌍 Import from KML]
+    ImportOptions --> ImportGeoJSON[📍 Import from GeoJSON]
+    ImportOptions --> ImportAPI[🔌 Import from API]
+    
+    ImportCSV --> UploadCSVFile[📁 Upload CSV File]
+    ImportExcel --> UploadExcelFile[📁 Upload Excel File]
+    ImportGPX --> UploadGPXFile[📁 Upload GPX File]
+    ImportKML --> UploadKMLFile[📁 Upload KML File]
+    ImportGeoJSON --> UploadGeoJSONFile[📁 Upload GeoJSON File]
+    ImportAPI --> ConfigureAPIConnection[🔌 Configure API Connection]
+    
+    UploadCSVFile --> ValidateImportFile[✅ Validate Import File]
+    UploadExcelFile --> ValidateImportFile
+    UploadGPXFile --> ValidateImportFile
+    UploadKMLFile --> ValidateImportFile
+    UploadGeoJSONFile --> ValidateImportFile
+    ConfigureAPIConnection --> FetchAPIData[📥 Fetch API Data]
+    FetchAPIData --> ValidateImportFile
+    
+    ValidateImportFile --> ImportValidation{Import Valid?}
+    ImportValidation -->|No| ShowImportErrors[❌ Show Import Errors]
+    ImportValidation -->|Yes| MapImportFields[🔗 Map Import Fields]
+    ShowImportErrors --> ImportOptions
+    
+    MapImportFields --> FieldMappingInterface[🔗 Field Mapping Interface]
+    FieldMappingInterface --> MapRequiredFields[📝 Map Required Fields]
+    MapRequiredFields --> MapOptionalFields[📄 Map Optional Fields]
+    MapOptionalFields --> ValidateFieldMapping{Valid Mapping?}
+    ValidateFieldMapping -->|No| FieldMappingInterface
+    ValidateFieldMapping -->|Yes| PreviewImport[👁️ Preview Import]
+    
+    PreviewImport --> ImportPreviewTable[📋 Import Preview Table]
+    ImportPreviewTable --> ConfirmImport{Confirm Import?}
+    ConfirmImport -->|No| MapImportFields
+    ConfirmImport -->|Yes| ProcessImport[⚙️ Process Import]
+    
+    ProcessImport --> ImportProgress[📊 Import Progress]
+    ImportProgress --> HandleImportConflicts{Import Conflicts?}
+    HandleImportConflicts -->|Yes| ResolveConflicts[⚙️ Resolve Conflicts]
+    HandleImportConflicts -->|No| ImportCompleted[✅ Import Completed]
+    ResolveConflicts --> ConflictResolution{Resolution Method}
+    ConflictResolution --> SkipConflicts[⏭️ Skip Conflicts]
+    ConflictResolution --> OverwriteExisting[🔄 Overwrite Existing]
+    ConflictResolution --> CreateDuplicates[📋 Create Duplicates]
+    SkipConflicts --> ImportCompleted
+    OverwriteExisting --> ImportCompleted
+    CreateDuplicates --> ImportCompleted
+    
+    %% Export Locations Flow
+    ExportLocations --> ExportScope{Export Scope}
+    ExportScope --> ExportAll[📋 Export All Locations]
+    ExportScope --> ExportFiltered[🔽 Export Filtered Locations]
+    ExportScope --> ExportSelected[☑️ Export Selected Locations]
+    ExportScope --> ExportByArea[📍 Export by Geographic Area]
+    
+    ExportAll --> SelectExportFormat{Export Format}
+    ExportFiltered --> ApplyExportFilters[🔽 Apply Export Filters]
+    ExportSelected --> SelectLocationsToExport[☑️ Select Locations]
+    ExportByArea --> DefineExportArea[📍 Define Geographic Area]
+    
+    ApplyExportFilters --> ExportFilterOptions[🔽 Filter Options]
+    ExportFilterOptions --> FilterByCategory[📂 Filter by Category]
+    ExportFilterOptions --> FilterByTags[🏷️ Filter by Tags]
+    ExportFilterOptions --> FilterByDateRange[📅 Filter by Date Range]
+    FilterByCategory --> SelectExportFormat
+    FilterByTags --> SelectExportFormat
+    FilterByDateRange --> SelectExportFormat
+    
+    SelectLocationsToExport --> SelectExportFormat
+    DefineExportArea --> DrawExportArea[✏️ Draw Export Area]
+    DrawExportArea --> ValidateExportArea{Valid Area?}
+    ValidateExportArea -->|No| DefineExportArea
+    ValidateExportArea -->|Yes| SelectExportFormat
+    
+    SelectExportFormat --> ExportFormatOptions{Format Options}
+    ExportFormatOptions --> ExportLocationCSV[📋 Export as CSV]
+    ExportFormatOptions --> ExportLocationExcel[📊 Export as Excel]
+    ExportFormatOptions --> ExportLocationGPX[🗺️ Export as GPX]
+    ExportFormatOptions --> ExportLocationKML[🌍 Export as KML]
+    ExportFormatOptions --> ExportLocationGeoJSON[📍 Export as GeoJSON]
+    
+    ExportLocationCSV --> ConfigureExportSettings[⚙️ Configure Export Settings]
+    ExportLocationExcel --> ConfigureExportSettings
+    ExportLocationGPX --> ConfigureExportSettings
+    ExportLocationKML --> ConfigureExportSettings
+    ExportLocationGeoJSON --> ConfigureExportSettings
+    
+    ConfigureExportSettings --> ExportSettingsPanel[⚙️ Export Settings Panel]
+    ExportSettingsPanel --> SelectExportFields[📝 Select Export Fields]
+    SelectExportFields --> SetExportOptions[⚙️ Set Export Options]
+    SetExportOptions --> ProcessExport[⚙️ Process Export]
+    ProcessExport --> ExportProgress[📊 Export Progress]
+    ExportProgress --> LocationsExported[✅ Locations Exported]
+    
+    %% Data Mapping Flow
+    DataMapping --> MappingOptions{Mapping Options}
+    MappingOptions --> CreateMappingTemplate[📝 Create Mapping Template]
+    MappingOptions --> EditMappingTemplate[✏️ Edit Mapping Template]
+    MappingOptions --> DeleteMappingTemplate[🗑️ Delete Mapping Template]
+    MappingOptions --> ViewMappingTemplates[👁️ View Templates]
+    
+    CreateMappingTemplate --> MappingTemplateForm[📝 Mapping Template Form]
+    MappingTemplateForm --> DefineMappingRules[📋 Define Mapping Rules]
+    DefineMappingRules --> SetFieldMappings[🔗 Set Field Mappings]
+    SetFieldMappings --> SetDataTransformations[🔄 Set Data Transformations]
+    SetDataTransformations --> ValidateMappingTemplate{Valid Template?}
+    ValidateMappingTemplate -->|No| MappingTemplateForm
+    ValidateMappingTemplate -->|Yes| SaveMappingTemplate[💾 Save Template]
+    SaveMappingTemplate --> MappingTemplateCreated[✅ Template Created]
+    
+    %% Batch Processing Flow
+    BatchProcessing --> BatchOptions{Batch Options}
+    BatchOptions --> ScheduleBatchImport[⏰ Schedule Batch Import]
+    BatchOptions --> ScheduleBatchExport[⏰ Schedule Batch Export]
+    BatchOptions --> MonitorBatchJobs[📊 Monitor Batch Jobs]
+    BatchOptions --> BatchJobHistory[📜 Batch Job History]
+    
+    ScheduleBatchImport --> BatchImportScheduler[⏰ Batch Import Scheduler]
+    BatchImportScheduler --> SetImportSchedule[📅 Set Import Schedule]
+    SetImportSchedule --> BatchImportScheduled[⏰ Batch Import Scheduled]
+    
+    ScheduleBatchExport --> BatchExportScheduler[⏰ Batch Export Scheduler]
+    BatchExportScheduler --> SetExportSchedule[📅 Set Export Schedule]
+    SetExportSchedule --> BatchExportScheduled[⏰ Batch Export Scheduled]
+    
+    MonitorBatchJobs --> BatchJobMonitor[📊 Batch Job Monitor]
+    BatchJobMonitor --> ActiveBatchJobs[🔄 Active Batch Jobs]
+    ActiveBatchJobs --> BatchJobActions{Job Actions}
+    BatchJobActions --> PauseBatchJob[⏸️ Pause Job]
+    BatchJobActions --> ResumeBatchJob[▶️ Resume Job]
+    BatchJobActions --> CancelBatchJob[❌ Cancel Job]
+    
+    %% Return paths
+    ImportCompleted --> ImportExportOptions
+    LocationsExported --> ImportExportOptions
+    MappingTemplateCreated --> MappingOptions
+    EditMappingTemplate --> MappingOptions
+    DeleteMappingTemplate --> MappingOptions
+    ViewMappingTemplates --> MappingOptions
+    MappingOptions --> ImportExportOptions
+    BatchImportScheduled --> BatchOptions
+    BatchExportScheduled --> BatchOptions
+    PauseBatchJob --> ActiveBatchJobs
+    ResumeBatchJob --> ActiveBatchJobs
+    CancelBatchJob --> ActiveBatchJobs
+    ActiveBatchJobs --> BatchJobMonitor
+    BatchJobMonitor --> BatchOptions
+    BatchJobHistory --> BatchOptions
+    BatchOptions --> ImportExportOptions
+    
+    %% Back to dashboard
+    ImportExportOptions --> Dashboard[🏠 Back to Location Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef import fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef export fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef mapping fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef batch fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class ImportLocations,ExportLocations,DataMapping,BatchProcessing,UploadCSVFile,UploadExcelFile,UploadGPXFile,UploadKMLFile,UploadGeoJSONFile,ConfigureAPIConnection,ValidateImportFile,ProcessImport,ProcessExport,CreateMappingTemplate,EditMappingTemplate,DeleteMappingTemplate,ViewMappingTemplates,ScheduleBatchImport,ScheduleBatchExport,MonitorBatchJobs,BatchJobHistory process
+    class ImportExportOptions,ImportOptions,ImportValidation,ValidateFieldMapping,ConfirmImport,HandleImportConflicts,ConflictResolution,ExportScope,SelectExportFormat,ExportFormatOptions,ValidateExportArea,MappingOptions,ValidateMappingTemplate,BatchOptions,BatchJobActions decision
+    class ImportCompleted,LocationsExported,MappingTemplateCreated,BatchImportScheduled,BatchExportScheduled success
+    class ImportCSV,ImportExcel,ImportGPX,ImportKML,ImportGeoJSON,ImportAPI,MapImportFields,FieldMappingInterface,PreviewImport,ImportPreviewTable import
+    class ExportAll,ExportFiltered,ExportSelected,ExportByArea,ExportLocationCSV,ExportLocationExcel,ExportLocationGPX,ExportLocationKML,ExportLocationGeoJSON,ConfigureExportSettings export
+    class MappingTemplateForm,DefineMappingRules,SetFieldMappings,SetDataTransformations mapping
+    class BatchImportScheduler,BatchExportScheduler,BatchJobMonitor,ActiveBatchJobs,PauseBatchJob,ResumeBatchJob,CancelBatchJob batch
+    class ShowImportErrors error

@@ -1,0 +1,101 @@
+graph LR
+    %% PredictiMed System - Current Problems Analysis
+    %% Problems that our digital system will solve
+    
+    subgraph Problem
+        MainProblem[🚩 Manual Health Record Management & Service Delivery Issues]
+    end
+
+    subgraph "People/Administrator Issues"
+        P1[Staff Overload]
+        P2[Manual Data Entry Errors] 
+        P3[Limited Technical Skills]
+        P4[No Real-time Coordination]
+        P5[Difficulty Finding Records]
+    end
+
+    subgraph "Current Technology Issues"
+        T1[Paper-based Forms]
+        T2[Excel Spreadsheet Dependencies]
+        T3[No Digital Backup System]
+        T4[Physical File Storage]
+        T5[No Mobile Access]
+        T6[Version Control Problems]
+    end
+
+    subgraph "Process Issues"
+        PR1[Time-consuming Registration]
+        PR2[Manual Appointment Scheduling]
+        PR3[No Automated Reminders]
+        PR4[Physical Consultation Only]
+        PR5[Manual Report Generation]
+        PR6[No Patient Self-service]
+    end
+
+    subgraph "Security & Access Issues"
+        S1[No User Authentication]
+        S2[Unauthorized File Access]
+        S3[No Audit Trail]
+        S4[Lost Physical Documents]
+        S5[No Data Encryption]
+        S6[Limited Access Control]
+    end
+
+    subgraph "Communication Issues"
+        C1[Phone-only Booking]
+        C2[No Real-time Notifications]
+        C3[Limited Patient Communication]
+        C4[No Remote Consultation]
+        C5[Manual Information Sharing]
+        C6[Delayed Health Updates]
+    end
+
+    %% Connections to Main Problem
+    P1 --> MainProblem
+    P2 --> MainProblem
+    P3 --> MainProblem
+    P4 --> MainProblem
+    P5 --> MainProblem
+    
+    T1 --> MainProblem
+    T2 --> MainProblem
+    T3 --> MainProblem
+    T4 --> MainProblem
+    T5 --> MainProblem
+    T6 --> MainProblem
+    
+    PR1 --> MainProblem
+    PR2 --> MainProblem
+    PR3 --> MainProblem
+    PR4 --> MainProblem
+    PR5 --> MainProblem
+    PR6 --> MainProblem
+    
+    S1 --> MainProblem
+    S2 --> MainProblem
+    S3 --> MainProblem
+    S4 --> MainProblem
+    S5 --> MainProblem
+    S6 --> MainProblem
+    
+    C1 --> MainProblem
+    C2 --> MainProblem
+    C3 --> MainProblem
+    C4 --> MainProblem
+    C5 --> MainProblem
+    C6 --> MainProblem
+
+    %% Styling
+    classDef problem fill:#ffebee,stroke:#c62828,stroke-width:3px,color:#000
+    classDef people fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef technology fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef security fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef communication fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class MainProblem problem
+    class P1,P2,P3,P4,P5 people
+    class T1,T2,T3,T4,T5,T6 technology
+    class PR1,PR2,PR3,PR4,PR5,PR6 process
+    class S1,S2,S3,S4,S5,S6 security
+    class C1,C2,C3,C4,C5,C6 communication

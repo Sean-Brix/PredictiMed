@@ -1,0 +1,84 @@
+
+graph TB
+    %% ========================================
+    %% ADMIN ROLE - ANALYTICS & REPORTING USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed System - Admin Analytics & Reporting"
+        subgraph "Health Analytics"
+            UC1[View Health Trends]
+            UC2[Generate Health Reports]
+            UC3[Patient Demographics Analysis]
+            UC4[Health Program Effectiveness]
+            UC5[Disease Pattern Analysis]
+        end
+        
+        subgraph "Operational Analytics"
+            UC6[Consultation Statistics]
+            UC7[Appointment Success Rates]
+            UC8[Health Worker Performance]
+            UC9[Facility Utilization Reports]
+            UC10[Resource Usage Analysis]
+        end
+        
+        subgraph "Event & Program Analytics"
+            UC11[Event Attendance Reports]
+            UC12[Program Enrollment Statistics]
+            UC13[Event Success Metrics]
+            UC14[Program Completion Rates]
+            UC15[Community Participation Analysis]
+        end
+        
+        subgraph "Custom Reporting"
+            UC16[Create Custom Reports]
+            UC17[Schedule Automated Reports]
+            UC18[Export Report Data]
+            UC19[Share Reports with Stakeholders]
+            UC20[Archive Historical Reports]
+        end
+    end
+    
+    %% Actors
+    Admin((Admin))
+    
+    %% Admin Relationships
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+    Admin --> UC8
+    Admin --> UC9
+    Admin --> UC10
+    Admin --> UC11
+    Admin --> UC12
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15
+    Admin --> UC16
+    Admin --> UC17
+    Admin --> UC18
+    Admin --> UC19
+    Admin --> UC20
+    
+    %% Include Relationships
+    UC2 -.->|includes| UC1
+    UC6 -.->|includes| UC7
+    UC11 -.->|includes| UC12
+    UC16 -.->|includes| UC17
+    UC18 -.->|includes| UC19
+    
+    %% Extend Relationships
+    UC5 -.->|extends| UC3
+    UC10 -.->|extends| UC9
+    UC15 -.->|extends| UC13
+    UC20 -.->|extends| UC16
+    
+    classDef actor fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef usecase fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    
+    class Admin actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20 usecase
+```

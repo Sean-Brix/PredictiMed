@@ -1,0 +1,50 @@
+flowchart TD
+    %% Content Management Dashboard - Main Entry Point
+    
+    Start([📝 Content Management]) --> AuthCheck{User Authenticated?}
+    AuthCheck -->|No| LoginRequired[🔐 Login Required]
+    AuthCheck -->|Yes| PermissionCheck{CMS Permission?}
+    
+    PermissionCheck -->|No| AccessDenied[❌ Access Denied]
+    PermissionCheck -->|Yes| CMSDashboard[📝 CMS Dashboard]
+    
+    %% Main CMS Categories
+    CMSDashboard --> PageManagement[📄 Page Management]
+    CMSDashboard --> ContentManagement[📝 Content Management]
+    CMSDashboard --> MediaLibrary[🖼️ Media Library]
+    CMSDashboard --> NavigationMgmt[🧭 Navigation Management]
+    CMSDashboard --> SEOManagement[🔍 SEO Management]
+    CMSDashboard --> ContentScheduling[⏰ Content Scheduling]
+    CMSDashboard --> ContentAnalytics[📊 Content Analytics]
+    
+    %% Navigate to specific modules
+    PageManagement --> PageFlow[Go to Page Management Flow]
+    ContentManagement --> ContentFlow[Go to Content Management Flow]
+    MediaLibrary --> MediaFlow[Go to Media Library Flow]
+    NavigationMgmt --> NavFlow[Go to Navigation Flow]
+    SEOManagement --> SEOFlow[Go to SEO Management Flow]
+    ContentScheduling --> ScheduleFlow[Go to Scheduling Flow]
+    ContentAnalytics --> AnalyticsFlow[Go to Analytics Flow]
+    
+    %% Return paths
+    PageFlow --> CMSDashboard
+    ContentFlow --> CMSDashboard
+    MediaFlow --> CMSDashboard
+    NavFlow --> CMSDashboard
+    SEOFlow --> CMSDashboard
+    ScheduleFlow --> CMSDashboard
+    AnalyticsFlow --> CMSDashboard
+    AccessDenied --> Start
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,CMSDashboard startEnd
+    class PageManagement,ContentManagement,MediaLibrary,NavigationMgmt,SEOManagement,ContentScheduling,ContentAnalytics process
+    class AuthCheck,PermissionCheck decision
+    class LoginRequired,AccessDenied error
+    class PageFlow,ContentFlow,MediaFlow,NavFlow,SEOFlow,ScheduleFlow,AnalyticsFlow navigation

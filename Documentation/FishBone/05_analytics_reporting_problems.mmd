@@ -1,0 +1,75 @@
+graph LR
+    subgraph Problem
+        P[🚩 Analytics & Reporting System Issues]
+    end
+
+    subgraph "Data Collection"
+        D1a[Incomplete Data Sources]
+        D1b[Data Quality Issues]
+        D1c[Manual Entry Errors]
+        D1d[Missing Historical Data]
+    end
+
+    subgraph "Technical Performance"
+        T1a[Slow Query Performance]
+        T1b[Dashboard Loading Times]
+        T1c[Real-time Processing Delays]
+        T1d[Memory and Storage Constraints]
+    end
+
+    subgraph "User Interface"
+        U1a[Complex Report Generation]
+        U1b[Non-intuitive Dashboards]
+        U1c[Limited Customization Options]
+        U1d[Mobile Responsiveness Issues]
+    end
+
+    subgraph "Data Integration"
+        I1a[Multiple System Consolidation]
+        I1b[API Response Delays]
+        I1c[Data Format Inconsistencies]
+        I1d[Third-party Integration Issues]
+    end
+
+    subgraph "Business Intelligence"
+        B1a[Inadequate KPI Definitions]
+        B1b[Limited Predictive Analytics]
+        B1c[Insufficient Trend Analysis]
+        B1d[Poor Data Visualization]
+    end
+
+    D1a --> P
+    D1b --> P
+    D1c --> P
+    D1d --> P
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    U1a --> P
+    U1b --> P
+    U1c --> P
+    U1d --> P
+    I1a --> P
+    I1b --> P
+    I1c --> P
+    I1d --> P
+    B1a --> P
+    B1b --> P
+    B1c --> P
+    B1d --> P
+
+    classDef problem fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef data fill:#74c0fc,stroke:#228be6,stroke-width:2px
+    classDef technical fill:#69db7c,stroke:#51cf66,stroke-width:2px
+    classDef ui fill:#ffd43b,stroke:#fab005,stroke-width:2px
+    classDef integration fill:#ff8cc8,stroke:#e64980,stroke-width:2px
+    classDef business fill:#ffa8a8,stroke:#fa5252,stroke-width:2px
+
+    class P problem
+    class D1a,D1b,D1c,D1d data
+    class T1a,T1b,T1c,T1d technical
+    class U1a,U1b,U1c,U1d ui
+    class I1a,I1b,I1c,I1d integration
+    class B1a,B1b,B1c,B1d business
+```

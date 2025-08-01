@@ -1,0 +1,159 @@
+flowchart TD
+    %% Registration Processing - Applications, Invitations, Bulk Actions
+    
+    Start([✅ Registration Processing]) --> ProcessingOptions{Processing Options}
+    
+    %% Main processing options
+    ProcessingOptions --> ProcessApplications[📋 Process Applications]
+    ProcessingOptions --> SendInvitations[📧 Send Invitations]
+    ProcessingOptions --> BulkActions[📦 Bulk Actions]
+    ProcessingOptions --> RegistrationMonitoring[📊 Registration Monitoring]
+    
+    %% Process Applications Flow
+    ProcessApplications --> PendingApplications[⏳ Pending Applications]
+    PendingApplications --> ApplicationActions{Application Actions}
+    ApplicationActions --> ReviewApplication[👁️ Review Application]
+    ApplicationActions --> ApproveApplication[✅ Approve Application]
+    ApplicationActions --> RejectApplication[❌ Reject Application]
+    ApplicationActions --> RequestMoreInfo[📝 Request More Info]
+    
+    ReviewApplication --> ApplicationReview[📋 Application Review Panel]
+    ApplicationReview --> ReviewDocuments[📄 Review Documents]
+    ReviewDocuments --> VerifyRequirements[✅ Verify Requirements]
+    VerifyRequirements --> ReviewDecision{Review Decision}
+    ReviewDecision --> ApproveApplication
+    ReviewDecision --> RejectApplication
+    ReviewDecision --> RequestMoreInfo
+    
+    ApproveApplication --> ApplicationApproval[✅ Process Approval]
+    ApplicationApproval --> SendApprovalNotification[📧 Send Approval Notification]
+    SendApprovalNotification --> ApplicationApproved[✅ Application Approved]
+    
+    RejectApplication --> RejectionReason[📝 Rejection Reason Form]
+    RejectionReason --> ApplicationRejection[❌ Process Rejection]
+    ApplicationRejection --> SendRejectionNotification[📧 Send Rejection Notification]
+    SendRejectionNotification --> ApplicationRejected[❌ Application Rejected]
+    
+    RequestMoreInfo --> InfoRequestForm[📝 Information Request Form]
+    InfoRequestForm --> SendInfoRequest[📧 Send Info Request]
+    SendInfoRequest --> InfoRequested[📝 Information Requested]
+    
+    %% Send Invitations Flow
+    SendInvitations --> InvitationOptions{Invitation Options}
+    InvitationOptions --> CreateInviteList[📝 Create Invite List]
+    InvitationOptions --> ImportInviteList[📥 Import Invite List]
+    InvitationOptions --> SelectExistingList[📋 Select Existing List]
+    
+    CreateInviteList --> InviteListBuilder[🛠️ Invite List Builder]
+    InviteListBuilder --> AddInvidualInvitees[👤 Add Individual Invitees]
+    AddInvidualInvitees --> AddGroupInvitees[👥 Add Group Invitees]
+    AddGroupInvitees --> ValidateInviteList{Valid List?}
+    ValidateInviteList -->|No| InviteListBuilder
+    ValidateInviteList -->|Yes| CustomizeInvitation[📧 Customize Invitation]
+    
+    ImportInviteList --> UploadInviteFile[📁 Upload Invite File]
+    UploadInviteFile --> ValidateImportedList[✅ Validate Imported List]
+    ValidateImportedList --> ImportValidation{Import Valid?}
+    ImportValidation -->|No| UploadInviteFile
+    ImportValidation -->|Yes| CustomizeInvitation
+    
+    SelectExistingList --> ChooseExistingList[📋 Choose from Existing Lists]
+    ChooseExistingList --> CustomizeInvitation
+    
+    CustomizeInvitation --> InvitationTemplate[📧 Invitation Template]
+    InvitationTemplate --> PersonalizeInvitation[📝 Personalize Message]
+    PersonalizeInvitation --> SetInvitationDeadline[⏰ Set RSVP Deadline]
+    SetInvitationDeadline --> PreviewInvitation[👁️ Preview Invitation]
+    PreviewInvitation --> SendInvitationsConfirm{Send Invitations?}
+    SendInvitationsConfirm -->|No| CustomizeInvitation
+    SendInvitationsConfirm -->|Yes| ProcessInvitations[📧 Process Invitations]
+    ProcessInvitations --> InvitationsSent[📧 Invitations Sent]
+    
+    %% Bulk Actions Flow
+    BulkActions --> BulkOptions{Bulk Options}
+    BulkOptions --> BulkApprove[✅ Bulk Approve]
+    BulkOptions --> BulkReject[❌ Bulk Reject]
+    BulkOptions --> BulkCancel[❌ Bulk Cancel]
+    BulkOptions --> BulkTransfer[🔄 Bulk Transfer]
+    BulkOptions --> BulkExport[📤 Bulk Export]
+    BulkOptions --> BulkCommunication[📧 Bulk Communication]
+    
+    BulkApprove --> SelectApprovalList[☑️ Select Registrations for Approval]
+    SelectApprovalList --> ConfirmBulkApproval{Confirm Bulk Approval?}
+    ConfirmBulkApproval -->|No| BulkOptions
+    ConfirmBulkApproval -->|Yes| ProcessBulkApproval[✅ Process Bulk Approval]
+    ProcessBulkApproval --> BulkApprovalCompleted[✅ Bulk Approval Completed]
+    
+    BulkReject --> SelectRejectionList[☑️ Select Registrations for Rejection]
+    SelectRejectionList --> BulkRejectionReason[📝 Bulk Rejection Reason]
+    BulkRejectionReason --> ConfirmBulkRejection{Confirm Bulk Rejection?}
+    ConfirmBulkRejection -->|No| BulkOptions
+    ConfirmBulkRejection -->|Yes| ProcessBulkRejection[❌ Process Bulk Rejection]
+    ProcessBulkRejection --> BulkRejectionCompleted[❌ Bulk Rejection Completed]
+    
+    BulkTransfer --> SelectTransferList[☑️ Select Registrations for Transfer]
+    SelectTransferList --> SelectTargetEvent[🎯 Select Target Event]
+    SelectTargetEvent --> ConfirmBulkTransfer{Confirm Bulk Transfer?}
+    ConfirmBulkTransfer -->|No| BulkOptions
+    ConfirmBulkTransfer -->|Yes| ProcessBulkTransfer[🔄 Process Bulk Transfer]
+    ProcessBulkTransfer --> BulkTransferCompleted[🔄 Bulk Transfer Completed]
+    
+    BulkExport --> ExportFormat{Export Format}
+    ExportFormat --> ExportCSV[📋 Export as CSV]
+    ExportFormat --> ExportExcel[📊 Export as Excel]
+    ExportFormat --> ExportPDF[📄 Export as PDF]
+    ExportCSV --> BulkExportCompleted[📤 Export Completed]
+    ExportExcel --> BulkExportCompleted
+    ExportPDF --> BulkExportCompleted
+    
+    BulkCommunication --> CommunicationType{Communication Type}
+    CommunicationType --> BulkEmail[📧 Bulk Email]
+    CommunicationType --> BulkSMS[📱 Bulk SMS]
+    CommunicationType --> BulkNotification[🔔 Bulk Notification]
+    BulkEmail --> BulkCommunicationSent[📧 Bulk Communication Sent]
+    BulkSMS --> BulkCommunicationSent
+    BulkNotification --> BulkCommunicationSent
+    
+    %% Registration Monitoring
+    RegistrationMonitoring --> MonitoringDashboard[📊 Monitoring Dashboard]
+    MonitoringDashboard --> RegistrationMetrics[📈 Registration Metrics]
+    RegistrationMetrics --> CapacityUtilization[👥 Capacity Utilization]
+    CapacityUtilization --> WaitingListStatus[⏳ Waiting List Status]
+    WaitingListStatus --> RegistrationTrends[📊 Registration Trends]
+    
+    %% Return paths
+    ApplicationApproved --> PendingApplications
+    ApplicationRejected --> PendingApplications
+    InfoRequested --> PendingApplications
+    InvitationsSent --> ProcessingOptions
+    BulkApprovalCompleted --> ProcessingOptions
+    BulkRejectionCompleted --> ProcessingOptions
+    BulkTransferCompleted --> ProcessingOptions
+    BulkExportCompleted --> ProcessingOptions
+    BulkCommunicationSent --> ProcessingOptions
+    RegistrationTrends --> MonitoringDashboard
+    MonitoringDashboard --> ProcessingOptions
+    
+    %% Back to dashboard
+    ProcessingOptions --> Dashboard[🏠 Back to Registration Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef approval fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef invitation fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef bulk fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef monitoring fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class ProcessApplications,SendInvitations,BulkActions,RegistrationMonitoring,PendingApplications,ReviewApplication,ApplicationReview,InviteListBuilder,UploadInviteFile,ChooseExistingList,ProcessInvitations,SelectApprovalList,SelectRejectionList,SelectTransferList,MonitoringDashboard process
+    class ProcessingOptions,ApplicationActions,ReviewDecision,InvitationOptions,ValidateInviteList,ImportValidation,SendInvitationsConfirm,BulkOptions,ConfirmBulkApproval,ConfirmBulkRejection,ConfirmBulkTransfer,ExportFormat,CommunicationType decision
+    class ApplicationApproved,InvitationsSent,BulkApprovalCompleted,BulkTransferCompleted,BulkExportCompleted,BulkCommunicationSent success
+    class ApplicationRejected,BulkRejectionCompleted error
+    class ApproveApplication,ApplicationApproval,SendApprovalNotification approval
+    class CustomizeInvitation,InvitationTemplate,PersonalizeInvitation,PreviewInvitation invitation
+    class BulkApprove,BulkReject,BulkTransfer,BulkExport,BulkCommunication,ProcessBulkApproval,ProcessBulkRejection,ProcessBulkTransfer bulk
+    class RegistrationMetrics,CapacityUtilization,WaitingListStatus,RegistrationTrends monitoring

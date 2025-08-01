@@ -1,0 +1,63 @@
+flowchart TD
+    %% SEO Management - Search Engine Optimization
+    
+    Start([🔍 SEO Management]) --> SEOOptions{SEO Management Options}
+    
+    %% Main SEO Operations
+    SEOOptions --> PageSEO[📄 Page SEO Settings]
+    SEOOptions --> GlobalSEO[🌐 Global SEO Settings]
+    SEOOptions --> SEOAnalysis[📊 SEO Analysis]
+    SEOOptions --> MetaTags[🏷️ Meta Tags Management]
+    SEOOptions --> SitemapManagement[🗺️ Sitemap Management]
+    
+    %% Page SEO Settings Flow
+    PageSEO --> SelectPageForSEO[📄 Select Page for SEO]
+    SelectPageForSEO --> PageSEOForm[📝 Page SEO Form]
+    PageSEOForm --> SetMetaTitle[📝 Set Meta Title]
+    SetMetaTitle --> SetMetaDescription[📝 Set Meta Description]
+    SetMetaDescription --> SetKeywords[🔑 Set Keywords]
+    SetKeywords --> SetOGTags[📱 Set Open Graph Tags]
+    SetOGTags --> SetSchemaMarkup[📋 Set Schema Markup]
+    SetSchemaMarkup --> SavePageSEO[💾 Save Page SEO]
+    
+    %% Global SEO Settings
+    GlobalSEO --> SiteSettings[🌐 Site-wide Settings]
+    SiteSettings --> DefaultMetaTags[🏷️ Default Meta Tags]
+    DefaultMetaTags --> RobotsSettings[🤖 Robots.txt Settings]
+    RobotsSettings --> AnalyticsCode[📊 Analytics Code]
+    AnalyticsCode --> SaveGlobalSEO[💾 Save Global SEO]
+    
+    %% SEO Analysis
+    SEOAnalysis --> AnalyzePages[📊 Analyze Pages]
+    AnalyzePages --> SEOScore[📈 Calculate SEO Score]
+    SEOScore --> SEORecommendations[💡 SEO Recommendations]
+    SEORecommendations --> GenerateSEOReport[📄 Generate SEO Report]
+    
+    %% Sitemap Management
+    SitemapManagement --> GenerateSitemap[🗺️ Generate XML Sitemap]
+    GenerateSitemap --> SubmitSitemap[📤 Submit to Search Engines]
+    SubmitSitemap --> SitemapStatus[✅ Sitemap Status]
+    
+    %% Results
+    SavePageSEO --> SEOUpdated[✅ Page SEO Updated]
+    SaveGlobalSEO --> GlobalSEOUpdated[✅ Global SEO Updated]
+    GenerateSEOReport --> SEOReportReady[📄 SEO Report Ready]
+    SitemapStatus --> SitemapReady[✅ Sitemap Updated]
+    
+    SEOUpdated --> BackToCMS[🔙 Back to CMS Dashboard]
+    GlobalSEOUpdated --> BackToCMS
+    SEOReportReady --> BackToCMS
+    SitemapReady --> BackToCMS
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef seoCategory fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class Start,BackToCMS startEnd
+    class PageSEO,GlobalSEO,SEOAnalysis,MetaTags,SitemapManagement seoCategory
+    class SelectPageForSEO,PageSEOForm,SetMetaTitle,SetMetaDescription,SetKeywords,SetOGTags,SetSchemaMarkup,SavePageSEO,SiteSettings,DefaultMetaTags,RobotsSettings,AnalyticsCode,SaveGlobalSEO,AnalyzePages,SEOScore,SEORecommendations,GenerateSEOReport,GenerateSitemap,SubmitSitemap process
+    class SEOOptions decision
+    class SEOUpdated,GlobalSEOUpdated,SEOReportReady,SitemapReady,SitemapStatus success

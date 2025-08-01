@@ -1,0 +1,52 @@
+flowchart TD
+    %% Event Registration Dashboard - Navigation Hub
+    
+    Start([👥 Event Registration]) --> RegistrationDashboard[📊 Registration Dashboard]
+    RegistrationDashboard --> RegistrationActions{Select Action}
+    
+    %% Navigate to specific modules
+    RegistrationActions --> RegistrationManagementFlow[Go to Registration Management]
+    RegistrationActions --> RegistrationProcessingFlow[Go to Registration Processing]
+    RegistrationActions --> ViewRegistrations[👁️ View Registrations]
+    RegistrationActions --> RegistrationReports[📊 Registration Reports]
+    
+    %% Simple View Registrations (kept here as basic)
+    ViewRegistrations --> RegistrationsList[📋 Registrations List]
+    RegistrationsList --> QuickActions{Quick Actions}
+    QuickActions --> QuickFilter[🔽 Quick Filter]
+    QuickActions --> QuickSearch[🔍 Quick Search]
+    QuickActions --> ViewDetails[👁️ View Details]
+    
+    %% Reports (simple overview)
+    RegistrationReports --> ReportsMenu[📊 Reports Menu]
+    ReportsMenu --> RegistrationStatistics[📈 Registration Statistics]
+    ReportsMenu --> AttendanceReports[📋 Attendance Reports]
+    ReportsMenu --> CapacityReports[👥 Capacity Reports]
+    
+    %% Return paths
+    RegistrationManagementFlow --> RegistrationDashboard
+    RegistrationProcessingFlow --> RegistrationDashboard
+    QuickFilter --> RegistrationsList
+    QuickSearch --> RegistrationsList
+    ViewDetails --> RegistrationsList
+    RegistrationsList --> RegistrationDashboard
+    RegistrationStatistics --> ReportsMenu
+    AttendanceReports --> ReportsMenu
+    CapacityReports --> ReportsMenu
+    ReportsMenu --> RegistrationDashboard
+    
+    %% Back to main dashboard
+    RegistrationDashboard --> Dashboard[🏠 Back to Events Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef reports fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    
+    class Start,Dashboard,RegistrationDashboard startEnd
+    class ViewRegistrations,RegistrationsList,ReportsMenu process
+    class RegistrationActions,QuickActions decision
+    class RegistrationManagementFlow,RegistrationProcessingFlow navigation
+    class RegistrationReports,RegistrationStatistics,AttendanceReports,CapacityReports reports

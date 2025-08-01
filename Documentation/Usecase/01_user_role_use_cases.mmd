@@ -1,0 +1,26 @@
+graph TB
+    %% User Use Cases - Simplified
+    
+    User[👤 User/Patient]
+    
+    %% Core Functions
+    Profile[👤 Profile Management]
+    HealthRecords[🏥 Health Records]
+    Appointments[📅 Appointments]
+    Events[📍 Health Events]
+    QRCode[📱 QR Code Access]
+    
+    %% Connections
+    User --> Profile
+    User --> HealthRecords
+    User --> Appointments
+    User --> Events
+    User --> QRCode
+    
+    %% Styling
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef usecase fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    
+    class User actor
+    class Profile,HealthRecords,Appointments,Events,QRCode usecase
+```

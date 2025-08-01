@@ -1,0 +1,57 @@
+graph LR
+    subgraph Problem
+        P[🚩 User Authentication Failures]
+    end
+
+    subgraph "Process Issues"
+        P1a[Complex Registration Flow]
+        P1b[Email Verification Delays]
+        P1c[Password Policy Confusion]
+        P1d[Role Selection Ambiguity]
+    end
+
+    subgraph "Technology Issues"
+        P2a[Server Authentication Delays]
+        P2b[Database Connection Issues]
+        P2c[JWT Token Expiration]
+        P2d[Session Management Problems]
+    end
+
+    subgraph "User Experience Issues"
+        P3a[Unclear Error Messages]
+        P3b[Multiple Login Attempts]
+        P3c[Forgotten Password Process]
+        P3d[Mobile Responsiveness Issues]
+    end
+
+    subgraph "Data Management Issues"
+        P4a[Duplicate Account Creation]
+        P4b[Profile Completion Requirements]
+        P4c[Invalid Email Formats]
+        P4d[Incomplete User Information]
+    end
+
+    P1a --> P
+    P1b --> P
+    P1c --> P
+    P1d --> P
+    P2a --> P
+    P2b --> P
+    P2c --> P
+    P2d --> P
+    P3a --> P
+    P3b --> P
+    P3c --> P
+    P3d --> P
+    P4a --> P
+    P4b --> P
+    P4c --> P
+    P4d --> P
+
+    classDef problem fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef cause fill:#74c0fc,stroke:#228be6,stroke-width:2px
+    classDef subgraphStyle fill:#f8f9fa,stroke:#868e96,stroke-width:1px
+
+    class P problem
+    class P1a,P1b,P1c,P1d,P2a,P2b,P2c,P2d,P3a,P3b,P3c,P3d,P4a,P4b,P4c,P4d cause
+```

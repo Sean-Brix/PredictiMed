@@ -1,0 +1,74 @@
+flowchart TD
+    %% Media Library - Image, Video, Document Management
+    
+    Start([🖼️ Media Library]) --> MediaOptions{Media Library Options}
+    
+    %% Main Media Operations
+    MediaOptions --> UploadMedia[⬆️ Upload New Media]
+    MediaOptions --> ManageExisting[📁 Manage Existing Media]
+    MediaOptions --> OrganizeFolders[📂 Organize Folders]
+    MediaOptions --> MediaSettings[⚙️ Media Settings]
+    
+    %% Upload New Media Flow
+    UploadMedia --> SelectMediaType{Select Media Type}
+    SelectMediaType --> UploadImages[🖼️ Upload Images]
+    SelectMediaType --> UploadVideos[📹 Upload Videos]
+    SelectMediaType --> UploadDocuments[📄 Upload Documents]
+    SelectMediaType --> UploadAudio[🎵 Upload Audio Files]
+    
+    UploadImages --> FileUpload[📤 File Upload Process]
+    UploadVideos --> FileUpload
+    UploadDocuments --> FileUpload
+    UploadAudio --> FileUpload
+    
+    FileUpload --> ValidateFile{Validate File}
+    ValidateFile -->|Invalid| FileError[❌ Invalid File Type/Size]
+    ValidateFile -->|Valid| ProcessUpload[⚙️ Process Upload]
+    FileError --> SelectMediaType
+    
+    ProcessUpload --> SetMetadata[📝 Set Media Metadata]
+    SetMetadata --> SetTitle[📝 Set Title]
+    SetTitle --> SetDescription[📝 Set Description]
+    SetDescription --> SetTags[🏷️ Set Tags]
+    SetTags --> SelectFolder[📂 Select Folder]
+    SelectFolder --> SaveMedia[💾 Save Media]
+    
+    %% Manage Existing Media Flow
+    ManageExisting --> MediaBrowser[🗂️ Browse Media Files]
+    MediaBrowser --> SelectMedia[📁 Select Media File]
+    SelectMedia --> MediaActions{Media Actions}
+    MediaActions --> EditMetadata[✏️ Edit Metadata]
+    MediaActions --> MoveMedia[📁 Move to Folder]
+    MediaActions --> DeleteMedia[🗑️ Delete Media]
+    MediaActions --> DownloadMedia[⬇️ Download Media]
+    
+    %% Folder Organization
+    OrganizeFolders --> FolderOptions{Folder Options}
+    FolderOptions --> CreateFolder[➕ Create New Folder]
+    FolderOptions --> RenameFolder[✏️ Rename Folder]
+    FolderOptions --> DeleteFolder[🗑️ Delete Folder]
+    FolderOptions --> MoveFolder[📁 Move Folder]
+    
+    %% Results
+    SaveMedia --> MediaUploaded[✅ Media Uploaded Successfully]
+    EditMetadata --> MediaUpdated[✅ Media Updated]
+    CreateFolder --> FolderCreated[✅ Folder Created]
+    
+    MediaUploaded --> BackToCMS[🔙 Back to CMS Dashboard]
+    MediaUpdated --> BackToCMS
+    FolderCreated --> BackToCMS
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef mediaType fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    
+    class Start,BackToCMS startEnd
+    class UploadImages,UploadVideos,UploadDocuments,UploadAudio mediaType
+    class UploadMedia,ManageExisting,OrganizeFolders,MediaSettings,FileUpload,ProcessUpload,SetMetadata,SetTitle,SetDescription,SetTags,SelectFolder,SaveMedia,MediaBrowser,SelectMedia,EditMetadata,MoveMedia,DeleteMedia,DownloadMedia,CreateFolder,RenameFolder,DeleteFolder,MoveFolder process
+    class MediaOptions,SelectMediaType,ValidateFile,MediaActions,FolderOptions decision
+    class MediaUploaded,MediaUpdated,FolderCreated success
+    class FileError error

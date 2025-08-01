@@ -1,0 +1,107 @@
+graph TB
+    %% ========================================
+    %% PATIENT/CLIENT USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed System"
+        subgraph "Account Management"
+            UC1[Register Account]
+            UC2[Login to System]
+            UC3[Update Profile]
+            UC4[Change Password]
+            UC5[Recover Password]
+            UC6[Verify Email]
+        end
+        
+        subgraph "Health Records"
+            UC7[View Medical History]
+            UC8[Update Personal Information]
+            UC9[View Immunization Records]
+            UC10[View Lab Results]
+            UC11[Download Health Reports]
+            UC12[Share Medical Records]
+        end
+        
+        subgraph "Consultations"
+            UC13[Book Consultation]
+            UC14[View Available Schedules]
+            UC15[Join Virtual Consultation]
+            UC16[Reschedule Appointment]
+            UC17[Cancel Appointment]
+            UC18[Rate Consultation]
+        end
+        
+        subgraph "Events & Programs"
+            UC19[Browse Health Events]
+            UC20[Register for Events]
+            UC21[View Event Details]
+            UC22[Enroll in Health Programs]
+            UC23[Track Program Progress]
+            UC24[Receive Event Notifications]
+        end
+    end
+    
+    %% Actors
+    Patient((Patient))
+    Mother((Expectant Mother))
+    Guardian((Parent/Guardian))
+    CommunityMember((Community Member))
+    
+    %% Patient Relationships
+    Patient --> UC1
+    Patient --> UC2
+    Patient --> UC3
+    Patient --> UC4
+    Patient --> UC5
+    Patient --> UC6
+    Patient --> UC7
+    Patient --> UC8
+    Patient --> UC9
+    Patient --> UC10
+    Patient --> UC11
+    Patient --> UC13
+    Patient --> UC14
+    Patient --> UC15
+    Patient --> UC16
+    Patient --> UC17
+    Patient --> UC18
+    
+    Mother --> UC7
+    Mother --> UC9
+    Mother --> UC13
+    Mother --> UC15
+    Mother --> UC22
+    Mother --> UC23
+    
+    Guardian --> UC1
+    Guardian --> UC7
+    Guardian --> UC8
+    Guardian --> UC9
+    Guardian --> UC13
+    Guardian --> UC16
+    
+    CommunityMember --> UC19
+    CommunityMember --> UC20
+    CommunityMember --> UC21
+    CommunityMember --> UC22
+    CommunityMember --> UC24
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC6
+    UC13 -.->|includes| UC14
+    UC20 -.->|includes| UC21
+    UC22 -.->|includes| UC23
+    
+    %% Extend Relationships
+    UC5 -.->|extends| UC2
+    UC12 -.->|extends| UC11
+    UC18 -.->|extends| UC15
+    UC24 -.->|extends| UC20
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class Patient,Mother,Guardian,CommunityMember actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24 usecase
+```

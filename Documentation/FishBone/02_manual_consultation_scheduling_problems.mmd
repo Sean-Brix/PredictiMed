@@ -1,0 +1,22 @@
+
+graph LR
+    %% Manual Scheduling Problems - Simplified
+    
+    PaperSchedule[📅 Paper Schedule] --> Problem[🚩 Manual Scheduling Issues]
+    PhoneCalls[📞 Phone Booking] --> Problem
+    NoReminders[❌ No Reminders] --> Problem
+    DoubleBooking[⚠️ Double Booking] --> Problem
+    
+    %% Styling
+    classDef problem fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef issue fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Problem problem
+    class PaperSchedule,PhoneCalls,NoReminders,DoubleBooking issue
+
+    classDef problem fill:transparent,stroke:#000,stroke-width:3px,color:#000
+    classDef cause fill:transparent,stroke:#000,stroke-width:2px,color:#000
+
+    class P problem
+    class T1a,T1b,T1c,T1d,S1a,S1b,S1c,S1d,U1a,U1b,U1c,U1d,H1a,H1b,H1c,H1d,D1a,D1b,D1c,D1d cause
+```

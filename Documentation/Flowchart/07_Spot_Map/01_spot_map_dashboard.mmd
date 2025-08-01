@@ -1,0 +1,44 @@
+flowchart TD
+    %% Spot Map Dashboard - Main Entry Point
+    
+    Start([🗺️ Spot Map]) --> AuthCheck{User Authenticated?}
+    AuthCheck -->|No| LoginRequired[🔐 Login Required]
+    AuthCheck -->|Yes| PermissionCheck{Map Permission?}
+    
+    PermissionCheck -->|No| AccessDenied[❌ Access Denied]
+    PermissionCheck -->|Yes| SpotMapDashboard[🗺️ Spot Map Dashboard]
+    
+    %% Main Map Categories
+    SpotMapDashboard --> MapViewing[👁️ Map Viewing]
+    SpotMapDashboard --> LocationManagement[📍 Location Management]
+    SpotMapDashboard --> DataVisualization[📊 Data Visualization]
+    SpotMapDashboard --> GeofencingAlerts[🚧 Geofencing & Alerts]
+    SpotMapDashboard --> MapReporting[📄 Map Reporting]
+    
+    %% Navigate to specific modules
+    MapViewing --> ViewingFlow[Go to Map Viewing Flow]
+    LocationManagement --> LocationFlow[Go to Location Management Flow]
+    DataVisualization --> VisualizationFlow[Go to Data Visualization Flow]
+    GeofencingAlerts --> GeofencingFlow[Go to Geofencing Flow]
+    MapReporting --> ReportingFlow[Go to Map Reporting Flow]
+    
+    %% Return paths
+    ViewingFlow --> SpotMapDashboard
+    LocationFlow --> SpotMapDashboard
+    VisualizationFlow --> SpotMapDashboard
+    GeofencingFlow --> SpotMapDashboard
+    ReportingFlow --> SpotMapDashboard
+    AccessDenied --> Start
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,SpotMapDashboard startEnd
+    class MapViewing,LocationManagement,DataVisualization,GeofencingAlerts,MapReporting process
+    class AuthCheck,PermissionCheck decision
+    class LoginRequired,AccessDenied error
+    class ViewingFlow,LocationFlow,VisualizationFlow,GeofencingFlow,ReportingFlow navigation

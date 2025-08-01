@@ -1,0 +1,63 @@
+flowchart TD
+    %% Real-time Analytics - Live System Monitoring
+    
+    Start([⚡ Real-time Analytics]) --> RealTimeMetrics[📊 Real-time Metrics Dashboard]
+    
+    %% Real-time Monitoring Categories
+    RealTimeMetrics --> ActiveUsers[👥 Currently Active Users]
+    RealTimeMetrics --> OngoingSessions[🔄 Ongoing Sessions]
+    RealTimeMetrics --> LiveEvents[🎯 Live Events & Activities]
+    RealTimeMetrics --> SystemPerformance[⚡ System Performance]
+    RealTimeMetrics --> AlertsNotifications[🚨 Real-time Alerts]
+    
+    %% Active Users Monitoring
+    ActiveUsers --> UserActivity[👤 Current User Activity]
+    UserActivity --> SessionDetails[📋 Session Details]
+    SessionDetails --> UserLocations[🗺️ User Geographic Distribution]
+    
+    %% System Performance Monitoring
+    SystemPerformance --> ServerMetrics[🖥️ Server Performance]
+    ServerMetrics --> DatabasePerformance[🗃️ Database Performance]
+    DatabasePerformance --> ResponseTimes[⏱️ Response Times]
+    ResponseTimes --> ResourceUsage[💻 Resource Usage]
+    
+    %% Live Events Monitoring
+    LiveEvents --> CurrentConsultations[💻 Active Consultations]
+    CurrentConsultations --> OngoingPrograms[🏥 Running Health Programs]
+    OngoingPrograms --> ActiveChats[💬 Active Chat Sessions]
+    ActiveChats --> RecentRegistrations[📝 Recent Registrations]
+    
+    %% Alerts and Notifications
+    AlertsNotifications --> SystemAlerts[🚨 System Alerts]
+    SystemAlerts --> PerformanceAlerts[⚠️ Performance Warnings]
+    PerformanceAlerts --> SecurityAlerts[🔒 Security Alerts]
+    SecurityAlerts --> CapacityAlerts[📊 Capacity Warnings]
+    
+    %% Real-time Dashboard Display
+    UserLocations --> RealTimeDashboard[📊 Live Analytics Dashboard]
+    ResourceUsage --> RealTimeDashboard
+    RecentRegistrations --> RealTimeDashboard
+    CapacityAlerts --> RealTimeDashboard
+    
+    %% Auto-refresh and Controls
+    RealTimeDashboard --> AutoRefresh[🔄 Auto-refresh Data]
+    AutoRefresh --> RefreshInterval[⏱️ Set Refresh Interval]
+    RefreshInterval --> PauseResume[⏸️ Pause/Resume Monitoring]
+    PauseResume --> ExportRealTime[📤 Export Real-time Data]
+    
+    ExportRealTime --> BackToDashboard[🔙 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef realtime fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef monitoring fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef alerts fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef dashboard fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef controls fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class Start,BackToDashboard startEnd
+    class ActiveUsers,OngoingSessions,LiveEvents,SystemPerformance,AlertsNotifications realtime
+    class UserActivity,SessionDetails,UserLocations,ServerMetrics,DatabasePerformance,ResponseTimes,ResourceUsage,CurrentConsultations,OngoingPrograms,ActiveChats,RecentRegistrations monitoring
+    class SystemAlerts,PerformanceAlerts,SecurityAlerts,CapacityAlerts alerts
+    class RealTimeMetrics,RealTimeDashboard dashboard
+    class AutoRefresh,RefreshInterval,PauseResume,ExportRealTime controls

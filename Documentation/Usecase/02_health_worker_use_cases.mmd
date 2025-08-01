@@ -1,0 +1,94 @@
+graph TB
+    %% ========================================
+    %% HEALTH WORKER USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed System"
+        subgraph "Patient Management"
+            UC1[Register New Patient]
+            UC2[Update Patient Information]
+            UC3[View Patient Medical History]
+            UC4[Record Vital Signs]
+            UC5[Manage Patient Records]
+            UC6[Generate Patient Reports]
+        end
+        
+        subgraph "Virtual Consultations"
+            UC7[Schedule Consultation]
+            UC8[Conduct Virtual Meeting]
+            UC9[Record Consultation Notes]
+            UC10[Prescribe Medications]
+            UC11[Follow-up Scheduling]
+            UC12[Generate Medical Certificate]
+        end
+        
+        subgraph "Health Programs"
+            UC13[Create Health Program]
+            UC14[Enroll Patients in Programs]
+            UC15[Monitor Program Progress]
+            UC16[Generate Program Reports]
+            UC17[Send Program Reminders]
+        end
+        
+        subgraph "QR Code Management"
+            UC18[Generate Patient QR Codes]
+            UC19[Scan QR Codes]
+            UC20[Update QR Code Data]
+            UC21[Manage QR Code History]
+        end
+    end
+    
+    %% Actors
+    HealthWorker((Health Worker))
+    Doctor((Doctor))
+    Nurse((Nurse))
+    MidWife((Midwife))
+    
+    %% Health Worker Relationships
+    HealthWorker --> UC1
+    HealthWorker --> UC2
+    HealthWorker --> UC3
+    HealthWorker --> UC4
+    HealthWorker --> UC5
+    HealthWorker --> UC18
+    HealthWorker --> UC19
+    HealthWorker --> UC20
+    HealthWorker --> UC21
+    
+    Doctor --> UC7
+    Doctor --> UC8
+    Doctor --> UC9
+    Doctor --> UC10
+    Doctor --> UC11
+    Doctor --> UC12
+    
+    Nurse --> UC13
+    Nurse --> UC14
+    Nurse --> UC15
+    Nurse --> UC16
+    Nurse --> UC17
+    
+    MidWife --> UC3
+    MidWife --> UC4
+    MidWife --> UC9
+    MidWife --> UC17
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC18
+    UC8 -.->|includes| UC9
+    UC14 -.->|includes| UC15
+    UC7 -.->|includes| UC11
+    
+    %% Extend Relationships
+    UC6 -.->|extends| UC5
+    UC12 -.->|extends| UC8
+    UC16 -.->|extends| UC15
+    UC21 -.->|extends| UC19
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class HealthWorker,Doctor,Nurse,MidWife actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21 usecase
+```

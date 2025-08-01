@@ -1,0 +1,75 @@
+graph LR
+    subgraph Problem
+        P[🚩 Virtual Consultation System Failures]
+    end
+
+    subgraph "Technology Infrastructure"
+        T1a[Poor Internet Connectivity]
+        T1b[Video Streaming Issues]
+        T1c[Audio Quality Problems]
+        T1d[Platform Compatibility Issues]
+    end
+
+    subgraph "Scheduling Management"
+        S1a[Double Booking Conflicts]
+        S1b[Time Zone Confusion]
+        S1c[No-Show Management]
+        S1d[Appointment Reminder Failures]
+    end
+
+    subgraph "User Experience"
+        U1a[Complex Booking Interface]
+        U1b[Technical Support Lack]
+        U1c[Device Compatibility Issues]
+        U1d[User Training Insufficient]
+    end
+
+    subgraph "Healthcare Workflow"
+        H1a[Incomplete Medical Records]
+        H1b[Follow-up Management Issues]
+        H1c[Prescription Management]
+        H1d[Emergency Protocol Unclear]
+    end
+
+    subgraph "Data Security & Privacy"
+        D1a[HIPAA Compliance Issues]
+        D1b[Data Encryption Problems]
+        D1c[Access Control Weaknesses]
+        D1d[Audit Trail Gaps]
+    end
+
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    S1a --> P
+    S1b --> P
+    S1c --> P
+    S1d --> P
+    U1a --> P
+    U1b --> P
+    U1c --> P
+    U1d --> P
+    H1a --> P
+    H1b --> P
+    H1c --> P
+    H1d --> P
+    D1a --> P
+    D1b --> P
+    D1c --> P
+    D1d --> P
+
+    classDef problem fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef tech fill:#74c0fc,stroke:#228be6,stroke-width:2px
+    classDef schedule fill:#69db7c,stroke:#51cf66,stroke-width:2px
+    classDef ux fill:#ffd43b,stroke:#fab005,stroke-width:2px
+    classDef healthcare fill:#ff8cc8,stroke:#e64980,stroke-width:2px
+    classDef security fill:#ffa8a8,stroke:#fa5252,stroke-width:2px
+
+    class P problem
+    class T1a,T1b,T1c,T1d tech
+    class S1a,S1b,S1c,S1d schedule
+    class U1a,U1b,U1c,U1d ux
+    class H1a,H1b,H1c,H1d healthcare
+    class D1a,D1b,D1c,D1d security
+```

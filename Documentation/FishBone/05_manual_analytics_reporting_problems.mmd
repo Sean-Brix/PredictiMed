@@ -1,0 +1,67 @@
+graph LR
+    subgraph Problem
+        P[🚩 Manual Analytics & Reporting Limitations]
+    end
+
+    subgraph "Data Collection Issues"
+        D1a[Manual Data Counting]
+        D1b[Time-Consuming Data Gathering]
+        D1c[Error-Prone Manual Calculations]
+        D1d[Limited Data Sources]
+    end
+
+    subgraph "Reporting Process Problems"
+        T1a[Creating Reports Takes Days/Weeks]
+        T1b[Static Reports Only]
+        T1c[No Real-time Data]
+        T1d[Limited Report Formats]
+    end
+
+    subgraph "Analysis Limitations"
+        U1a[Basic Excel Charts Only]
+        U1b[No Trend Analysis Capability]
+        U1c[Cannot Identify Patterns]
+        U1d[No Predictive Analytics]
+    end
+
+    subgraph "Decision-Making Delays"
+        I1a[Reports Always Outdated]
+        I1b[Cannot Make Real-time Decisions]
+        I1c[Limited Performance Insights]
+        I1d[No Automated Alerts]
+    end
+
+    subgraph "Resource Management Issues"
+        B1a[Cannot Track Resource Utilization]
+        B1b[No Staff Performance Metrics]
+        B1c[Limited Budget Analysis]
+        B1d[No Efficiency Measurements]
+    end
+
+    D1a --> P
+    D1b --> P
+    D1c --> P
+    D1d --> P
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    U1a --> P
+    U1b --> P
+    U1c --> P
+    U1d --> P
+    I1a --> P
+    I1b --> P
+    I1c --> P
+    I1d --> P
+    B1a --> P
+    B1b --> P
+    B1c --> P
+    B1d --> P
+
+    classDef problem fill:transparent,stroke:#000,stroke-width:3px,color:#000
+    classDef cause fill:transparent,stroke:#000,stroke-width:2px,color:#000
+
+    class P problem
+    class D1a,D1b,D1c,D1d,T1a,T1b,T1c,T1d,U1a,U1b,U1c,U1d,I1a,I1b,I1c,I1d,B1a,B1b,B1c,B1d cause
+```

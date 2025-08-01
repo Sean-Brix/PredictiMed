@@ -1,0 +1,14 @@
+graph LR
+    %% Excel Data Problems - Simplified
+    
+    MultipleFiles[📂 Multiple Files] --> Problem[🚩 Excel Data Issues]
+    VersionControl[🔄 Version Control] --> Problem
+    NoSecurity[🔓 No Security] --> Problem
+    DataLoss[💥 Data Loss Risk] --> Problem
+    
+    %% Styling
+    classDef problem fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef issue fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    
+    class Problem problem
+    class MultipleFiles,VersionControl,NoSecurity,DataLoss issue

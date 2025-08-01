@@ -1,0 +1,75 @@
+graph LR
+    subgraph Problem
+        P[🚩 Health Data Management Issues]
+    end
+
+    subgraph "Data Quality Issues"
+        Q1a[Incomplete Medical Records]
+        Q1b[Data Entry Errors]
+        Q1c[Duplicate Patient Records]
+        Q1d[Inconsistent Data Formats]
+    end
+
+    subgraph "System Integration"
+        I1a[Legacy System Compatibility]
+        I1b[API Integration Failures]
+        I1c[Real-time Sync Issues]
+        I1d[Third-party System Dependencies]
+    end
+
+    subgraph "User Training & Adoption"
+        U1a[Staff Training Inadequate]
+        U1b[Resistance to Digital Systems]
+        U1c[Complex User Interface]
+        U1d[Workflow Disruption]
+    end
+
+    subgraph "Technical Infrastructure"
+        T1a[Database Performance Issues]
+        T1b[Storage Capacity Limitations]
+        T1c[Backup and Recovery Problems]
+        T1d[Network Connectivity Issues]
+    end
+
+    subgraph "Compliance & Security"
+        C1a[HIPAA Compliance Gaps]
+        C1b[Data Encryption Issues]
+        C1c[Access Control Weaknesses]
+        C1d[Audit Trail Inadequate]
+    end
+
+    Q1a --> P
+    Q1b --> P
+    Q1c --> P
+    Q1d --> P
+    I1a --> P
+    I1b --> P
+    I1c --> P
+    I1d --> P
+    U1a --> P
+    U1b --> P
+    U1c --> P
+    U1d --> P
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    C1a --> P
+    C1b --> P
+    C1c --> P
+    C1d --> P
+
+    classDef problem fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef quality fill:#74c0fc,stroke:#228be6,stroke-width:2px
+    classDef integration fill:#69db7c,stroke:#51cf66,stroke-width:2px
+    classDef training fill:#ffd43b,stroke:#fab005,stroke-width:2px
+    classDef technical fill:#ff8cc8,stroke:#e64980,stroke-width:2px
+    classDef compliance fill:#ffa8a8,stroke:#fa5252,stroke-width:2px
+
+    class P problem
+    class Q1a,Q1b,Q1c,Q1d quality
+    class I1a,I1b,I1c,I1d integration
+    class U1a,U1b,U1c,U1d training
+    class T1a,T1b,T1c,T1d technical
+    class C1a,C1b,C1c,C1d compliance
+```

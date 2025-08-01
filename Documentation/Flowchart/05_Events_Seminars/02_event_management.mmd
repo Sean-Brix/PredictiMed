@@ -1,0 +1,169 @@
+flowchart TD
+    %% Event Management Module
+    
+    Start([📝 Event Management]) --> EventManagementDashboard[📊 Event Management Dashboard]
+    EventManagementDashboard --> ManagementActions{Select Action}
+    
+    %% Main management actions
+    ManagementActions --> CreateEvent[➕ Create Event]
+    ManagementActions --> EditEvent[✏️ Edit Event]
+    ManagementActions --> DeleteEvent[🗑️ Delete Event]
+    ManagementActions --> ViewEvents[👁️ View All Events]
+    ManagementActions --> DuplicateEvent[📋 Duplicate Event]
+    ManagementActions --> PublishEvent[📢 Publish Event]
+    
+    %% Create Event Flow
+    CreateEvent --> EventType{Event Type}
+    EventType --> Seminar[🎓 Seminar]
+    EventType --> Workshop[🔧 Workshop]
+    EventType --> HealthScreening[🏥 Health Screening]
+    EventType --> CommunityOutreach[🤝 Community Outreach]
+    EventType --> TrainingSession[📚 Training Session]
+    
+    Seminar --> EventDetailsForm[📝 Event Details Form]
+    Workshop --> EventDetailsForm
+    HealthScreening --> EventDetailsForm
+    CommunityOutreach --> EventDetailsForm
+    TrainingSession --> EventDetailsForm
+    
+    EventDetailsForm --> BasicInformation[📋 Basic Information]
+    BasicInformation --> EventTitle[📝 Event Title]
+    EventTitle --> EventDescription[📄 Event Description]
+    EventDescription --> EventCategory[📂 Event Category]
+    EventCategory --> EventObjectives[🎯 Event Objectives]
+    EventObjectives --> EventAudience[👥 Target Audience]
+    
+    EventAudience --> SchedulingDetails[⏰ Scheduling Details]
+    SchedulingDetails --> SetEventDate[📅 Set Event Date]
+    SetEventDate --> SetEventTime[⏰ Set Event Time]
+    SetEventTime --> SetDuration[⏱️ Set Duration]
+    SetDuration --> SetTimeZone[🌍 Set Time Zone]
+    SetTimeZone --> RecurringEvent{Recurring Event?}
+    RecurringEvent -->|Yes| SetRecurrence[🔄 Set Recurrence Pattern]
+    RecurringEvent -->|No| VenueDetails[🏢 Venue Details]
+    SetRecurrence --> VenueDetails
+    
+    VenueDetails --> VenueType{Venue Type}
+    VenueType --> PhysicalVenue[🏢 Physical Venue]
+    VenueType --> VirtualVenue[💻 Virtual Venue]
+    VenueType --> HybridVenue[🔄 Hybrid Venue]
+    
+    PhysicalVenue --> SelectLocation[📍 Select Location]
+    VirtualVenue --> SetupVirtualRoom[💻 Setup Virtual Room]
+    HybridVenue --> SetupHybridEvent[🔄 Setup Hybrid Event]
+    
+    SelectLocation --> CapacityLimits[👥 Set Capacity Limits]
+    SetupVirtualRoom --> CapacityLimits
+    SetupHybridEvent --> CapacityLimits
+    
+    CapacityLimits --> SpeakersResources[👤 Speakers & Resources]
+    SpeakersResources --> AddSpeakers[👤 Add Speakers]
+    AddSpeakers --> AssignResources[📦 Assign Resources]
+    AssignResources --> SetRequirements[📋 Set Requirements]
+    SetRequirements --> RegistrationSettings[👥 Registration Settings]
+    
+    RegistrationSettings --> RegistrationType{Registration Type}
+    RegistrationType --> OpenRegistration[🔓 Open Registration]
+    RegistrationType --> InviteOnly[📧 Invite Only]
+    RegistrationType --> ApprovalRequired[✅ Approval Required]
+    
+    OpenRegistration --> SetRegistrationDeadline[⏰ Set Registration Deadline]
+    InviteOnly --> CreateInviteList[📝 Create Invite List]
+    ApprovalRequired --> SetApprovalProcess[✅ Set Approval Process]
+    
+    SetRegistrationDeadline --> NotificationSettings[🔔 Notification Settings]
+    CreateInviteList --> NotificationSettings
+    SetApprovalProcess --> NotificationSettings
+    
+    NotificationSettings --> PreEventNotifications[📧 Pre-Event Notifications]
+    PreEventNotifications --> ReminderSettings[⏰ Reminder Settings]
+    ReminderSettings --> ValidateEvent{Validate Event?}
+    ValidateEvent -->|Invalid| EventDetailsForm
+    ValidateEvent -->|Valid| SaveEvent[💾 Save Event]
+    SaveEvent --> EventCreated[✅ Event Created]
+    
+    %% Edit Event Flow
+    EditEvent --> SelectEditEvent[🎯 Select Event]
+    SelectEditEvent --> LoadEventData[📥 Load Event Data]
+    LoadEventData --> EditEventForm[📝 Edit Event Form]
+    EditEventForm --> UpdateEventDetails[📝 Update Details]
+    UpdateEventDetails --> UpdateScheduling[⏰ Update Scheduling]
+    UpdateScheduling --> UpdateVenue[🏢 Update Venue]
+    UpdateVenue --> UpdateSpeakers[👤 Update Speakers]
+    UpdateSpeakers --> UpdateRegistration[👥 Update Registration]
+    UpdateRegistration --> ValidateEventUpdate{Validate Update?}
+    ValidateEventUpdate -->|Invalid| EditEventForm
+    ValidateEventUpdate -->|Valid| SaveEventUpdate[💾 Save Update]
+    SaveEventUpdate --> EventUpdated[✅ Event Updated]
+    
+    %% Delete Event Flow
+    DeleteEvent --> SelectDeleteEvent[🎯 Select Event]
+    SelectDeleteEvent --> CheckRegistrations{Has Registrations?}
+    CheckRegistrations -->|Yes| HandleRegistrations[👥 Handle Registrations]
+    CheckRegistrations -->|No| ConfirmEventDelete{Confirm Delete?}
+    HandleRegistrations --> NotifyRegistrants[📧 Notify Registrants]
+    NotifyRegistrants --> ConfirmEventDelete
+    ConfirmEventDelete -->|No| EventManagementDashboard
+    ConfirmEventDelete -->|Yes| DeleteEventData[🗑️ Delete Event]
+    DeleteEventData --> EventDeleted[✅ Event Deleted]
+    
+    %% View Events Flow
+    ViewEvents --> EventsList[📋 Events List]
+    EventsList --> EventsListActions{List Action}
+    EventsListActions --> FilterEvents[🔽 Filter Events]
+    EventsListActions --> SortEvents[↕️ Sort Events]
+    EventsListActions --> SearchEvents[🔍 Search Events]
+    EventsListActions --> ViewEventDetails[👁️ View Details]
+    EventsListActions --> BulkEventActions[📦 Bulk Actions]
+    
+    %% Duplicate Event Flow
+    DuplicateEvent --> SelectDuplicateEvent[🎯 Select Event]
+    SelectDuplicateEvent --> CopyEventData[📋 Copy Event Data]
+    CopyEventData --> ModifyDuplicateDetails[📝 Modify Details]
+    ModifyDuplicateDetails --> SaveDuplicateEvent[💾 Save Duplicate]
+    SaveDuplicateEvent --> EventDuplicated[✅ Event Duplicated]
+    
+    %% Publish Event Flow
+    PublishEvent --> SelectPublishEvent[🎯 Select Event]
+    SelectPublishEvent --> PublishOptions{Publish Options}
+    PublishOptions --> PublishNow[📢 Publish Now]
+    PublishOptions --> SchedulePublish[📅 Schedule Publish]
+    PublishOptions --> DraftMode[📝 Keep as Draft]
+    
+    PublishNow --> EventPublished[✅ Event Published]
+    SchedulePublish --> SetPublishDate[📅 Set Publish Date]
+    SetPublishDate --> PublishScheduled[⏰ Publish Scheduled]
+    
+    %% Return paths
+    EventCreated --> EventManagementDashboard
+    EventUpdated --> EventManagementDashboard
+    EventDeleted --> EventManagementDashboard
+    EventDuplicated --> EventManagementDashboard
+    EventPublished --> EventManagementDashboard
+    PublishScheduled --> EventManagementDashboard
+    DraftMode --> EventManagementDashboard
+    FilterEvents --> EventsList
+    SortEvents --> EventsList
+    SearchEvents --> EventsList
+    ViewEventDetails --> EventsList
+    BulkEventActions --> EventsList
+    
+    %% Back to main dashboard
+    EventManagementDashboard --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef schedule fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+    classDef venue fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class EventManagementDashboard,CreateEvent,EditEvent,DeleteEvent,ViewEvents,DuplicateEvent,PublishEvent,LoadEventData,SelectEditEvent,SelectDeleteEvent,HandleRegistrations,NotifyRegistrants,EventsList,SelectDuplicateEvent,CopyEventData,SelectPublishEvent process
+    class ManagementActions,EventType,RecurringEvent,VenueType,RegistrationType,ValidateEvent,ValidateEventUpdate,CheckRegistrations,ConfirmEventDelete,EventsListActions,PublishOptions decision
+    class EventCreated,EventUpdated,EventDeleted,EventDuplicated,EventPublished,PublishScheduled success
+    class EventDetailsForm,BasicInformation,EditEventForm,UpdateEventDetails,ModifyDuplicateDetails form
+    class SchedulingDetails,SetEventDate,SetEventTime,SetDuration,UpdateScheduling,SetPublishDate schedule
+    class VenueDetails,PhysicalVenue,VirtualVenue,HybridVenue,SelectLocation,SetupVirtualRoom,SetupHybridEvent,UpdateVenue venue

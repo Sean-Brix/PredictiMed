@@ -1,0 +1,122 @@
+graph TB
+    %% ========================================
+    %% MATERNAL & CHILD HEALTH USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed System"
+        subgraph "Prenatal Care"
+            UC1[Register Pregnant Mother]
+            UC2[Schedule Prenatal Visits]
+            UC3[Record Prenatal Checkups]
+            UC4[Track Gestational Progress]
+            UC5[Monitor Fetal Development]
+            UC6[Record Laboratory Tests]
+            UC7[Manage Interventions]
+            UC8[Calculate Expected Delivery Date]
+        end
+        
+        subgraph "Immunization Management"
+            UC9[Record Child Immunizations]
+            UC10[Track Vaccination Schedule]
+            UC11[Generate Immunization Certificates]
+            UC12[Send Vaccination Reminders]
+            UC13[Monitor Adverse Reactions]
+            UC14[Update Vaccine Inventory]
+            UC15[Generate Immunization Reports]
+        end
+        
+        subgraph "Birth & Newborn Care"
+            UC16[Record Birth Information]
+            UC17[Document Delivery Details]
+            UC18[Record Newborn Screening]
+            UC19[Track Feeding Type]
+            UC20[Monitor Newborn Health]
+            UC21[Schedule Follow-up Visits]
+            UC22[Generate Birth Certificates]
+        end
+        
+        subgraph "Family Planning"
+            UC23[Record Family Planning Methods]
+            UC24[Track Contraceptive Usage]
+            UC25[Schedule Family Planning Counseling]
+            UC26[Monitor Method Effectiveness]
+            UC27[Provide Family Planning Education]
+            UC28[Generate Family Planning Reports]
+        end
+    end
+    
+    %% Actors
+    Midwife((Midwife))
+    PregnantMother((Pregnant Mother))
+    HealthWorker((Health Worker))
+    ParentGuardian((Parent/Guardian))
+    FamilyPlanningCounselor((Family Planning Counselor))
+    
+    %% Midwife Relationships
+    Midwife --> UC1
+    Midwife --> UC2
+    Midwife --> UC3
+    Midwife --> UC4
+    Midwife --> UC5
+    Midwife --> UC6
+    Midwife --> UC7
+    Midwife --> UC8
+    Midwife --> UC16
+    Midwife --> UC17
+    Midwife --> UC18
+    Midwife --> UC20
+    Midwife --> UC21
+    
+    %% Pregnant Mother Relationships
+    PregnantMother --> UC2
+    PregnantMother --> UC4
+    PregnantMother --> UC8
+    PregnantMother --> UC21
+    
+    %% Health Worker Relationships
+    HealthWorker --> UC9
+    HealthWorker --> UC10
+    HealthWorker --> UC11
+    HealthWorker --> UC12
+    HealthWorker --> UC13
+    HealthWorker --> UC14
+    HealthWorker --> UC15
+    HealthWorker --> UC19
+    HealthWorker --> UC22
+    
+    %% Parent/Guardian Relationships
+    ParentGuardian --> UC9
+    ParentGuardian --> UC10
+    ParentGuardian --> UC11
+    ParentGuardian --> UC12
+    ParentGuardian --> UC19
+    ParentGuardian --> UC21
+    
+    %% Family Planning Counselor Relationships
+    FamilyPlanningCounselor --> UC23
+    FamilyPlanningCounselor --> UC24
+    FamilyPlanningCounselor --> UC25
+    FamilyPlanningCounselor --> UC26
+    FamilyPlanningCounselor --> UC27
+    FamilyPlanningCounselor --> UC28
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC8
+    UC3 -.->|includes| UC6
+    UC9 -.->|includes| UC10
+    UC16 -.->|includes| UC18
+    UC25 -.->|includes| UC27
+    
+    %% Extend Relationships
+    UC7 -.->|extends| UC3
+    UC13 -.->|extends| UC9
+    UC22 -.->|extends| UC16
+    UC26 -.->|extends| UC24
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f1f8e9,stroke:#33691e,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class Midwife,PregnantMother,HealthWorker,ParentGuardian,FamilyPlanningCounselor actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24,UC25,UC26,UC27,UC28 usecase
+```

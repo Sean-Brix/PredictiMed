@@ -1,0 +1,75 @@
+graph LR
+    subgraph Problem
+        P[🚩 QR Code System Failures]
+    end
+
+    subgraph "Technical Implementation"
+        T1a[QR Code Generation Errors]
+        T1b[Scanning Device Issues]
+        T1c[Code Corruption Problems]
+        T1d[Database Sync Failures]
+    end
+
+    subgraph "User Accessibility"
+        A1a[Smartphone Availability]
+        A1b[Camera Quality Issues]
+        A1c[Lighting Conditions]
+        A1d[User Technical Literacy]
+    end
+
+    subgraph "System Integration"
+        S1a[Medical Record Linking]
+        S1b[Appointment System Integration]
+        S1c[Real-time Data Updates]
+        S1d[Cross-platform Compatibility]
+    end
+
+    subgraph "Security Concerns"
+        C1a[Data Privacy Breaches]
+        C1b[Unauthorized Access]
+        C1c[Code Tampering]
+        C1d[Encryption Weaknesses]
+    end
+
+    subgraph "Operational Workflow"
+        O1a[Staff Training Gaps]
+        O1b[Process Documentation]
+        O1c[Error Handling Procedures]
+        O1d[Quality Control Measures]
+    end
+
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    A1a --> P
+    A1b --> P
+    A1c --> P
+    A1d --> P
+    S1a --> P
+    S1b --> P
+    S1c --> P
+    S1d --> P
+    C1a --> P
+    C1b --> P
+    C1c --> P
+    C1d --> P
+    O1a --> P
+    O1b --> P
+    O1c --> P
+    O1d --> P
+
+    classDef problem fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef technical fill:#74c0fc,stroke:#228be6,stroke-width:2px
+    classDef accessibility fill:#69db7c,stroke:#51cf66,stroke-width:2px
+    classDef integration fill:#ffd43b,stroke:#fab005,stroke-width:2px
+    classDef security fill:#ff8cc8,stroke:#e64980,stroke-width:2px
+    classDef operational fill:#ffa8a8,stroke:#fa5252,stroke-width:2px
+
+    class P problem
+    class T1a,T1b,T1c,T1d technical
+    class A1a,A1b,A1c,A1d accessibility
+    class S1a,S1b,S1c,S1d integration
+    class C1a,C1b,C1c,C1d security
+    class O1a,O1b,O1c,O1d operational
+```

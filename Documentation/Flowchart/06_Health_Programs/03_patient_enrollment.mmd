@@ -1,0 +1,91 @@
+flowchart TD
+    %% Patient Enrollment Module
+    
+    Start([👥 Patient Enrollment]) --> EnrollmentDashboard[📊 Enrollment Dashboard]
+    EnrollmentDashboard --> EnrollmentActions{Select Action}
+    
+    %% Main enrollment actions
+    EnrollmentActions --> EnrollPatient[➕ Enroll Patient]
+    EnrollmentActions --> ViewEnrollments[📋 View Enrollments]
+    EnrollmentActions --> UpdateEnrollment[✏️ Update Enrollment]
+    EnrollmentActions --> TransferPatient[🔄 Transfer Patient]
+    EnrollmentActions --> WithdrawPatient[🚪 Withdraw Patient]
+    
+    %% Enroll Patient Flow
+    EnrollPatient --> SearchPatient[🔍 Search Patient]
+    SearchPatient --> PatientFound{Patient Found?}
+    PatientFound -->|No| CreatePatientRecord[➕ Create Patient Record]
+    PatientFound -->|Yes| CheckEligibility[✅ Check Eligibility]
+    CreatePatientRecord --> CheckEligibility
+    
+    CheckEligibility --> EligibilityResult{Eligible?}
+    EligibilityResult -->|No| EligibilityDenied[❌ Eligibility Denied]
+    EligibilityResult -->|Yes| SelectProgram[🎯 Select Program]
+    
+    SelectProgram --> ProgramAvailable{Program Available?}
+    ProgramAvailable -->|No| WaitingList[⏳ Add to Waiting List]
+    ProgramAvailable -->|Yes| EnrollmentForm[📝 Fill Enrollment Form]
+    
+    EnrollmentForm --> ConsentProcess[📋 Consent Process]
+    ConsentProcess --> ConsentGiven{Consent Given?}
+    ConsentGiven -->|No| EnrollmentCancelled[❌ Enrollment Cancelled]
+    ConsentGiven -->|Yes| AssignBaseline[📊 Assign Baseline Assessment]
+    AssignBaseline --> ScheduleOrientation[📅 Schedule Orientation]
+    ScheduleOrientation --> CompleteEnrollment[✅ Complete Enrollment]
+    
+    %% View Enrollments Flow
+    ViewEnrollments --> FilterEnrollments[🔽 Filter Options]
+    FilterEnrollments --> DisplayEnrollments[📋 Display Enrollments]
+    DisplayEnrollments --> EnrollmentDetails[👁️ View Details]
+    
+    %% Update Enrollment Flow
+    UpdateEnrollment --> SelectEnrollment[🎯 Select Enrollment]
+    SelectEnrollment --> UpdateForm[📝 Update Form]
+    UpdateForm --> ValidateUpdate{Valid Update?}
+    ValidateUpdate -->|No| UpdateForm
+    ValidateUpdate -->|Yes| SaveEnrollmentUpdate[💾 Save Update]
+    SaveEnrollmentUpdate --> EnrollmentUpdated[✅ Enrollment Updated]
+    
+    %% Transfer Patient Flow
+    TransferPatient --> SelectTransferPatient[🎯 Select Patient]
+    SelectTransferPatient --> SelectTargetProgram[🎯 Select Target Program]
+    SelectTargetProgram --> ValidateTransfer{Valid Transfer?}
+    ValidateTransfer -->|No| SelectTargetProgram
+    ValidateTransfer -->|Yes| CompleteTransfer[🔄 Complete Transfer]
+    CompleteTransfer --> TransferCompleted[✅ Transfer Completed]
+    
+    %% Withdraw Patient Flow
+    WithdrawPatient --> SelectWithdrawPatient[🎯 Select Patient]
+    SelectWithdrawPatient --> WithdrawReason[📝 Withdrawal Reason]
+    WithdrawReason --> ConfirmWithdrawal{Confirm Withdrawal?}
+    ConfirmWithdrawal -->|No| EnrollmentDashboard
+    ConfirmWithdrawal -->|Yes| ProcessWithdrawal[🚪 Process Withdrawal]
+    ProcessWithdrawal --> WithdrawalCompleted[✅ Withdrawal Completed]
+    
+    %% Return paths
+    CompleteEnrollment --> EnrollmentDashboard
+    EnrollmentDetails --> DisplayEnrollments
+    EnrollmentUpdated --> EnrollmentDashboard
+    TransferCompleted --> EnrollmentDashboard
+    WithdrawalCompleted --> EnrollmentDashboard
+    EligibilityDenied --> EnrollmentDashboard
+    EnrollmentCancelled --> EnrollmentDashboard
+    WaitingList --> EnrollmentDashboard
+    
+    %% Back to main dashboard
+    EnrollmentDashboard --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class EnrollmentDashboard,EnrollPatient,ViewEnrollments,UpdateEnrollment,TransferPatient,WithdrawPatient,SearchPatient,CheckEligibility,SelectProgram,ConsentProcess,AssignBaseline,ScheduleOrientation,FilterEnrollments,DisplayEnrollments,UpdateForm,SaveEnrollmentUpdate,SelectTransferPatient,SelectTargetProgram,CompleteTransfer,SelectWithdrawPatient,ProcessWithdrawal process
+    class EnrollmentActions,PatientFound,EligibilityResult,ProgramAvailable,ConsentGiven,ValidateUpdate,ValidateTransfer,ConfirmWithdrawal decision
+    class CompleteEnrollment,EnrollmentUpdated,TransferCompleted,WithdrawalCompleted success
+    class EligibilityDenied,EnrollmentCancelled error
+    class EnrollmentForm,WithdrawReason form

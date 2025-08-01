@@ -1,0 +1,73 @@
+flowchart TD
+    %% Page Management - Create, Edit, Delete Pages
+    
+    Start([📄 Page Management]) --> PageOptions{Page Management Options}
+    
+    %% Main Page Operations
+    PageOptions --> CreatePage[➕ Create New Page]
+    PageOptions --> EditPage[✏️ Edit Existing Page]
+    PageOptions --> DeletePage[🗑️ Delete Page]
+    PageOptions --> PageTemplates[📋 Manage Templates]
+    PageOptions --> PageSettings[⚙️ Page Settings]
+    
+    %% Create New Page Flow
+    CreatePage --> SelectPageType{Select Page Type}
+    SelectPageType --> HomePage[🏠 Home Page]
+    SelectPageType --> AboutPage[ℹ️ About Us Page]
+    SelectPageType --> ServicesPage[🏥 Services Page]
+    SelectPageType --> NewsPage[📰 News & Updates]
+    SelectPageType --> ContactPage[📞 Contact Page]
+    SelectPageType --> CustomPage[⚙️ Custom Page]
+    
+    HomePage --> PageCreationForm[📝 Page Creation Form]
+    AboutPage --> PageCreationForm
+    ServicesPage --> PageCreationForm
+    NewsPage --> PageCreationForm
+    ContactPage --> PageCreationForm
+    CustomPage --> PageCreationForm
+    
+    %% Page Creation Process
+    PageCreationForm --> PageBasicInfo[📋 Basic Information]
+    PageBasicInfo --> SetPageTitle[📝 Set Page Title]
+    SetPageTitle --> SetPageURL[🔗 Set Page URL]
+    SetPageURL --> SelectTemplate[📋 Select Template]
+    SelectTemplate --> AddContent[📝 Add Page Content]
+    AddContent --> SetSEO[🔍 Set SEO Settings]
+    SetSEO --> PreviewPage[👁️ Preview Page]
+    PreviewPage --> PublishPage[🚀 Publish Page]
+    
+    %% Edit Existing Page Flow
+    EditPage --> SelectExistingPage[📄 Select Page to Edit]
+    SelectExistingPage --> LoadPageEditor[⚙️ Load Page Editor]
+    LoadPageEditor --> EditContent[✏️ Edit Content]
+    EditContent --> UpdateSEO[🔍 Update SEO]
+    UpdateSEO --> PreviewChanges[👁️ Preview Changes]
+    PreviewChanges --> SaveChanges[💾 Save Changes]
+    
+    %% Page Templates Management
+    PageTemplates --> TemplateOptions{Template Options}
+    TemplateOptions --> CreateTemplate[➕ Create New Template]
+    TemplateOptions --> EditTemplate[✏️ Edit Template]
+    TemplateOptions --> DeleteTemplate[🗑️ Delete Template]
+    
+    %% Results
+    PublishPage --> PagePublished[✅ Page Published Successfully]
+    SaveChanges --> PageUpdated[✅ Page Updated Successfully]
+    CreateTemplate --> TemplateCreated[✅ Template Created]
+    
+    PagePublished --> BackToCMS[🔙 Back to CMS Dashboard]
+    PageUpdated --> BackToCMS
+    TemplateCreated --> BackToCMS
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef pageType fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class Start,BackToCMS startEnd
+    class HomePage,AboutPage,ServicesPage,NewsPage,ContactPage,CustomPage pageType
+    class CreatePage,EditPage,DeletePage,PageTemplates,PageSettings,PageCreationForm,PageBasicInfo,SetPageTitle,SetPageURL,SelectTemplate,AddContent,SetSEO,PreviewPage,PublishPage,SelectExistingPage,LoadPageEditor,EditContent,UpdateSEO,PreviewChanges,SaveChanges,CreateTemplate,EditTemplate,DeleteTemplate process
+    class PageOptions,SelectPageType,TemplateOptions decision
+    class PagePublished,PageUpdated,TemplateCreated success

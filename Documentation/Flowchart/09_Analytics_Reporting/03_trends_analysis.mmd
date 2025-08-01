@@ -1,0 +1,61 @@
+flowchart TD
+    %% Trends Analysis - Time-based Analysis
+    
+    Start([📈 Trends Analysis]) --> TrendOptions{Select Trend Analysis Type}
+    
+    %% Trend Analysis Options
+    TrendOptions --> DailyTrends[📅 Daily Trends]
+    TrendOptions --> WeeklyTrends[🗓️ Weekly Trends]
+    TrendOptions --> MonthlyTrends[📊 Monthly Trends]
+    TrendOptions --> YearlyTrends[🗓️ Yearly Trends]
+    TrendOptions --> CustomPeriod[⚙️ Custom Period]
+    TrendOptions --> SeasonalTrends[🌦️ Seasonal Trends]
+    TrendOptions --> PredictiveTrends[🔮 Predictive Analysis]
+    
+    %% Custom Period Setup
+    CustomPeriod --> SetDateRange[📅 Set Custom Date Range]
+    SetDateRange --> ProcessCustom[⚙️ Process Custom Period]
+    
+    %% Data Processing
+    DailyTrends --> ProcessTrendData[⚙️ Process Trend Data]
+    WeeklyTrends --> ProcessTrendData
+    MonthlyTrends --> ProcessTrendData
+    YearlyTrends --> ProcessTrendData
+    ProcessCustom --> ProcessTrendData
+    SeasonalTrends --> ProcessTrendData
+    PredictiveTrends --> ApplyPredictiveModels[🤖 Apply ML Models]
+    
+    ApplyPredictiveModels --> ProcessTrendData
+    
+    %% Visualization Generation
+    ProcessTrendData --> GenerateVisualizations[📊 Generate Visualizations]
+    GenerateVisualizations --> LineCharts[📈 Line Charts]
+    GenerateVisualizations --> BarCharts[📊 Bar Charts]
+    GenerateVisualizations --> PieCharts[🥧 Pie Charts]
+    GenerateVisualizations --> HeatMaps[🔥 Heat Maps]
+    GenerateVisualizations --> ScatterPlots[📍 Scatter Plots]
+    
+    %% Results
+    LineCharts --> TrendResults[✅ Trend Analysis Complete]
+    BarCharts --> TrendResults
+    PieCharts --> TrendResults
+    HeatMaps --> TrendResults
+    ScatterPlots --> TrendResults
+    
+    TrendResults --> ExportTrends[📤 Export Trends]
+    ExportTrends --> BackToDashboard[🔙 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef trendType fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef visualization fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef decision fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef success fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class Start,BackToDashboard startEnd
+    class DailyTrends,WeeklyTrends,MonthlyTrends,YearlyTrends,CustomPeriod,SeasonalTrends,PredictiveTrends trendType
+    class ProcessTrendData,ApplyPredictiveModels,GenerateVisualizations,SetDateRange,ProcessCustom process
+    class LineCharts,BarCharts,PieCharts,HeatMaps,ScatterPlots visualization
+    class TrendOptions decision
+    class TrendResults,ExportTrends success

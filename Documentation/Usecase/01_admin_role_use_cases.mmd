@@ -1,0 +1,27 @@
+
+graph TB
+    %% Admin Use Cases - Simplified
+    
+    Admin[👤 Admin]
+    
+    %% Core Functions
+    UserMgmt[👥 User Management]
+    HealthWorkerMgmt[👩‍⚕️ Health Worker Mgmt]
+    EventMgmt[📅 Event Management]
+    Reports[📊 Reports]
+    LocationMgmt[🗺️ Location Management]
+    
+    %% Connections
+    Admin --> UserMgmt
+    Admin --> HealthWorkerMgmt
+    Admin --> EventMgmt
+    Admin --> Reports
+    Admin --> LocationMgmt
+    
+    %% Styling
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef usecase fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Admin actor
+    class UserMgmt,HealthWorkerMgmt,EventMgmt,Reports,LocationMgmt usecase
+```

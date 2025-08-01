@@ -1,0 +1,132 @@
+flowchart TD
+    %% Registration Management - Settings & Configuration
+    
+    Start([📝 Registration Management]) --> ManagementOptions{Management Options}
+    
+    %% Main management options
+    ManagementOptions --> RegistrationSettings[⚙️ Registration Settings]
+    ManagementOptions --> CapacityManagement[👥 Capacity Management]
+    ManagementOptions --> RequirementsManagement[📋 Requirements Management]
+    ManagementOptions --> WaitingListManagement[⏳ Waiting List Management]
+    
+    %% Registration Settings
+    RegistrationSettings --> SettingsOptions{Settings Options}
+    SettingsOptions --> EnableRegistration[✅ Enable Registration]
+    SettingsOptions --> DisableRegistration[❌ Disable Registration]
+    SettingsOptions --> RegistrationDates[📅 Registration Dates]
+    SettingsOptions --> RegistrationRules[📋 Registration Rules]
+    
+    EnableRegistration --> RegistrationEnabled[✅ Registration Enabled]
+    DisableRegistration --> RegistrationDisabled[❌ Registration Disabled]
+    
+    RegistrationDates --> SetOpenDate[📅 Set Opening Date]
+    SetOpenDate --> SetCloseDate[📅 Set Closing Date]
+    SetCloseDate --> ValidateDates{Valid Dates?}
+    ValidateDates -->|No| RegistrationDates
+    ValidateDates -->|Yes| DatesUpdated[✅ Dates Updated]
+    
+    RegistrationRules --> RuleTypes{Rule Types}
+    RuleTypes --> AgeRestrictions[👶 Age Restrictions]
+    RuleTypes --> GeographicLimits[🌍 Geographic Limits]
+    RuleTypes --> MembershipRequirements[👤 Membership Requirements]
+    RuleTypes --> PrerequisiteSkills[🎓 Prerequisite Skills]
+    
+    %% Capacity Management
+    CapacityManagement --> CapacityOptions{Capacity Options}
+    CapacityOptions --> SetMaxCapacity[🔢 Set Maximum Capacity]
+    CapacityOptions --> SetMinCapacity[🔢 Set Minimum Capacity]
+    CapacityOptions --> CapacityAlerts[🔔 Capacity Alerts]
+    CapacityOptions --> OverbookingSettings[📈 Overbooking Settings]
+    
+    SetMaxCapacity --> ValidateMaxCapacity{Valid Capacity?}
+    ValidateMaxCapacity -->|No| SetMaxCapacity
+    ValidateMaxCapacity -->|Yes| MaxCapacitySet[✅ Max Capacity Set]
+    
+    SetMinCapacity --> ValidateMinCapacity{Valid Capacity?}
+    ValidateMinCapacity -->|No| SetMinCapacity
+    ValidateMinCapacity -->|Yes| MinCapacitySet[✅ Min Capacity Set]
+    
+    CapacityAlerts --> AlertThresholds[🔔 Set Alert Thresholds]
+    AlertThresholds --> NotificationRecipients[👥 Notification Recipients]
+    NotificationRecipients --> AlertsConfigured[✅ Alerts Configured]
+    
+    OverbookingSettings --> OverbookingPercentage[📊 Set Overbooking %]
+    OverbookingPercentage --> OverbookingRules[📋 Overbooking Rules]
+    OverbookingRules --> OverbookingConfigured[✅ Overbooking Configured]
+    
+    %% Requirements Management
+    RequirementsManagement --> RequirementTypes{Requirement Types}
+    RequirementTypes --> PersonalInfo[👤 Personal Information]
+    RequirementTypes --> DocumentUpload[📄 Document Upload]
+    RequirementTypes --> HealthInfo[🏥 Health Information]
+    RequirementTypes --> EmergencyContacts[📞 Emergency Contacts]
+    RequirementTypes --> SpecialNeeds[♿ Special Needs]
+    
+    PersonalInfo --> MandatoryPersonalFields[📝 Set Mandatory Personal Fields]
+    DocumentUpload --> DocumentTypes[📄 Required Document Types]
+    HealthInfo --> HealthQuestions[🏥 Health Questionnaire]
+    EmergencyContacts --> ContactRequirements[📞 Contact Requirements]
+    SpecialNeeds --> AccessibilityOptions[♿ Accessibility Options]
+    
+    MandatoryPersonalFields --> RequirementsUpdated[✅ Requirements Updated]
+    DocumentTypes --> RequirementsUpdated
+    HealthQuestions --> RequirementsUpdated
+    ContactRequirements --> RequirementsUpdated
+    AccessibilityOptions --> RequirementsUpdated
+    
+    %% Waiting List Management
+    WaitingListManagement --> WaitingListOptions{Waiting List Options}
+    WaitingListOptions --> EnableWaitingList[✅ Enable Waiting List]
+    WaitingListOptions --> DisableWaitingList[❌ Disable Waiting List]
+    WaitingListOptions --> WaitingListCapacity[🔢 Set Waiting List Capacity]
+    WaitingListOptions --> AutoPromotionRules[🔄 Auto-Promotion Rules]
+    
+    EnableWaitingList --> WaitingListEnabled[✅ Waiting List Enabled]
+    DisableWaitingList --> WaitingListDisabled[❌ Waiting List Disabled]
+    
+    WaitingListCapacity --> SetWaitingListLimit[🔢 Set Waiting List Limit]
+    SetWaitingListLimit --> ValidateWaitingListLimit{Valid Limit?}
+    ValidateWaitingListLimit -->|No| SetWaitingListLimit
+    ValidateWaitingListLimit -->|Yes| WaitingListLimitSet[✅ Waiting List Limit Set]
+    
+    AutoPromotionRules --> PromotionTriggers[🎯 Promotion Triggers]
+    PromotionTriggers --> PromotionNotifications[📧 Promotion Notifications]
+    PromotionNotifications --> AutoPromotionConfigured[✅ Auto-Promotion Configured]
+    
+    %% Return paths
+    RegistrationEnabled --> ManagementOptions
+    RegistrationDisabled --> ManagementOptions
+    DatesUpdated --> ManagementOptions
+    AgeRestrictions --> ManagementOptions
+    GeographicLimits --> ManagementOptions
+    MembershipRequirements --> ManagementOptions
+    PrerequisiteSkills --> ManagementOptions
+    MaxCapacitySet --> ManagementOptions
+    MinCapacitySet --> ManagementOptions
+    AlertsConfigured --> ManagementOptions
+    OverbookingConfigured --> ManagementOptions
+    RequirementsUpdated --> ManagementOptions
+    WaitingListEnabled --> ManagementOptions
+    WaitingListDisabled --> ManagementOptions
+    WaitingListLimitSet --> ManagementOptions
+    AutoPromotionConfigured --> ManagementOptions
+    
+    %% Back to dashboard
+    ManagementOptions --> Dashboard[🏠 Back to Registration Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef settings fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef capacity fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class RegistrationSettings,CapacityManagement,RequirementsManagement,WaitingListManagement,EnableRegistration,DisableRegistration,SetOpenDate,SetCloseDate,SetMaxCapacity,SetMinCapacity,AlertThresholds,NotificationRecipients,OverbookingPercentage process
+    class ManagementOptions,SettingsOptions,ValidateDates,RuleTypes,CapacityOptions,ValidateMaxCapacity,ValidateMinCapacity,RequirementTypes,WaitingListOptions,ValidateWaitingListLimit decision
+    class RegistrationEnabled,DatesUpdated,MaxCapacitySet,MinCapacitySet,AlertsConfigured,OverbookingConfigured,RequirementsUpdated,WaitingListEnabled,WaitingListLimitSet,AutoPromotionConfigured success
+    class RegistrationDisabled,WaitingListDisabled error
+    class RegistrationDates,RegistrationRules,MandatoryPersonalFields,DocumentTypes,HealthQuestions,ContactRequirements,AccessibilityOptions settings
+    class CapacityAlerts,OverbookingSettings,PromotionTriggers,PromotionNotifications capacity

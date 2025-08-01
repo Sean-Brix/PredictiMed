@@ -1,0 +1,68 @@
+```mermaid
+graph LR
+    subgraph Problem
+        P[🚩 Excel-Based Health Data Management Issues]
+    end
+
+    subgraph "Data Organization Problems"
+        Q1a[Multiple Disconnected Excel Files]
+        Q1b[No Standardized Data Format]
+        Q1c[Duplicate Patient Records]
+        Q1d[Inconsistent Data Entry]
+    end
+
+    subgraph "Accessibility Issues"
+        I1a[Single Computer Access Only]
+        I1b[No Remote Data Access]
+        I1c[File Sharing Difficulties]
+        I1d[Version Control Confusion]
+    end
+
+    subgraph "Data Security Risks"
+        U1a[No Password Protection]
+        U1b[Easy File Deletion]
+        U1c[No User Access Control]
+        U1d[Vulnerable to Data Loss]
+    end
+
+    subgraph "Reporting Limitations"
+        T1a[Manual Report Generation]
+        T1b[Time-Consuming Analysis]
+        T1c[Limited Data Visualization]
+        T1d[No Real-time Statistics]
+    end
+
+    subgraph "Collaboration Issues"
+        C1a[No Simultaneous Multi-user Access]
+        C1b[Email File Sharing Only]
+        C1c[No Real-time Updates]
+        C1d[Communication Gaps]
+    end
+
+    Q1a --> P
+    Q1b --> P
+    Q1c --> P
+    Q1d --> P
+    I1a --> P
+    I1b --> P
+    I1c --> P
+    I1d --> P
+    U1a --> P
+    U1b --> P
+    U1c --> P
+    U1d --> P
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    C1a --> P
+    C1b --> P
+    C1c --> P
+    C1d --> P
+
+    classDef problem fill:transparent,stroke:#000,stroke-width:3px,color:#000
+    classDef cause fill:transparent,stroke:#000,stroke-width:2px,color:#000
+
+    class P problem
+    class Q1a,Q1b,Q1c,Q1d,I1a,I1b,I1c,I1d,U1a,U1b,U1c,U1d,T1a,T1b,T1c,T1d,C1a,C1b,C1c,C1d cause
+```

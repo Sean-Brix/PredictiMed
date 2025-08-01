@@ -1,0 +1,22 @@
+
+graph LR
+    %% Manual Registration Problems - Simplified
+    
+    PaperIssues[📄 Paper Forms] --> Problem[🚩 Manual Registration Issues]
+    ExcelIssues[📊 Excel Files] --> Problem
+    StaffIssues[👥 Staff Process] --> Problem
+    SecurityIssues[🔒 Security Risk] --> Problem
+    
+    %% Styling
+    classDef problem fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef issue fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class Problem problem
+    class PaperIssues,ExcelIssues,StaffIssues,SecurityIssues issue
+
+    classDef problem fill:transparent,stroke:#000,stroke-width:3px,color:#000
+    classDef cause fill:transparent,stroke:#000,stroke-width:2px,color:#000
+
+    class P problem
+    class P1a,P1b,P1c,P1d,P2a,P2b,P2c,P2d,P3a,P3b,P3c,P3d,P4a,P4b,P4c,P4d cause
+```

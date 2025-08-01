@@ -1,0 +1,69 @@
+flowchart TD
+    %% Program Management Module
+    
+    Start([📋 Program Management]) --> ViewPrograms[📊 View All Programs]
+    ViewPrograms --> ProgramActions{Select Action}
+    
+    %% Program CRUD Operations
+    ProgramActions --> CreateProgram[➕ Create Program]
+    ProgramActions --> EditProgram[✏️ Edit Program]
+    ProgramActions --> DeleteProgram[🗑️ Delete Program]
+    ProgramActions --> ViewDetails[👁️ View Details]
+    ProgramActions --> AssignStaff[👤 Assign Staff]
+    
+    %% Create Program Flow
+    CreateProgram --> ProgramForm[📝 Program Creation Form]
+    ProgramForm --> FillBasicInfo[Fill Basic Information]
+    FillBasicInfo --> SetSchedule[📅 Set Schedule]
+    SetSchedule --> DefineEligibility[📋 Define Eligibility]
+    DefineEligibility --> AssignResources[📦 Assign Resources]
+    AssignResources --> ValidateProgram{Validate Program?}
+    ValidateProgram -->|Invalid| ProgramForm
+    ValidateProgram -->|Valid| SaveProgram[💾 Save Program]
+    SaveProgram --> ProgramCreated[✅ Program Created]
+    
+    %% Edit Program Flow
+    EditProgram --> SelectProgram[🎯 Select Program]
+    SelectProgram --> LoadProgramData[📥 Load Program Data]
+    LoadProgramData --> EditForm[📝 Edit Program Form]
+    EditForm --> UpdateSchedule[📅 Update Schedule]
+    UpdateSchedule --> UpdateEligibility[📋 Update Eligibility]
+    UpdateEligibility --> UpdateResources[📦 Update Resources]
+    UpdateResources --> ValidateUpdates{Validate Updates?}
+    ValidateUpdates -->|Invalid| EditForm
+    ValidateUpdates -->|Valid| SaveUpdates[💾 Save Updates]
+    SaveUpdates --> ProgramUpdated[✅ Program Updated]
+    
+    %% Delete Program Flow
+    DeleteProgram --> SelectDeleteProgram[🎯 Select Program]
+    SelectDeleteProgram --> CheckEnrollments{Has Enrollments?}
+    CheckEnrollments -->|Yes| TransferPatients[👥 Transfer Patients]
+    CheckEnrollments -->|No| ConfirmDelete{Confirm Delete?}
+    TransferPatients --> ConfirmDelete
+    ConfirmDelete -->|No| ViewPrograms
+    ConfirmDelete -->|Yes| DeleteProgramData[🗑️ Delete Program]
+    DeleteProgramData --> ProgramDeleted[✅ Program Deleted]
+    
+    %% Return to dashboard
+    ProgramCreated --> ViewPrograms
+    ProgramUpdated --> ViewPrograms
+    ProgramDeleted --> ViewPrograms
+    ViewDetails --> ViewPrograms
+    AssignStaff --> ViewPrograms
+    
+    %% Back to main dashboard
+    ViewPrograms --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class ViewPrograms,CreateProgram,EditProgram,DeleteProgram,ViewDetails,AssignStaff,LoadProgramData,UpdateSchedule,UpdateEligibility,UpdateResources,SaveUpdates,DeleteProgramData process
+    class ProgramActions,ValidateProgram,ValidateUpdates,CheckEnrollments,ConfirmDelete decision
+    class ProgramCreated,ProgramUpdated,ProgramDeleted success
+    class ProgramForm,FillBasicInfo,SetSchedule,DefineEligibility,AssignResources,EditForm form

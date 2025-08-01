@@ -1,0 +1,76 @@
+
+flowchart TD
+    %% ========================================
+    %% MASTER SYSTEM FLOWCHART OVERVIEW
+    %% ========================================
+    
+    Start([PredictiMed System Access]) --> AuthFlow[📋 Authentication & Role Access Flow]
+    AuthFlow --> RoleBasedAccess{Role-based Access Control}
+    
+    %% Role-based System Access
+    RoleBasedAccess --> SuperAdminAccess{Super Admin Role?}
+    RoleBasedAccess --> AdminAccess{Admin Role?}
+    RoleBasedAccess --> UserAccess{User Role?}
+    
+    %% Super Admin Dashboard Access
+    SuperAdminAccess -->|Yes| SuperAdminFlow[🔧 Super Admin Modules Flow]
+    SuperAdminFlow --> SuperAdminDashboard[Super Admin Dashboard]
+    
+    %% Admin Dashboard Access
+    AdminAccess -->|Yes| AdminFlow[⚙️ Admin Modules Flow]
+    AdminFlow --> AdminDashboard[Admin Dashboard]
+    
+    %% User Dashboard Access  
+    UserAccess -->|Yes| UserFlow[👤 User Modules Flow]
+    UserFlow --> UserDashboard[User Dashboard]
+    
+    %% Flow References
+    SuperAdminDashboard --> SuperAdminDetails[See: 01_super_admin_modules.mmd]
+    AdminDashboard --> AdminDetails[See: 02_admin_modules.mmd]
+    UserDashboard --> UserDetails[See: 03_user_modules.mmd]
+    AuthFlow --> AuthDetails[See: 00_authentication_role_access.mmd]
+    
+    %% Additional Module Flows
+    SuperAdminFlow --> HealthWorkerMgmt[Health Worker Management]
+    AdminFlow --> PatientMgmt[Patient Management]
+    UserFlow --> ConsultationFlow[Virtual Consultations]
+    UserFlow --> HealthRecordsFlow[Health Records Access]
+    
+    HealthWorkerMgmt --> HealthWorkerDetails[See: 04_health_worker_modules.mmd]
+    PatientMgmt --> PatientDetails[See: 05_patient_management.mmd]
+    ConsultationFlow --> ConsultationDetails[See: 06_virtual_consultation_flow.mmd]
+    HealthRecordsFlow --> HealthRecordsDetails[See: 07_health_records_flow.mmd]
+    
+    %% System Integration Points
+    SuperAdminDetails --> SystemIntegration[System Integration Layer]
+    AdminDetails --> SystemIntegration
+    UserDetails --> SystemIntegration
+    
+    SystemIntegration --> DatabaseLayer[Database Layer]
+    SystemIntegration --> SecurityLayer[Security & Authentication]
+    SystemIntegration --> NotificationSystem[Notification System]
+    SystemIntegration --> AnalyticsEngine[Analytics Engine]
+    
+    %% Exit Points
+    SuperAdminDashboard --> SystemLogout[🚪 System Logout]
+    AdminDashboard --> SystemLogout
+    UserDashboard --> SystemLogout
+    
+    SystemLogout --> SessionCleanup[Session Cleanup]
+    SessionCleanup --> Start
+    
+    %% Styling
+    classDef startEnd fill:transparent,stroke:#000,stroke-width:3px,color:#000
+    classDef dashboard fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef flow fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef details fill:transparent,stroke:#000,stroke-width:1px,color:#000
+    classDef system fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef decision fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    
+    class Start,SessionCleanup,SystemLogout startEnd
+    class SuperAdminDashboard,AdminDashboard,UserDashboard dashboard
+    class AuthFlow,SuperAdminFlow,AdminFlow,UserFlow,ConsultationFlow,HealthRecordsFlow flow
+    class SuperAdminDetails,AdminDetails,UserDetails,AuthDetails,HealthWorkerDetails,PatientDetails,ConsultationDetails,HealthRecordsDetails details
+    class SystemIntegration,DatabaseLayer,SecurityLayer,NotificationSystem,AnalyticsEngine system
+    class RoleBasedAccess,SuperAdminAccess,AdminAccess,UserAccess decision
+```

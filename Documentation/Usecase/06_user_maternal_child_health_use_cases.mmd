@@ -1,0 +1,84 @@
+
+graph TB
+    %% ========================================
+    %% USER ROLE - MATERNAL & CHILD HEALTH USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed System - User Maternal & Child Health"
+        subgraph "Prenatal Care"
+            UC1[View Prenatal Schedule]
+            UC2[Book Prenatal Appointment]
+            UC3[View Pregnancy Progress]
+            UC4[Access Prenatal Education]
+            UC5[Track Baby Development]
+        end
+        
+        subgraph "Immunization Services"
+            UC6[View Child Immunization Schedule]
+            UC7[Book Vaccination Appointment]
+            UC8[View Vaccination History]
+            UC9[Receive Vaccination Reminders]
+            UC10[Download Immunization Certificate]
+        end
+        
+        subgraph "Family Planning"
+            UC11[Access Family Planning Information]
+            UC12[Book Family Planning Consultation]
+            UC13[Track Family Planning Methods]
+            UC14[Receive Family Planning Education]
+            UC15[View Family Planning History]
+        end
+        
+        subgraph "Child Health Monitoring"
+            UC16[View Child Growth Charts]
+            UC17[Track Child Development]
+            UC18[Access Child Health Education]
+            UC19[Receive Health Reminders]
+            UC20[Book Child Health Checkups]
+        end
+    end
+    
+    %% Actors
+    Mother((Mother/Parent))
+    
+    %% Mother/Parent Relationships
+    Mother --> UC1
+    Mother --> UC2
+    Mother --> UC3
+    Mother --> UC4
+    Mother --> UC5
+    Mother --> UC6
+    Mother --> UC7
+    Mother --> UC8
+    Mother --> UC9
+    Mother --> UC10
+    Mother --> UC11
+    Mother --> UC12
+    Mother --> UC13
+    Mother --> UC14
+    Mother --> UC15
+    Mother --> UC16
+    Mother --> UC17
+    Mother --> UC18
+    Mother --> UC19
+    Mother --> UC20
+    
+    %% Include Relationships
+    UC2 -.->|includes| UC1
+    UC7 -.->|includes| UC6
+    UC12 -.->|includes| UC11
+    UC17 -.->|includes| UC16
+    UC20 -.->|includes| UC19
+    
+    %% Extend Relationships
+    UC5 -.->|extends| UC3
+    UC10 -.->|extends| UC8
+    UC15 -.->|extends| UC13
+    UC18 -.->|extends| UC17
+    
+    classDef actor fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef usecase fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    
+    class Mother actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20 usecase
+```

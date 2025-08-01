@@ -1,0 +1,204 @@
+flowchart TD
+    %% Event Registration Module
+    
+    Start([👥 Event Registration]) --> RegistrationDashboard[📊 Registration Dashboard]
+    RegistrationDashboard --> RegistrationActions{Select Action}
+    
+    %% Main registration actions
+    RegistrationActions --> ManageRegistrations[📝 Manage Registrations]
+    RegistrationActions --> ViewRegistrations[👁️ View Registrations]
+    RegistrationActions --> ProcessApplications[✅ Process Applications]
+    RegistrationActions --> SendInvitations[📧 Send Invitations]
+    RegistrationActions --> RegistrationReports[📊 Registration Reports]
+    
+    %% Manage Registrations Flow
+    ManageRegistrations --> RegistrationOptions{Registration Options}
+    RegistrationOptions --> EnableRegistration[✅ Enable Registration]
+    RegistrationOptions --> DisableRegistration[❌ Disable Registration]
+    RegistrationOptions --> ModifyCapacity[👥 Modify Capacity]
+    RegistrationOptions --> SetWaitingList[⏳ Set Waiting List]
+    RegistrationOptions --> UpdateRequirements[📋 Update Requirements]
+    
+    EnableRegistration --> RegistrationEnabled[✅ Registration Enabled]
+    DisableRegistration --> RegistrationDisabled[❌ Registration Disabled]
+    ModifyCapacity --> CapacityForm[👥 Capacity Modification Form]
+    CapacityForm --> NewCapacityLimit[🔢 Set New Capacity]
+    NewCapacityLimit --> CapacityUpdated[✅ Capacity Updated]
+    
+    SetWaitingList --> WaitingListSettings[⏳ Waiting List Settings]
+    WaitingListSettings --> WaitingListLimit[🔢 Set Waiting List Limit]
+    WaitingListLimit --> AutoPromotionSettings[🔄 Auto-Promotion Settings]
+    AutoPromotionSettings --> WaitingListConfigured[✅ Waiting List Configured]
+    
+    UpdateRequirements --> RequirementsForm[📋 Requirements Form]
+    RequirementsForm --> MandatoryFields[📝 Set Mandatory Fields]
+    MandatoryFields --> DocumentRequirements[📄 Document Requirements]
+    DocumentRequirements --> HealthRequirements[🏥 Health Requirements]
+    HealthRequirements --> RequirementsUpdated[✅ Requirements Updated]
+    
+    %% View Registrations Flow
+    ViewRegistrations --> RegistrationsList[📋 Registrations List]
+    RegistrationsList --> RegistrationsListActions{List Actions}
+    RegistrationsListActions --> FilterRegistrations[🔽 Filter Registrations]
+    RegistrationsListActions --> SortRegistrations[↕️ Sort Registrations]
+    RegistrationsListActions --> SearchRegistrations[🔍 Search Registrations]
+    RegistrationsListActions --> ViewRegistrationDetails[👁️ View Details]
+    RegistrationsListActions --> BulkRegistrationActions[📦 Bulk Actions]
+    
+    FilterRegistrations --> FilterOptions[🔽 Filter Options]
+    FilterOptions --> FilterByStatus[🔘 Filter by Status]
+    FilterOptions --> FilterByDate[📅 Filter by Date]
+    FilterOptions --> FilterByType[📂 Filter by Type]
+    FilterByStatus --> ApplyRegistrationFilter[✅ Apply Filter]
+    FilterByDate --> ApplyRegistrationFilter
+    FilterByType --> ApplyRegistrationFilter
+    ApplyRegistrationFilter --> FilteredRegistrations[📋 Filtered Results]
+    
+    SortRegistrations --> SortOptions[↕️ Sort Options]
+    SortOptions --> SortByName[🔤 Sort by Name]
+    SortOptions --> SortByDate[📅 Sort by Date]
+    SortOptions --> SortByStatus[🔘 Sort by Status]
+    SortByName --> SortedRegistrations[📋 Sorted Results]
+    SortByDate --> SortedRegistrations
+    SortByStatus --> SortedRegistrations
+    
+    ViewRegistrationDetails --> RegistrationDetailsView[📄 Registration Details]
+    RegistrationDetailsView --> DetailsActions{Details Actions}
+    DetailsActions --> EditRegistration[✏️ Edit Registration]
+    DetailsActions --> CancelRegistration[❌ Cancel Registration]
+    DetailsActions --> TransferRegistration[🔄 Transfer Registration]
+    DetailsActions --> AddNotes[📝 Add Notes]
+    
+    EditRegistration --> EditRegistrationForm[📝 Edit Form]
+    EditRegistrationForm --> UpdateRegistrationInfo[📝 Update Information]
+    UpdateRegistrationInfo --> SaveRegistrationUpdate[💾 Save Update]
+    SaveRegistrationUpdate --> RegistrationUpdated[✅ Registration Updated]
+    
+    CancelRegistration --> CancellationReason[📝 Cancellation Reason]
+    CancellationReason --> ConfirmCancellation{Confirm Cancellation?}
+    ConfirmCancellation -->|No| RegistrationDetailsView
+    ConfirmCancellation -->|Yes| ProcessCancellation[❌ Process Cancellation]
+    ProcessCancellation --> NotifyCancellation[📧 Notify Cancellation]
+    NotifyCancellation --> RegistrationCancelled[❌ Registration Cancelled]
+    
+    TransferRegistration --> SelectTargetEvent[🎯 Select Target Event]
+    SelectTargetEvent --> ValidateTransfer{Valid Transfer?}
+    ValidateTransfer -->|No| SelectTargetEvent
+    ValidateTransfer -->|Yes| ProcessRegistrationTransfer[🔄 Process Transfer]
+    ProcessRegistrationTransfer --> NotifyTransfer[📧 Notify Transfer]
+    NotifyTransfer --> RegistrationTransferred[🔄 Registration Transferred]
+    
+    BulkRegistrationActions --> BulkOptions{Bulk Options}
+    BulkOptions --> BulkApprove[✅ Bulk Approve]
+    BulkOptions --> BulkReject[❌ Bulk Reject]
+    BulkOptions --> BulkCancel[❌ Bulk Cancel]
+    BulkOptions --> BulkExport[📤 Bulk Export]
+    BulkOptions --> BulkEmailSend[📧 Bulk Email]
+    
+    BulkApprove --> SelectRegistrationsApprove[☑️ Select Registrations]
+    SelectRegistrationsApprove --> ProcessBulkApproval[✅ Process Bulk Approval]
+    ProcessBulkApproval --> BulkApprovalCompleted[✅ Bulk Approval Completed]
+    
+    BulkReject --> SelectRegistrationsReject[☑️ Select Registrations]
+    SelectRegistrationsReject --> RejectionReason[📝 Rejection Reason]
+    RejectionReason --> ProcessBulkRejection[❌ Process Bulk Rejection]
+    ProcessBulkRejection --> BulkRejectionCompleted[❌ Bulk Rejection Completed]
+    
+    %% Process Applications Flow
+    ProcessApplications --> PendingApplications[⏳ Pending Applications]
+    PendingApplications --> ApplicationActions{Application Actions}
+    ApplicationActions --> ReviewApplication[👁️ Review Application]
+    ApplicationActions --> ApproveApplication[✅ Approve Application]
+    ApplicationActions --> RejectApplication[❌ Reject Application]
+    ApplicationActions --> RequestMoreInfo[📝 Request More Info]
+    
+    ReviewApplication --> ApplicationReview[📋 Application Review]
+    ApplicationReview --> ReviewDocuments[📄 Review Documents]
+    ReviewDocuments --> VerifyRequirements[✅ Verify Requirements]
+    VerifyRequirements --> ReviewDecision{Review Decision}
+    ReviewDecision --> ApproveApplication
+    ReviewDecision --> RejectApplication
+    ReviewDecision --> RequestMoreInfo
+    
+    ApproveApplication --> ApplicationApproval[✅ Process Approval]
+    ApplicationApproval --> SendApprovalNotification[📧 Send Approval Notification]
+    SendApprovalNotification --> ApplicationApproved[✅ Application Approved]
+    
+    RejectApplication --> ApplicationRejection[❌ Process Rejection]
+    ApplicationRejection --> SendRejectionNotification[📧 Send Rejection Notification]
+    SendRejectionNotification --> ApplicationRejected[❌ Application Rejected]
+    
+    RequestMoreInfo --> InfoRequest[📝 Information Request]
+    InfoRequest --> SendInfoRequest[📧 Send Info Request]
+    SendInfoRequest --> InfoRequested[📝 Information Requested]
+    
+    %% Send Invitations Flow
+    SendInvitations --> InvitationOptions{Invitation Options}
+    InvitationOptions --> CreateInviteList[📝 Create Invite List]
+    InvitationOptions --> ImportInviteList[📥 Import Invite List]
+    InvitationOptions --> SelectExistingList[📋 Select Existing List]
+    
+    CreateInviteList --> InviteListForm[📝 Invite List Form]
+    InviteListForm --> AddInvitees[👥 Add Invitees]
+    AddInvitees --> ValidateInviteList{Valid List?}
+    ValidateInviteList -->|No| InviteListForm
+    ValidateInviteList -->|Yes| CustomizeInvitation[📧 Customize Invitation]
+    
+    ImportInviteList --> UploadInviteFile[📁 Upload Invite File]
+    UploadInviteFile --> ValidateImportedList[✅ Validate Imported List]
+    ValidateImportedList --> CustomizeInvitation
+    
+    SelectExistingList --> ChooseExistingList[📋 Choose List]
+    ChooseExistingList --> CustomizeInvitation
+    
+    CustomizeInvitation --> InvitationTemplate[📧 Invitation Template]
+    InvitationTemplate --> PersonalizeInvitation[📝 Personalize Invitation]
+    PersonalizeInvitation --> PreviewInvitation[👁️ Preview Invitation]
+    PreviewInvitation --> SendInvitationsConfirm{Send Invitations?}
+    SendInvitationsConfirm -->|No| CustomizeInvitation
+    SendInvitationsConfirm -->|Yes| ProcessInvitations[📧 Process Invitations]
+    ProcessInvitations --> InvitationsSent[📧 Invitations Sent]
+    
+    %% Return paths
+    RegistrationEnabled --> RegistrationDashboard
+    RegistrationDisabled --> RegistrationDashboard
+    CapacityUpdated --> RegistrationDashboard
+    WaitingListConfigured --> RegistrationDashboard
+    RequirementsUpdated --> RegistrationDashboard
+    FilteredRegistrations --> RegistrationsList
+    SortedRegistrations --> RegistrationsList
+    RegistrationUpdated --> RegistrationDetailsView
+    RegistrationCancelled --> RegistrationsList
+    RegistrationTransferred --> RegistrationsList
+    AddNotes --> RegistrationDetailsView
+    BulkApprovalCompleted --> RegistrationsList
+    BulkRejectionCompleted --> RegistrationsList
+    BulkCancel --> RegistrationsList
+    BulkExport --> RegistrationsList
+    BulkEmailSend --> RegistrationsList
+    ApplicationApproved --> PendingApplications
+    ApplicationRejected --> PendingApplications
+    InfoRequested --> PendingApplications
+    InvitationsSent --> RegistrationDashboard
+    
+    %% Back to main dashboard
+    RegistrationDashboard --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef approval fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef invitation fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class RegistrationDashboard,ManageRegistrations,ViewRegistrations,ProcessApplications,SendInvitations,RegistrationReports,EnableRegistration,DisableRegistration,ModifyCapacity,SetWaitingList,UpdateRequirements,RegistrationsList,ViewRegistrationDetails,EditRegistration,CancelRegistration,TransferRegistration,PendingApplications,ReviewApplication,ApplicationReview,ApplicationApproval,ApplicationRejection,InfoRequest,CreateInviteList,ImportInviteList,SelectExistingList,InviteListForm,UploadInviteFile,ChooseExistingList,CustomizeInvitation,ProcessInvitations process
+    class RegistrationActions,RegistrationOptions,RegistrationsListActions,DetailsActions,ConfirmCancellation,ValidateTransfer,BulkOptions,ApplicationActions,ReviewDecision,InvitationOptions,ValidateInviteList,SendInvitationsConfirm decision
+    class RegistrationEnabled,CapacityUpdated,WaitingListConfigured,RequirementsUpdated,RegistrationUpdated,RegistrationTransferred,BulkApprovalCompleted,ApplicationApproved,InvitationsSent success
+    class RegistrationDisabled,RegistrationCancelled,BulkRejectionCompleted,ApplicationRejected error
+    class CapacityForm,RequirementsForm,EditRegistrationForm,CancellationReason,RejectionReason form
+    class ApproveApplication,ProcessBulkApproval,SendApprovalNotification,ApplicationApproved approval
+    class InvitationTemplate,PersonalizeInvitation,PreviewInvitation invitation

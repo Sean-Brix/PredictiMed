@@ -1,0 +1,171 @@
+flowchart TD
+    %% Geofencing & Alerts Module
+    
+    Start([🚧 Geofencing & Alerts]) --> GeofencingDashboard[🚧 Geofencing Dashboard]
+    GeofencingDashboard --> GeofencingActions{Select Action}
+    
+    %% Main geofencing actions
+    GeofencingActions --> CreateGeofence[➕ Create Geofence]
+    GeofencingActions --> ManageGeofences[⚙️ Manage Geofences]
+    GeofencingActions --> AlertSettings[🔔 Alert Settings]
+    GeofencingActions --> MonitorAlerts[📊 Monitor Alerts]
+    GeofencingActions --> AlertHistory[📜 Alert History]
+    
+    %% Create Geofence Flow
+    CreateGeofence --> GeofenceType{Geofence Type}
+    GeofenceType --> CircularGeofence[⭕ Circular Geofence]
+    GeofenceType --> PolygonGeofence[📐 Polygon Geofence]
+    GeofenceType --> RectangleGeofence[⬜ Rectangle Geofence]
+    
+    CircularGeofence --> SetCenter[📍 Set Center Point]
+    SetCenter --> SetRadius[📏 Set Radius]
+    SetRadius --> GeofenceSettings[⚙️ Geofence Settings]
+    
+    PolygonGeofence --> DrawPolygon[✏️ Draw Polygon]
+    DrawPolygon --> GeofenceSettings
+    
+    RectangleGeofence --> DrawRectangle[⬜ Draw Rectangle]
+    DrawRectangle --> GeofenceSettings
+    
+    GeofenceSettings --> ConfigureTriggers[🎯 Configure Triggers]
+    ConfigureTriggers --> TriggerTypes{Trigger Type}
+    TriggerTypes --> EntryTrigger[📥 Entry Trigger]
+    TriggerTypes --> ExitTrigger[📤 Exit Trigger]
+    TriggerTypes --> DwellTrigger[⏱️ Dwell Trigger]
+    
+    EntryTrigger --> SetAlertSettings[🔔 Set Alert Settings]
+    ExitTrigger --> SetAlertSettings
+    DwellTrigger --> SetDwellTime[⏰ Set Dwell Time]
+    SetDwellTime --> SetAlertSettings
+    
+    SetAlertSettings --> AlertTargets{Alert Targets}
+    AlertTargets --> EmailAlert[📧 Email Alert]
+    AlertTargets --> SMSAlert[📱 SMS Alert]
+    AlertTargets --> PushNotification[📲 Push Notification]
+    AlertTargets --> SystemAlert[🖥️ System Alert]
+    
+    EmailAlert --> SaveGeofence[💾 Save Geofence]
+    SMSAlert --> SaveGeofence
+    PushNotification --> SaveGeofence
+    SystemAlert --> SaveGeofence
+    SaveGeofence --> GeofenceCreated[✅ Geofence Created]
+    
+    %% Manage Geofences Flow
+    ManageGeofences --> GeofenceList[📋 Geofence List]
+    GeofenceList --> GeofenceManagementActions{Management Action}
+    GeofenceManagementActions --> EditGeofence[✏️ Edit Geofence]
+    GeofenceManagementActions --> DeleteGeofence[🗑️ Delete Geofence]
+    GeofenceManagementActions --> ToggleGeofence[🔄 Toggle Active/Inactive]
+    GeofenceManagementActions --> ViewGeofenceDetails[👁️ View Details]
+    GeofenceManagementActions --> TestGeofence[🧪 Test Geofence]
+    
+    EditGeofence --> LoadGeofenceData[📥 Load Geofence Data]
+    LoadGeofenceData --> UpdateGeofenceSettings[⚙️ Update Settings]
+    UpdateGeofenceSettings --> SaveGeofenceUpdate[💾 Save Update]
+    SaveGeofenceUpdate --> GeofenceUpdated[✅ Geofence Updated]
+    
+    DeleteGeofence --> ConfirmGeofenceDelete{Confirm Delete?}
+    ConfirmGeofenceDelete -->|No| GeofenceList
+    ConfirmGeofenceDelete -->|Yes| RemoveGeofence[🗑️ Remove Geofence]
+    RemoveGeofence --> GeofenceDeleted[✅ Geofence Deleted]
+    
+    ToggleGeofence --> ToggleStatus[🔄 Toggle Status]
+    ToggleStatus --> StatusUpdated[✅ Status Updated]
+    
+    TestGeofence --> SimulateEntry[📥 Simulate Entry]
+    SimulateEntry --> TestAlert[🧪 Test Alert]
+    TestAlert --> TestResults[📊 Test Results]
+    
+    %% Alert Settings Flow
+    AlertSettings --> GlobalAlertSettings[🌐 Global Alert Settings]
+    GlobalAlertSettings --> AlertPreferences{Alert Preferences}
+    AlertPreferences --> NotificationSettings[🔔 Notification Settings]
+    AlertPreferences --> EscalationRules[⬆️ Escalation Rules]
+    AlertPreferences --> AlertFrequency[⏱️ Alert Frequency]
+    AlertPreferences --> AlertFormat[📝 Alert Format]
+    
+    NotificationSettings --> ConfigureChannels[📢 Configure Channels]
+    EscalationRules --> SetEscalationLevels[⬆️ Set Escalation Levels]
+    AlertFrequency --> SetFrequencyLimits[⏱️ Set Frequency Limits]
+    AlertFormat --> CustomizeFormat[📝 Customize Format]
+    
+    ConfigureChannels --> SaveAlertSettings[💾 Save Settings]
+    SetEscalationLevels --> SaveAlertSettings
+    SetFrequencyLimits --> SaveAlertSettings
+    CustomizeFormat --> SaveAlertSettings
+    SaveAlertSettings --> AlertSettingsSaved[✅ Settings Saved]
+    
+    %% Monitor Alerts Flow
+    MonitorAlerts --> AlertMonitorDashboard[📊 Alert Monitor Dashboard]
+    AlertMonitorDashboard --> ActiveAlerts[🔴 Active Alerts]
+    ActiveAlerts --> AlertActions{Alert Action}
+    AlertActions --> AcknowledgeAlert[✅ Acknowledge Alert]
+    AlertActions --> ResolveAlert[✅ Resolve Alert]
+    AlertActions --> EscalateAlert[⬆️ Escalate Alert]
+    AlertActions --> ViewAlertDetails[👁️ View Alert Details]
+    
+    AcknowledgeAlert --> AlertAcknowledged[✅ Alert Acknowledged]
+    ResolveAlert --> AlertResolved[✅ Alert Resolved]
+    EscalateAlert --> SelectEscalationLevel[⬆️ Select Escalation Level]
+    SelectEscalationLevel --> AlertEscalated[⬆️ Alert Escalated]
+    
+    %% Alert History Flow
+    AlertHistory --> AlertHistoryDashboard[📜 Alert History Dashboard]
+    AlertHistoryDashboard --> HistoryFilters[🔽 History Filters]
+    HistoryFilters --> FilterByDate[📅 Filter by Date]
+    HistoryFilters --> FilterByType[📂 Filter by Type]
+    HistoryFilters --> FilterByStatus[🔘 Filter by Status]
+    HistoryFilters --> FilterByLocation[📍 Filter by Location]
+    
+    FilterByDate --> DisplayHistory[📋 Display History]
+    FilterByType --> DisplayHistory
+    FilterByStatus --> DisplayHistory
+    FilterByLocation --> DisplayHistory
+    
+    DisplayHistory --> HistoryActions{History Action}
+    HistoryActions --> ViewHistoryDetails[👁️ View Details]
+    HistoryActions --> ExportHistory[📤 Export History]
+    HistoryActions --> AnalyzeHistory[📊 Analyze History]
+    
+    ExportHistory --> GenerateHistoryReport[📄 Generate Report]
+    GenerateHistoryReport --> HistoryExported[✅ History Exported]
+    
+    AnalyzeHistory --> HistoryAnalytics[📊 History Analytics]
+    HistoryAnalytics --> TrendAnalysis[📈 Trend Analysis]
+    TrendAnalysis --> AnalysisResults[📊 Analysis Results]
+    
+    %% Return paths
+    GeofenceCreated --> GeofencingDashboard
+    GeofenceUpdated --> GeofenceList
+    GeofenceDeleted --> GeofenceList
+    StatusUpdated --> GeofenceList
+    TestResults --> GeofenceList
+    ViewGeofenceDetails --> GeofenceList
+    AlertSettingsSaved --> GeofencingDashboard
+    AlertAcknowledged --> ActiveAlerts
+    AlertResolved --> ActiveAlerts
+    AlertEscalated --> ActiveAlerts
+    ViewAlertDetails --> ActiveAlerts
+    ViewHistoryDetails --> DisplayHistory
+    HistoryExported --> DisplayHistory
+    AnalysisResults --> DisplayHistory
+    
+    %% Back to main dashboard
+    GeofencingDashboard --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef alert fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef settings fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef monitor fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class GeofencingDashboard,CreateGeofence,ManageGeofences,AlertSettings,MonitorAlerts,AlertHistory,SetCenter,SetRadius,DrawPolygon,DrawRectangle,LoadGeofenceData,UpdateGeofenceSettings,RemoveGeofence,ToggleStatus,SimulateEntry,TestAlert,GlobalAlertSettings,ConfigureChannels,SetEscalationLevels,SetFrequencyLimits,CustomizeFormat,AlertMonitorDashboard,ActiveAlerts,AlertHistoryDashboard,HistoryFilters,DisplayHistory,GenerateHistoryReport,HistoryAnalytics,TrendAnalysis process
+    class GeofencingActions,GeofenceType,TriggerTypes,AlertTargets,GeofenceManagementActions,ConfirmGeofenceDelete,AlertPreferences,AlertActions,HistoryActions decision
+    class GeofenceCreated,GeofenceUpdated,GeofenceDeleted,StatusUpdated,AlertSettingsSaved,AlertAcknowledged,AlertResolved,AlertEscalated,HistoryExported success
+    class EntryTrigger,ExitTrigger,DwellTrigger,EmailAlert,SMSAlert,PushNotification,SystemAlert alert
+    class GeofenceSettings,ConfigureTriggers,SetAlertSettings,NotificationSettings,EscalationRules,AlertFrequency,AlertFormat settings
+    class AcknowledgeAlert,ResolveAlert,EscalateAlert,ViewAlertDetails,TestResults,AnalysisResults monitor

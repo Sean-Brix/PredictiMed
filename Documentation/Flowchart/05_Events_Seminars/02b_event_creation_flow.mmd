@@ -1,0 +1,97 @@
+flowchart TD
+    %% Event Creation Flow - Detailed Process
+    
+    Start([➕ Create Event]) --> EventType{Event Type}
+    EventType --> Seminar[🎓 Seminar]
+    EventType --> Workshop[🔧 Workshop]
+    EventType --> HealthScreening[🏥 Health Screening]
+    EventType --> CommunityOutreach[🤝 Community Outreach]
+    EventType --> TrainingSession[📚 Training Session]
+    
+    Seminar --> EventDetailsForm[📝 Event Details Form]
+    Workshop --> EventDetailsForm
+    HealthScreening --> EventDetailsForm
+    CommunityOutreach --> EventDetailsForm
+    TrainingSession --> EventDetailsForm
+    
+    %% Basic Information Section
+    EventDetailsForm --> BasicInformation[📋 Basic Information]
+    BasicInformation --> EventTitle[📝 Event Title]
+    EventTitle --> EventDescription[📄 Event Description]
+    EventDescription --> EventCategory[📂 Event Category]
+    EventCategory --> EventObjectives[🎯 Event Objectives]
+    EventObjectives --> EventAudience[👥 Target Audience]
+    
+    %% Scheduling Section
+    EventAudience --> SchedulingDetails[⏰ Scheduling Details]
+    SchedulingDetails --> SetEventDate[📅 Set Event Date]
+    SetEventDate --> SetEventTime[⏰ Set Event Time]
+    SetEventTime --> SetDuration[⏱️ Set Duration]
+    SetDuration --> SetTimeZone[🌍 Set Time Zone]
+    SetTimeZone --> RecurringEvent{Recurring Event?}
+    RecurringEvent -->|Yes| SetRecurrence[🔄 Set Recurrence Pattern]
+    RecurringEvent -->|No| VenueDetails[🏢 Venue Details]
+    SetRecurrence --> VenueDetails
+    
+    %% Venue Configuration
+    VenueDetails --> VenueType{Venue Type}
+    VenueType --> PhysicalVenue[🏢 Physical Venue]
+    VenueType --> VirtualVenue[💻 Virtual Venue]
+    VenueType --> HybridVenue[🔄 Hybrid Venue]
+    
+    PhysicalVenue --> SelectLocation[📍 Select Location]
+    VirtualVenue --> SetupVirtualRoom[💻 Setup Virtual Room]
+    HybridVenue --> SetupHybridEvent[🔄 Setup Hybrid Event]
+    
+    SelectLocation --> CapacityLimits[👥 Set Capacity Limits]
+    SetupVirtualRoom --> CapacityLimits
+    SetupHybridEvent --> CapacityLimits
+    
+    %% Speakers and Resources
+    CapacityLimits --> SpeakersResources[👤 Speakers & Resources]
+    SpeakersResources --> AddSpeakers[👤 Add Speakers]
+    AddSpeakers --> AssignResources[📦 Assign Resources]
+    AssignResources --> SetRequirements[📋 Set Requirements]
+    
+    %% Registration Configuration
+    SetRequirements --> RegistrationSettings[👥 Registration Settings]
+    RegistrationSettings --> RegistrationType{Registration Type}
+    RegistrationType --> OpenRegistration[🔓 Open Registration]
+    RegistrationType --> InviteOnly[📧 Invite Only]
+    RegistrationType --> ApprovalRequired[✅ Approval Required]
+    
+    OpenRegistration --> SetRegistrationDeadline[⏰ Set Registration Deadline]
+    InviteOnly --> CreateInviteList[📝 Create Invite List]
+    ApprovalRequired --> SetApprovalProcess[✅ Set Approval Process]
+    
+    SetRegistrationDeadline --> NotificationSettings[🔔 Notification Settings]
+    CreateInviteList --> NotificationSettings
+    SetApprovalProcess --> NotificationSettings
+    
+    %% Final Steps
+    NotificationSettings --> PreEventNotifications[📧 Pre-Event Notifications]
+    PreEventNotifications --> ReminderSettings[⏰ Reminder Settings]
+    ReminderSettings --> ValidateEvent{Validate Event?}
+    ValidateEvent -->|Invalid| EventDetailsForm
+    ValidateEvent -->|Valid| SaveEvent[💾 Save Event]
+    SaveEvent --> EventCreated[✅ Event Created]
+    
+    %% Return to dashboard
+    EventCreated --> Dashboard[🏠 Back to Management Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef schedule fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+    classDef venue fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class AddSpeakers,AssignResources,SetRequirements,PreEventNotifications,SaveEvent process
+    class EventType,RecurringEvent,VenueType,RegistrationType,ValidateEvent decision
+    class EventCreated success
+    class EventDetailsForm,BasicInformation,EventTitle,EventDescription,EventCategory,EventObjectives,EventAudience form
+    class SchedulingDetails,SetEventDate,SetEventTime,SetDuration,SetTimeZone,SetRecurrence,SetRegistrationDeadline,ReminderSettings schedule
+    class VenueDetails,PhysicalVenue,VirtualVenue,HybridVenue,SelectLocation,SetupVirtualRoom,SetupHybridEvent,CapacityLimits venue

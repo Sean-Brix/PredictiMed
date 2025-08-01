@@ -1,0 +1,52 @@
+flowchart TD
+    %% Location Management Dashboard - Navigation Hub
+    
+    Start([📍 Location Management]) --> LocationDashboard[📊 Location Management Dashboard]
+    LocationDashboard --> LocationActions{Select Action}
+    
+    %% Navigate to specific modules
+    LocationActions --> LocationCRUDFlow[Go to Location CRUD Operations]
+    LocationActions --> LocationImportExportFlow[Go to Import/Export Operations]
+    LocationActions --> ViewLocations[👁️ View All Locations]
+    LocationActions --> LocationAnalytics[📊 Location Analytics]
+    
+    %% Simple View Locations (kept here as basic)
+    ViewLocations --> LocationsList[📋 Locations List]
+    LocationsList --> QuickLocationActions{Quick Actions}
+    QuickLocationActions --> QuickFilter[🔽 Quick Filter]
+    QuickLocationActions --> QuickSearch[🔍 Quick Search]
+    QuickLocationActions --> ViewOnMap[🗺️ View on Map]
+    
+    %% Location Analytics (simple overview)
+    LocationAnalytics --> AnalyticsMenu[📊 Analytics Menu]
+    AnalyticsMenu --> LocationStatistics[📈 Location Statistics]
+    AnalyticsMenu --> DistributionAnalysis[📊 Distribution Analysis]
+    AnalyticsMenu --> UsageReports[📋 Usage Reports]
+    
+    %% Return paths
+    LocationCRUDFlow --> LocationDashboard
+    LocationImportExportFlow --> LocationDashboard
+    QuickFilter --> LocationsList
+    QuickSearch --> LocationsList
+    ViewOnMap --> LocationsList
+    LocationsList --> LocationDashboard
+    LocationStatistics --> AnalyticsMenu
+    DistributionAnalysis --> AnalyticsMenu
+    UsageReports --> AnalyticsMenu
+    AnalyticsMenu --> LocationDashboard
+    
+    %% Back to main dashboard
+    LocationDashboard --> Dashboard[🏠 Back to Spot Map Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef analytics fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    
+    class Start,Dashboard,LocationDashboard startEnd
+    class ViewLocations,LocationsList,AnalyticsMenu process
+    class LocationActions,QuickLocationActions decision
+    class LocationCRUDFlow,LocationImportExportFlow navigation
+    class LocationAnalytics,LocationStatistics,DistributionAnalysis,UsageReports analytics

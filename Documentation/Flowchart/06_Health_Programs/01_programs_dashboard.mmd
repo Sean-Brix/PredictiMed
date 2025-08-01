@@ -1,0 +1,44 @@
+flowchart TD
+    %% Health Programs Dashboard - Main Entry Point
+    
+    Start([🏥 Health Programs]) --> AuthCheck{User Authenticated?}
+    AuthCheck -->|No| LoginRequired[🔐 Login Required]
+    AuthCheck -->|Yes| PermissionCheck{Programs Permission?}
+    
+    PermissionCheck -->|No| AccessDenied[❌ Access Denied]
+    PermissionCheck -->|Yes| ProgramsDashboard[🏥 Health Programs Dashboard]
+    
+    %% Main Program Categories
+    ProgramsDashboard --> ProgramManagement[📋 Program Management]
+    ProgramsDashboard --> PatientEnrollment[👥 Patient Enrollment]
+    ProgramsDashboard --> ProgramScheduling[📅 Program Scheduling]
+    ProgramsDashboard --> ProgressTracking[📊 Progress Tracking]
+    ProgramsDashboard --> ProgramReporting[📄 Program Reporting]
+    
+    %% Navigate to specific modules
+    ProgramManagement --> ProgramMgmtFlow[Go to Program Management Flow]
+    PatientEnrollment --> EnrollmentFlow[Go to Enrollment Flow]
+    ProgramScheduling --> SchedulingFlow[Go to Scheduling Flow]
+    ProgressTracking --> TrackingFlow[Go to Progress Tracking Flow]
+    ProgramReporting --> ReportingFlow[Go to Reporting Flow]
+    
+    %% Return paths
+    ProgramMgmtFlow --> ProgramsDashboard
+    EnrollmentFlow --> ProgramsDashboard
+    SchedulingFlow --> ProgramsDashboard
+    TrackingFlow --> ProgramsDashboard
+    ReportingFlow --> ProgramsDashboard
+    AccessDenied --> Start
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,ProgramsDashboard startEnd
+    class ProgramManagement,PatientEnrollment,ProgramScheduling,ProgressTracking,ProgramReporting process
+    class AuthCheck,PermissionCheck decision
+    class LoginRequired,AccessDenied error
+    class ProgramMgmtFlow,EnrollmentFlow,SchedulingFlow,TrackingFlow,ReportingFlow navigation

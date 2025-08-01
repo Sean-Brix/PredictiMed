@@ -1,0 +1,140 @@
+flowchart TD
+    %% Geofence Management - Create, Edit, Delete Geofences
+    
+    Start([⚙️ Geofence Management]) --> ManagementOptions{Management Options}
+    
+    %% Main management options
+    ManagementOptions --> CreateGeofence[➕ Create Geofence]
+    ManagementOptions --> EditGeofence[✏️ Edit Geofence]
+    ManagementOptions --> DeleteGeofence[🗑️ Delete Geofence]
+    ManagementOptions --> ViewGeofences[👁️ View All Geofences]
+    ManagementOptions --> TestGeofence[🧪 Test Geofence]
+    
+    %% Create Geofence Flow
+    CreateGeofence --> GeofenceType{Geofence Type}
+    GeofenceType --> CircularGeofence[⭕ Circular Geofence]
+    GeofenceType --> PolygonGeofence[📐 Polygon Geofence]
+    GeofenceType --> RectangleGeofence[⬜ Rectangle Geofence]
+    
+    CircularGeofence --> SetCenter[📍 Set Center Point]
+    SetCenter --> SetRadius[📏 Set Radius]
+    SetRadius --> GeofenceSettings[⚙️ Geofence Settings]
+    
+    PolygonGeofence --> DrawPolygon[✏️ Draw Polygon]
+    DrawPolygon --> GeofenceSettings
+    
+    RectangleGeofence --> DrawRectangle[⬜ Draw Rectangle]
+    DrawRectangle --> GeofenceSettings
+    
+    GeofenceSettings --> SetGeofenceName[📝 Set Geofence Name]
+    SetGeofenceName --> SetDescription[📄 Set Description]
+    SetDescription --> ConfigureTriggers[🎯 Configure Triggers]
+    
+    ConfigureTriggers --> TriggerTypes{Trigger Type}
+    TriggerTypes --> EntryTrigger[📥 Entry Trigger]
+    TriggerTypes --> ExitTrigger[📤 Exit Trigger]
+    TriggerTypes --> DwellTrigger[⏱️ Dwell Trigger]
+    
+    EntryTrigger --> ValidateGeofence{Validate Geofence?}
+    ExitTrigger --> ValidateGeofence
+    DwellTrigger --> SetDwellTime[⏰ Set Dwell Time]
+    SetDwellTime --> ValidateGeofence
+    
+    ValidateGeofence -->|Invalid| GeofenceSettings
+    ValidateGeofence -->|Valid| SaveGeofence[💾 Save Geofence]
+    SaveGeofence --> GeofenceCreated[✅ Geofence Created]
+    
+    %% Edit Geofence Flow
+    EditGeofence --> SelectEditGeofence[🎯 Select Geofence]
+    SelectEditGeofence --> LoadGeofenceData[📥 Load Geofence Data]
+    LoadGeofenceData --> EditGeofenceForm[📝 Edit Geofence Form]
+    EditGeofenceForm --> UpdateGeofenceShape[📐 Update Shape]
+    UpdateGeofenceShape --> UpdateGeofenceSettings[⚙️ Update Settings]
+    UpdateGeofenceSettings --> UpdateTriggers[🎯 Update Triggers]
+    UpdateTriggers --> ValidateGeofenceUpdate{Validate Update?}
+    ValidateGeofenceUpdate -->|Invalid| EditGeofenceForm
+    ValidateGeofenceUpdate -->|Valid| SaveGeofenceUpdate[💾 Save Update]
+    SaveGeofenceUpdate --> GeofenceUpdated[✅ Geofence Updated]
+    
+    %% Delete Geofence Flow
+    DeleteGeofence --> SelectDeleteGeofence[🎯 Select Geofence]
+    SelectDeleteGeofence --> CheckActiveAlerts{Has Active Alerts?}
+    CheckActiveAlerts -->|Yes| HandleActiveAlerts[🔔 Handle Active Alerts]
+    CheckActiveAlerts -->|No| ConfirmGeofenceDelete{Confirm Delete?}
+    HandleActiveAlerts --> ResolveActiveAlerts[✅ Resolve Active Alerts]
+    ResolveActiveAlerts --> ConfirmGeofenceDelete
+    ConfirmGeofenceDelete -->|No| ManagementOptions
+    ConfirmGeofenceDelete -->|Yes| RemoveGeofence[🗑️ Remove Geofence]
+    RemoveGeofence --> GeofenceDeleted[✅ Geofence Deleted]
+    
+    %% View Geofences Flow
+    ViewGeofences --> GeofencesList[📋 Geofences List]
+    GeofencesList --> GeofenceListActions{List Actions}
+    GeofenceListActions --> FilterGeofences[🔽 Filter Geofences]
+    GeofenceListActions --> SortGeofences[↕️ Sort Geofences]
+    GeofenceListActions --> SearchGeofences[🔍 Search Geofences]
+    GeofenceListActions --> ViewGeofenceDetails[👁️ View Details]
+    GeofenceListActions --> ToggleGeofenceStatus[🔄 Toggle Status]
+    
+    FilterGeofences --> GeofenceFilterOptions[🔽 Filter Options]
+    GeofenceFilterOptions --> FilterByType[📂 Filter by Type]
+    GeofenceFilterOptions --> FilterByStatus[🔘 Filter by Status]
+    GeofenceFilterOptions --> FilterByTrigger[🎯 Filter by Trigger]
+    FilterByType --> FilteredGeofences[📋 Filtered Results]
+    FilterByStatus --> FilteredGeofences
+    FilterByTrigger --> FilteredGeofences
+    
+    ToggleGeofenceStatus --> ToggleStatus[🔄 Toggle Active/Inactive]
+    ToggleStatus --> StatusUpdated[✅ Status Updated]
+    
+    %% Test Geofence Flow
+    TestGeofence --> SelectTestGeofence[🎯 Select Geofence]
+    SelectTestGeofence --> TestOptions{Test Options}
+    TestOptions --> SimulateEntry[📥 Simulate Entry]
+    TestOptions --> SimulateExit[📤 Simulate Exit]
+    TestOptions --> SimulateDwell[⏱️ Simulate Dwell]
+    
+    SimulateEntry --> RunEntryTest[🧪 Run Entry Test]
+    SimulateExit --> RunExitTest[🧪 Run Exit Test]
+    SimulateDwell --> RunDwellTest[🧪 Run Dwell Test]
+    
+    RunEntryTest --> TestResults[📊 Test Results]
+    RunExitTest --> TestResults
+    RunDwellTest --> TestResults
+    
+    TestResults --> TestAnalysis[📈 Test Analysis]
+    TestAnalysis --> TestReport[📄 Test Report]
+    
+    %% Return paths
+    GeofenceCreated --> ManagementOptions
+    GeofenceUpdated --> ManagementOptions
+    GeofenceDeleted --> ManagementOptions
+    FilteredGeofences --> GeofencesList
+    SortGeofences --> GeofencesList
+    SearchGeofences --> GeofencesList
+    ViewGeofenceDetails --> GeofencesList
+    StatusUpdated --> GeofencesList
+    GeofencesList --> ManagementOptions
+    TestReport --> ManagementOptions
+    
+    %% Back to dashboard
+    ManagementOptions --> Dashboard[🏠 Back to Geofencing Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef create fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef edit fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef test fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef settings fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class CreateGeofence,EditGeofence,DeleteGeofence,ViewGeofences,TestGeofence,SelectEditGeofence,LoadGeofenceData,SelectDeleteGeofence,HandleActiveAlerts,GeofencesList,SelectTestGeofence process
+    class ManagementOptions,GeofenceType,TriggerTypes,ValidateGeofence,ValidateGeofenceUpdate,CheckActiveAlerts,ConfirmGeofenceDelete,GeofenceListActions,TestOptions decision
+    class GeofenceCreated,GeofenceUpdated,GeofenceDeleted,StatusUpdated success
+    class CircularGeofence,PolygonGeofence,RectangleGeofence,SetCenter,SetRadius,DrawPolygon,DrawRectangle create
+    class EditGeofenceForm,UpdateGeofenceShape,UpdateGeofenceSettings,UpdateTriggers edit
+    class SimulateEntry,SimulateExit,SimulateDwell,RunEntryTest,RunExitTest,RunDwellTest,TestResults,TestAnalysis,TestReport test
+    class GeofenceSettings,SetGeofenceName,SetDescription,ConfigureTriggers,EntryTrigger,ExitTrigger,DwellTrigger,SetDwellTime settings

@@ -1,0 +1,129 @@
+flowchart TD
+    %% Program Progress Tracking Module
+    
+    Start([📊 Progress Tracking]) --> TrackingDashboard[📈 Tracking Dashboard]
+    TrackingDashboard --> TrackingActions{Select Action}
+    
+    %% Main tracking actions
+    TrackingActions --> IndividualTracking[👤 Individual Tracking]
+    TrackingActions --> GroupTracking[👥 Group Tracking]
+    TrackingActions --> OutcomeAssessment[📋 Outcome Assessment]
+    TrackingActions --> ProgressReports[📄 Progress Reports]
+    TrackingActions --> AlertsNotifications[🔔 Alerts & Notifications]
+    
+    %% Individual Tracking Flow
+    IndividualTracking --> SelectPatient[🎯 Select Patient]
+    SelectPatient --> ViewPatientProgress[📊 View Patient Progress]
+    ViewPatientProgress --> ProgressOptions{Select Option}
+    
+    ProgressOptions --> UpdateProgress[✏️ Update Progress]
+    ProgressOptions --> AddMilestone[🎯 Add Milestone]
+    ProgressOptions --> RecordAssessment[📝 Record Assessment]
+    ProgressOptions --> ViewHistory[📜 View History]
+    
+    UpdateProgress --> ProgressForm[📝 Progress Update Form]
+    ProgressForm --> ValidateProgress{Valid Data?}
+    ValidateProgress -->|No| ProgressForm
+    ValidateProgress -->|Yes| SaveProgress[💾 Save Progress]
+    SaveProgress --> ProgressUpdated[✅ Progress Updated]
+    
+    AddMilestone --> MilestoneForm[📝 Milestone Form]
+    MilestoneForm --> ValidateMilestone{Valid Milestone?}
+    ValidateMilestone -->|No| MilestoneForm
+    ValidateMilestone -->|Yes| SaveMilestone[💾 Save Milestone]
+    SaveMilestone --> MilestoneAdded[✅ Milestone Added]
+    
+    RecordAssessment --> AssessmentType{Assessment Type}
+    AssessmentType --> BaselineAssessment[📊 Baseline Assessment]
+    AssessmentType --> FollowUpAssessment[📈 Follow-up Assessment]
+    AssessmentType --> OutcomeAssessmentType[🎯 Outcome Assessment]
+    
+    BaselineAssessment --> BaselineForm[📝 Baseline Form]
+    FollowUpAssessment --> FollowUpForm[📝 Follow-up Form]
+    OutcomeAssessmentType --> OutcomeForm[📝 Outcome Form]
+    
+    BaselineForm --> SaveBaselineAssessment[💾 Save Assessment]
+    FollowUpForm --> SaveFollowUpAssessment[💾 Save Assessment]
+    OutcomeForm --> SaveOutcomeAssessment[💾 Save Assessment]
+    
+    SaveBaselineAssessment --> AssessmentRecorded[✅ Assessment Recorded]
+    SaveFollowUpAssessment --> AssessmentRecorded
+    SaveOutcomeAssessment --> AssessmentRecorded
+    
+    %% Group Tracking Flow
+    GroupTracking --> SelectProgram[🎯 Select Program]
+    SelectProgram --> ViewGroupProgress[📊 View Group Progress]
+    ViewGroupProgress --> GroupOptions{Select Option}
+    
+    GroupOptions --> ComparePatients[⚖️ Compare Patients]
+    GroupOptions --> GroupMetrics[📊 Group Metrics]
+    GroupOptions --> TrendAnalysis[📈 Trend Analysis]
+    GroupOptions --> RiskAssessment[⚠️ Risk Assessment]
+    
+    %% Outcome Assessment Flow
+    OutcomeAssessment --> OutcomeActions{Assessment Action}
+    OutcomeActions --> ScheduleAssessment[📅 Schedule Assessment]
+    OutcomeActions --> ConductAssessment[📋 Conduct Assessment]
+    OutcomeActions --> ReviewOutcomes[👁️ Review Outcomes]
+    
+    ScheduleAssessment --> AssessmentScheduled[✅ Assessment Scheduled]
+    ConductAssessment --> OutcomeResults[📊 Record Results]
+    OutcomeResults --> AnalyzeOutcomes[📈 Analyze Outcomes]
+    AnalyzeOutcomes --> OutcomesAnalyzed[✅ Outcomes Analyzed]
+    
+    %% Progress Reports Flow
+    ProgressReports --> ReportType{Report Type}
+    ReportType --> IndividualReport[👤 Individual Report]
+    ReportType --> ProgramReport[📋 Program Report]
+    ReportType --> SummaryReport[📊 Summary Report]
+    
+    IndividualReport --> GenerateIndividualReport[📄 Generate Report]
+    ProgramReport --> GenerateProgramReport[📄 Generate Report]
+    SummaryReport --> GenerateSummaryReport[📄 Generate Report]
+    
+    GenerateIndividualReport --> ReportGenerated[✅ Report Generated]
+    GenerateProgramReport --> ReportGenerated
+    GenerateSummaryReport --> ReportGenerated
+    
+    %% Alerts & Notifications Flow
+    AlertsNotifications --> AlertOptions{Alert Type}
+    AlertOptions --> MissedAppointments[📅 Missed Appointments]
+    AlertOptions --> ProgressConcerns[⚠️ Progress Concerns]
+    AlertOptions --> AssessmentDue[📋 Assessment Due]
+    AlertOptions --> ProgramCompletion[🎯 Program Completion]
+    
+    %% Return paths
+    ProgressUpdated --> ViewPatientProgress
+    MilestoneAdded --> ViewPatientProgress
+    AssessmentRecorded --> ViewPatientProgress
+    ViewHistory --> ViewPatientProgress
+    ComparePatients --> ViewGroupProgress
+    GroupMetrics --> ViewGroupProgress
+    TrendAnalysis --> ViewGroupProgress
+    RiskAssessment --> ViewGroupProgress
+    AssessmentScheduled --> TrackingDashboard
+    OutcomesAnalyzed --> TrackingDashboard
+    ReviewOutcomes --> TrackingDashboard
+    ReportGenerated --> TrackingDashboard
+    MissedAppointments --> TrackingDashboard
+    ProgressConcerns --> TrackingDashboard
+    AssessmentDue --> TrackingDashboard
+    ProgramCompletion --> TrackingDashboard
+    
+    %% Back to main dashboard
+    TrackingDashboard --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef analysis fill:#fce4ec,stroke:#880e4f,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class TrackingDashboard,IndividualTracking,GroupTracking,OutcomeAssessment,ProgressReports,AlertsNotifications,SelectPatient,ViewPatientProgress,UpdateProgress,AddMilestone,RecordAssessment,ViewHistory,SelectProgram,ViewGroupProgress,ScheduleAssessment,ConductAssessment,ReviewOutcomes,GenerateIndividualReport,GenerateProgramReport,GenerateSummaryReport process
+    class TrackingActions,ProgressOptions,ValidateProgress,ValidateMilestone,AssessmentType,GroupOptions,OutcomeActions,ReportType,AlertOptions decision
+    class ProgressUpdated,MilestoneAdded,AssessmentRecorded,AssessmentScheduled,OutcomesAnalyzed,ReportGenerated success
+    class ProgressForm,MilestoneForm,BaselineForm,FollowUpForm,OutcomeForm form
+    class ComparePatients,GroupMetrics,TrendAnalysis,RiskAssessment,AnalyzeOutcomes analysis

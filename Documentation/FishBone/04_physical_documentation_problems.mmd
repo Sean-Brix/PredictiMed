@@ -1,0 +1,68 @@
+```mermaid
+graph LR
+    subgraph Problem
+        P[🚩 Physical Documentation & Paper-Based Record Problems]
+    end
+
+    subgraph "Physical Storage Issues"
+        T1a[Document Storage Space Limitations]
+        T1b[Paper Deterioration Over Time]
+        T1c[Fire/Water Damage Risk]
+        T1d[Physical File Organization Chaos]
+    end
+
+    subgraph "Accessibility Problems"
+        A1a[Single Location Access Only]
+        A1b[Cannot Access During Off-Hours]
+        A1c[Files Locked in Cabinets]
+        A1d[Staff Must Be Present]
+    end
+
+    subgraph "Efficiency Issues"
+        S1a[Time-Consuming File Retrieval]
+        S1b[Manual Searching Process]
+        S1c[Photocopying for Sharing]
+        S1d[Physical Transport Required]
+    end
+
+    subgraph "Quality Control Problems"
+        C1a[Handwriting Legibility Issues]
+        C1b[Missing Pages or Documents]
+        C1c[No Standardized Forms]
+        C1d[Human Error in Filing]
+    end
+
+    subgraph "Communication Barriers"
+        O1a[Cannot Share Files Remotely]
+        O1b[No Digital Backup System]
+        O1c[Limited Collaboration Options]
+        O1d[Delayed Information Sharing]
+    end
+
+    T1a --> P
+    T1b --> P
+    T1c --> P
+    T1d --> P
+    A1a --> P
+    A1b --> P
+    A1c --> P
+    A1d --> P
+    S1a --> P
+    S1b --> P
+    S1c --> P
+    S1d --> P
+    C1a --> P
+    C1b --> P
+    C1c --> P
+    C1d --> P
+    O1a --> P
+    O1b --> P
+    O1c --> P
+    O1d --> P
+
+    classDef problem fill:transparent,stroke:#000,stroke-width:3px,color:#000
+    classDef cause fill:transparent,stroke:#000,stroke-width:2px,color:#000
+
+    class P problem
+    class T1a,T1b,T1c,T1d,A1a,A1b,A1c,A1d,S1a,S1b,S1c,S1d,C1a,C1b,C1c,C1d,O1a,O1b,O1c,O1d cause
+```

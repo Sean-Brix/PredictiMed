@@ -1,0 +1,61 @@
+
+flowchart TD
+    %% ========================================
+    %% AUTHENTICATION & ROLE ACCESS FLOW
+    %% ========================================
+    
+    Start([User Access PredictiMed]) --> SystemAuth{Already Logged In?}
+    SystemAuth -->|No| LoginPage[Login Page]
+    SystemAuth -->|Yes| RoleCheck{Check User Role}
+    
+    LoginPage --> Credentials[Enter Email & Password]
+    Credentials --> Validate[Validate Credentials]
+    Validate --> AuthResult{Valid Credentials?}
+    
+    AuthResult -->|No| AuthError[Show Error Message]
+    AuthResult -->|Yes| CreateSession[Create User Session]
+    AuthError --> LoginPage
+    
+    CreateSession --> RoleCheck
+    RoleCheck --> SuperAdminCheck{Super Admin?}
+    RoleCheck --> AdminCheck{Admin?}
+    RoleCheck --> UserCheck{User?}
+    
+    SuperAdminCheck -->|Yes| SuperAdminDashboard[Super Admin Dashboard]
+    AdminCheck -->|Yes| AdminDashboard[Admin Dashboard]  
+    UserCheck -->|Yes| UserDashboard[User Dashboard]
+    
+    SuperAdminCheck -->|No| AdminCheck
+    AdminCheck -->|No| UserCheck
+    UserCheck -->|No| AccessDenied[Access Denied]
+    
+    AccessDenied --> LoginPage
+    
+    %% Dashboard Access
+    SuperAdminDashboard --> SuperAdminModules[Full System Control]
+    AdminDashboard --> AdminModules[Administrative Functions]
+    UserDashboard --> UserModules[User Functions]
+    
+    %% Logout Process
+    SuperAdminModules --> Logout{Logout?}
+    AdminModules --> Logout
+    UserModules --> Logout
+    
+    Logout -->|Yes| ClearSession[Clear Session Data]
+    Logout -->|No| SuperAdminModules
+    Logout -->|No| AdminModules
+    Logout -->|No| UserModules
+    
+    ClearSession --> LoginPage
+    
+    %% Styling
+    classDef startEnd fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef process fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef decision fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef dashboard fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    
+    class Start,LoginPage startEnd
+    class Credentials,Validate,CreateSession,ClearSession process
+    class SystemAuth,AuthResult,RoleCheck,SuperAdminCheck,AdminCheck,UserCheck,Logout decision
+    class SuperAdminDashboard,AdminDashboard,UserDashboard,SuperAdminModules,AdminModules,UserModules dashboard
+```

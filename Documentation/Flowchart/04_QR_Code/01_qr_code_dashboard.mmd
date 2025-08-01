@@ -1,0 +1,44 @@
+flowchart TD
+    %% QR Code System Dashboard - Main Entry Point
+    
+    Start([📱 QR Code System]) --> AuthCheck{User Authenticated?}
+    AuthCheck -->|No| LoginRequired[🔐 Login Required]
+    AuthCheck -->|Yes| PermissionCheck{QR Code Permission?}
+    
+    PermissionCheck -->|No| AccessDenied[❌ Access Denied]
+    PermissionCheck -->|Yes| QRCodeDashboard[📱 QR Code System Dashboard]
+    
+    %% Main QR Code Categories
+    QRCodeDashboard --> GenerateQRCode[➕ Generate QR Code]
+    QRCodeDashboard --> ScanQRCode[📱 Scan QR Code]
+    QRCodeDashboard --> ManageQRCodes[⚙️ Manage QR Codes]
+    QRCodeDashboard --> QRCodeHistory[📜 QR Code History]
+    QRCodeDashboard --> QRCodeAnalytics[📊 QR Code Analytics]
+    
+    %% Quick Actions
+    GenerateQRCode --> QuickGenerate[⚡ Quick Generate]
+    ScanQRCode --> QuickScan[📷 Quick Scan]
+    ManageQRCodes --> MyQRCodes[📋 My QR Codes]
+    QRCodeHistory --> RecentScans[📅 Recent Scans]
+    QRCodeAnalytics --> ScanStatistics[📊 Scan Statistics]
+    
+    %% Return paths
+    QuickGenerate --> QRCodeDashboard
+    QuickScan --> QRCodeDashboard
+    MyQRCodes --> QRCodeDashboard
+    RecentScans --> QRCodeDashboard
+    ScanStatistics --> QRCodeDashboard
+    AccessDenied --> Start
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef quick fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,QRCodeDashboard startEnd
+    class GenerateQRCode,ScanQRCode,ManageQRCodes,QRCodeHistory,QRCodeAnalytics process
+    class AuthCheck,PermissionCheck decision
+    class LoginRequired,AccessDenied error
+    class QuickGenerate,QuickScan,MyQRCodes,RecentScans,ScanStatistics quick

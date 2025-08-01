@@ -1,0 +1,43 @@
+flowchart TD
+    %% Event Management Dashboard - Updated Navigation
+    
+    Start([📝 Event Management]) --> EventManagementDashboard[📊 Event Management Dashboard]
+    EventManagementDashboard --> ManagementActions{Select Action}
+    
+    %% Navigate to specific flows
+    ManagementActions --> CreateEventFlow[Go to Event Creation Flow]
+    ManagementActions --> EventOperationsFlow[Go to Event Operations Flow]
+    ManagementActions --> ViewEvents[👁️ View All Events]
+    
+    %% View Events Flow (kept here as it's simple)
+    ViewEvents --> EventsList[📋 Events List]
+    EventsList --> EventsListActions{List Action}
+    EventsListActions --> FilterEvents[🔽 Filter Events]
+    EventsListActions --> SortEvents[↕️ Sort Events]
+    EventsListActions --> SearchEvents[🔍 Search Events]
+    EventsListActions --> ViewEventDetails[👁️ View Details]
+    EventsListActions --> BulkEventActions[📦 Bulk Actions]
+    
+    %% Return paths
+    CreateEventFlow --> EventManagementDashboard
+    EventOperationsFlow --> EventManagementDashboard
+    FilterEvents --> EventsList
+    SortEvents --> EventsList
+    SearchEvents --> EventsList
+    ViewEventDetails --> EventsList
+    BulkEventActions --> EventsList
+    EventsList --> EventManagementDashboard
+    
+    %% Back to main dashboard
+    EventManagementDashboard --> Dashboard[🏠 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,Dashboard,EventManagementDashboard startEnd
+    class ViewEvents,EventsList process
+    class ManagementActions,EventsListActions decision
+    class CreateEventFlow,EventOperationsFlow navigation

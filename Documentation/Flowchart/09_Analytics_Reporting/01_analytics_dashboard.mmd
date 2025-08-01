@@ -1,0 +1,44 @@
+flowchart TD
+    %% Analytics Dashboard - Main Entry Point
+    
+    Start([📊 Access Analytics]) --> AuthCheck{User Authenticated?}
+    AuthCheck -->|No| LoginRequired[🔐 Login Required]
+    AuthCheck -->|Yes| PermissionCheck{Analytics Permission?}
+    
+    PermissionCheck -->|No| AccessDenied[❌ Access Denied]  
+    PermissionCheck -->|Yes| AnalyticsDashboard[📊 Analytics Dashboard]
+    
+    %% Main Analytics Categories
+    AnalyticsDashboard --> CategoryAnalytics[📋 Analytics by Category]
+    AnalyticsDashboard --> TrendsAnalysis[📈 Trends Analysis]
+    AnalyticsDashboard --> ReportGeneration[📄 Report Generation]
+    AnalyticsDashboard --> RealTimeAnalytics[⚡ Real-time Analytics]
+    AnalyticsDashboard --> ComparativeAnalysis[⚖️ Comparative Analysis]
+    
+    %% Navigate to specific modules
+    CategoryAnalytics --> CategoryFlow[Go to Category Analytics Flow]
+    TrendsAnalysis --> TrendsFlow[Go to Trends Analysis Flow]
+    ReportGeneration --> ReportsFlow[Go to Reports Generation Flow]
+    RealTimeAnalytics --> RealTimeFlow[Go to Real-time Analytics Flow]
+    ComparativeAnalysis --> ComparisonFlow[Go to Comparative Analysis Flow]
+    
+    %% Return and logout
+    CategoryFlow --> AnalyticsDashboard
+    TrendsFlow --> AnalyticsDashboard
+    ReportsFlow --> AnalyticsDashboard
+    RealTimeFlow --> AnalyticsDashboard
+    ComparisonFlow --> AnalyticsDashboard
+    AccessDenied --> Start
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef navigation fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    
+    class Start,AnalyticsDashboard startEnd
+    class CategoryAnalytics,TrendsAnalysis,ReportGeneration,RealTimeAnalytics,ComparativeAnalysis process
+    class AuthCheck,PermissionCheck decision
+    class LoginRequired,AccessDenied error
+    class CategoryFlow,TrendsFlow,ReportsFlow,RealTimeFlow,ComparisonFlow navigation

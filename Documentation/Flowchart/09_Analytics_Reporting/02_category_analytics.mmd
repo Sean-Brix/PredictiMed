@@ -1,0 +1,68 @@
+flowchart TD
+    %% Category Analytics - Detailed Analysis by System Categories
+    
+    Start([📋 Category Analytics]) --> SelectCategory{Select Analytics Category}
+    
+    %% System Categories
+    SelectCategory --> UserAnalytics[👥 User Management Analytics]
+    SelectCategory --> HealthProgramAnalytics[🏥 Health Programs Analytics]
+    SelectCategory --> ConsultationAnalytics[💻 Virtual Consultations Analytics]
+    SelectCategory --> EventAnalytics[📅 Events & Seminars Analytics]
+    SelectCategory --> QRAnalytics[📱 QR Code Usage Analytics]
+    SelectCategory --> ChatAnalytics[💬 Chat Module Analytics]
+    SelectCategory --> LocationAnalytics[🗺️ Location Services Analytics]
+    SelectCategory --> ContentAnalytics[📄 Content Management Analytics]
+    
+    %% User Analytics Flow
+    UserAnalytics --> UserMetrics[👥 User Metrics Analysis]
+    UserMetrics --> UserRegistrationTrends[📈 Registration Trends]
+    UserMetrics --> UserActivityLevels[⚡ Activity Levels]  
+    UserMetrics --> UserRoleDistribution[🎭 Role Distribution]
+    UserMetrics --> UserEngagementMetrics[📊 Engagement Metrics]
+    UserMetrics --> UserRetentionRates[🔄 Retention Rates]
+    
+    %% Health Programs Analytics Flow
+    HealthProgramAnalytics --> ProgramMetrics[🏥 Program Performance]
+    ProgramMetrics --> ProgramRegistrationRates[📝 Registration Rates]
+    ProgramMetrics --> ProgramAttendanceRates[👥 Attendance Rates]
+    ProgramMetrics --> ProgramCompletionRates[✅ Completion Rates]
+    ProgramMetrics --> ProgramOutcomeMetrics[📊 Health Outcomes]
+    
+    %% Consultation Analytics Flow
+    ConsultationAnalytics --> ConsultationMetrics[💻 Consultation Performance]
+    ConsultationMetrics --> BookingTrends[📅 Booking Trends]
+    ConsultationMetrics --> ConsultationVolume[📊 Volume Analysis]
+    ConsultationMetrics --> ProviderUtilization[👩‍⚕️ Provider Utilization]
+    ConsultationMetrics --> PatientSatisfaction[😊 Patient Satisfaction]
+    
+    %% Generate Visualizations
+    UserRegistrationTrends --> GenerateCharts[📊 Generate Charts & Graphs]
+    UserActivityLevels --> GenerateCharts
+    UserRoleDistribution --> GenerateCharts
+    UserEngagementMetrics --> GenerateCharts
+    UserRetentionRates --> GenerateCharts
+    ProgramRegistrationRates --> GenerateCharts
+    ProgramAttendanceRates --> GenerateCharts
+    ProgramCompletionRates --> GenerateCharts
+    ProgramOutcomeMetrics --> GenerateCharts
+    BookingTrends --> GenerateCharts
+    ConsultationVolume --> GenerateCharts
+    ProviderUtilization --> GenerateCharts
+    PatientSatisfaction --> GenerateCharts
+    
+    GenerateCharts --> AnalyticsReady[✅ Analytics Generated]
+    AnalyticsReady --> ExportOptions[📤 Export Options]
+    ExportOptions --> BackToDashboard[🔙 Back to Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef category fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef metrics fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    
+    class Start,BackToDashboard startEnd
+    class UserAnalytics,HealthProgramAnalytics,ConsultationAnalytics,EventAnalytics,QRAnalytics,ChatAnalytics,LocationAnalytics,ContentAnalytics category
+    class UserMetrics,ProgramMetrics,ConsultationMetrics,UserRegistrationTrends,UserActivityLevels,UserRoleDistribution,UserEngagementMetrics,UserRetentionRates,ProgramRegistrationRates,ProgramAttendanceRates,ProgramCompletionRates,ProgramOutcomeMetrics,BookingTrends,ConsultationVolume,ProviderUtilization,PatientSatisfaction metrics
+    class SelectCategory decision
+    class GenerateCharts,AnalyticsReady,ExportOptions success

@@ -1,0 +1,147 @@
+flowchart TD
+    %% Location CRUD Operations - Add, Edit, Delete Locations
+    
+    Start([⚙️ Location CRUD Operations]) --> CRUDOptions{CRUD Operations}
+    
+    %% Main CRUD operations
+    CRUDOptions --> AddLocation[➕ Add Location]
+    CRUDOptions --> EditLocation[✏️ Edit Location]
+    CRUDOptions --> DeleteLocation[🗑️ Delete Location]
+    CRUDOptions --> BulkOperations[📦 Bulk Operations]
+    
+    %% Add Location Flow
+    AddLocation --> LocationMethod{Location Method}
+    LocationMethod --> ManualEntry[✍️ Manual Entry]
+    LocationMethod --> MapClick[🖱️ Click on Map]
+    LocationMethod --> GPSCapture[📍 GPS Capture]
+    LocationMethod --> AddressLookup[🔍 Address Lookup]
+    
+    ManualEntry --> LocationForm[📝 Location Form]
+    MapClick --> LocationForm
+    GPSCapture --> LocationForm
+    AddressLookup --> AddressInput[🏠 Address Input]
+    AddressInput --> GeocodeAddress[🔍 Geocode Address]
+    GeocodeAddress --> LocationForm
+    
+    LocationForm --> BasicLocationInfo[📋 Basic Information]
+    BasicLocationInfo --> LocationName[📝 Location Name]
+    LocationName --> LocationDescription[📄 Description]
+    LocationDescription --> LocationCategory[📂 Category]
+    LocationCategory --> LocationTags[🏷️ Tags]
+    
+    LocationTags --> LocationAttributes[📊 Location Attributes]
+    LocationAttributes --> SetAccessibility[♿ Accessibility]
+    SetAccessibility --> SetOperatingHours[⏰ Operating Hours]
+    SetOperatingHours --> SetContactInfo[📞 Contact Info]
+    SetContactInfo --> SetCapacity[👥 Capacity]
+    
+    SetCapacity --> ValidateLocation{Validate Location?}
+    ValidateLocation -->|Invalid| LocationForm
+    ValidateLocation -->|Valid| SaveLocation[💾 Save Location]
+    SaveLocation --> LocationCreated[✅ Location Created]
+    
+    %% Edit Location Flow
+    EditLocation --> SelectLocationToEdit[🎯 Select Location]
+    SelectLocationToEdit --> LoadLocationData[📥 Load Location Data]
+    LoadLocationData --> EditLocationForm[📝 Edit Location Form]
+    EditLocationForm --> UpdateBasicInfo[📝 Update Basic Info]
+    UpdateBasicInfo --> UpdateCoordinates[📍 Update Coordinates]
+    UpdateCoordinates --> UpdateAttributes[📊 Update Attributes]
+    UpdateAttributes --> ValidateLocationUpdate{Validate Update?}
+    ValidateLocationUpdate -->|Invalid| EditLocationForm
+    ValidateLocationUpdate -->|Valid| SaveLocationUpdate[💾 Save Update]
+    SaveLocationUpdate --> LocationUpdated[✅ Location Updated]
+    
+    %% Delete Location Flow
+    DeleteLocation --> SelectLocationToDelete[🎯 Select Location]
+    SelectLocationToDelete --> CheckLocationUsage{Location in Use?}
+    CheckLocationUsage -->|Yes| ShowUsageDetails[📋 Show Usage Details]
+    CheckLocationUsage -->|No| ConfirmLocationDelete{Confirm Delete?}
+    ShowUsageDetails --> HandleUsageDependencies[⚙️ Handle Dependencies]
+    HandleUsageDependencies --> ConfirmLocationDelete
+    ConfirmLocationDelete -->|No| CRUDOptions
+    ConfirmLocationDelete -->|Yes| DeleteLocationData[🗑️ Delete Location]
+    DeleteLocationData --> LocationDeleted[✅ Location Deleted]
+    
+    %% Bulk Operations Flow
+    BulkOperations --> BulkOptions{Bulk Options}
+    BulkOptions --> BulkAdd[➕ Bulk Add]
+    BulkOptions --> BulkEdit[✏️ Bulk Edit]
+    BulkOptions --> BulkDelete[🗑️ Bulk Delete]
+    BulkOptions --> BulkUpdateTags[🏷️ Bulk Update Tags]
+    BulkOptions --> BulkUpdateCategory[📂 Bulk Update Category]
+    
+    BulkAdd --> BulkAddMethod{Bulk Add Method}
+    BulkAddMethod --> UploadLocationFile[📁 Upload Location File]
+    BulkAddMethod --> BulkManualEntry[✍️ Bulk Manual Entry]
+    UploadLocationFile --> ValidateBulkData[✅ Validate Bulk Data]
+    BulkManualEntry --> ValidateBulkData
+    ValidateBulkData --> BulkValidation{Bulk Valid?}
+    BulkValidation -->|No| ShowValidationErrors[❌ Show Errors]
+    BulkValidation -->|Yes| ProcessBulkAdd[⚙️ Process Bulk Add]
+    ShowValidationErrors --> BulkAdd
+    ProcessBulkAdd --> BulkLocationsAdded[✅ Bulk Locations Added]
+    
+    BulkEdit --> SelectLocationsToEdit[☑️ Select Locations]
+    SelectLocationsToEdit --> BulkEditOptions{Edit Options}
+    BulkEditOptions --> BulkUpdateInfo[📝 Bulk Update Info]
+    BulkEditOptions --> BulkUpdateCoordinates[📍 Bulk Update Coordinates]
+    BulkEditOptions --> BulkUpdateAttributes[📊 Bulk Update Attributes]
+    BulkUpdateInfo --> ProcessBulkEdit[⚙️ Process Bulk Edit]
+    BulkUpdateCoordinates --> ProcessBulkEdit
+    BulkUpdateAttributes --> ProcessBulkEdit
+    ProcessBulkEdit --> BulkLocationsEdited[✅ Bulk Locations Edited]
+    
+    BulkDelete --> SelectLocationsToDelete[☑️ Select Locations]
+    SelectLocationsToDelete --> ConfirmBulkDelete{Confirm Bulk Delete?}
+    ConfirmBulkDelete -->|No| BulkOptions
+    ConfirmBulkDelete -->|Yes| ProcessBulkDelete[🗑️ Process Bulk Delete]
+    ProcessBulkDelete --> BulkLocationsDeleted[✅ Bulk Locations Deleted]
+    
+    BulkUpdateTags --> SelectLocationsForTags[☑️ Select Locations]
+    SelectLocationsForTags --> TagUpdateOptions{Tag Options}
+    TagUpdateOptions --> AddTags[➕ Add Tags]
+    TagUpdateOptions --> RemoveTags[➖ Remove Tags]
+    TagUpdateOptions --> ReplaceTags[🔄 Replace Tags]
+    AddTags --> ProcessTagUpdate[⚙️ Process Tag Update]
+    RemoveTags --> ProcessTagUpdate
+    ReplaceTags --> ProcessTagUpdate
+    ProcessTagUpdate --> TagsUpdated[✅ Tags Updated]
+    
+    BulkUpdateCategory --> SelectLocationsForCategory[☑️ Select Locations]
+    SelectLocationsForCategory --> SelectNewCategory[📂 Select New Category]
+    SelectNewCategory --> ProcessCategoryUpdate[⚙️ Process Category Update]
+    ProcessCategoryUpdate --> CategoriesUpdated[✅ Categories Updated]
+    
+    %% Return paths
+    LocationCreated --> CRUDOptions
+    LocationUpdated --> CRUDOptions
+    LocationDeleted --> CRUDOptions
+    BulkLocationsAdded --> BulkOptions
+    BulkLocationsEdited --> BulkOptions
+    BulkLocationsDeleted --> BulkOptions
+    TagsUpdated --> BulkOptions
+    CategoriesUpdated --> BulkOptions
+    BulkOptions --> CRUDOptions
+    
+    %% Back to dashboard
+    CRUDOptions --> Dashboard[🏠 Back to Location Dashboard]
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef bulk fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef coordinates fill:#fff8e1,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class AddLocation,EditLocation,DeleteLocation,BulkOperations,SelectLocationToEdit,LoadLocationData,SelectLocationToDelete,ShowUsageDetails,HandleUsageDependencies,UploadLocationFile,ValidateBulkData,ProcessBulkAdd,SelectLocationsToEdit,ProcessBulkEdit,SelectLocationsToDelete,ProcessBulkDelete process
+    class CRUDOptions,LocationMethod,ValidateLocation,ValidateLocationUpdate,CheckLocationUsage,ConfirmLocationDelete,BulkOptions,BulkAddMethod,BulkValidation,BulkEditOptions,ConfirmBulkDelete,TagUpdateOptions decision
+    class LocationCreated,LocationUpdated,LocationDeleted,BulkLocationsAdded,BulkLocationsEdited,BulkLocationsDeleted,TagsUpdated,CategoriesUpdated success
+    class LocationForm,BasicLocationInfo,EditLocationForm,UpdateBasicInfo form
+    class BulkAdd,BulkEdit,BulkDelete,BulkUpdateTags,BulkUpdateCategory,SelectLocationsForTags,SelectLocationsForCategory bulk
+    class ManualEntry,MapClick,GPSCapture,AddressLookup,AddressInput,GeocodeAddress,UpdateCoordinates coordinates
+    class ShowValidationErrors error

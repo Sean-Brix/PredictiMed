@@ -1,0 +1,96 @@
+flowchart TD
+    %% Event Operations Flow - Edit, Delete, Duplicate, Publish
+    
+    Start([⚙️ Event Operations]) --> OperationsMenu{Select Operation}
+    
+    %% Main Operations
+    OperationsMenu --> EditEvent[✏️ Edit Event]
+    OperationsMenu --> DeleteEvent[🗑️ Delete Event]
+    OperationsMenu --> DuplicateEvent[📋 Duplicate Event]
+    OperationsMenu --> PublishEvent[📢 Publish Event]
+    
+    %% Edit Event Flow
+    EditEvent --> SelectEditEvent[🎯 Select Event]
+    SelectEditEvent --> LoadEventData[📥 Load Event Data]
+    LoadEventData --> EditEventForm[📝 Edit Event Form]
+    EditEventForm --> UpdateEventDetails[📝 Update Details]
+    UpdateEventDetails --> UpdateScheduling[⏰ Update Scheduling]
+    UpdateScheduling --> UpdateVenue[🏢 Update Venue]
+    UpdateVenue --> UpdateSpeakers[👤 Update Speakers]
+    UpdateSpeakers --> UpdateRegistration[👥 Update Registration]
+    UpdateRegistration --> ValidateEventUpdate{Validate Update?}
+    ValidateEventUpdate -->|Invalid| EditEventForm
+    ValidateEventUpdate -->|Valid| SaveEventUpdate[💾 Save Update]
+    SaveEventUpdate --> EventUpdated[✅ Event Updated]
+    
+    %% Delete Event Flow
+    DeleteEvent --> SelectDeleteEvent[🎯 Select Event]
+    SelectDeleteEvent --> CheckRegistrations{Has Registrations?}
+    CheckRegistrations -->|Yes| HandleRegistrations[👥 Handle Registrations]
+    CheckRegistrations -->|No| ConfirmEventDelete{Confirm Delete?}
+    HandleRegistrations --> NotifyRegistrants[📧 Notify Registrants]
+    NotifyRegistrants --> ConfirmEventDelete
+    ConfirmEventDelete -->|No| OperationsMenu
+    ConfirmEventDelete -->|Yes| DeleteEventData[🗑️ Delete Event]
+    DeleteEventData --> EventDeleted[✅ Event Deleted]
+    
+    %% Duplicate Event Flow
+    DuplicateEvent --> SelectDuplicateEvent[🎯 Select Event]
+    SelectDuplicateEvent --> CopyEventData[📋 Copy Event Data]
+    CopyEventData --> ModifyDuplicateDetails[📝 Modify Details]
+    ModifyDuplicateDetails --> ValidateDuplicate{Validate Duplicate?}
+    ValidateDuplicate -->|Invalid| ModifyDuplicateDetails
+    ValidateDuplicate -->|Valid| SaveDuplicateEvent[💾 Save Duplicate]
+    SaveDuplicateEvent --> EventDuplicated[✅ Event Duplicated]
+    
+    %% Publish Event Flow
+    PublishEvent --> SelectPublishEvent[🎯 Select Event]
+    SelectPublishEvent --> PublishOptions{Publish Options}
+    PublishOptions --> PublishNow[📢 Publish Now]
+    PublishOptions --> SchedulePublish[📅 Schedule Publish]
+    PublishOptions --> DraftMode[📝 Keep as Draft]
+    
+    PublishNow --> EventPublished[✅ Event Published]
+    SchedulePublish --> SetPublishDate[📅 Set Publish Date]
+    SetPublishDate --> ValidatePublishDate{Valid Date?}
+    ValidatePublishDate -->|No| SetPublishDate
+    ValidatePublishDate -->|Yes| PublishScheduled[⏰ Publish Scheduled]
+    
+    %% Additional Operations
+    EventUpdated --> AdditionalActions{Additional Actions?}
+    EventDeleted --> AdditionalActions
+    EventDuplicated --> AdditionalActions
+    EventPublished --> AdditionalActions
+    PublishScheduled --> AdditionalActions
+    DraftMode --> AdditionalActions
+    
+    AdditionalActions -->|Yes| OperationsMenu
+    AdditionalActions -->|No| Dashboard[🏠 Back to Management Dashboard]
+    
+    %% Error Handling
+    LoadEventData --> DataLoadError{Data Load Error?}
+    DataLoadError -->|Yes| LoadErrorMessage[❌ Failed to Load Event]
+    DataLoadError -->|No| EditEventForm
+    LoadErrorMessage --> SelectEditEvent
+    
+    CopyEventData --> CopyError{Copy Error?}
+    CopyError -->|Yes| CopyErrorMessage[❌ Failed to Copy Event]
+    CopyError -->|No| ModifyDuplicateDetails
+    CopyErrorMessage --> SelectDuplicateEvent
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef process fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef error fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    classDef form fill:#f1f8e9,stroke:#33691e,stroke-width:2px,color:#000
+    classDef schedule fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px,color:#000
+    
+    class Start,Dashboard startEnd
+    class EditEvent,DeleteEvent,DuplicateEvent,PublishEvent,SelectEditEvent,LoadEventData,SelectDeleteEvent,HandleRegistrations,NotifyRegistrants,SelectDuplicateEvent,CopyEventData,SelectPublishEvent,DeleteEventData,SaveEventUpdate,SaveDuplicateEvent process
+    class OperationsMenu,ValidateEventUpdate,CheckRegistrations,ConfirmEventDelete,ValidateDuplicate,PublishOptions,ValidatePublishDate,AdditionalActions,DataLoadError,CopyError decision
+    class EventUpdated,EventDeleted,EventDuplicated,EventPublished,PublishScheduled success
+    class LoadErrorMessage,CopyErrorMessage error
+    class EditEventForm,UpdateEventDetails,ModifyDuplicateDetails form
+    class UpdateScheduling,SetPublishDate schedule

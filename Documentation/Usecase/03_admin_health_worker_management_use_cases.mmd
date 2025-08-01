@@ -1,0 +1,84 @@
+
+graph TB
+    %% ========================================
+    %% ADMIN ROLE - HEALTH WORKER MANAGEMENT USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed System - Admin Health Worker Management"
+        subgraph "Health Worker Registration"
+            UC1[Register New Health Worker]
+            UC2[Verify Health Worker Credentials]
+            UC3[Assign Health Worker ID]
+            UC4[Set Health Worker Permissions]
+            UC5[Activate Health Worker Account]
+        end
+        
+        subgraph "Schedule Management"
+            UC6[Create Health Worker Schedules]
+            UC7[Assign Patient Consultations]
+            UC8[Manage Availability]
+            UC9[Handle Schedule Conflicts]
+            UC10[Update Schedule Changes]
+        end
+        
+        subgraph "Performance Monitoring"
+            UC11[View Health Worker Performance]
+            UC12[Generate Performance Reports]
+            UC13[Track Patient Feedback]
+            UC14[Monitor Consultation Quality]
+            UC15[Assess Service Delivery]
+        end
+        
+        subgraph "Training & Development"
+            UC16[Assign Training Programs]
+            UC17[Track Training Progress]
+            UC18[Update Certifications]
+            UC19[Manage Skill Assessments]
+            UC20[Record Professional Development]
+        end
+    end
+    
+    %% Actors
+    Admin((Admin))
+    
+    %% Admin Relationships
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+    Admin --> UC8
+    Admin --> UC9
+    Admin --> UC10
+    Admin --> UC11
+    Admin --> UC12
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15
+    Admin --> UC16
+    Admin --> UC17
+    Admin --> UC18
+    Admin --> UC19
+    Admin --> UC20
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC2
+    UC2 -.->|includes| UC3
+    UC6 -.->|includes| UC8
+    UC11 -.->|includes| UC12
+    UC16 -.->|includes| UC17
+    
+    %% Extend Relationships
+    UC5 -.->|extends| UC4
+    UC10 -.->|extends| UC6
+    UC15 -.->|extends| UC11
+    UC20 -.->|extends| UC16
+    
+    classDef actor fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    classDef usecase fill:transparent,stroke:#000,stroke-width:2px,color:#000
+    
+    class Admin actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20 usecase
+```

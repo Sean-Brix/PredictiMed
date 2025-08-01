@@ -1,0 +1,82 @@
+flowchart TD
+    %% Report Generation - Automated and Custom Reports
+    
+    Start([📄 Report Generation]) --> ReportOptions{Select Report Type}
+    
+    %% Report Types
+    ReportOptions --> StandardReports[📋 Standard Reports]
+    ReportOptions --> CustomReports[⚙️ Custom Reports]
+    ReportOptions --> ScheduledReports[⏰ Scheduled Reports]
+    ReportOptions --> AutomatedReports[🤖 Automated Reports]
+    
+    %% Standard Reports Flow
+    StandardReports --> SelectStandardType{Select Standard Report}
+    SelectStandardType --> DailyReport[📅 Daily Activity Report]
+    SelectStandardType --> WeeklyReport[🗓️ Weekly Summary Report]
+    SelectStandardType --> MonthlyReport[📊 Monthly Performance Report]
+    SelectStandardType --> QuarterlyReport[📈 Quarterly Analysis Report]
+    SelectStandardType --> AnnualReport[🗓️ Annual Overview Report]
+    
+    DailyReport --> GenerateStandardReport[⚙️ Generate Standard Report]
+    WeeklyReport --> GenerateStandardReport
+    MonthlyReport --> GenerateStandardReport
+    QuarterlyReport --> GenerateStandardReport
+    AnnualReport --> GenerateStandardReport
+    
+    %% Custom Reports Flow
+    CustomReports --> CustomReportBuilder[🛠️ Custom Report Builder]
+    CustomReportBuilder --> SelectDataSources[📊 Select Data Sources]
+    SelectDataSources --> ChooseMetrics[📈 Choose Metrics]
+    ChooseMetrics --> SetFilters[🔍 Set Report Filters]
+    SetFilters --> ChooseVisualization[📊 Choose Visualization]
+    ChooseVisualization --> DesignLayout[🎨 Design Report Layout]
+    DesignLayout --> PreviewReport[👁️ Preview Custom Report]
+    PreviewReport --> GenerateCustomReport[⚙️ Generate Custom Report]
+    
+    %% Scheduled Reports Flow
+    ScheduledReports --> ScheduleSettings[⏰ Schedule Settings]
+    ScheduleSettings --> SetFrequency[🔄 Set Report Frequency]
+    SetFrequency --> SetRecipients[👥 Set Recipients]
+    SetRecipients --> SetDelivery[📧 Set Delivery Method]
+    SetDelivery --> ScheduleReport[✅ Schedule Report]
+    
+    %% Report Ready
+    GenerateStandardReport --> ReportReady[✅ Report Generated]
+    GenerateCustomReport --> ReportReady
+    ScheduleReport --> ReportReady
+    
+    %% Export Options
+    ReportReady --> ExportOptions{Export & Sharing Options}
+    ExportOptions --> ExportPDF[📄 Export as PDF]
+    ExportOptions --> ExportExcel[📊 Export as Excel]
+    ExportOptions --> ExportCSV[📋 Export as CSV]
+    ExportOptions --> EmailReport[📧 Email Report]
+    ExportOptions --> ShareDashboard[🔗 Share Dashboard Link]
+    ExportOptions --> PrintReport[🖨️ Print Report]
+    
+    ExportPDF --> ReportExported[✅ Report Exported]
+    ExportExcel --> ReportExported
+    ExportCSV --> ReportExported
+    EmailReport --> ReportEmailed[📧 Report Emailed]
+    ShareDashboard --> DashboardShared[🔗 Dashboard Shared]
+    PrintReport --> ReportPrinted[🖨️ Report Printed]
+    
+    ReportExported --> BackToDashboard[🔙 Back to Dashboard]
+    ReportEmailed --> BackToDashboard
+    DashboardShared --> BackToDashboard
+    ReportPrinted --> BackToDashboard
+    
+    %% Styling
+    classDef startEnd fill:#e1f5fe,stroke:#01579b,stroke-width:2px,color:#000
+    classDef reportType fill:#f3e5f5,stroke:#4a148c,stroke-width:2px,color:#000
+    classDef process fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef decision fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000
+    classDef success fill:#e0f2f1,stroke:#00695c,stroke-width:2px,color:#000
+    classDef export fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000
+    
+    class Start,BackToDashboard startEnd
+    class StandardReports,CustomReports,ScheduledReports,AutomatedReports,DailyReport,WeeklyReport,MonthlyReport,QuarterlyReport,AnnualReport reportType
+    class GenerateStandardReport,GenerateCustomReport,CustomReportBuilder,SelectDataSources,ChooseMetrics,SetFilters,ChooseVisualization,DesignLayout,PreviewReport,ScheduleSettings,SetFrequency,SetRecipients,SetDelivery process
+    class ReportOptions,SelectStandardType,ExportOptions decision
+    class ReportReady,ReportExported,ReportEmailed,DashboardShared,ReportPrinted,ScheduleReport success
+    class ExportPDF,ExportExcel,ExportCSV,EmailReport,ShareDashboard,PrintReport export
