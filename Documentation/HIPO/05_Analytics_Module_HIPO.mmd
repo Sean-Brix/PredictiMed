@@ -1,0 +1,61 @@
+graph TD
+    %% ========================================
+    %% ANALYTICS MODULE HIPO
+    %% Health Analytics IPO Detail
+    %% ========================================
+    
+    %% MODULE HEADER
+    AnalyticsMod[Analytics & Reporting Module]
+    
+    %% SUBMODULES
+    DataCollection[Data Collection]
+    DataProcessing[Data Processing]
+    ReportGeneration[Report Generation]
+    PredictiveModeling[Predictive Modeling]
+    
+    %% HEALTH ANALYTICS IPO FLOW
+    AnalyticsInput[INPUTS Health Analytics<br/>Patient Health Data<br/>Population Demographics<br/>Health Program Data<br/>System Usage Metrics<br/>External Health Indicators]
+    
+    AnalyticsProcess[PROCESS Health Analytics<br/>Aggregate Health Data<br/>Apply Statistical Models<br/>Identify Health Trends<br/>Generate Predictions<br/>Create Visualizations]
+    
+    AnalyticsOutput[OUTPUTS Health Analytics<br/>Health Trend Reports<br/>Population Insights<br/>Risk Assessments<br/>Interactive Dashboards<br/>Policy Recommendations]
+    
+    %% HIERARCHY
+    AnalyticsMod --> DataCollection
+    AnalyticsMod --> DataProcessing
+    AnalyticsMod --> ReportGeneration
+    AnalyticsMod --> PredictiveModeling
+    
+    %% IPO FLOW
+    DataCollection --> AnalyticsInput
+    AnalyticsInput --> AnalyticsProcess
+    AnalyticsProcess --> AnalyticsOutput
+    AnalyticsOutput --> ReportGeneration
+    
+    %% EXTERNAL CONNECTIONS
+    DatabaseSources[Database Sources]
+    ExternalHealthAPIs[External Health APIs]
+    HealthDirectors[Health Directors]
+    PolicyMakers[Policy Makers]
+    
+    AnalyticsInput --> DatabaseSources
+    AnalyticsInput --> ExternalHealthAPIs
+    AnalyticsOutput --> HealthDirectors
+    AnalyticsOutput --> PolicyMakers
+    
+    %% STYLING
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:3px,color:#fff
+    classDef submoduleLevel fill:#45b7d1,stroke:#2196f3,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    classDef processStyle fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000
+    classDef outputStyle fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class AnalyticsMod moduleLevel
+    class DataCollection,DataProcessing,ReportGeneration,PredictiveModeling submoduleLevel
+    class AnalyticsInput inputStyle
+    class AnalyticsProcess processStyle
+    class AnalyticsOutput outputStyle
+    class DatabaseSources,ExternalHealthAPIs,HealthDirectors,PolicyMakers externalStyle
+```

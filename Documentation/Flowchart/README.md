@@ -1,156 +1,158 @@
-# PredictiMed System Flowcharts
+# PredictiMed System - Flowchart Documentation (Modular Structure)
 
-This directory contains comprehensive flowcharts for the PredictiMed healthcare system, documenting all major features and processes.
+This directory contains modular flowcharts that detail the processes and workflows within the PredictiMed healthcare management system. The flowcharts have been split into smaller, focused diagrams for better visibility and understanding.
 
-## 📋 Flowchart Files Overview
+## Modular Flowchart Structure
 
-### Master Overview
+### Core System Flow
 
--   **`00_master_system_overview.mmd`** - Complete system architecture and module interactions
+#### 1. Authentication & Role Access (`00_authentication_role_access.mmd`)
 
-### Core System Modules
+The foundational authentication and role-based access control flow.
 
--   **`01_user_management_flow.mmd`** - User management, roles, account operations
--   **`02_chat_module_flow.mmd`** - Chat inquiries, FAQ system, medical forms access
--   **`03_virtual_consultations_flow.mmd`** - Appointment booking, virtual consultations, schedules
--   **`04_qr_code_flow.mmd`** - QR code generation, scanning, medical form integration
--   **`05_events_seminars_flow.mmd`** - Event creation, management, registration, announcements
--   **`06_health_programs_flow.mmd`** - Health program management, registration, reminders
--   **`07_spot_map_flow.mmd`** - Interactive maps, location services, facility management
--   **`08_content_management_flow.mmd`** - Website content management, client page management
--   **`09_analytics_reporting_flow.mmd`** - Analytics per category, trends, reports, rates analysis
+**Key Processes:**
 
-## 🎯 Features Covered
+-   User login and credential validation
+-   Session management and creation
+-   Role-based access determination (User, Admin, Super Admin)
+-   Logout and session cleanup procedures
 
-### User Management
+#### 2. Master System Overview (`00_master_system_overview_new.mmd`)
 
--   ✅ Roles Management
--   ✅ Create Account
--   ✅ Edit Account Details
--   ✅ Deletion of Accounts
+High-level overview connecting all system modules and their relationships.
 
-### Chat Module
+**Key Components:**
 
--   ✅ Number of Inquiries
--   ✅ Frequently Ask Questions
--   ✅ Medical Record Forms
+-   System entry points and authentication flow
+-   Role-based dashboard access
+-   Module integration points
+-   System exit and cleanup processes
 
-### Virtual Consultations
+### Role-Specific Module Flows
 
--   ✅ Appointment Scheduling
--   ✅ Available Schedules
--   ✅ Medical Record Forms
+#### 3. Super Admin Modules (`01_super_admin_modules.mmd`)
 
-### QR Code
+Detailed workflows for Super Admin functions.
 
--   ✅ Generate QR per medical forms
+**Key Module Groups:**
 
-### Events & Seminars
+-   **System Management**: Configuration, database, server, security management
+-   **User & Role Management**: Admin account creation, role permissions, system audits
+-   **Global Settings**: Site, email, SMS, API configuration
+-   **System Analytics**: Performance metrics, user activity, system health monitoring
+-   **Data Management**: Backup/restore, export, cleanup, migration operations
 
--   ✅ Announcement Details
--   ✅ Posted on Landing Page
--   ✅ Date Tracking
+#### 4. Admin Modules (`02_admin_modules.mmd`)
 
-### Health Programs
+Administrative workflows for general admin functions.
 
--   ✅ Registration System
--   ✅ Medical Forms
--   ✅ Participant Reminders (SMS OR Email)
+**Key Module Groups:**
 
-### Spot Map
+-   **User Management**: User account creation, profile editing, role management
+-   **Health Worker Management**: Registration, scheduling, performance monitoring
+-   **Event & Program Management**: Health event and program creation/management
+-   **Location Management**: Facility management, interactive mapping, analytics
+-   **Content Management**: Website content, media library, SEO management
+-   **Analytics & Reports**: Dashboard views, report generation, system usage statistics
 
--   ✅ Tooltip - Minor Details
--   ✅ Select for expanded details (Analytics)
--   ✅ Availability Schedule
+#### 5. User Modules (`03_user_modules.mmd`)
 
-### Content Management
+User-facing workflows and service access.
 
--   ✅ Manages details for Client Page
+**Key Module Groups:**
 
-### Analytics (per category)
+-   **Profile Management**: Personal profile, health records, medical information updates
+-   **Consultations**: Virtual consultation booking, scheduling, meeting participation
+-   **Health Records**: Medical history, immunizations, lab results, report downloads
+-   **Events & Programs**: Health event browsing, registration, program enrollment
+-   **Support & Communication**: Inquiry creation, FAQ access, chat support, feedback
+-   **Location Services**: Health facility finder, interactive maps, directions
 
--   ✅ Trends Graph
--   ✅ Generate report
--   ✅ Number of Records
--   ✅ Average Rates
+## Flowchart Design Principles
 
-## 🔄 Flow Relationships
+### Visual Consistency
 
-The flowcharts are interconnected and show:
+-   **Transparent backgrounds** with black borders and text for professional presentation
+-   **Consistent node shapes** for different process types (rectangles, diamonds, circles)
+-   **Clear directional flow** with arrows indicating process progression
+-   **Modular organization** for easier maintenance and understanding
 
-1. **User Authentication Flow** - Entry point for all system access
-2. **Role-based Access Control** - Determines available features per user type
-3. **Module Integration** - How different features work together
-4. **Data Flow** - How information moves between modules
-5. **Security Layers** - Authentication, authorization, and data protection
-6. **Analytics Integration** - How all modules contribute to system analytics
+### Process Flow Types
 
-## 📊 Analytics Integration
+-   **Decision Points**: Diamond shapes for yes/no or multiple choice decisions
+-   **Process Steps**: Rectangular shapes for actions and operations
+-   **Start/End Points**: Circular shapes for system entry and exit points
+-   **Module References**: Rectangular shapes linking to other detailed flowcharts
 
-All modules feed data into the central analytics system:
+## Integration Architecture
 
--   User activity tracking
--   Consultation metrics
--   Event participation rates
--   Program effectiveness
--   QR code usage patterns
--   Content engagement
--   Location service utilization
--   Chat support metrics
+### System Integration Points
 
-## 🔒 Security Features
+All flowcharts connect through common integration layers:
 
-Each flowchart includes security considerations:
+1. **Database Layer**: All modules interact with the central database
+2. **Security Layer**: Authentication and authorization across all modules
+3. **Notification System**: Cross-module communication and alerts
+4. **Analytics Engine**: Data collection and analysis across all processes
 
--   User authentication and authorization
--   Data encryption and privacy
--   Audit logging
--   Access control mechanisms
--   Compliance with healthcare data regulations
+### Cross-Module Dependencies
 
-## 🎨 Visual Elements
+-   **Authentication Flow** → Required for all other module access
+-   **Super Admin Modules** → Control system-wide configurations
+-   **Admin Modules** → Manage operational aspects and user coordination
+-   **User Modules** → Consume services provided by admin-managed resources
 
-The flowcharts use consistent styling:
+## Process Flow Relationships
 
--   **Blue nodes** - Start/End points
--   **Purple nodes** - Process steps
--   **Orange nodes** - Decision points
--   **Green nodes** - Success states
--   **Red nodes** - Error states
--   **Teal nodes** - Analytics/reporting
--   **Color-coded modules** - Different feature areas
+### Sequential Flows
 
-## 📱 Mobile & Web Support
+1. Authentication must precede all module access
+2. Role determination directs users to appropriate module sets
+3. Session management maintains state across module interactions
+4. Logout procedures ensure secure session termination
 
-All flows account for:
+### Parallel Flows
 
--   Responsive design considerations
--   Mobile-specific interactions
--   Cross-platform compatibility
--   Progressive web app features
+-   Multiple users can access their respective modules simultaneously
+-   Admin and Super Admin functions can operate concurrently
+-   User services can be accessed independently of administrative functions
 
-## 🔧 Implementation Notes
+## Solving Current Manual Process Problems
 
-These flowcharts serve as:
+These digital workflows replace manual processes:
 
--   Development roadmap
--   User experience documentation
--   System architecture reference
--   Testing scenarios guide
--   Security audit checklist
+### From Manual to Digital
 
-## 📈 Future Enhancements
+-   **Paper Forms** → Digital registration and profile management
+-   **Phone Scheduling** → Online appointment booking system
+-   **Physical Files** → Digital health records and document management
+-   **Manual Reports** → Automated analytics and real-time reporting
+-   **In-Person Only** → Virtual consultations and remote access
 
-The flowcharts are designed to accommodate:
+### Process Improvements
 
--   New feature additions
--   Integration with external systems
--   Scalability improvements
--   Enhanced analytics capabilities
--   Advanced security features
+-   **Real-time Updates**: Immediate data synchronization across all modules
+-   **Automated Workflows**: Reduced manual intervention and human error
+-   **Multi-user Access**: Simultaneous system usage with proper access controls
+-   **Mobile Accessibility**: Remote access to all appropriate functions
+-   **Audit Trails**: Complete tracking of all system activities and changes
+
+## Related Documentation
+
+-   **ERD**: `../ERD/` - Database structure supporting these workflows
+-   **Use Cases**: `../Usecase/` - User interaction scenarios implemented by these flows
+-   **Fishbone**: `../FishBone/` - Manual process problems these workflows solve
+
+## How to Navigate the Flowcharts
+
+1. **Start with Authentication Flow** (`00_authentication_role_access.mmd`)
+2. **Review Master Overview** (`00_master_system_overview_new.mmd`)
+3. **Deep-dive into Role-specific Modules** based on user type:
+    - Super Admin: `01_super_admin_modules.mmd`
+    - Admin: `02_admin_modules.mmd`
+    - User: `03_user_modules.mmd`
 
 ---
 
-_Last Updated: January 2025_
-_Version: 1.0_
-_Status: Complete System Documentation_
+_Modular Flowcharts for PredictiMed Healthcare Management System_
+_Last Updated: August 2025_

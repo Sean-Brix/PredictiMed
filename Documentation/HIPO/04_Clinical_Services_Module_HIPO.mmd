@@ -1,0 +1,61 @@
+
+graph TD
+    %% ========================================
+    %% CLINICAL SERVICES MODULE HIPO
+    %% Virtual Consultations IPO Detail
+    %% ========================================
+    
+    %% MODULE HEADER
+    ClinicalMod[Clinical Services Module]
+    
+    %% SUBMODULES
+    VirtualConsult[Virtual Consultations]
+    HealthEvents[Health Events & Programs]
+    QRServices[QR Code Services]
+    LocationSvc[Location Services]
+    
+    %% VIRTUAL CONSULTATIONS IPO FLOW
+    ConsultInput[INPUTS Virtual Consultations<br/>Appointment Request<br/>Patient Medical History<br/>Available Time Slots<br/>Provider Availability<br/>Technical Requirements]
+    
+    ConsultProcess[PROCESS Virtual Consultations<br/>Schedule Appointment<br/>Prepare Virtual Room<br/>Conduct Consultation<br/>Record Session Notes<br/>Generate Follow-up Plan]
+    
+    ConsultOutput[OUTPUTS Virtual Consultations<br/>Scheduled Appointment<br/>Virtual Meeting Link<br/>Consultation Summary<br/>Treatment Recommendations<br/>Digital Prescription]
+    
+    %% HIERARCHY
+    ClinicalMod --> VirtualConsult
+    ClinicalMod --> HealthEvents
+    ClinicalMod --> QRServices
+    ClinicalMod --> LocationSvc
+    
+    %% IPO FLOW
+    VirtualConsult --> ConsultInput
+    ConsultInput --> ConsultProcess
+    ConsultProcess --> ConsultOutput
+    
+    %% EXTERNAL CONNECTIONS
+    HealthcareProviders[Healthcare Providers]
+    VideoConferenceSystem[Video Conference System]
+    PaymentGateway[Payment Gateway]
+    PharmacySystem[Pharmacy System]
+    
+    ConsultProcess --> HealthcareProviders
+    ConsultProcess --> VideoConferenceSystem
+    ConsultOutput --> PaymentGateway
+    ConsultOutput --> PharmacySystem
+    
+    %% STYLING
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:3px,color:#fff
+    classDef submoduleLevel fill:#45b7d1,stroke:#2196f3,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    classDef processStyle fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000
+    classDef outputStyle fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class ClinicalMod moduleLevel
+    class VirtualConsult,HealthEvents,QRServices,LocationSvc submoduleLevel
+    class ConsultInput inputStyle
+    class ConsultProcess processStyle
+    class ConsultOutput outputStyle
+    class HealthcareProviders,VideoConferenceSystem,PaymentGateway,PharmacySystem externalStyle
+```

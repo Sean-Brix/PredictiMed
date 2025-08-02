@@ -1,0 +1,99 @@
+
+graph TD
+    %% ========================================
+    %% HIPO CHART TEMPLATE
+    %% Hierarchy + Input-Process-Output
+    %% ========================================
+    
+    %% TOP LEVEL SYSTEM (Level 0)
+    System[System Name<br/>📊 Main System Function]
+    
+    %% LEVEL 1 MODULES
+    subgraph "Level 1 - Major Modules"
+        Mod1[Module 1<br/>📋 Primary Function A]
+        Mod2[Module 2<br/>🔧 Primary Function B]
+        Mod3[Module 3<br/>📊 Primary Function C]
+    end
+    
+    %% LEVEL 2 SUBMODULES FOR MODULE 1
+    subgraph "Module 1 - Submodules"
+        Sub1A[Submodule 1A<br/>⚙️ Specific Function A1]
+        Sub1B[Submodule 1B<br/>⚙️ Specific Function A2]
+    end
+    
+    %% LEVEL 2 SUBMODULES FOR MODULE 2
+    subgraph "Module 2 - Submodules"
+        Sub2A[Submodule 2A<br/>⚙️ Specific Function B1]
+        Sub2B[Submodule 2B<br/>⚙️ Specific Function B2]
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS FOR SUBMODULE 1A
+    subgraph "IPO: Submodule 1A Detail"
+        direction LR
+        Input1A[📥 INPUTS:<br/>• Data Source 1<br/>• User Request<br/>• System State]
+        Process1A[⚙️ PROCESS:<br/>• Validate Input<br/>• Transform Data<br/>• Apply Business Rules]
+        Output1A[📤 OUTPUTS:<br/>• Processed Data<br/>• Status Report<br/>• System Update]
+        
+        Input1A --> Process1A --> Output1A
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS FOR SUBMODULE 1B
+    subgraph "IPO: Submodule 1B Detail"
+        direction LR
+        Input1B[📥 INPUTS:<br/>• External API Data<br/>• Configuration<br/>• User Preferences]
+        Process1B[⚙️ PROCESS:<br/>• Parse Data<br/>• Filter Content<br/>• Format Output]
+        Output1B[📤 OUTPUTS:<br/>• Formatted Report<br/>• Notifications<br/>• Log Entries]
+        
+        Input1B --> Process1B --> Output1B
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS FOR SUBMODULE 2A
+    subgraph "IPO: Submodule 2A Detail"
+        direction LR
+        Input2A[📥 INPUTS:<br/>• User Commands<br/>• Database State<br/>• Security Context]
+        Process2A[⚙️ PROCESS:<br/>• Authenticate User<br/>• Execute Commands<br/>• Update Records]
+        Output2A[📤 OUTPUTS:<br/>• Command Results<br/>• Database Changes<br/>• Audit Trail]
+        
+        Input2A --> Process2A --> Output2A
+    end
+    
+    %% HIERARCHY RELATIONSHIPS
+    System --> Mod1
+    System --> Mod2
+    System --> Mod3
+    
+    Mod1 --> Sub1A
+    Mod1 --> Sub1B
+    
+    Mod2 --> Sub2A
+    Mod2 --> Sub2B
+    
+    %% DATA FLOW BETWEEN MODULES
+    Sub1A -.->|Data Flow| Sub1B
+    Sub1B -.->|Results| Sub2A
+    Sub2A -.->|Status| Sub1A
+    
+    %% STYLING
+    classDef systemLevel fill:#ff9999,stroke:#cc0000,stroke-width:3px,color:#000
+    classDef moduleLevel fill:#99ccff,stroke:#0066cc,stroke-width:2px,color:#000
+    classDef submoduleLevel fill:#99ff99,stroke:#00cc00,stroke-width:2px,color:#000
+    classDef inputStyle fill:#ffffcc,stroke:#cccc00,stroke-width:2px,color:#000
+    classDef processStyle fill:#ffccff,stroke:#cc00cc,stroke-width:2px,color:#000
+    classDef outputStyle fill:#ccffff,stroke:#00cccc,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class System systemLevel
+    class Mod1,Mod2,Mod3 moduleLevel
+    class Sub1A,Sub1B,Sub2A,Sub2B submoduleLevel
+    class Input1A,Input1B,Input2A inputStyle
+    class Process1A,Process1B,Process2A processStyle
+    class Output1A,Output1B,Output2A outputStyle
+    
+    %% NOTES FOR CUSTOMIZATION
+    %% 1. Replace "System Name" with your actual system name
+    %% 2. Update module names and functions to match your system
+    %% 3. Customize IPO details for each submodule
+    %% 4. Adjust hierarchy depth as needed
+    %% 5. Add more data flow connections between modules
+    %% 6. Modify styling colors to match your documentation theme
+```

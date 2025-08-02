@@ -1,0 +1,56 @@
+graph TD
+    %% ========================================
+    %% COMMUNICATION MODULE HIPO
+    %% Inquiry Management IPO Detail
+    %% ========================================
+    
+    %% MODULE HEADER
+    CommMod[Communication & Support Module]
+    
+    %% SUBMODULES
+    InquiryMgmt[Inquiry Management]
+    FAQSystem[FAQ System]
+    NotificationSys[Notification System]
+    
+    %% INQUIRY MANAGEMENT IPO FLOW
+    InqInput[INPUTS Inquiry Management<br/>Patient Questions<br/>Health Concerns<br/>Inquiry Category<br/>File Attachments<br/>User Context]
+    
+    InqProcess[PROCESS Inquiry Management<br/>Categorize Inquiry<br/>Route to Appropriate Staff<br/>Track Response Time<br/>Generate Inquiry ID<br/>Log Communication]
+    
+    InqOutput[OUTPUTS Inquiry Management<br/>Inquiry Confirmation<br/>Staff Notification<br/>Response Tracking<br/>Communication History<br/>Performance Metrics]
+    
+    %% HIERARCHY
+    CommMod --> InquiryMgmt
+    CommMod --> FAQSystem
+    CommMod --> NotificationSys
+    
+    %% IPO FLOW
+    InquiryMgmt --> InqInput
+    InqInput --> InqProcess
+    InqProcess --> InqOutput
+    
+    %% EXTERNAL CONNECTIONS
+    HealthWorkers[Health Workers]
+    DatabaseSystem[Database System]
+    NotificationService[Notification Service]
+    
+    InqProcess --> HealthWorkers
+    InqOutput --> DatabaseSystem
+    InqOutput --> NotificationService
+    
+    %% STYLING
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:3px,color:#fff
+    classDef submoduleLevel fill:#45b7d1,stroke:#2196f3,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    classDef processStyle fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000
+    classDef outputStyle fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class CommMod moduleLevel
+    class InquiryMgmt,FAQSystem,NotificationSys submoduleLevel
+    class InqInput inputStyle
+    class InqProcess processStyle
+    class InqOutput outputStyle
+    class HealthWorkers,DatabaseSystem,NotificationService externalStyle
+```

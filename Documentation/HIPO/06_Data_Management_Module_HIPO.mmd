@@ -1,0 +1,61 @@
+graph TD
+    %% ========================================
+    %% DATA MANAGEMENT MODULE HIPO
+    %% Data Storage and Retrieval
+    %% ========================================
+    
+    %% MODULE HEADER
+    DataMod[Data Management Module]
+    
+    %% SUBMODULES
+    DataStorage[Data Storage]
+    DataRetrieval[Data Retrieval]
+    DataBackup[Data Backup]
+    DataSecurity[Data Security]
+    
+    %% DATA MANAGEMENT IPO FLOW
+    DataInput[INPUTS Data Management<br/>Patient Records<br/>Clinical Data<br/>System Logs<br/>Analytics Results<br/>User Profiles]
+    
+    DataProcess[PROCESS Data Management<br/>Validate Data Integrity<br/>Store in Database<br/>Index for Fast Retrieval<br/>Apply Security Policies<br/>Schedule Backups]
+    
+    DataOutput[OUTPUTS Data Management<br/>Stored Data Records<br/>Query Results<br/>Backup Confirmations<br/>Security Reports<br/>Data Access Logs]
+    
+    %% HIERARCHY
+    DataMod --> DataStorage
+    DataMod --> DataRetrieval
+    DataMod --> DataBackup
+    DataMod --> DataSecurity
+    
+    %% IPO FLOW
+    DataStorage --> DataInput
+    DataInput --> DataProcess
+    DataProcess --> DataOutput
+    DataOutput --> DataRetrieval
+    
+    %% EXTERNAL CONNECTIONS
+    DatabaseServer[Database Server]
+    BackupStorage[Backup Storage]
+    SecurityMonitoring[Security Monitoring]
+    DataConsumers[Data Consumers]
+    
+    DataProcess --> DatabaseServer
+    DataProcess --> BackupStorage
+    DataProcess --> SecurityMonitoring
+    DataOutput --> DataConsumers
+    
+    %% STYLING
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:3px,color:#fff
+    classDef submoduleLevel fill:#45b7d1,stroke:#2196f3,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    classDef processStyle fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000
+    classDef outputStyle fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class DataMod moduleLevel
+    class DataStorage,DataRetrieval,DataBackup,DataSecurity submoduleLevel
+    class DataInput inputStyle
+    class DataProcess processStyle
+    class DataOutput outputStyle
+    class DatabaseServer,BackupStorage,SecurityMonitoring,DataConsumers externalStyle
+```

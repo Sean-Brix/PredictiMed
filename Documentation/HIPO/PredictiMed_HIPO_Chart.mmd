@@ -1,0 +1,145 @@
+
+graph TD
+    %% ========================================
+    %% PREDICTIMED SYSTEM HIPO CHART
+    %% Hierarchy + Input-Process-Output Analysis
+    %% ========================================
+    
+    %% TOP LEVEL SYSTEM (Level 0)
+    PredictiMed[PredictiMed Healthcare DSS<br/>🏥 Population Health Decision Support System]
+    
+    %% LEVEL 1 MODULES (Based on ERD Structure)
+    subgraph "Level 1 - Core System Modules"
+        AuthMod[Authentication & User Management<br/>👤 User Access Control]
+        CommMod[Communication & Support<br/>💬 Patient-Provider Communication]
+        ClinicalMod[Clinical Services<br/>🩺 Healthcare Service Delivery]
+        AnalyticsMod[Analytics & Reporting<br/>📊 Decision Support & Insights]
+        DataMod[Data Management<br/>🗄️ Health Information Storage]
+    end
+    
+    %% LEVEL 2 SUBMODULES - AUTHENTICATION
+    subgraph "Authentication Module - Submodules"
+        UserReg[User Registration<br/>📝 Account Creation Process]
+        UserAuth[User Authentication<br/>🔐 Login & Security Validation]
+        ProfileMgmt[Profile Management<br/>⚙️ User Information Maintenance]
+        RoleMgmt[Role Management<br/>👥 Access Control & Permissions]
+    end
+    
+    %% LEVEL 2 SUBMODULES - COMMUNICATION
+    subgraph "Communication Module - Submodules"
+        InquiryMgmt[Inquiry Management<br/>❓ Patient Question Handling]
+        FAQSystem[FAQ System<br/>📚 Knowledge Base Management]
+        NotificationSys[Notification System<br/>🔔 Alert & Reminder Service]
+    end
+    
+    %% LEVEL 2 SUBMODULES - CLINICAL SERVICES
+    subgraph "Clinical Services Module - Submodules"
+        VirtualConsult[Virtual Consultations<br/>💻 Telemedicine Services]
+        HealthEvents[Health Events & Programs<br/>📅 Community Health Activities]
+        QRServices[QR Code Services<br/>📲 Digital Health Tools]
+        LocationSvc[Location Services<br/>🗺️ Healthcare Facility Finder]
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS - USER REGISTRATION
+    subgraph "IPO: User Registration Detail"
+        direction LR
+        RegInput[📥 INPUTS:<br/>• User Demographics<br/>• Contact Information<br/>• Role Selection<br/>• Terms Acceptance]
+        RegProcess[⚙️ PROCESS:<br/>• Validate User Data<br/>• Check Duplicate Accounts<br/>• Generate User ID<br/>• Send Verification<br/>• Create Profile Record]
+        RegOutput[📤 OUTPUTS:<br/>• User Account Created<br/>• Verification Email/SMS<br/>• Initial Profile Setup<br/>• System Access Granted<br/>• Audit Log Entry]
+        
+        RegInput --> RegProcess --> RegOutput
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS - INQUIRY MANAGEMENT
+    subgraph "IPO: Inquiry Management Detail"
+        direction LR
+        InqInput[📥 INPUTS:<br/>• Patient Questions<br/>• Health Concerns<br/>• Inquiry Category<br/>• File Attachments<br/>• User Context]
+        InqProcess[⚙️ PROCESS:<br/>• Categorize Inquiry<br/>• Route to Appropriate Staff<br/>• Track Response Time<br/>• Generate Inquiry ID<br/>• Log Communication]
+        InqOutput[📤 OUTPUTS:<br/>• Inquiry Confirmation<br/>• Staff Notification<br/>• Response Tracking<br/>• Communication History<br/>• Performance Metrics]
+        
+        InqInput --> InqProcess --> InqOutput
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS - VIRTUAL CONSULTATIONS
+    subgraph "IPO: Virtual Consultations Detail"
+        direction LR
+        ConsultInput[📥 INPUTS:<br/>• Appointment Request<br/>• Patient Medical History<br/>• Available Time Slots<br/>• Provider Availability<br/>• Technical Requirements]
+        ConsultProcess[⚙️ PROCESS:<br/>• Schedule Appointment<br/>• Prepare Virtual Room<br/>• Conduct Consultation<br/>• Record Session Notes<br/>• Generate Follow-up Plan]
+        ConsultOutput[📤 OUTPUTS:<br/>• Scheduled Appointment<br/>• Virtual Meeting Link<br/>• Consultation Summary<br/>• Treatment Recommendations<br/>• Digital Prescription]
+        
+        ConsultInput --> ConsultProcess --> ConsultOutput
+    end
+    
+    %% INPUT-PROCESS-OUTPUT DETAILS - HEALTH ANALYTICS
+    subgraph "IPO: Health Analytics Detail"
+        direction LR
+        AnalyticsInput[📥 INPUTS:<br/>• Patient Health Data<br/>• Population Demographics<br/>• Health Program Data<br/>• System Usage Metrics<br/>• External Health Indicators]
+        AnalyticsProcess[⚙️ PROCESS:<br/>• Aggregate Health Data<br/>• Apply Statistical Models<br/>• Identify Health Trends<br/>• Generate Predictions<br/>• Create Visualizations]
+        AnalyticsOutput[📤 OUTPUTS:<br/>• Health Trend Reports<br/>• Population Insights<br/>• Risk Assessments<br/>• Interactive Dashboards<br/>• Policy Recommendations]
+        
+        AnalyticsInput --> AnalyticsProcess --> AnalyticsOutput
+    end
+    
+    %% HIERARCHY RELATIONSHIPS
+    PredictiMed --> AuthMod
+    PredictiMed --> CommMod
+    PredictiMed --> ClinicalMod
+    PredictiMed --> AnalyticsMod
+    PredictiMed --> DataMod
+    
+    %% Authentication Module Hierarchy
+    AuthMod --> UserReg
+    AuthMod --> UserAuth
+    AuthMod --> ProfileMgmt
+    AuthMod --> RoleMgmt
+    
+    %% Communication Module Hierarchy
+    CommMod --> InquiryMgmt
+    CommMod --> FAQSystem
+    CommMod --> NotificationSys
+    
+    %% Clinical Services Module Hierarchy
+    ClinicalMod --> VirtualConsult
+    ClinicalMod --> HealthEvents
+    ClinicalMod --> QRServices
+    ClinicalMod --> LocationSvc
+    
+    %% DATA FLOW BETWEEN MODULES (Cross-Module Dependencies)
+    UserAuth -.->|User Session| InquiryMgmt
+    UserAuth -.->|Authentication| VirtualConsult
+    UserAuth -.->|User Context| HealthEvents
+    InquiryMgmt -.->|Communication Data| AnalyticsMod
+    VirtualConsult -.->|Clinical Data| AnalyticsMod
+    HealthEvents -.->|Event Data| AnalyticsMod
+    AnalyticsMod -.->|Insights| NotificationSys
+    ProfileMgmt -.->|User Data| DataMod
+    
+    %% EXTERNAL SYSTEM INTERFACES
+    EmailSvc[📧 Email Service]
+    SMSSvc[📱 SMS Service]
+    PaymentSvc[💳 Payment Gateway]
+    HealthAPIs[🏥 External Health APIs]
+    
+    NotificationSys -.->|Notifications| EmailSvc
+    NotificationSys -.->|Alerts| SMSSvc
+    VirtualConsult -.->|Payments| PaymentSvc
+    AnalyticsMod -.->|Health Data| HealthAPIs
+    
+    %% STYLING
+    classDef systemLevel fill:#ff6b6b,stroke:#c92a2a,stroke-width:4px,color:#fff
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:3px,color:#fff
+    classDef submoduleLevel fill:#45b7d1,stroke:#2196f3,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    classDef processStyle fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000
+    classDef outputStyle fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class PredictiMed systemLevel
+    class AuthMod,CommMod,ClinicalMod,AnalyticsMod,DataMod moduleLevel
+    class UserReg,UserAuth,ProfileMgmt,RoleMgmt,InquiryMgmt,FAQSystem,NotificationSys,VirtualConsult,HealthEvents,QRServices,LocationSvc submoduleLevel
+    class RegInput,InqInput,ConsultInput,AnalyticsInput inputStyle
+    class RegProcess,InqProcess,ConsultProcess,AnalyticsProcess processStyle
+    class RegOutput,InqOutput,ConsultOutput,AnalyticsOutput outputStyle
+    class EmailSvc,SMSSvc,PaymentSvc,HealthAPIs externalStyle
+```

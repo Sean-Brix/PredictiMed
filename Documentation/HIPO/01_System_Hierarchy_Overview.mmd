@@ -1,0 +1,45 @@
+graph TD
+    %% ========================================
+    %% PREDICTIMED SYSTEM HIERARCHY OVERVIEW
+    %% Main System Architecture
+    %% ========================================
+    
+    %% TOP LEVEL SYSTEM
+    PredictiMed[PredictiMed Healthcare DSS]
+    
+    %% LEVEL 1 MODULES
+    AuthMod[Authentication & User Management]
+    CommMod[Communication & Support]
+    ClinicalMod[Clinical Services]
+    AnalyticsMod[Analytics & Reporting]
+    DataMod[Data Management]
+    
+    %% HIERARCHY RELATIONSHIPS
+    PredictiMed --> AuthMod
+    PredictiMed --> CommMod
+    PredictiMed --> ClinicalMod
+    PredictiMed --> AnalyticsMod
+    PredictiMed --> DataMod
+    
+    %% EXTERNAL SYSTEM INTERFACES
+    EmailSvc[Email Service]
+    SMSSvc[SMS Service]
+    PaymentSvc[Payment Gateway]
+    HealthAPIs[External Health APIs]
+    
+    %% EXTERNAL CONNECTIONS
+    CommMod --> EmailSvc
+    CommMod --> SMSSvc
+    ClinicalMod --> PaymentSvc
+    AnalyticsMod --> HealthAPIs
+    
+    %% STYLING
+    classDef systemLevel fill:#ff6b6b,stroke:#c92a2a,stroke-width:3px,color:#fff
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:2px,color:#fff
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class PredictiMed systemLevel
+    class AuthMod,CommMod,ClinicalMod,AnalyticsMod,DataMod moduleLevel
+    class EmailSvc,SMSSvc,PaymentSvc,HealthAPIs externalStyle
+```

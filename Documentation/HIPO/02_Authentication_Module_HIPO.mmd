@@ -1,0 +1,58 @@
+graph TD
+    %% ========================================
+    %% AUTHENTICATION MODULE HIPO
+    %% User Registration IPO Detail
+    %% ========================================
+    
+    %% MODULE HEADER
+    AuthMod[Authentication & User Management Module]
+    
+    %% SUBMODULES
+    UserReg[User Registration]
+    UserAuth[User Authentication]
+    ProfileMgmt[Profile Management]
+    RoleMgmt[Role Management]
+    
+    %% USER REGISTRATION IPO FLOW
+    RegInput[INPUTS User Registration<br/>User Demographics<br/>Contact Information<br/>Role Selection<br/>Terms Acceptance]
+    
+    RegProcess[PROCESS User Registration<br/>Validate User Data<br/>Check Duplicate Accounts<br/>Generate User ID<br/>Send Verification<br/>Create Profile Record]
+    
+    RegOutput[OUTPUTS User Registration<br/>User Account Created<br/>Verification Email SMS<br/>Initial Profile Setup<br/>System Access Granted<br/>Audit Log Entry]
+    
+    %% HIERARCHY
+    AuthMod --> UserReg
+    AuthMod --> UserAuth
+    AuthMod --> ProfileMgmt
+    AuthMod --> RoleMgmt
+    
+    %% IPO FLOW
+    UserReg --> RegInput
+    RegInput --> RegProcess
+    RegProcess --> RegOutput
+    
+    %% EXTERNAL CONNECTIONS
+    EmailService[Email Service]
+    SMSService[SMS Service]
+    DatabaseSystem[Database System]
+    
+    RegProcess --> EmailService
+    RegProcess --> SMSService
+    RegOutput --> DatabaseSystem
+    
+    %% STYLING
+    classDef moduleLevel fill:#4ecdc4,stroke:#26a69a,stroke-width:3px,color:#fff
+    classDef submoduleLevel fill:#45b7d1,stroke:#2196f3,stroke-width:2px,color:#fff
+    classDef inputStyle fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    classDef processStyle fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px,color:#000
+    classDef outputStyle fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#000
+    classDef externalStyle fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#000
+    
+    %% APPLY STYLES
+    class AuthMod moduleLevel
+    class UserReg,UserAuth,ProfileMgmt,RoleMgmt submoduleLevel
+    class RegInput inputStyle
+    class RegProcess processStyle
+    class RegOutput outputStyle
+    class EmailService,SMSService,DatabaseSystem externalStyle
+```
