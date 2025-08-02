@@ -1,0 +1,117 @@
+
+graph TB
+    %% ========================================
+    %% USER REGISTRATION USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed Registration System"
+        subgraph "Account Creation"
+            UC1[Create User Account]
+            UC2[Validate Email Address]
+            UC3[Set Password Requirements]
+            UC4[Verify Mobile Number]
+            UC5[Complete Profile Information]
+            UC6[Accept Terms and Conditions]
+        end
+        
+        subgraph "Verification Process"
+            UC7[Send Verification Email]
+            UC8[Send SMS Verification]
+            UC9[Validate User Identity]
+            UC10[Confirm Registration]
+            UC11[Generate User ID]
+            UC12[Create User Session]
+        end
+        
+        subgraph "Role Assignment"
+            UC13[Assign Default Role]
+            UC14[Set User Permissions]
+            UC15[Configure Access Levels]
+            UC16[Initialize User Preferences]
+            UC17[Setup Notification Settings]
+            UC18[Create User Dashboard]
+        end
+        
+        subgraph "Security Features"
+            UC19[Enable Two-Factor Auth]
+            UC20[Setup Security Questions]
+            UC21[Generate Recovery Codes]
+            UC22[Log Registration Activity]
+            UC23[Detect Duplicate Accounts]
+            UC24[Prevent Spam Registration]
+        end
+    end
+    
+    %% Actors
+    NewUser((New User))
+    System((System))
+    EmailService((Email Service))
+    SMSService((SMS Service))
+    Admin((Admin))
+    SecuritySystem((Security System))
+    
+    %% New User Relationships
+    NewUser --> UC1
+    NewUser --> UC3
+    NewUser --> UC5
+    NewUser --> UC6
+    NewUser --> UC16
+    NewUser --> UC17
+    NewUser --> UC19
+    NewUser --> UC20
+    
+    %% System Relationships
+    System --> UC2
+    System --> UC4
+    System --> UC9
+    System --> UC10
+    System --> UC11
+    System --> UC12
+    System --> UC13
+    System --> UC14
+    System --> UC15
+    System --> UC18
+    System --> UC21
+    System --> UC22
+    
+    %% Email Service Relationships
+    EmailService --> UC7
+    
+    %% SMS Service Relationships
+    SMSService --> UC8
+    
+    %% Admin Relationships
+    Admin --> UC13
+    Admin --> UC14
+    Admin --> UC15
+    Admin --> UC22
+    
+    %% Security System Relationships
+    SecuritySystem --> UC23
+    SecuritySystem --> UC24
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC2
+    UC1 -.->|includes| UC3
+    UC1 -.->|includes| UC4
+    UC10 -.->|includes| UC11
+    UC10 -.->|includes| UC12
+    UC13 -.->|includes| UC14
+    UC13 -.->|includes| UC15
+    
+    %% Extend Relationships
+    UC7 -.->|extends| UC2
+    UC8 -.->|extends| UC4
+    UC19 -.->|extends| UC1
+    UC20 -.->|extends| UC1
+    UC21 -.->|extends| UC19
+    UC23 -.->|extends| UC1
+    UC24 -.->|extends| UC1
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class NewUser,System,EmailService,SMSService,Admin,SecuritySystem actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24 usecase
+```

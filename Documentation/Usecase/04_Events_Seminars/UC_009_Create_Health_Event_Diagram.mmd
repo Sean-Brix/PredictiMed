@@ -1,0 +1,134 @@
+graph TB
+    %% ========================================
+    %% EVENTS & SEMINARS USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed Events & Seminars System"
+        subgraph "Event Creation & Management"
+            UC1[Create Health Event]
+            UC2[Set Event Details]
+            UC3[Define Target Audience]
+            UC4[Schedule Event Date/Time]
+            UC5[Assign Event Moderators]
+            UC6[Configure Event Settings]
+        end
+        
+        subgraph "Registration & Participation"
+            UC7[Register for Health Event]
+            UC8[View Event Information]
+            UC9[Receive Event Reminders]
+            UC10[Join Live Event]
+            UC11[Participate in Q&A]
+            UC12[Access Event Materials]
+        end
+        
+        subgraph "Content Management"
+            UC13[Upload Event Resources]
+            UC14[Create Event Presentations]
+            UC15[Manage Speaker Profiles]
+            UC16[Record Event Sessions]
+            UC17[Share Event Recordings]
+            UC18[Generate Event Certificates]
+        end
+        
+        subgraph "Analytics & Reporting"
+            UC19[Track Event Attendance]
+            UC20[Monitor Engagement Metrics]
+            UC21[Generate Event Reports]
+            UC22[Collect Participant Feedback]
+            UC23[Analyze Event Effectiveness]
+            UC24[Create Follow-up Surveys]
+        end
+    end
+    
+    %% Actors
+    HealthOfficer((Health Officer))
+    EventModerator((Event Moderator))
+    Participant((Participant/Patient))
+    Admin((Admin))
+    Speaker((Healthcare Speaker))
+    System((System))
+    
+    %% Health Officer Relationships
+    HealthOfficer --> UC1
+    HealthOfficer --> UC2
+    HealthOfficer --> UC3
+    HealthOfficer --> UC4
+    HealthOfficer --> UC5
+    HealthOfficer --> UC6
+    HealthOfficer --> UC13
+    HealthOfficer --> UC15
+    HealthOfficer --> UC21
+    HealthOfficer --> UC23
+    
+    %% Event Moderator Relationships
+    EventModerator --> UC10
+    EventModerator --> UC11
+    EventModerator --> UC14
+    EventModerator --> UC16
+    EventModerator --> UC22
+    
+    %% Participant Relationships
+    Participant --> UC7
+    Participant --> UC8
+    Participant --> UC10
+    Participant --> UC11
+    Participant --> UC12
+    Participant --> UC22
+    
+    %% Admin Relationships
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC17
+    Admin --> UC18
+    Admin --> UC19
+    Admin --> UC20
+    Admin --> UC21
+    Admin --> UC24
+    
+    %% Speaker Relationships
+    Speaker --> UC10
+    Speaker --> UC11
+    Speaker --> UC14
+    Speaker --> UC15
+    
+    %% System Relationships
+    System --> UC9
+    System --> UC16
+    System --> UC18
+    System --> UC19
+    System --> UC20
+    System --> UC24
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC2
+    UC1 -.->|includes| UC4
+    UC7 -.->|includes| UC8
+    UC10 -.->|includes| UC19
+    UC21 -.->|includes| UC19
+    UC21 -.->|includes| UC20
+    UC23 -.->|includes| UC22
+    
+    %% Extend Relationships
+    UC3 -.->|extends| UC1
+    UC5 -.->|extends| UC1
+    UC6 -.->|extends| UC1
+    UC9 -.->|extends| UC7
+    UC11 -.->|extends| UC10
+    UC12 -.->|extends| UC10
+    UC13 -.->|extends| UC1
+    UC14 -.->|extends| UC10
+    UC15 -.->|extends| UC1
+    UC16 -.->|extends| UC10
+    UC17 -.->|extends| UC16
+    UC18 -.->|extends| UC10
+    UC22 -.->|extends| UC10
+    UC24 -.->|extends| UC22
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class HealthOfficer,EventModerator,Participant,Admin,Speaker,System actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24 usecase
+```

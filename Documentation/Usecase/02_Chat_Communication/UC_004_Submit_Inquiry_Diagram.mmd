@@ -1,0 +1,112 @@
+graph TB
+    %% ========================================
+    %% CHAT & COMMUNICATION USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed Chat System"
+        subgraph "Inquiry Management"
+            UC1[Submit Health Inquiry]
+            UC2[View Inquiry Status]
+            UC3[Respond to Patient Inquiry]
+            UC4[Categorize Inquiries]
+            UC5[Track Response Times]
+            UC6[Escalate Complex Inquiries]
+        end
+        
+        subgraph "FAQ System"
+            UC7[Browse FAQ Categories]
+            UC8[Search FAQ Content]
+            UC9[Rate FAQ Helpfulness]
+            UC10[Suggest New FAQ Topics]
+            UC11[Manage FAQ Content]
+            UC12[Update FAQ Database]
+        end
+        
+        subgraph "Communication Features"
+            UC13[Attach Files to Inquiry]
+            UC14[Send Emergency Notifications]
+            UC15[Create Follow-up Questions]
+            UC16[Enable Anonymous Inquiries]
+            UC17[Translate Messages]
+            UC18[Send Automated Responses]
+        end
+        
+        subgraph "Admin Functions"
+            UC19[Generate Communication Reports]
+            UC20[Monitor Chat Performance]
+            UC21[Manage User Permissions]
+            UC22[Archive Old Conversations]
+            UC23[Set Response Priorities]
+            UC24[Configure Auto-routing]
+        end
+    end
+    
+    %% Actors
+    Patient((Patient/User))
+    HealthWorker((Health Worker))
+    Admin((Admin))
+    SuperAdmin((Super Admin))
+    System((System))
+    
+    %% Patient Relationships
+    Patient --> UC1
+    Patient --> UC2
+    Patient --> UC7
+    Patient --> UC8
+    Patient --> UC9
+    Patient --> UC10
+    Patient --> UC13
+    Patient --> UC15
+    Patient --> UC16
+    
+    %% Health Worker Relationships
+    HealthWorker --> UC3
+    HealthWorker --> UC4
+    HealthWorker --> UC6
+    HealthWorker --> UC11
+    HealthWorker --> UC14
+    HealthWorker --> UC17
+    HealthWorker --> UC23
+    
+    %% Admin Relationships
+    Admin --> UC3
+    Admin --> UC5
+    Admin --> UC11
+    Admin --> UC12
+    Admin --> UC19
+    Admin --> UC20
+    Admin --> UC21
+    Admin --> UC22
+    Admin --> UC24
+    
+    %% Super Admin Relationships
+    SuperAdmin --> UC20
+    SuperAdmin --> UC21
+    SuperAdmin --> UC22
+    SuperAdmin --> UC24
+    
+    %% System Relationships
+    System --> UC18
+    System --> UC24
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC4
+    UC3 -.->|includes| UC5
+    UC19 -.->|includes| UC20
+    UC11 -.->|includes| UC12
+    
+    %% Extend Relationships
+    UC13 -.->|extends| UC1
+    UC14 -.->|extends| UC3
+    UC15 -.->|extends| UC2
+    UC16 -.->|extends| UC1
+    UC17 -.->|extends| UC3
+    UC18 -.->|extends| UC3
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class Patient,HealthWorker,Admin,SuperAdmin,System actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24 usecase
+```

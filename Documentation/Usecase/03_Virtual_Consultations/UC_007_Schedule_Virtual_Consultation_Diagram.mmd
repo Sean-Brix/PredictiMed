@@ -1,0 +1,130 @@
+graph TB
+    %% ========================================
+    %% VIRTUAL CONSULTATIONS USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed Virtual Consultation System"
+        subgraph "Appointment Scheduling"
+            UC1[Schedule Virtual Consultation]
+            UC2[Select Available Time Slots]
+            UC3[Choose Healthcare Provider]
+            UC4[Confirm Appointment Details]
+            UC5[Send Appointment Reminders]
+            UC6[Reschedule Appointments]
+        end
+        
+        subgraph "Consultation Session"
+            UC7[Start Video Conference]
+            UC8[Conduct Virtual Examination]
+            UC9[Share Medical Documents]
+            UC10[Record Session Notes]
+            UC11[Prescribe Medications]
+            UC12[End Consultation Session]
+        end
+        
+        subgraph "Technical Features"
+            UC13[Test Audio/Video Quality]
+            UC14[Screen Sharing Capability]
+            UC15[Chat During Consultation]
+            UC16[Record Consultation]
+            UC17[Backup Communication Methods]
+            UC18[Technical Support Access]
+        end
+        
+        subgraph "Follow-up Management"
+            UC19[Schedule Follow-up Appointments]
+            UC20[Send Consultation Summary]
+            UC21[Generate Treatment Plans]
+            UC22[Track Patient Progress]
+            UC23[Issue Digital Prescriptions]
+            UC24[Archive Consultation Records]
+        end
+    end
+    
+    %% Actors
+    Patient((Patient))
+    HealthcareProvider((Healthcare Provider))
+    Admin((Admin))
+    TechnicalSupport((Technical Support))
+    System((System))
+    PharmacySystem((Pharmacy System))
+    
+    %% Patient Relationships
+    Patient --> UC1
+    Patient --> UC2
+    Patient --> UC3
+    Patient --> UC4
+    Patient --> UC6
+    Patient --> UC7
+    Patient --> UC9
+    Patient --> UC13
+    Patient --> UC15
+    Patient --> UC17
+    Patient --> UC19
+    
+    %% Healthcare Provider Relationships
+    HealthcareProvider --> UC2
+    HealthcareProvider --> UC7
+    HealthcareProvider --> UC8
+    HealthcareProvider --> UC9
+    HealthcareProvider --> UC10
+    HealthcareProvider --> UC11
+    HealthcareProvider --> UC12
+    HealthcareProvider --> UC14
+    HealthcareProvider --> UC15
+    HealthcareProvider --> UC16
+    HealthcareProvider --> UC19
+    HealthcareProvider --> UC20
+    HealthcareProvider --> UC21
+    HealthcareProvider --> UC22
+    HealthcareProvider --> UC23
+    
+    %% Admin Relationships
+    Admin --> UC5
+    Admin --> UC18
+    Admin --> UC24
+    
+    %% Technical Support Relationships
+    TechnicalSupport --> UC13
+    TechnicalSupport --> UC17
+    TechnicalSupport --> UC18
+    
+    %% System Relationships
+    System --> UC5
+    System --> UC16
+    System --> UC20
+    System --> UC24
+    
+    %% Pharmacy System Relationships
+    PharmacySystem --> UC23
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC2
+    UC1 -.->|includes| UC3
+    UC1 -.->|includes| UC4
+    UC7 -.->|includes| UC13
+    UC8 -.->|includes| UC10
+    UC11 -.->|includes| UC23
+    UC12 -.->|includes| UC20
+    UC12 -.->|includes| UC24
+    
+    %% Extend Relationships
+    UC5 -.->|extends| UC1
+    UC6 -.->|extends| UC1
+    UC9 -.->|extends| UC8
+    UC14 -.->|extends| UC8
+    UC15 -.->|extends| UC7
+    UC16 -.->|extends| UC7
+    UC17 -.->|extends| UC7
+    UC18 -.->|extends| UC13
+    UC19 -.->|extends| UC12
+    UC21 -.->|extends| UC20
+    UC22 -.->|extends| UC21
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class Patient,HealthcareProvider,Admin,TechnicalSupport,System,PharmacySystem actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24 usecase
+```

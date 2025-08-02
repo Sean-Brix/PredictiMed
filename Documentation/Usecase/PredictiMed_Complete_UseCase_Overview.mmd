@@ -1,0 +1,146 @@
+graph TB
+    %% ========================================
+    %% PREDICTIMED COMPLETE USE CASE OVERVIEW
+    %% ========================================
+    
+    subgraph "PredictiMed Healthcare System"
+        subgraph "Authentication & User Management"
+            UC1[User Registration]
+            UC2[User Login]
+            UC3[Profile Management]
+            UC19[Create User Account]
+            UC20[Manage User Roles]
+        end
+        
+        subgraph "Communication & Support"
+            UC4[Submit Health Inquiry]
+            UC5[Browse FAQ]
+            UC6[Respond to Inquiry]
+        end
+        
+        subgraph "Virtual Healthcare Services"
+            UC7[Schedule Virtual Consultation]
+            UC8[Conduct Virtual Consultation]
+        end
+        
+        subgraph "Events & Educational Programs"
+            UC9[Create Health Event]
+            UC10[Register for Health Event]
+            UC13[Enroll Health Program]
+            UC14[Track Program Progress]
+        end
+        
+        subgraph "Digital Health Tools"
+            UC11[Generate QR Code]
+            UC12[Scan QR Code]
+        end
+        
+        subgraph "Location & Facility Services"
+            UC15[Find Healthcare Facilities]
+            UC16[Manage Facility Information]
+        end
+        
+        subgraph "Analytics & Reporting"
+            UC17[Generate Health Analytics]
+            UC18[View System Performance]
+        end
+    end
+    
+    %% Primary Actors
+    Patient((Patient/User))
+    HealthWorker((Health Worker))
+    Admin((Admin))
+    HealthOfficer((Health Officer))
+    DataAnalyst((Data Analyst))
+    SuperAdmin((Super Admin))
+    
+    %% Secondary Actors
+    System((System))
+    EmailService((Email Service))
+    SMSService((SMS Service))
+    
+    %% Patient Use Cases
+    Patient --> UC1
+    Patient --> UC2
+    Patient --> UC3
+    Patient --> UC4
+    Patient --> UC5
+    Patient --> UC7
+    Patient --> UC10
+    Patient --> UC12
+    Patient --> UC13
+    Patient --> UC14
+    Patient --> UC15
+    
+    %% Health Worker Use Cases
+    HealthWorker --> UC6
+    HealthWorker --> UC7
+    HealthWorker --> UC8
+    HealthWorker --> UC11
+    HealthWorker --> UC16
+    
+    %% Admin Use Cases
+    Admin --> UC3
+    Admin --> UC6
+    Admin --> UC16
+    Admin --> UC17
+    Admin --> UC18
+    Admin --> UC19
+    Admin --> UC20
+    
+    %% Health Officer Use Cases
+    HealthOfficer --> UC9
+    HealthOfficer --> UC13
+    HealthOfficer --> UC17
+    
+    %% Data Analyst Use Cases
+    DataAnalyst --> UC17
+    DataAnalyst --> UC18
+    
+    %% Super Admin Use Cases
+    SuperAdmin --> UC19
+    SuperAdmin --> UC20
+    
+    %% System Use Cases
+    System --> UC11
+    System --> UC17
+    System --> UC18
+    
+    %% Service Use Cases
+    EmailService --> UC1
+    EmailService --> UC2
+    SMSService --> UC1
+    SMSService --> UC2
+    
+    %% Major Include Relationships
+    UC1 -.->|includes| UC19
+    UC7 -.->|includes| UC15
+    UC9 -.->|includes| UC16
+    UC17 -.->|includes| UC18
+    
+    %% Major Extend Relationships
+    UC3 -.->|extends| UC1
+    UC6 -.->|extends| UC4
+    UC8 -.->|extends| UC7
+    UC11 -.->|extends| UC9
+    UC12 -.->|extends| UC11
+    UC14 -.->|extends| UC13
+    
+    %% Cross-Module Dependencies
+    UC7 -.->|uses| UC2
+    UC9 -.->|uses| UC2
+    UC13 -.->|uses| UC2
+    UC17 -.->|uses| UC4
+    UC17 -.->|uses| UC7
+    UC17 -.->|uses| UC9
+    UC17 -.->|uses| UC13
+    
+    classDef primaryActor fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+    classDef secondaryActor fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef usecase fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:4px
+    
+    class Patient,HealthWorker,Admin,HealthOfficer,DataAnalyst,SuperAdmin primaryActor
+    class System,EmailService,SMSService secondaryActor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20 usecase
+```

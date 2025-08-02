@@ -1,0 +1,134 @@
+graph TB
+    %% ========================================
+    %% ANALYTICS & REPORTING USE CASES
+    %% ========================================
+    
+    subgraph "PredictiMed Analytics System"
+        subgraph "Health Data Analytics"
+            UC1[Generate Health Analytics]
+            UC2[Analyze Patient Demographics]
+            UC3[Track Health Trends]
+            UC4[Monitor Program Effectiveness]
+            UC5[Calculate Health Metrics]
+            UC6[Predict Health Outcomes]
+        end
+        
+        subgraph "System Performance"
+            UC7[Monitor System Usage]
+            UC8[Track User Engagement]
+            UC9[Analyze Response Times]
+            UC10[Generate Performance Reports]
+            UC11[Identify System Bottlenecks]
+            UC12[Monitor Resource Utilization]
+        end
+        
+        subgraph "Reporting & Visualization"
+            UC13[Create Custom Dashboards]
+            UC14[Export Data Reports]
+            UC15[Schedule Automated Reports]
+            UC16[Generate Visual Charts]
+            UC17[Create Interactive Maps]
+            UC18[Share Report Insights]
+        end
+        
+        subgraph "Data Management"
+            UC19[Collect Health Data]
+            UC20[Validate Data Quality]
+            UC21[Process Data Aggregation]
+            UC22[Maintain Data Privacy]
+            UC23[Archive Historical Data]
+            UC24[Backup Analytics Data]
+        end
+    end
+    
+    %% Actors
+    DataAnalyst((Data Analyst))
+    HealthDirector((Health Director))
+    Admin((Admin))
+    SystemAdmin((System Admin))
+    HealthOfficer((Health Officer))
+    Patient((Patient))
+    
+    %% Data Analyst Relationships
+    DataAnalyst --> UC1
+    DataAnalyst --> UC2
+    DataAnalyst --> UC3
+    DataAnalyst --> UC5
+    DataAnalyst --> UC6
+    DataAnalyst --> UC13
+    DataAnalyst --> UC14
+    DataAnalyst --> UC16
+    DataAnalyst --> UC17
+    DataAnalyst --> UC19
+    DataAnalyst --> UC20
+    DataAnalyst --> UC21
+    
+    %% Health Director Relationships
+    HealthDirector --> UC1
+    HealthDirector --> UC3
+    HealthDirector --> UC4
+    HealthDirector --> UC6
+    HealthDirector --> UC10
+    HealthDirector --> UC13
+    HealthDirector --> UC14
+    HealthDirector --> UC15
+    HealthDirector --> UC18
+    
+    %% Admin Relationships
+    Admin --> UC7
+    Admin --> UC8
+    Admin --> UC10
+    Admin --> UC11
+    Admin --> UC12
+    Admin --> UC15
+    Admin --> UC22
+    Admin --> UC23
+    Admin --> UC24
+    
+    %% System Admin Relationships
+    SystemAdmin --> UC9
+    SystemAdmin --> UC11
+    SystemAdmin --> UC12
+    SystemAdmin --> UC22
+    SystemAdmin --> UC23
+    SystemAdmin --> UC24
+    
+    %% Health Officer Relationships
+    HealthOfficer --> UC4
+    HealthOfficer --> UC17
+    HealthOfficer --> UC18
+    
+    %% Patient Relationships
+    Patient --> UC17
+    
+    %% Include Relationships
+    UC1 -.->|includes| UC19
+    UC1 -.->|includes| UC20
+    UC1 -.->|includes| UC21
+    UC3 -.->|includes| UC2
+    UC6 -.->|includes| UC5
+    UC10 -.->|includes| UC7
+    UC10 -.->|includes| UC8
+    UC13 -.->|includes| UC16
+    UC14 -.->|includes| UC1
+    
+    %% Extend Relationships
+    UC4 -.->|extends| UC3
+    UC9 -.->|extends| UC7
+    UC11 -.->|extends| UC10
+    UC12 -.->|extends| UC7
+    UC15 -.->|extends| UC14
+    UC16 -.->|extends| UC13
+    UC17 -.->|extends| UC13
+    UC18 -.->|extends| UC14
+    UC22 -.->|extends| UC19
+    UC23 -.->|extends| UC19
+    UC24 -.->|extends| UC23
+    
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#e8eaf6,stroke:#3f51b5,stroke-width:2px
+    classDef system fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    
+    class DataAnalyst,HealthDirector,Admin,SystemAdmin,HealthOfficer,Patient actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8,UC9,UC10,UC11,UC12,UC13,UC14,UC15,UC16,UC17,UC18,UC19,UC20,UC21,UC22,UC23,UC24 usecase
+```
